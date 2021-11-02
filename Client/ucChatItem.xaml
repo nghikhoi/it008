@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="UI.ucChatItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+             d:DesignWidth="300" >
+
+    <Border Padding="5">
+        <Grid>
+            <Border CornerRadius="15" Background="teal">
+                <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" 
+                           Grid.IsSharedSizeScope="True"
+                           Text="Hi i am huyen ne" FontSize="18" 
+                           Foreground="White" Padding="14">
+                </TextBlock>
+            </Border>
+        </Grid>
+    </Border>
+
+</UserControl>

@@ -1,0 +1,84 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        WindowStyle="none"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
+        Title="Chat" Height="350" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <!--<Window.Background>
+        <ImageBrush ImageSource="./background/khung.png"/>
+    </Window.Background>-->
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resource/UIResource.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Title bar custome -->
+        <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
+            <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/x_black.png" Margin="6 0 6 0" Cursor="Hand"
+                   PreviewMouseDown="Image_PreviewMouseDown_close">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="20"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="30"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>-->
+            <materialDesign:PackIcon Kind="WindowClose" DockPanel.Dock="Right" Width="24" Height="24" Margin="0 10 10 0"
+                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
+            <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/-_black.png" Cursor="Hand"
+                   PreviewMouseDown="Image_PreviewMouseDown_minimize">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="20"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="30"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>-->
+            <materialDesign:PackIcon Kind="WindowMinimize" DockPanel.Dock="Right" Width="24" Height="24" Margin="0 10 5 0"
+                                     PreviewMouseDown="Image_PreviewMouseDown_minimize" Cursor="Hand"/>
+        </DockPanel>
+
+        <Label Content="App Name" HorizontalAlignment="Center" FontSize="40" Margin="0 50 0 0"></Label>
+        
+        <!--<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <Button Style="{StaticResource btn}" Content="Login" VerticalAlignment="Top"></Button>
+            <Button Style="{StaticResource btn}" Content="Register" VerticalAlignment="Top" ></Button>
+        </StackPanel>-->
+
+        <StackPanel VerticalAlignment="Center">
+            <Button
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            Width="130"
+            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="Button_Click">
+                Đăng nhập
+            </Button>
+            <Button
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            Width="130"
+            Margin="0 16 0 0"
+            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="Button_Click_1">
+                Đăng kí
+            </Button>
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
