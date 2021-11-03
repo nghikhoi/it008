@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -14,39 +15,75 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="40 105 30 0">
-            <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
-                <StackPanel >
-                    <TextBlock>Họ</TextBlock>
-                    <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="Nhập họ"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100"/>
+        <Grid Grid.Column="1">
+
+            <StackPanel Margin="40 105 30 0">
+                <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
+                    <StackPanel />
+                    <StackPanel/>
                 </StackPanel>
-                <StackPanel>
-                    <TextBlock >Tên</TextBlock>
-                    <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="Nhập tên"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="300" />
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Margin="0 0 0 20">
-                <TextBlock>Ngày sinh</TextBlock>
-                <DatePicker  materialDesign:HintAssist.Hint="Pick Date"
+                <StackPanel Margin="0 0 0 20">
+                    <TextBlock>Ngày sinh</TextBlock>
+                    <DatePicker  
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-            </StackPanel>
-            <StackPanel Margin="0 0 0 40">
-                <TextBlock>Email</TextBlock>
-                <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="Nhập email"
+                </StackPanel>
+                <StackPanel Margin="0 0 0 40">
+                    <TextBlock>Email</TextBlock>
+                    <TextBox x:Name="UsernameBox" 
                         Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-            </StackPanel>
-            
-            <Button x:Name="ChangePassword_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                </StackPanel>
+
+                <Button x:Name="ChangePassword_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 Width="120"
                                 ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                 HorizontalAlignment="Center" 
                             Margin="0 0 20 0" >
-                Đổi mật khẩu
-            </Button>
+                    Đổi mật khẩu
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="0">
 
-            <TextBlock>Đổi mật khẩu</TextBlock>
-        </StackPanel>
+            <StackPanel>
+                <!--Avatar-->
+                <Button Height="150" Width="150" 
+                    BorderThickness="0"
+                        Margin="50 50 50 50">
+
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="20"/>
+                        </Style>
+                    </Button.Resources>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Ellipse Height="150" Width="150" Grid.Column="1">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button Command="{Binding RunDialogCommand}">
+                    <Canvas>
+                        <materialDesign:PackIcon Kind="Account" Canvas.Left="0.2"/>
+                    </Canvas>
+                </Button>
+
+
+
+
+
+                <!--NAME-->
+
+
+
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

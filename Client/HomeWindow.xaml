@@ -8,12 +8,55 @@
         WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="20"></RowDefinition>
+            <RowDefinition Height="430"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
+                <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/x_black.png" Margin="6 0 6 0" Cursor="Hand"
+                   PreviewMouseDown="Image_PreviewMouseDown_close">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="20"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="30"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>-->
+                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                    <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
+                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
+                </Border>
+                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                    <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/-_black.png" Cursor="Hand"
+                   PreviewMouseDown="Image_PreviewMouseDown_minimize">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Width" Value="20"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Image.IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="30"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>-->
+                    <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Margin="0 5 5 0"
+                                     PreviewMouseDown="Image_PreviewMouseDown_minimize" Cursor="Hand" RenderTransformOrigin="0.252,-0.457"/>
+                </Border>
+            </DockPanel>
+
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="600"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <Border BorderBrush="teal" BorderThickness="2">
                 <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="WhiteSmoke">
                     <Grid>
@@ -32,12 +75,13 @@
                                     <materialDesign:DialogHost.DialogContent>
                                         <Grid Width="200" HorizontalAlignment="Center">
                                             <StackPanel>
-                                                <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">  
+                                                <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
                                                     Thông tin cá nhân
                                                 </Button>
                                                 <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
                                                     Đăng xuất
                                                 </Button>
+                                                <!--Tam thoi--> 
                                                 <Button x:Name="backBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
                                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                                     Quay lại
@@ -46,20 +90,24 @@
                                         </Grid>
                                     </materialDesign:DialogHost.DialogContent>
                                     <Border Width="24" Height="24" CornerRadius="25" Margin="4 2 0 0">
-                                        <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"></Button>
+                                        <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Margin="0,0,0,-8" VerticalAlignment="Top"></Button>
                                     </Border>
                                 </materialDesign:DialogHost>
-                                
+
                                 <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 2 8 0"/>
                             </DockPanel>
                         </Grid>
 
 
                         <Grid Grid.Row="1">
-                            <ListView  ItemContainerStyle="{StaticResource ContactCard}">
-                            <!--danh sach cuoc tro chuyen gan day-->
-                            <Label Content="Gần đây" Height="30"></Label>
-                            <!--<ListViewItem>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="14*"/>
+                                <ColumnDefinition Width="187*"/>
+                            </Grid.ColumnDefinitions>
+                            <ListView  ItemContainerStyle="{StaticResource ContactCard}" Grid.ColumnSpan="2">
+                                <!--danh sach cuoc tro chuyen gan day-->
+                                <Label Content="Gần đây" Height="30"></Label>
+                                <!--<ListViewItem>
                                 <Border Background="{TemplateBinding Background}"
                             Height="45" CornerRadius="4" Margin="2">
                                     <StackPanel Orientation="Horizontal">
@@ -74,13 +122,7 @@
                                     </StackPanel>
                                 </Border>
                             </ListViewItem>-->
-                            
                             </ListView>
-                            <Border Margin="2, 4" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                                <Button x:Name="btnBackHome" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
-                                    <materialDesign:PackIcon x:Name="exitSticker" Kind="ExitToApp" Width="24" Height="24" HorizontalAlignment="Stretch" Foreground="#FF2C2C2C"/>
-                                </Button>
-                            </Border>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -89,20 +131,24 @@
             <Grid Grid.Column="1" Width="600" HorizontalAlignment="Right" >
 
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!--ten user (binding sau)-->
-                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch">
+                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
                         <StackPanel>
                             <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                             <Label Grid.Row="1" Content="Dang hoat dong" FontSize="10" Margin="0 -10 0 0"></Label>
                         </StackPanel>
                     </Grid>
 
-                    <DockPanel Grid.Row="1">
+                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                         <Border VerticalAlignment="Bottom" Margin="2, 4">
                             <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
                                 <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
@@ -133,7 +179,7 @@
             </Grid>
         </Grid>
 
-        
+
 
     </Grid>
 </Window>
