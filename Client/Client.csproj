@@ -66,6 +66,15 @@
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\coversation.cs" />
+    <Compile Include="Models\voice_message.cs" />
+    <Compile Include="Models\image_message.cs" />
+    <Compile Include="Models\video_message.cs" />
+    <Compile Include="Models\message.cs" />
+    <Compile Include="Models\text_message.cs" />
+    <Compile Include="Models\user_infomation.cs" />
+    <Compile Include="Models\login_information.cs" />
+    <Compile Include="Models\register_infomation.cs" />
     <Compile Include="ucChatItem.xaml.cs">
       <DependentUpon>ucChatItem.xaml</DependentUpon>
     </Compile>
