@@ -48,12 +48,12 @@
                         Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
                 <DockPanel LastChildFill="False" Margin="0 50 0 0">
-                    <Button x:Name="back_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="120"
                         Background="White"
                         Foreground="teal"
                         HorizontalAlignment="Right" 
-                        Click="back_btn_Click">
+                        Click="backBtn_Click">
                             Quay lại
                         </Button>
                     <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"

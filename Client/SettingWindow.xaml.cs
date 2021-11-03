@@ -23,5 +23,11 @@ namespace UI
         {
             InitializeComponent();
         }
+
+        private void Button_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+        }
+
     }
 }

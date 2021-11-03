@@ -54,13 +54,7 @@ namespace UI
         }
     }
 
-    public class WindowChrome : Freezable
-    {
-        protected override Freezable CreateInstanceCore()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
+
 
     //public class NotEmptyValidationRule : ValidationRule
     //{
