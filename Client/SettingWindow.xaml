@@ -115,19 +115,11 @@
                 <Button Command="{Binding RunDialogCommand}"
                         HorizontalAlignment="Left" Width="396">
                     <Canvas>
-<<<<<<< HEAD
                         <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
                         <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
-                        <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
-                            Hiep Chau
-                        </TextBox>
-=======
-                        <materialDesign:PackIcon 
-                            Kind="Account"         
-                            HorizontalAlignment="Left"        
-                            VerticalAlignment="Left"        
-                            Foreground="Black" Canvas.Left="-196" Width="392" Canvas.Top="-15" Height="30"/>
->>>>>>> 5ea0b6e6ccfde78a751af1a300bc7d5575e24339
+                            <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
+                                Hiep Chau
+                            </TextBox>
                     </Canvas>
                 </Button>
 
