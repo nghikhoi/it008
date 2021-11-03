@@ -7,85 +7,67 @@
         mc:Ignorable="d"
         WindowStyle="None"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="WindowLogIn" Height="350" Width="600" WindowStartupLocation="CenterScreen">
+        Title="WindowLogIn" Height="600" Width="450" WindowStartupLocation="CenterScreen">
     <Grid>
         <DockPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 28 0 0">
-                <Button
-                    Style="{StaticResource MaterialDesignFlatButton}"
-                    ToolTip="MaterialDesignFlatButton"
-                    Height="40">
-                    Đăng kí
-                </Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 28 0 6">
+                <TextBlock FontSize="20" Foreground="teal">Đăng kí</TextBlock>
             </StackPanel>
             <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="4">
-                <Border BorderThickness="8" Width="180" BorderBrush="#FFC5C5C5"/>
+                <Border BorderThickness="8" Width="110" BorderBrush="#FFC5C5C5"/>
             </StackPanel>
         </DockPanel>
-
+        
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+            <StackPanel Margin="50 94 50 0">
 
-            <Grid Grid.Column="0">
-                <StackPanel Margin="30 105 10 0">
-                    <StackPanel Margin="0 0 0 20">
-                        <TextBlock >Tài khoản</TextBlock>
-                        <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="Nhập email"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-                    <StackPanel Margin="0 0 0 24">
-                        <TextBlock >Mật khẩu</TextBlock>
-                        <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Nhập mật khẩu"
-                                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    </StackPanel>
-                    <StackPanel Margin="0 0 0 24">
-                        <TextBlock >Xác nhận mật khẩu</TextBlock>
-                        <PasswordBox x:Name="VerifyPasswordBox" materialDesign:HintAssist.Hint="Nhập mật khẩu"
-                                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Column="1">
-                <StackPanel Margin="10 105 30 0">
-                    <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
-                        <StackPanel >
-                            <TextBlock>Họ</TextBlock>
-                            <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="Nhập họ"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="100"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock >Tên</TextBlock>
-                            <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="Nhập tên"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="160" />
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Margin="0 0 0 36">
-                        <TextBlock>Ngày sinh</TextBlock>
-                        <DatePicker  materialDesign:HintAssist.Hint="Pick Date"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    </StackPanel>
+                <DockPanel Margin="0 0 0 16" LastChildFill="False">
+                    <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="Nhập họ"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="178"/>
+                    <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="Nhập tên"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="127" DockPanel.Dock="Right" />
+                </DockPanel>
+                <DockPanel LastChildFill="False" Margin="0 0 0 16">
+                    <DatePicker x:Name="BirthdayPicker" materialDesign:HintAssist.Hint="Ngày sinh"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="179" />
 
-                    <StackPanel Orientation="Horizontal">
-                        <Button x:Name="back_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="120"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                HorizontalAlignment="Right" 
-                            Margin="0 0 20 0" Click="back_btn_Click">
+                    <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:HintAssist.Hint="Giới tính" DockPanel.Dock="Right" Width="124">
+                        <ComboBoxItem>Nam</ComboBoxItem>
+                        <ComboBoxItem>Nữ</ComboBoxItem>
+                        <ComboBoxItem>Khác</ComboBoxItem>
+                    </ComboBox>
+                </DockPanel>
+                <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="Nhập email"
+                        Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                
+                <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Nhập mật khẩu"
+                        Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                
+                <PasswordBox x:Name="VerifyPasswordBox" materialDesign:HintAssist.Hint="Nhập lại mật khẩu"
+                        Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+
+                <DockPanel LastChildFill="False" Margin="0 50 0 0">
+                    <Button x:Name="back_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="120"
+                        Background="White"
+                        Foreground="teal"
+                        HorizontalAlignment="Right" 
+                        Click="back_btn_Click">
                             Quay lại
                         </Button>
-                        <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="120"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                HorizontalAlignment="Right" >
-                            Đăng kí
-                        </Button>
-                    </StackPanel>
-                    
-                </StackPanel>
-            </Grid>
+                    <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Width="120"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                        DockPanel.Dock="Right">
+                        Đăng kí
+                    </Button>
+                </DockPanel>
+            </StackPanel>
         </Grid>
+           
+           
+            
+        
     </Grid>
 </Window>

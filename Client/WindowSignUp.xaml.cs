@@ -26,8 +26,8 @@ namespace UI
 
         private void back_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
+            WindowLogIn windowLogIn = new WindowLogIn();
+            windowLogIn.Show();
             this.Close();
         }
     }

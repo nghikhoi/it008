@@ -23,43 +23,10 @@ namespace UI
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
-        }
-
-        private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Image_PreviewMouseDown_minimize(object sender, MouseButtonEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLogIn winlog = new WindowLogIn();
-            winlog.Show();
-            this.Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            WindowRegister winlog = new WindowRegister();
-            winlog.Show();
+            WindowLogIn windowLogin = new WindowLogIn();
+            windowLogin.ShowDialog();
             this.Close();
         }
     }
-    public class WindowChrome : Freezable
-    {
-        protected override Freezable CreateInstanceCore()
-        {
-            throw new System.NotImplementedException();
-        }
-    }
+        
 }

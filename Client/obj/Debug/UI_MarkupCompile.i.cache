@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\PC\OneDrive - Trường ĐH CNTT - University of Information Technology\Tài liệu\doanit008\UI\UI\obj\Debug\
+C:\Users\PC\OneDrive - Trường ĐH CNTT - University of Information Technology\Tài liệu\doanit008\DoAnIt008\Client\obj\Debug\
 UI
 none
 false
 DEBUG;TRACE
-C:\Users\PC\OneDrive - Trường ĐH CNTT - University of Information Technology\Tài liệu\doanit008\UI\UI\App.xaml
-8132158352
+C:\Users\PC\OneDrive - Trường ĐH CNTT - University of Information Technology\Tài liệu\doanit008\DoAnIt008\Client\App.xaml
+81489309478
 
-11-1203506728
-15-1799470618
-Dictionaries\ContactCard.xaml;HomeWindow.xaml;Resource\UIResource.xaml;MainWindow.xaml;ucChatItem.xaml;ucPopUpSetting.xaml;WindowLogIn.xaml;WindowSignUp.xaml;
+11-1888764143
+15-667949522
+Dictionaries\ContactCard.xaml;HomeWindow.xaml;Resource\UIResource.xaml;MainWindow.xaml;SettingWindow.xaml;ucChatItem.xaml;WindowLogIn.xaml;WindowSignUp.xaml;
 
 True
 
