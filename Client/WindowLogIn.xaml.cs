@@ -24,21 +24,37 @@ namespace UI
         {
             InitializeComponent();
         }
-
-        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+
+        private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
+        {
             this.Close();
         }
 
+        private void Image_PreviewMouseDown_minimize(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow home = new HomeWindow();
             home.Show();
             this.Close();
         }
+
+        private void SignBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowRegister home = new WindowRegister();
+            home.Show();
+            this.Close();
+        }
     }
+
+
 
     //public class NotEmptyValidationRule : ValidationRule
     //{

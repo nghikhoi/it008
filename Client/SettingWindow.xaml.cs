@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for ucPopUpSetting.xaml
+    /// Interaction logic for SettingWindow.xaml
     /// </summary>
-    public partial class ucPopUpSetting : UserControl
+    public partial class SettingWindow : Window
     {
-        public ucPopUpSetting()
+        public SettingWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
         }
     }
 }

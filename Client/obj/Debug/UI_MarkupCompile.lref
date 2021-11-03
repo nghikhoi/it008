@@ -1,4 +1,5 @@
 ﻿
+<<<<<<< HEAD
 FD:\Do An\Client\App.xaml;;
 FD:\Do An\Client\HomeWindow.xaml;;
 FD:\Do An\Client\MainWindow.xaml;;
@@ -6,4 +7,13 @@ FD:\Do An\Client\ucChatItem.xaml;;
 FD:\Do An\Client\ucPopUpSetting.xaml;;
 FD:\Do An\Client\WindowLogIn.xaml;;
 FD:\Do An\Client\WindowSignUp.xaml;;
+=======
+FD:\Data\HipChou\Project\C#\Do an\Client\App.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\HomeWindow.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\MainWindow.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\SettingWindow.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\ucChatItem.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\WindowLogIn.xaml;;
+FD:\Data\HipChou\Project\C#\Do an\Client\WindowSignUp.xaml;;
+>>>>>>> 561e481d4539c11d6306f75821b9d7ab07979f37
 
