@@ -70,7 +70,11 @@
 
                 <Button Command="{Binding RunDialogCommand}">
                     <Canvas>
-                        <materialDesign:PackIcon Kind="Account" Canvas.Left="0.2"/>
+                        <materialDesign:PackIcon 
+                            Kind="Account"         
+                            HorizontalAlignment="Left"        
+                            VerticalAlignment="Left"        
+                            Foreground="Black" Canvas.Left="-196" Width="392" Canvas.Top="-15" Height="30"/>
                     </Canvas>
                 </Button>
 
