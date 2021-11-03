@@ -51,6 +51,13 @@ namespace UI
             home.Show();
             this.Close();
         }
+
+        private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow settingWindow = new SettingWindow();
+            settingWindow.Show();
+            
+        }
     }
     public class WindowChrome : Freezable
     {

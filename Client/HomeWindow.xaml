@@ -75,13 +75,14 @@
                                     <materialDesign:DialogHost.DialogContent>
                                         <Grid Width="200" HorizontalAlignment="Center">
                                             <StackPanel>
-                                                <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
+                                                <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
+                                                        Click="accInfo_Btn_Click">
                                                     Thông tin cá nhân
                                                 </Button>
                                                 <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
                                                     Đăng xuất
                                                 </Button>
-                                                <!--Tam thoi--> 
+                                                <!--Tam thoi-->
                                                 <Button x:Name="backBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
                                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                                     Quay lại
@@ -101,10 +102,11 @@
 
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="14*"/>
-                                <ColumnDefinition Width="187*"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="56*"/>
+                                <ColumnDefinition Width="37*"/>
                             </Grid.ColumnDefinitions>
-                            <ListView  ItemContainerStyle="{StaticResource ContactCard}" Grid.ColumnSpan="2">
+                            <ListView  ItemContainerStyle="{StaticResource ContactCard}" Grid.ColumnSpan="3">
                                 <!--danh sach cuoc tro chuyen gan day-->
                                 <Label Content="Gần đây" Height="30"></Label>
                                 <!--<ListViewItem>
