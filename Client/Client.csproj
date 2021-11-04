@@ -72,7 +72,6 @@
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Models\coversation.cs" />
     <Compile Include="Models\voice_message.cs" />
     <Compile Include="Models\image_message.cs" />
@@ -82,11 +81,9 @@
     <Compile Include="Models\user_infomation.cs" />
     <Compile Include="Models\login_information.cs" />
     <Compile Include="Models\register_infomation.cs" />
-=======
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
->>>>>>> 561e481d4539c11d6306f75821b9d7ab07979f37
     <Compile Include="ucChatItem.xaml.cs">
       <DependentUpon>ucChatItem.xaml</DependentUpon>
     </Compile>

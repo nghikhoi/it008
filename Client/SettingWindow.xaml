@@ -16,31 +16,75 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31*"/>
+                <RowDefinition Height="190*"/>
+            </Grid.RowDefinitions>
 
-            <StackPanel Margin="40 105 30 0">
+            <StackPanel Margin="40,0,30,0" Grid.RowSpan="2">
                 <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
                     <StackPanel />
                     <StackPanel/>
                 </StackPanel>
-                <StackPanel Margin="0 0 0 20">
-                    <TextBlock>Ngày sinh</TextBlock>
-                    <DatePicker  
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                </StackPanel>
+                <DockPanel LastChildFill="False" Margin="0 0 0 20">
+                    <StackPanel>
+                        <TextBlock> Ngày sinh</TextBlock>
+                        <DatePicker x:Name="BirthdayPicker" 
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right">
+                        <TextBlock> Giới tính</TextBlock>
+                        <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              Width="79">
+
+                            <ComboBoxItem Content="Nam"/>
+                            <ComboBoxItem Content="Nữ"/>
+                            <ComboBoxItem Content="Khác"/>
+                        </ComboBox>
+                    </StackPanel>
+                </DockPanel>
+
                 <StackPanel Margin="0 0 0 40">
                     <TextBlock>Email</TextBlock>
                     <TextBox x:Name="UsernameBox" 
                         Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </StackPanel>
+                <StackPanel Margin="0 0 0 0">
+                    <Canvas>
+                        <materialDesign:PackIcon Kind="Phone" Canvas.Left="1" RenderTransformOrigin="0.688,0.844" Height="28" Width="19" />
+                    </Canvas>
+                    <TextBox
+                        x:Name="PhoneTextBox"
+                        materialDesign:TransitionAssist.DisableTransitions="True"
+                        Margin="26,0,174,0"/>
 
-                <Button x:Name="ChangePassword_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="120"
-                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                HorizontalAlignment="Center" 
-                            Margin="0 0 20 0" >
-                    Đổi mật khẩu
-                </Button>
+
+
+                </StackPanel>
+
             </StackPanel>
+            <!--ChangePassWordButton-->
+            <Button x:Name="ChangePassword_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" 
+                           Content="Đổi mật khẩu" HorizontalAlignment="Left" Width="120" Margin="136,202,0,146" Grid.Row="1" />
+            <!--Controller Button-->
+            <DockPanel   LastChildFill="False" Grid.Row="1" VerticalAlignment="Bottom">
+                <Button
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="MaterialDesignFlatButton" 
+                    Foreground="White" 
+                    Content="Cập nhật"
+                    Width="120"/>
+                <Button
+                    DockPanel.Dock="Left"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    ToolTip="MaterialDesignFlatButton"
+                    Background="White"
+                    Foreground="Teal" 
+                    Content="HỦY"
+                    Width="120"/>
+            </DockPanel>
         </Grid>
         <Grid Grid.Column="0">
 
@@ -68,11 +112,30 @@
 
                 </Button>
 
-                <Button Command="{Binding RunDialogCommand}">
+                <Button Command="{Binding RunDialogCommand}"
+                        HorizontalAlignment="Left" Width="396">
                     <Canvas>
-                        <materialDesign:PackIcon Kind="Account" Canvas.Left="0.2"/>
+                        <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
+                        <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
+                            <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
+                                Hiep Chau
+                            </TextBox>
                     </Canvas>
                 </Button>
+
+                <TextBox
+                    Margin="10,30,10,0"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Stretch"
+                    MinWidth="280"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    SpellCheck.IsEnabled="True"
+                    materialDesign:HintAssist.Hint="Bio..."
+                    Height="82"/>
+
+
+
 
 
 
@@ -84,6 +147,7 @@
 
 
             </StackPanel>
+
         </Grid>
     </Grid>
 </Window>
