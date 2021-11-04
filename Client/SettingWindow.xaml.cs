@@ -28,6 +28,21 @@ namespace UI
         {
 
         }
+        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
 
+        private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ChangePassword_btn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassWord changePassWord = new ChangePassWord();
+            changePassWord.Show();
+        }
     }
 }
