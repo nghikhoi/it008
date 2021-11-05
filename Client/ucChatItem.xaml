@@ -9,7 +9,7 @@
 
     <Border Padding="5">
         <Grid MaxWidth="300">
-            <Border CornerRadius="15" Background="teal">
+            <Border x:Name="message_border" CornerRadius="15" Background="teal">
                 
                 <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                            Grid.IsSharedSizeScope="True"

@@ -71,6 +71,19 @@ namespace UI
             }
             
         }
+        private void update_meaage_container_rcv(message tmp)
+        {
+            if (tmp is text_message)
+            {
+                text_message offi = (text_message)tmp;
+                var msg = new ucChatItem();
+                msg.message_border.Background = Brushes.Gray;
+                msg.text_msg_content.Text = offi.content;
+                msg.HorizontalAlignment = HorizontalAlignment.Left;
+                msg.VerticalAlignment = VerticalAlignment.Bottom;
+                message_container.Children.Add(msg);
+            }
+        }
         private void send_on_click(object sender, RoutedEventArgs e)
         {
             if (ChatInput.Text != "")
@@ -78,9 +91,12 @@ namespace UI
                 text_message tmp = new text_message(ChatInput.Text);
                 
                 update_message_container(tmp);
+               
+                update_meaage_container_rcv(new text_message("test recieve."));
                 ChatInput.Text = "";
             }
         }
+
 
         private void send_by_enter(object sender, KeyEventArgs e)
         {
