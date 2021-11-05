@@ -194,10 +194,12 @@
                                 <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
                             </Button>
                             <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
-                                <TextBox  x:Name="ChatInput" BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
-                                         materialDesign:HintAssist.Hint="Nhập tin nhắn..." Margin="10,0,25,0" TextWrapping="Wrap" 
+                                <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
+                                         materialDesign:HintAssist.Hint="Input message here..."
+                                         KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
                                          Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
-                                         VerticalContentAlignment="Center" MaxHeight="82"/>
+                                         VerticalContentAlignment="Center" MaxHeight="82"
+                                          />
                             </Border>
                         </DockPanel>
                     </Grid>

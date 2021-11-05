@@ -8,8 +8,9 @@
              d:DesignWidth="300" >
 
     <Border Padding="5">
-        <Grid>
+        <Grid MaxWidth="300">
             <Border CornerRadius="15" Background="teal">
+                
                 <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                            Grid.IsSharedSizeScope="True"
                            Text="Hi i am huyen ne" FontSize="18" 

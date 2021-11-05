@@ -82,7 +82,24 @@ namespace UI
             }
         }
 
-  
+        private void send_by_enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(Keyboard.IsKeyDown(Key.LeftShift)|| Keyboard.IsKeyDown(Key.RightShift)){
+                    ChatInput.Text += "\n";
+                 
+                    return;
+                }
+                if (ChatInput.Text != "")
+                {
+                    text_message tmp = new text_message(ChatInput.Text);
+
+                    update_message_container(tmp);
+                    ChatInput.Text = "";
+                }
+            }
+        }
     }
     public class WindowChrome : Freezable
     {
