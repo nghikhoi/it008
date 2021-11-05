@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using UI.Models;
 namespace UI
 {
     /// <summary>
@@ -58,6 +58,31 @@ namespace UI
             settingWindow.Show();
             
         }
+
+        private void update_message_container(message tmp)
+        {
+            if(tmp is text_message) {
+                text_message offi = (text_message)tmp;
+                var msg = new ucChatItem();
+                msg.text_msg_content.Text = offi.content;
+                msg.HorizontalAlignment = HorizontalAlignment.Right;
+                msg.VerticalAlignment = VerticalAlignment.Bottom;
+                message_container.Children.Add(msg);
+            }
+            
+        }
+        private void send_on_click(object sender, RoutedEventArgs e)
+        {
+            if (ChatInput.Text != "")
+            {
+                text_message tmp = new text_message(ChatInput.Text);
+                
+                update_message_container(tmp);
+                ChatInput.Text = "";
+            }
+        }
+
+  
     }
     public class WindowChrome : Freezable
     {

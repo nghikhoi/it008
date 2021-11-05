@@ -178,7 +178,7 @@
                                 <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
                             </Button>
                         </Border>
-                        <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" >
+                        <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="send_on_click" >
                             <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
                         </Button>
                         <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
@@ -191,8 +191,20 @@
                 </Grid>
             </Grid>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" >
+            <ScrollViewer >
+
+                <StackPanel x:Name="message_container" >
+
+                </StackPanel>
 
 
+
+            </ScrollViewer>
+        </Grid>
+        
+            
+        
 
 
     </Grid>
