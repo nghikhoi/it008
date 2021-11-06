@@ -4,13 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Width="200" Height="35">
 
         <Button x:Name="video_button" Width="200" Click="open_video_window">
-            <Grid>
-                <TextBlock FontSize="20">
+            <Grid Width="170">
+                <materialDesign:PackIcon Kind="Play" HorizontalAlignment="Left"
+                                         VerticalAlignment="Center" Height="20" Margin="0,4,0,0" Width="33" ></materialDesign:PackIcon>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center">
                 Play video
                 </TextBlock>
                 <TextBlock Name="video_link" Opacity="0"></TextBlock>
