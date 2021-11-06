@@ -149,6 +149,25 @@ namespace UI
                 update_image_message(myimage);
             }
         }
+
+        private void update_file_message(string fileurl)
+        {
+            var mebutton = new mediaPlayer();
+            mebutton.video_link.Text = fileurl;
+            mebutton.HorizontalAlignment = HorizontalAlignment.Right;
+            message_container.Children.Add(mebutton);
+            msg_scroll.ScrollToEnd();
+        }
+        private void send_files_on_click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog opendlg = new OpenFileDialog();
+            opendlg.Filter = "Video files (*.MP4) |*.MP4";
+            if (opendlg.ShowDialog() == true) 
+            {
+                update_file_message(opendlg.FileName);
+            }
+            
+        }
     }
     public class WindowChrome : Freezable
     {

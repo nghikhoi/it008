@@ -143,7 +143,7 @@
                                 </Button>
                             </Border>
                             <Border VerticalAlignment="Bottom" Margin="2, 4">
-                                <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
+                                <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" Click="send_files_on_click" >
                                     <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
                                 </Button>
                             </Border>
