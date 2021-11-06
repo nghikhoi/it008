@@ -121,7 +121,8 @@
                             <RowDefinition Height="350"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <ScrollViewer Grid.Row="0"
+                        <ScrollViewer x:Name="msg_scroll"
+                                      Grid.Row="0"
                                       VerticalScrollBarVisibility="Visible" 
                                       HorizontalScrollBarVisibility="Auto"
                                       Style="{StaticResource MaterialDesignScrollViewer}" Margin="0,0,10,0"
@@ -138,13 +139,13 @@
                                 </Button>
                             </Border>
                             <Border VerticalAlignment="Bottom" Margin="2, 4">
-                                <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
+                                <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" Click="send_files_on_click" >
                                     <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
                                 </Button>
                             </Border>
 
                             <Border VerticalAlignment="Bottom" Margin="2, 4">
-                                <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Width="32">
+                                <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Width="32" Click="send_image_on_click">
                                     <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
                                 </Button>
                             </Border>
