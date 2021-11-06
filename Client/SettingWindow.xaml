@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="SettingWindow" Height="450" Width="800">
     <Grid>
         <!--2 Row-->
@@ -22,37 +22,13 @@
         <!--Row 0-->
         <Grid Grid.Row="0">
             <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
-                <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/x_black.png" Margin="6 0 6 0" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_close">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
+                
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
                     <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
                                      PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
                 </Border>
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/-_black.png" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_minimize">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
+                    
                 </Border>
             </DockPanel>
 
@@ -69,16 +45,16 @@
             <!--Column 0-->
             <Grid Grid.Column="0" Grid.ColumnSpan="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.ColumnSpan="2">
                     <!--Avatar-->
                     <Button Height="150" Width="150" 
-                    BorderThickness="0"
-                        Margin="50 50 50 50">
-
+                            BorderThickness="0"
+                            Margin="0 50 0 10"
+                            Command="{Binding ClickImageCommand}">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="20"/>
@@ -96,17 +72,42 @@
                         </Button.Template>
 
                     </Button>
-
-                    <Button Command="{Binding RunDialogCommand}"
-                        HorizontalAlignment="Left" Width="396">
-                        <Canvas>
-                            <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
-                            <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
-                            <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
-                                Hiep Chau
-                            </TextBox>
-                        </Canvas>
+                    <Button Width="180"
+                            Command="{Binding ClickChangeImageCommand}"
+                            Visibility="{Binding Visibility}">
+                        Thay đổi ảnh đại diện
                     </Button>
+
+                    <!--change name btn-->
+                    <materialDesign:DialogHost CloseOnClickAway="True" Identifier="0" > 
+                        <materialDesign:DialogHost.DialogContent>
+                            <Grid>
+                                <StackPanel  Width="300" Margin="20 0">
+                                    <TextBlock Foreground="{DynamicResource PrimaryColor}" 
+                                           FontSize="20" HorizontalAlignment="Center" Margin="0 20 0 15">
+                                    Đổi tên
+                                    </TextBlock>
+                                    <TextBox Margin="0 0 0 50" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16">
+                                        HiepChau
+                                    </TextBox>
+                                    <Button Width="100" Margin="0 0 0 16">Đổi</Button>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:DialogHost.DialogContent>
+
+                        <Grid>
+                        <Button x:Name="ChangeNameBtn" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                            <Canvas>
+                                <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
+                                <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
+                                <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
+                                    Hiep Chau
+                                </TextBox>
+                            </Canvas>
+                        </Button>
+                        </Grid>
+                    </materialDesign:DialogHost>
 
                     <TextBox
                     Margin="10,30,10,0"
@@ -175,12 +176,79 @@
 
                 </StackPanel>
                 <!--ChangePassWordButton-->
-                <Button x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" 
+                <materialDesign:DialogHost Margin="136,202,0,124" Grid.Row="1">
+                    <materialDesign:DialogHost.DialogContent>
+                        <Grid Width="240" Margin="20 30">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height ="20"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock FontSize="15"
+                       Foreground="teal"
+                       HorizontalAlignment="Center"
+                       >
+                Đăng kí
+                                </TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                                <StackPanel>
+                                    <PasswordBox x:Name="PasswordBox"
+                         materialDesign:HintAssist.Hint="Nhập mật khẩu"
+                         Margin="5 0 10 16"
+                         FontSize="10"
+                             
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+
+                                    <PasswordBox x:Name="ChangePasswordBox"
+                         materialDesign:HintAssist.Hint="Nhập mật khẩu mới"
+                         Margin="5 -15 10 16"
+                         FontSize="10"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                                    <PasswordBox x:Name="ConfirmNewPasswordBox"
+                         materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới"
+                         Margin="5 -15 10 16"
+                         FontSize="10"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                                    <DockPanel LastChildFill="False" Margin="0 0 0 0">
+                                        <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="60"
+                            Height="30"
+                            Margin="20 0 0 0"
+                            Background="White"
+                            Foreground="teal"
+                            HorizontalAlignment="Right" 
+                            FontSize="15"
+                                                Command="materialDesign:DialogHost.CloseDialogCommand">
+
+                                            Hủy
+                                        </Button>
+                                        <Button x:Name="ConfirmButton"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="60"
+                            Height="30"
+                            Margin="0 0 20 0"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                            DockPanel.Dock="Right"
+                            FontSize="15"
+                                                Command="materialDesign:DialogHost.CloseDialogCommand">
+                                            Lưu
+
+                                        </Button>
+                                    </DockPanel>
+
+                                </StackPanel>
+
+                            </Grid>
+                        </Grid>
+                    </materialDesign:DialogHost.DialogContent>
+                    <Button x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Content="Đổi mật khẩu" 
                         HorizontalAlignment="Left"
-                        Width="120" Margin="136,202,0,124" Grid.Row="1" Height="Auto"
-                        Click="ChangePassword_btn_Click"/>
+                        Width="120" Height="Auto"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
+                </materialDesign:DialogHost>
+                
                 <!--Controller Button-->
                 <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
                     <Button
@@ -199,8 +267,8 @@
                     Content="HỦY"
                     Width="120"/>
                 </DockPanel>
+                
             </Grid>
-
         </Grid>
     </Grid>
 </Window>

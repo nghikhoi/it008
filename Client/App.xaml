@@ -10,7 +10,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.teal.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-                <ResourceDictionary Source="Dictionaries/ContactCard.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Components/ContactCard.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Dictionaries/Styles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Dictionaries/Colors.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

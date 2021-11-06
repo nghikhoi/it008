@@ -5,60 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:UI.Components"
         WindowStyle="None"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="480" Width="815" WindowStartupLocation="CenterScreen">
+    
     <Grid>
-
-
-
         <Grid.RowDefinitions>
-            <RowDefinition Height ="20"></RowDefinition>
-            <RowDefinition Height="430"></RowDefinition>
+            <RowDefinition Height ="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <!--title bar-->
         <Grid Grid.Row="0">
-            <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
-                <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/x_black.png" Margin="6 0 6 0" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_close">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
-                </Border>
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/-_black.png" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_minimize">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
-                    <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Margin="0 5 5 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_minimize" Cursor="Hand" RenderTransformOrigin="0.252,-0.457"/>
-                </Border>
-            </DockPanel>
-
+            <uc:ucTitleBar Loaded="ucTitleBar_Loaded"></uc:ucTitleBar>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="teal" BorderThickness="2">
@@ -74,7 +39,6 @@
 
                             <DockPanel>
 
-                                <!--<materialDesign:PackIcon x:Name="settingBtn" DockPanel.Dock="Left" Kind="Account" Width="24" Height="24" Margin="4 2 0 0"/>-->
                                 <!--fake avt-->
                                 <!--popup setting-->
                                 <materialDesign:DialogHost
@@ -93,8 +57,6 @@
                                             </StackPanel>
                                         </Grid>
                                     </materialDesign:DialogHost.DialogContent>
-
-                                    <!--<Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"></Button>-->
 
 
                                     <Border Width="24" Height="24" CornerRadius="25" Margin="4 2 0 0">
@@ -151,7 +113,7 @@
                     </Grid.RowDefinitions>
 
                     <!--ten user (binding sau)-->
-                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch">
                         <StackPanel>
                             <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                             <Label Grid.Row="1" Content="Dang hoat dong" FontSize="10" Margin="0 -10 0 0"></Label>

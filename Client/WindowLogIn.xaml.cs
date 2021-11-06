@@ -24,21 +24,7 @@ namespace UI
         {
             InitializeComponent();
         }
-        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
-        }
 
-        private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Image_PreviewMouseDown_minimize(object sender, MouseButtonEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow home = new HomeWindow();
@@ -51,6 +37,11 @@ namespace UI
             WindowRegister home = new WindowRegister();
             home.Show();
             this.Close();
+        }
+
+        private void ucTitleBar_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
