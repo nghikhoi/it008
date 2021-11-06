@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
+using Microsoft.Win32;
 namespace UI
 {
     /// <summary>
@@ -68,6 +69,7 @@ namespace UI
                 msg.HorizontalAlignment = HorizontalAlignment.Right;
                 msg.VerticalAlignment = VerticalAlignment.Bottom;
                 message_container.Children.Add(msg);
+                msg_scroll.ScrollToEnd();
             }
             
         }
@@ -82,6 +84,7 @@ namespace UI
                 msg.HorizontalAlignment = HorizontalAlignment.Left;
                 msg.VerticalAlignment = VerticalAlignment.Bottom;
                 message_container.Children.Add(msg);
+                msg_scroll.ScrollToEnd();
             }
         }
         private void send_on_click(object sender, RoutedEventArgs e)
@@ -120,6 +123,31 @@ namespace UI
         private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void update_image_message(BitmapImage image)
+        {
+            Image msgimage = new Image();
+            msgimage.Source = image;
+            msgimage.MaxWidth = 300;
+            msgimage.HorizontalAlignment = HorizontalAlignment.Right;
+            message_container.Children.Add(msgimage);
+            msg_scroll.ScrollToEnd();
+        }
+
+        private void send_image_on_click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog opendlg = new OpenFileDialog();
+            opendlg.Filter = "Image files (*.jpg, *.png) |*.jpg;*.png";
+            if (opendlg.ShowDialog() == true)
+            {
+                Uri fileuri = new Uri(opendlg.FileName);
+                BitmapImage myimage = new BitmapImage();
+                myimage.BeginInit();
+                myimage.UriSource = fileuri;
+                myimage.EndInit();
+                update_image_message(myimage);
+            }
         }
     }
     public class WindowChrome : Freezable
