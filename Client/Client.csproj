@@ -112,9 +112,6 @@
     <Compile Include="Models\user_infomation.cs" />
     <Compile Include="Models\login_information.cs" />
     <Compile Include="Models\register_infomation.cs" />
-    <Compile Include="newpage.xaml.cs">
-      <DependentUpon>newpage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -177,10 +174,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="mediaPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="newpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
