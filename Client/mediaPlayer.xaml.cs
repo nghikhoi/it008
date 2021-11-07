@@ -30,6 +30,7 @@ namespace UI
             var mediawin = new VideoWindow();
             Uri video_uri = new Uri(video_link.Text);
             mediawin.VideoControl.Source = video_uri;
+            mediawin.Title = video_link.Text;
             mediawin.Show();
         }
     }

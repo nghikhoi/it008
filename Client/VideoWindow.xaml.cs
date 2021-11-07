@@ -31,7 +31,13 @@ namespace UI
 
         private void pause_video_on_click(object sender, RoutedEventArgs e)
         {
-            VideoControl.Play();
+            VideoControl.Pause();
+        }
+
+        private void Loaded_acitivity(object sender, RoutedEventArgs e)
+        {
+            VideoControl.Position = new TimeSpan(0, 0, 0, 0, 1);
+            VideoControl.Pause();
         }
     }
 }
