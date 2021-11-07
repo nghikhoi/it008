@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,9 @@ namespace UI
         public SettingWindow()
         {
             InitializeComponent();
+            DataContext = new UI.Components.ChangeUserInfomation();
         }
 
-        private void Button_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
@@ -44,5 +42,8 @@ namespace UI
             ChangePassWord changePassWord = new ChangePassWord();
             changePassWord.Show();
         }
+
+
+
     }
 }

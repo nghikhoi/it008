@@ -5,60 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
+        xmlns:uc="clr-namespace:UI.Components"
         WindowStyle="None"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="480" Width="815" WindowStartupLocation="CenterScreen">
+    
     <Grid>
-
-
-
         <Grid.RowDefinitions>
-            <RowDefinition Height ="20"></RowDefinition>
-            <RowDefinition Height="430"></RowDefinition>
+            <RowDefinition Height ="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <!--title bar-->
         <Grid Grid.Row="0">
-            <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
-                <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/x_black.png" Margin="6 0 6 0" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_close">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
-                </Border>
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <!--<Image DockPanel.Dock="right" Source="/ctrlbaricon/-_black.png" Cursor="Hand"
-                   PreviewMouseDown="Image_PreviewMouseDown_minimize">
-                <Image.Style>
-                    <Style TargetType="Image">
-                        <Setter Property="Width" Value="20"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Image.IsMouseOver" Value="True">
-                                <Setter Property="Width" Value="30"></Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>-->
-                    <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Margin="0 5 5 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_minimize" Cursor="Hand" RenderTransformOrigin="0.252,-0.457"/>
-                </Border>
-            </DockPanel>
-
+            <uc:ucTitleBar Loaded="ucTitleBar_Loaded"></uc:ucTitleBar>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"></ColumnDefinition>
-                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="teal" BorderThickness="2">
@@ -71,10 +36,7 @@
 
                         <!--setting button (avt)-->
                         <Grid Grid.Row="0">
-
                             <DockPanel>
-                              
-                                <!--<materialDesign:PackIcon x:Name="settingBtn" DockPanel.Dock="Left" Kind="Account" Width="24" Height="24" Margin="4 2 0 0"/>-->
                                 <!--fake avt-->
                                 <!--popup setting-->
                                 <materialDesign:DialogHost
@@ -94,8 +56,6 @@
                                         </Grid>
                                     </materialDesign:DialogHost.DialogContent>
 
-                                    <!--<Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"></Button>-->
-
 
                                     <Border Width="24" Height="24" CornerRadius="25" Margin="4 2 0 0">
                                         <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Margin="-3,-5,0,0" VerticalAlignment="Top" Height="24"></Button>
@@ -111,31 +71,29 @@
 
 
                         <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="56*"/>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="30*"/>
-                            </Grid.ColumnDefinitions>
-                            <ListView  ItemContainerStyle="{StaticResource ContactCard}" Grid.ColumnSpan="4">
-                                <!--danh sach cuoc tro chuyen gan day-->
-                                <Label Content="Gần đây" Height="30"></Label>
-                                <!--<ListViewItem>
-                                <Border Background="{TemplateBinding Background}"
-                            Height="45" CornerRadius="4" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="30" Height="30" Background="blue" CornerRadius="25" Margin="0 0 10 0">
+                            <StackPanel>
+                                <!--List Chat Item-->
 
-                                        </Border>
+                            </StackPanel>
+                            <!--<listview  itemcontainerstyle="{staticresource contactcard}" grid.columnspan="4">
+                                --><!--danh sach cuoc tro chuyen gan day--><!--
+                                <label content="gần đây" height="30"></label>
+                                <listviewitem>
+                                <border background="{templatebinding background}"
+                            height="45" cornerradius="4" margin="2">
+                                    <stackpanel orientation="horizontal">
+                                        <border width="30" height="30" background="blue" cornerradius="25" margin="0 0 10 0">
 
-                                        <StackPanel >
-                                            <Label Content="Huyen ne" Margin="0 6 0 0"></Label>
-                                            <Label Content="t met moi qua :>" FontSize="10" Margin="0 -8 0 0"></Label>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Border>
-                            </ListViewItem>-->
-                            </ListView>
+                                        </border>
+
+                                        <stackpanel >
+                                            <label content="huyen ne" margin="0 6 0 0"></label>
+                                            <label content="t met moi qua :>" fontsize="10" margin="0 -8 0 0"></label>
+                                        </stackpanel>
+                                    </stackpanel>
+                                </border>
+                            </listviewitem>
+                            </listview>-->
                         </Grid>
                     </Grid>
                 </Grid>
@@ -144,55 +102,69 @@
             <Grid Grid.Column="1" Width="600" HorizontalAlignment="Right" >
 
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="9*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!--ten user (binding sau)-->
-                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+                    <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch">
                         <StackPanel>
                             <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                             <Label Grid.Row="1" Content="Dang hoat dong" FontSize="10" Margin="0 -10 0 0"></Label>
                         </StackPanel>
                     </Grid>
 
-                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
-                        <Border VerticalAlignment="Bottom" Margin="2, 4">
-                            <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
-                                <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
-                            </Button>
-                        </Border>
-                        <Border VerticalAlignment="Bottom" Margin="2, 4">
-                            <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
-                                <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
-                            </Button>
-                        </Border>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="350"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer x:Name="msg_scroll"
+                                      Grid.Row="0"
+                                      VerticalScrollBarVisibility="Visible" 
+                                      HorizontalScrollBarVisibility="Auto"
+                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0,0,10,0"
+                                      >
+                                
+                            <StackPanel x:Name="message_container" >
+                            </StackPanel>
+                        </ScrollViewer>
 
-                        <Border VerticalAlignment="Bottom" Margin="2, 4">
-                            <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Width="32">
-                                <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
+                        <DockPanel Grid.Row="1">
+                            <Border VerticalAlignment="Bottom" Margin="2, 4">
+                                <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
+                                    <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
+                                </Button>
+                            </Border>
+                            <Border VerticalAlignment="Bottom" Margin="2, 4">
+                                <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" Click="send_files_on_click" >
+                                    <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
+                                </Button>
+                            </Border>
+
+                            <Border VerticalAlignment="Bottom" Margin="2, 4">
+                                <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Width="32" Click="send_image_on_click">
+                                    <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
+                                </Button>
+                            </Border>
+                            <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="send_on_click" >
+                                <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
                             </Button>
-                        </Border>
-                        <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" >
-                            <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
-                        </Button>
-                        <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
-                            <TextBox  x:Name="ChatInput" BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
-                                         materialDesign:HintAssist.Hint="Nhập tin nhắn..." Margin="10,0,25,0" TextWrapping="Wrap" 
+                            <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
+                                <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
+                                         materialDesign:HintAssist.Hint="Input message here..."
+                                         KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
                                          Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
-                                         VerticalContentAlignment="Center" MaxHeight="82"/>
-                        </Border>
-                    </DockPanel>
+                                         VerticalContentAlignment="Center" MaxHeight="82"
+                                          />
+                            </Border>
+                        </DockPanel>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
-
-
 
 
     </Grid>
