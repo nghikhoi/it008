@@ -152,10 +152,16 @@ namespace UI
 
         private void update_file_message(string fileurl)
         {
-            var mebutton = new mediaPlayer();
-            mebutton.video_link.Text = fileurl;
-            mebutton.HorizontalAlignment = HorizontalAlignment.Right;
-            message_container.Children.Add(mebutton);
+            //var mebutton = new mediaPlayer();
+            //mebutton.video_link.Text = fileurl;
+            //mebutton.HorizontalAlignment = HorizontalAlignment.Right;
+            //message_container.Children.Add(mebutton);
+            var videomsg = new VideoMessage();
+            Uri videopath = new Uri(fileurl);
+            videomsg.VideoControl.Source = videopath;
+            videomsg.MaxWidth = 300;
+            videomsg.HorizontalAlignment = HorizontalAlignment.Right;
+            message_container.Children.Add(videomsg);
             msg_scroll.ScrollToEnd();
         }
         private void send_files_on_click(object sender, RoutedEventArgs e)
