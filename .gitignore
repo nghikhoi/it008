@@ -350,3 +350,6 @@ MigrationBackup/
 .ionide/
 /.vs
 /.idea
+*.iml
+.idea/
+.idea
