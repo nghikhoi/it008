@@ -17,26 +17,21 @@
 
         </MediaElement>
 
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button
+                Grid.Row="1" Height="28" 
+                Name="PlayButton" Width="75" 
+                Click="play_video_on_click" Margin="12 0 12 0">
+                Play
+            </Button>
 
-
-        <Button
-                Grid.Row="1"
-                Height="23" HorizontalAlignment="Left" Margin="15,0,0,13"
-
-            Name= "PlayButton" VerticalAlignment="Bottom" Width="75" Click="play_video_on_click" >
-
-            Play
-        </Button>
-
-        <Button
-                    Grid.Row="1"
-                    Height="23" HorizontalAlignment="Left" Margin="103,0,0,13"
-
-            Name="PauseButton" VerticalAlignment="Bottom" Width="75" Click="pause_video_on_click"
-
-           >
-
-            Pause
-        </Button>
+            <Button
+                Grid.Row="1" Height="28" 
+                Name="PauseButton" Width="75" 
+                Click="pause_video_on_click">
+                Pause
+            </Button>
+        </StackPanel>
+       
     </Grid>
 </Window>

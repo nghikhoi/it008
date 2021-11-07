@@ -36,9 +36,7 @@
 
                         <!--setting button (avt)-->
                         <Grid Grid.Row="0">
-
                             <DockPanel>
-
                                 <!--fake avt-->
                                 <!--popup setting-->
                                 <materialDesign:DialogHost
@@ -73,31 +71,29 @@
 
 
                         <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="56*"/>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="30*"/>
-                            </Grid.ColumnDefinitions>
-                            <ListView  ItemContainerStyle="{StaticResource ContactCard}" Grid.ColumnSpan="4">
-                                <!--danh sach cuoc tro chuyen gan day-->
-                                <Label Content="Gần đây" Height="30"></Label>
-                                <!--<ListViewItem>
-                                <Border Background="{TemplateBinding Background}"
-                            Height="45" CornerRadius="4" Margin="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="30" Height="30" Background="blue" CornerRadius="25" Margin="0 0 10 0">
+                            <StackPanel>
+                                <!--List Chat Item-->
 
-                                        </Border>
+                            </StackPanel>
+                            <!--<listview  itemcontainerstyle="{staticresource contactcard}" grid.columnspan="4">
+                                --><!--danh sach cuoc tro chuyen gan day--><!--
+                                <label content="gần đây" height="30"></label>
+                                <listviewitem>
+                                <border background="{templatebinding background}"
+                            height="45" cornerradius="4" margin="2">
+                                    <stackpanel orientation="horizontal">
+                                        <border width="30" height="30" background="blue" cornerradius="25" margin="0 0 10 0">
 
-                                        <StackPanel >
-                                            <Label Content="Huyen ne" Margin="0 6 0 0"></Label>
-                                            <Label Content="t met moi qua :>" FontSize="10" Margin="0 -8 0 0"></Label>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Border>
-                            </ListViewItem>-->
-                            </ListView>
+                                        </border>
+
+                                        <stackpanel >
+                                            <label content="huyen ne" margin="0 6 0 0"></label>
+                                            <label content="t met moi qua :>" fontsize="10" margin="0 -8 0 0"></label>
+                                        </stackpanel>
+                                    </stackpanel>
+                                </border>
+                            </listviewitem>
+                            </listview>-->
                         </Grid>
                     </Grid>
                 </Grid>

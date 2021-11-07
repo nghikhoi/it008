@@ -84,6 +84,13 @@
     <Compile Include="ChangePassWord.xaml.cs">
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChatListControl.xaml.cs">
+      <DependentUpon>ChatListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatListItemControl.xaml.cs">
+      <DependentUpon>ChatListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Components\BaseComponent.cs" />
     <Compile Include="Components\ChangeUserInfomation.cs" />
@@ -105,9 +112,6 @@
     <Compile Include="Models\user_infomation.cs" />
     <Compile Include="Models\login_information.cs" />
     <Compile Include="Models\register_infomation.cs" />
-    <Compile Include="newpage.xaml.cs">
-      <DependentUpon>newpage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,14 @@
       <DependentUpon>WindowSignUp.xaml</DependentUpon>
     </Compile>
     <Page Include="ChangePassWord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,10 +174,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="mediaPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="newpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
