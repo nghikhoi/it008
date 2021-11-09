@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              x:Name="TitleBar">
-
+    
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -16,7 +16,7 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
 
-        <Border Background="White">
+        <Border Background="Transparent">
             <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource OriginalButton}"
