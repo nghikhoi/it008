@@ -38,7 +38,7 @@
                 <TextBlock Text="Hiep Chau"/>
                 <TextBlock Text="Lon Dung"
                        FontStyle="Italic"
-                       Foreground="LightGray"
+                       Foreground="{StaticResource LightBrush}"
                        TextTrimming="CharacterEllipsis"/>
 
             </StackPanel>

@@ -77,42 +77,27 @@
                         <Grid Grid.Row="1">
                             <StackPanel>
                                 <!--List Chat Item-->
-
+                                <local:ChatListControl x:Name="testabc"/>
+                       
                             </StackPanel>
-                            <!--<listview  itemcontainerstyle="{staticresource contactcard}" grid.columnspan="4">
-                                --><!--danh sach cuoc tro chuyen gan day--><!--
-                                <label content="gần đây" height="30"></label>
-                                <listviewitem>
-                                <border background="{templatebinding background}"
-                            height="45" cornerradius="4" margin="2">
-                                    <stackpanel orientation="horizontal">
-                                        <border width="30" height="30" background="blue" cornerradius="25" margin="0 0 10 0">
-
-                                        </border>
-
-                                        <stackpanel >
-                                            <label content="huyen ne" margin="0 6 0 0"></label>
-                                            <label content="t met moi qua :>" fontsize="10" margin="0 -8 0 0"></label>
-                                        </stackpanel>
-                                    </stackpanel>
-                                </border>
-                            </listviewitem>
-                            </listview>-->
+                          
                         </Grid>
                     </Grid>
                 </Grid>
             </Border>
             <!--cuoc tro chuyen-->
             <Grid Grid.Column="1" Width="600" HorizontalAlignment="Right" >
-
-                <Grid>
+                <DockPanel>
+                    <local:ChatPage x:Name="ChatPage" />
+                </DockPanel>
+                    <!--<Grid>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <!--ten user (binding sau)-->
+                    --><!--ten user (binding sau)--><!--
                     <Grid Grid.Row="0" Background="WhiteSmoke" HorizontalAlignment="Stretch">
                         <StackPanel>
                             <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
@@ -122,7 +107,7 @@
 
                     <Grid Grid.Row="1" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="350"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <ScrollViewer x:Name="msg_scroll"
@@ -153,7 +138,7 @@
                                     <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
                                 </Button>
                             </Border>
-                            <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="send_on_click" >
+                            <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="hiepchau" >
                                 <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
                             </Button>
                             <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
@@ -166,7 +151,7 @@
                             </Border>
                         </DockPanel>
                     </Grid>
-                </Grid>
+                --><!--</Grid>-->
             </Grid>
         </Grid>
 
