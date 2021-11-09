@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="teal" BorderThickness="2">
+            <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2">
                 <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="WhiteSmoke">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -39,33 +39,37 @@
                             <DockPanel>
                                 <!--fake avt-->
                                 <!--popup setting-->
-                                <materialDesign:DialogHost
-                                    x:Name="DiaglogPopups" CloseOnClickAway="True"
-                                     >
-                                    <materialDesign:DialogHost.DialogContent>
-                                        <Grid Width="100" HorizontalAlignment="Center">
-                                            <StackPanel>
-                                                <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
+
+                                <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
+                                              Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                              ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                    <StackPanel>
+                                        <!--binding avt-->
+                                        <Image Source="/Images/avt.jpg"></Image>
+                                        
+                                        <Popup Name="myPopup" Placement="Relative"  HorizontalOffset="100" VerticalOffset="30"
+                                               IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
+                                               PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
+                                            <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}">
+                                            <Grid Width="100" HorizontalAlignment="Center" Background="White">
+                                                <StackPanel>
+                                                    <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
                                                         Click="accInfo_Btn_Click">
-                                                    Thông tin
-                                                </Button>
-                                                <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
-                                                    Đăng xuất
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
-                                    </materialDesign:DialogHost.DialogContent>
+                                                        Thông tin
+                                                    </Button>
+                                                    <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
+                                                        Đăng xuất
+                                                    </Button>
+                                                </StackPanel>
+                                            </Grid>
+                                            </Border>
+                                        </Popup>
+                                    </StackPanel>
+                                </ToggleButton>
 
+                                <TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>
 
-                                    <Border Width="24" Height="24" CornerRadius="25" Margin="4 2 0 0">
-                                        <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Margin="-3,-5,0,0" VerticalAlignment="Top" Height="24"></Button>
-                                    </Border>
-
-                                </materialDesign:DialogHost>
-
-                                <TextBlock FontSize="15" Foreground="teal" Margin=" 30 5 10 10">App Name</TextBlock>
-
-                                <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 2 8 0"/>
+                                <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 4 8 0" Cursor="Hand"/>
                             </DockPanel>
                         </Grid>
 
