@@ -45,6 +45,12 @@ namespace UI
             settingWindow.Show();
             
         }
+        
+        private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
     public class WindowChrome : Freezable
     {
