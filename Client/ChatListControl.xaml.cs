@@ -24,5 +24,15 @@ namespace UI
         {
             InitializeComponent();
         }
+        public void AddListItem()
+        {
+            ChatListItemControl chatListItemControl = new ChatListItemControl();
+            this.Container.Children.Add(chatListItemControl);
+        }
+
+        private void AddListTest(object sender, KeyEventArgs e)
+        {
+            AddListItem();
+        }
     }
 }

@@ -7,14 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="{StaticResource MaterialDesignLightBackground}">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:ChatListControl/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" 
+                      HorizontalScrollBarVisibility="Auto">
+            <StackPanel x:Name="Container"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

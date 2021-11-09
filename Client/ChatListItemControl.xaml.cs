@@ -24,5 +24,7 @@ namespace UI
         {
             InitializeComponent();
         }
+        public bool IsFriend { get; set; }
+
     }
 }

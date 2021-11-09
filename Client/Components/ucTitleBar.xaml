@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              x:Name="TitleBar">
-    
+
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -17,24 +17,25 @@
         </i:Interaction.Triggers>
 
         <Border Background="White">
-        <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
-            <Border Width="30" Height="30" DockPanel.Dock="Right">
-                <Button Style="{StaticResource OriginalButton}"
+            <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
+                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                    <Button Style="{StaticResource OriginalButton}"
                          x:Name="btnClose"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
-                    <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" />
-                </Button>
-            </Border>
-            <Border Width="30" Height="30" DockPanel.Dock="Right">
-                <Button Style="{StaticResource OriginalButton}"
+                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" />
+                    </Button>
+                </Border>
+                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                    <Button Style="{StaticResource OriginalButton}"
                          x:Name="btnMinimize"
                         Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
-                    <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" />
-                </Button>
-            </Border>
-        </DockPanel>
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" />
+                    </Button>
+                </Border>
+            </DockPanel>
         </Border>
     </Grid>
 </UserControl>
+
