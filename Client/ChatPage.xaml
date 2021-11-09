@@ -15,15 +15,7 @@
                     <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                     <Label Grid.Row="1" Content="Dang hoat dong" FontSize="10" Margin="0 -10 0 0"></Label>
                 </StackPanel>
-                <ScrollViewer x:Name="msg_scroll"
-                                      VerticalScrollBarVisibility="Visible" 
-                                      HorizontalScrollBarVisibility="Auto"
-                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 0 10 0">
-                    <StackPanel x:Name="message_container" />
 
-                </ScrollViewer>
-
-                <!--Chat Page-->
                 <!--Button Control-->
                 <DockPanel Margin="0 360 0 0">
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
@@ -55,6 +47,17 @@
                     </Border>
                 </DockPanel>
             </StackPanel>
+            
         </Border>
+        <!--Chat Page-->
+        <ScrollViewer x:Name="msg_scroll"
+                                      VerticalScrollBarVisibility="Visible" 
+                                      HorizontalScrollBarVisibility="Auto"
+                                      
+                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50">
+            <StackPanel x:Name="message_container" />
+
+        </ScrollViewer>
+
     </Grid>
 </UserControl>
