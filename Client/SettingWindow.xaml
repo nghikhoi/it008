@@ -9,95 +9,76 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="SettingWindow" Height="450" Width="800">
-    <Grid>
-        <!--2 Row-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height ="20"></RowDefinition>
-            <RowDefinition Height="430"></RowDefinition>
-        </Grid.RowDefinitions>
-        <!--2 Column-->
+        Title="SettingWindow" Height="450" Width="800" Background="{x:Null}"
+        AllowDrop="True" AllowsTransparency="True">
+    <Border CornerRadius="8" Background="{StaticResource BackgroundLightBrush}">
+        <Grid>
+            <!--2 Row-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="20"></RowDefinition>
+                <RowDefinition Height="430"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--2 Column-->
+            <!--Row 0-->
+            <Grid Grid.Row="0">
+                <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
 
-
-        <!--Row 0-->
-        <Grid Grid.Row="0">
-            <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
-                
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
+                    <Border Width="30" Height="30" DockPanel.Dock="Right">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
                                      PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
-                </Border>
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    
-                </Border>
-            </DockPanel>
+                    </Border>
+                    <Border Width="30" Height="30" DockPanel.Dock="Right">
 
-        </Grid>
+                    </Border>
+                </DockPanel>
+            </Grid>
 
-        <!--Row 1-->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-
-            <!--Column 0-->
-            <Grid Grid.Column="0" Grid.ColumnSpan="1">
+            <!--Row 1-->
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.ColumnSpan="2">
-                    <!--Avatar-->
-                    <Button Height="150" Width="150" 
+                <!--Column 0-->
+                <Grid Grid.Column="0" Grid.ColumnSpan="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.ColumnSpan="2">
+                        <!--Avatar-->
+                        <Button Height="150" Width="150" 
                             BorderThickness="0"
                             Margin="0 50 0 10"
                             Command="{Binding ClickImageCommand}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="20"/>
-                            </Style>
-                        </Button.Resources>
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Ellipse Height="150" Width="150" Grid.Column="1">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                            </ControlTemplate>
-                        </Button.Template>
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Ellipse Height="150" Width="150" Grid.Column="1">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </ControlTemplate>
+                            </Button.Template>
 
-                    </Button>
-                    <Button Width="180"
+                        </Button>
+                        <Button Width="180"
                             Command="{Binding ClickChangeImageCommand}"
                             Visibility="{Binding Visibility}">
-                        Thay đổi ảnh đại diện
-                    </Button>
+                            Thay đổi ảnh đại diện
+                        </Button>
 
-                    <!--change name btn-->
-                    <materialDesign:DialogHost CloseOnClickAway="True" Identifier="0" > 
-                        <materialDesign:DialogHost.DialogContent>
-                            <Grid>
-                                <StackPanel  Width="300" Margin="20 0">
-                                    <TextBlock Foreground="{DynamicResource PrimaryColor}" 
-                                           FontSize="20" HorizontalAlignment="Center" Margin="0 20 0 15">
-                                    Đổi tên
-                                    </TextBlock>
-                                    <TextBox Margin="0 0 0 50" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="16">
-                                        HiepChau
-                                    </TextBox>
-                                    <Button Width="100" Margin="0 0 0 16">Đổi</Button>
-                                </StackPanel>
-                            </Grid>
-                        </materialDesign:DialogHost.DialogContent>
-
-                        <Grid>
-                        <Button x:Name="ChangeNameBtn" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        HorizontalAlignment="Stretch" Margin="0 40 0 0">
+                        <!--change name btn-->
+                        <Button x:Name="ChangeNameBtn"
+                                HorizontalAlignment="Stretch" Margin="0 40 0 0" Click="ChangeNameBtn_Click">
                             <Canvas>
                                 <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
                                 <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
@@ -106,10 +87,9 @@
                                 </TextBox>
                             </Canvas>
                         </Button>
-                        </Grid>
-                    </materialDesign:DialogHost>
 
-                    <TextBox
+
+                        <TextBox
                     Margin="10,30,10,0"
                     TextWrapping="Wrap"
                     VerticalAlignment="Stretch"
@@ -120,145 +100,91 @@
                     materialDesign:HintAssist.Hint="Bio..."
                     Height="82"/>
 
-                    <!--NAME-->
+                        <!--NAME-->
 
 
 
 
-                </StackPanel>
-            </Grid>
-            <!--Column 1-->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="31*"/>
-                    <RowDefinition Height="190*"/>
-                </Grid.RowDefinitions>
-
-
-                <StackPanel Margin="40,0,30,0" Grid.RowSpan="2">
-                    <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
-                        <StackPanel />
-                        <StackPanel/>
                     </StackPanel>
-                    <DockPanel LastChildFill="False" Margin="0 0 0 20">
-                        <StackPanel>
-                            <TextBlock> Ngày sinh</TextBlock>
-                            <DatePicker x:Name="BirthdayPicker" 
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
+                </Grid>
+                
+                <!--Dimmed Overplay-->
+                <Border x:Name="FullFade"
+                        Grid.ColumnSpan="2"
+                        Panel.ZIndex="10"
+                        Opacity="0.5"
+                        Visibility="Hidden"
+                        >
+                    <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
+                </Border>
+                
+                <!--Column 1-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="190*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Margin="40,0,30,0" Grid.RowSpan="2">
+                        <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
+                            <StackPanel />
+                            <StackPanel/>
                         </StackPanel>
-                        <StackPanel DockPanel.Dock="Right">
-                            <TextBlock> Giới tính</TextBlock>
-                            <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                        <DockPanel LastChildFill="False" Margin="0 0 0 20">
+                            <StackPanel>
+                                <TextBlock> Ngày sinh</TextBlock>
+                                <DatePicker x:Name="BirthdayPicker" 
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Right">
+                                <TextBlock> Giới tính</TextBlock>
+                                <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                               Width="79">
 
-                                <ComboBoxItem Content="Nam"/>
-                                <ComboBoxItem Content="Nữ"/>
-                                <ComboBoxItem Content="Khác"/>
-                            </ComboBox>
-                        </StackPanel>
-                    </DockPanel>
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                    <ComboBoxItem Content="Khác"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </DockPanel>
 
-                    <StackPanel Margin="0 0 0 40">
-                        <TextBlock>Email</TextBlock>
-                        <TextBox x:Name="UsernameBox" 
+                        <StackPanel Margin="0 0 0 40">
+                            <TextBlock>Email</TextBlock>
+                            <TextBox x:Name="UsernameBox" 
                         Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </StackPanel>
-                    <StackPanel Margin="0 0 0 0">
-                        <Canvas>
-                            <materialDesign:PackIcon Kind="Phone" Canvas.Left="1" RenderTransformOrigin="0.688,0.844" Height="28" Width="19" />
-                        </Canvas>
-                        <TextBox
+                        </StackPanel>
+                        <StackPanel Margin="0 0 0 0">
+                            <Canvas>
+                                <materialDesign:PackIcon Kind="Phone" Canvas.Left="1" RenderTransformOrigin="0.688,0.844" Height="28" Width="19" />
+                            </Canvas>
+                            <TextBox
                         x:Name="PhoneTextBox"
                         materialDesign:TransitionAssist.DisableTransitions="True"
                         Margin="26,0,174,0"/>
 
+                        </StackPanel>
+
                     </StackPanel>
+                    <!--ChangePassWordButton-->
 
-                </StackPanel>
-                <!--ChangePassWordButton-->
-                <materialDesign:DialogHost Margin="136,202,0,124" Grid.Row="1">
-                    <materialDesign:DialogHost.DialogContent>
-                        <Grid Width="240" Margin="20 30">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height ="20"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <TextBlock FontSize="15"
-                       Foreground="teal"
-                       HorizontalAlignment="Center"
-                       >
-                Đăng kí
-                                </TextBlock>
-                            </Grid>
-                            <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                                <StackPanel>
-                                    <PasswordBox x:Name="PasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập mật khẩu"
-                         Margin="5 0 10 16"
-                         FontSize="10"
-                             
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-
-                                    <PasswordBox x:Name="ChangePasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập mật khẩu mới"
-                         Margin="5 -15 10 16"
-                         FontSize="10"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                                    <PasswordBox x:Name="ConfirmNewPasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới"
-                         Margin="5 -15 10 16"
-                         FontSize="10"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                                    <DockPanel LastChildFill="False" Margin="0 0 0 0">
-                                        <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Width="60"
-                            Height="30"
-                            Margin="20 0 0 0"
-                            Background="White"
-                            Foreground="teal"
-                            HorizontalAlignment="Right" 
-                            FontSize="15"
-                                                Command="materialDesign:DialogHost.CloseDialogCommand">
-
-                                            Hủy
-                                        </Button>
-                                        <Button x:Name="ConfirmButton"
-                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                            Width="60"
-                            Height="30"
-                            Margin="0 0 20 0"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                            DockPanel.Dock="Right"
-                            FontSize="15"
-                                                Command="materialDesign:DialogHost.CloseDialogCommand">
-                                            Lưu
-
-                                        </Button>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                            </Grid>
-                        </Grid>
-                    </materialDesign:DialogHost.DialogContent>
-                    <Button x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Content="Đổi mật khẩu" 
                         HorizontalAlignment="Left"
                         Width="120" Height="Auto"
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" />
-                </materialDesign:DialogHost>
-                
-                <!--Controller Button-->
-                <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
-                    <Button
+                        Margin="137 210 0 110" Click="ChangePassWord_btn_Click_1"/>
+
+
+                    <!--Controller Button-->
+                    <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
+                        <Button
                     DockPanel.Dock="Right"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     ToolTip="MaterialDesignFlatButton" 
                     Foreground="White" 
                     Content="Cập nhật"
                     Width="120"/>
-                    <Button
+                        <Button
                     DockPanel.Dock="Left"
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     ToolTip="MaterialDesignFlatButton"
@@ -266,9 +192,10 @@
                     Foreground="Teal" 
                     Content="HỦY"
                     Width="120"/>
-                </DockPanel>
-                
+                    </DockPanel>
+
+                </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="UI.ChangePassWord"
+﻿<Window x:Class="UI.ChangeName"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,7 +11,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Background="{x:Null}"
         AllowsTransparency="True"
-        Height="200" Width="250">
+        Height="170" Width="250">
     <Border CornerRadius="8" Background="{StaticResource ForegroundLightBrush}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
@@ -27,29 +27,17 @@
                        Foreground="teal"
                        HorizontalAlignment="Center"
                        >
-                Đổi mật khẩu
+                Đổi tên
                 </TextBlock>
             </Grid>
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel>
-                    <PasswordBox x:Name="PasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập mật khẩu"
-                         Margin="5 0 10 16"
-                         FontSize="10"
-                             
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                    <TextBox x:Name="FirtNameBox" materialDesign:HintAssist.Hint="Họ"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" Text="Chau"/>
+                    <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="Tên"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10,0.333,0" Text="Hiep"/>
 
-                    <PasswordBox x:Name="ChangePasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập mật khẩu mới"
-                         Margin="5 -15 10 16"
-                         FontSize="10"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    <PasswordBox x:Name="ConfirmNewPasswordBox"
-                         materialDesign:HintAssist.Hint="Nhập lại mật khẩu mới"
-                         Margin="5 -15 10 16"
-                         FontSize="10"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
-                    <DockPanel LastChildFill="False" Margin="0 0 0 0">
+                    <DockPanel LastChildFill="False" Margin="0 20 0 0">
                         <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Width="60"
                             Height="30"

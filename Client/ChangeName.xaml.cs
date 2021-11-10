@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for ChangePassWord.xaml
+    /// Interaction logic for ChangeName.xaml
     /// </summary>
-    public partial class ChangePassWord : Window
+    public partial class ChangeName : Window
     {
-        public ChangePassWord()
+        public ChangeName()
         {
             InitializeComponent();
         }
@@ -27,7 +27,5 @@ namespace UI
         {
             this.Close();
         }
-
-
     }
 }

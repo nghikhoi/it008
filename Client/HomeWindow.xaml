@@ -42,7 +42,8 @@
 
                                 <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
                                               Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                              ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                                              ToolTip="MaterialDesignFloatingActionMiniLightButton"
+                                              >
                                     <StackPanel>
                                         <!--binding avt-->
                                         <Image Source="/Images/avt.jpg"></Image>
@@ -57,7 +58,7 @@
                                                         Click="accInfo_Btn_Click">
                                                         Thông tin
                                                     </Button>
-                                                    <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}">
+                                                    <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
                                                         Đăng xuất
                                                     </Button>
                                                 </StackPanel>

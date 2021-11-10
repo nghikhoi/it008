@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
+
 
 namespace UI
 {
@@ -37,13 +39,34 @@ namespace UI
             this.Close();
         }
 
-        private void ChangePassword_btn_Click(object sender, RoutedEventArgs e)
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            ChangePassWord changePassWord = new ChangePassWord();
-            changePassWord.Show();
+            // nơi thực hiện các nhiệm vụ background
         }
 
+        private void ChangeNameBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeName changeName = new ChangeName();
+            FullFade.Visibility = Visibility.Visible;
+            changeName.ShowDialog();
+            if (!changeName.IsActive)
+            {
+                FullFade.Visibility = Visibility.Hidden;
+            }
 
+        }
 
+        private void ChangePassWord_btn_Click_1(object sender, RoutedEventArgs e)
+        {
+            ChangePassWord changePassWord = new ChangePassWord();
+            ////Lock backgroundWindow
+            //changePassWord.Owner = this;
+            FullFade.Visibility = Visibility.Visible;
+            changePassWord.ShowDialog();
+            if (!changePassWord.IsActive)
+            {
+                FullFade.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
