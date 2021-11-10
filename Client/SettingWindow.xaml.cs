@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using UI.Components;
 
 
 namespace UI
@@ -25,7 +26,7 @@ namespace UI
         public SettingWindow()
         {
             InitializeComponent();
-            DataContext = new UI.Components.ChangeUserInfomation();
+            DataContext = new ChangeUserInfomation();
         }
 
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

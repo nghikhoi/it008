@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Models
 {
-    class video_message
+    public class video_message
     {
         public string id { get; private set; }
         public video_message(string id = "0") : base()

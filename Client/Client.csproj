@@ -37,6 +37,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CNetwork">
+      <HintPath>..\Library\CNetwork.dll</HintPath>
+    </Reference>
+    <Reference Include="DeepCloner, Version=0.10.0.0, Culture=neutral, PublicKeyToken=dc0b95cf99bf4e99">
+      <HintPath>..\packages\DeepCloner.0.10.3\lib\net40\DeepCloner.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetty.Buffers, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Buffers.0.7.0\lib\net472\DotNetty.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Codecs, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Codecs.0.7.0\lib\net472\DotNetty.Codecs.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Common, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Common.0.7.0\lib\net472\DotNetty.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Handlers, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Handlers.0.7.0\lib\net472\DotNetty.Handlers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetty.Transport, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetty.Transport.0.7.0\lib\net472\DotNetty.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
+      <HintPath>..\packages\log4net.2.0.13\lib\net45\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro.IconPacks.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0c0d510f9915137a, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.IconPacks.Material.4.11.0\lib\net47\MahApps.Metro.IconPacks.Core.dll</HintPath>
     </Reference>
@@ -48,6 +74,27 @@
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1018.0, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
@@ -61,10 +108,68 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.37\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.6.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.Security.Permissions.6.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -89,21 +194,13 @@
     <Compile Include="ChangePassWord.xaml.cs">
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChatListControl.xaml.cs">
-      <DependentUpon>ChatListControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ChatListItemControl.xaml.cs">
-      <DependentUpon>ChatListItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ChatPage.xaml.cs">
-      <DependentUpon>ChatPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Logger.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Components\BaseComponent.cs" />
@@ -111,13 +208,21 @@
     <Compile Include="Components\ucTitleBar.xaml.cs">
       <DependentUpon>ucTitleBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomeWindow.xaml.cs">
-      <DependentUpon>HomeWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="mediaPlayer.xaml.cs">
       <DependentUpon>mediaPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\coversation.cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\Message\AbstractConversation.cs" />
+    <Compile Include="Models\Message\AbstractMessage.cs" />
+    <Compile Include="Models\Message\AttachmentMessage.cs" />
+    <Compile Include="Models\Message\IConversation.cs" />
+    <Compile Include="Models\Message\ImageMessage.cs" />
+    <Compile Include="Models\Message\IMessage.cs" />
+    <Compile Include="Models\Message\Sticker.cs" />
+    <Compile Include="Models\Message\StickerCategory.cs" />
+    <Compile Include="Models\Message\StickerMessage.cs" />
+    <Compile Include="Models\Message\TextMessage.cs" />
+    <Compile Include="Models\Message\VideoMessage.cs" />
     <Compile Include="Models\voice_message.cs" />
     <Compile Include="Models\image_message.cs" />
     <Compile Include="Models\video_message.cs" />
@@ -126,6 +231,113 @@
     <Compile Include="Models\user_infomation.cs" />
     <Compile Include="Models\login_information.cs" />
     <Compile Include="Models\register_infomation.cs" />
+    <Compile Include="MVC\Authentication\Authentication.cs" />
+    <Compile Include="MVC\Authentication\AuthenticationController.cs" />
+    <Compile Include="MVC\Authentication\AuthenticationModel.cs" />
+    <Compile Include="MVC\Authentication\WindowLogIn.xaml.cs">
+      <DependentUpon>WindowLogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\Authentication\WindowSignUp.xaml.cs">
+      <DependentUpon>WindowSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\ChatContainer\ChatContainer.cs" />
+    <Compile Include="MVC\ChatContainer\ChatContainerController.cs" />
+    <Compile Include="MVC\ChatContainer\ChatContainerModel.cs" />
+    <Compile Include="MVC\ChatContainer\ChatPage.xaml.cs">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\ChatWindow\ChatWindow.cs" />
+    <Compile Include="MVC\ChatWindow\ChatWindowController.cs" />
+    <Compile Include="MVC\ChatWindow\ChatWindowModel.cs" />
+    <Compile Include="MVC\ChatWindow\HomeWindow.xaml.cs">
+      <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\ConversationList\ConversationList.cs" />
+    <Compile Include="MVC\ConversationList\ConversationListController.cs" />
+    <Compile Include="MVC\ConversationList\ConversationListModel.cs" />
+    <Compile Include="MVC\ConversationList\ChatListControl.xaml.cs">
+      <DependentUpon>ChatListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\ConversationList\ChatListItemControl.xaml.cs">
+      <DependentUpon>ChatListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\IController.cs" />
+    <Compile Include="MVC\IModel.cs" />
+    <Compile Include="MVC\Module.cs" />
+    <Compile Include="MVC\IView.cs" />
+    <Compile Include="Network\ChatConnection.cs" />
+    <Compile Include="Network\ClientSession.cs" />
+    <Compile Include="Network\Http\Downloader.cs" />
+    <Compile Include="Network\Http\Uploader.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetConversation.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetFriendIDs.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetFriendIDsResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetSelfID.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetSelfIDResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetShortInfo.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\GetShortInfoResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\BubbleChatColorSetRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\BuzzReceive.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\BuzzSend.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\ConversationFromID.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\ConversationFromIDResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetConversationShortInfo.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetConversationShortInfoResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetMediaFromConversation.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetMediaFromConversationResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetMessageFromConversation.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetMessageFromConversationResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\ReceiveMessage.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\RecentConversations.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\RecentConversationsResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\SendMessage.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\SingleConversationFrUserID.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\SingleConversationFrUserIDResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\FinalizeAcceptedFriendRequestReceive.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\FriendRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\FriendRequestReceive.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\FriendRequestResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\GetNotifications.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\GetNotificationsResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\ResponseFriendRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\UserOfflineReceive.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Notification\UserOnlineReceive.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\ChatThemeGetRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\ChatThemeSetRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\GetDisplayedProfile.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\GetDisplayedProfileResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\GetSelfProfile.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\GetSelfProfileResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\ModifyPassword.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\ModifyPasswordResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Profile\UpdateSelfProfile.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Search\SearchUser.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Search\SearchUserResult.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\BuyStickerCategoryRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\BuyStickerCategoryResponse.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\GetBoughtStickerPacksRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\GetBoughtStickerPacksResponse.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\GetNearestSickerRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Sticker\GetNearestSickerResponse.cs" />
+    <Compile Include="Network\Packets\Login\LoginData.cs" />
+    <Compile Include="Network\Packets\Login\LoginResult.cs" />
+    <Compile Include="Network\Packets\Ping\Ping4Send.cs" />
+    <Compile Include="Network\Packets\Ping\PingRespone.cs" />
+    <Compile Include="Network\Packets\ReconnectResponse.cs" />
+    <Compile Include="Network\Packets\ReconnectResquest.cs" />
+    <Compile Include="Network\Packets\Register\RegisterData.cs" />
+    <Compile Include="Network\Packets\Register\RegisterResult.cs" />
+    <Compile Include="Network\Packets\TestPacket.cs" />
+    <Compile Include="Network\Pipiline\ChannelInitializer.cs" />
+    <Compile Include="Network\Protocol\LoggedInProtocol.cs" />
+    <Compile Include="Network\Protocol\ChatProtocol.cs" />
+    <Compile Include="Network\Protocol\PreLoginProtocol.cs" />
+    <Compile Include="Network\Protocol\ProtocolProvider.cs" />
+    <Compile Include="Network\RestAPI\FileAPI.cs" />
+    <Compile Include="Network\RestAPI\ProfileAPI.cs" />
+    <Compile Include="Network\RestAPI\ResourceAPI.cs" />
+    <Compile Include="Network\RestAPI\StickerAPI.cs" />
+    <Compile Include="Network\RestAPI\StreamAPI.cs" />
     <Compile Include="SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -134,6 +346,26 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
+    <Compile Include="Utils\AppConfig.cs" />
+    <Compile Include="Utils\Cache\DataNode.cs" />
+    <Compile Include="Utils\Cache\FIFOCache.cs" />
+    <Compile Include="Utils\Cache\LFUCache.cs" />
+    <Compile Include="Utils\Cache\LRUCache.cs" />
+    <Compile Include="Utils\ChatBackgroundType.cs" />
+    <Compile Include="Utils\ColorUtils.cs" />
+    <Compile Include="Utils\CountdownLatch.cs" />
+    <Compile Include="Utils\Genders.cs" />
+    <Compile Include="Utils\HashUtils.cs" />
+    <Compile Include="Utils\MediaUtils.cs" />
+    <Compile Include="Utils\NotificationUtils.cs" />
+    <Compile Include="Utils\Packets.cs" />
+    <Compile Include="Utils\ResourceUtil.cs" />
+    <Compile Include="Utils\RestUtils.cs" />
+    <Compile Include="Utils\SystemPlacesUtils.cs" />
+    <Compile Include="Utils\TempUtil.cs" />
+    <Compile Include="Utils\ThreadUtil.cs" />
+    <Compile Include="Utils\UIElementUltils.cs" />
+    <Compile Include="Utils\UserUtils.cs" />
     <Compile Include="VideoMessage.xaml.cs">
       <DependentUpon>VideoMessage.xaml</DependentUpon>
     </Compile>
@@ -146,23 +378,7 @@
     <Compile Include="WindowSignUp.xaml.cs">
       <DependentUpon>WindowSignUp.xaml</DependentUpon>
     </Compile>
-    <Page Include="ChangeName.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ChangePassWord.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ChatListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ChatListItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ChatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,10 +402,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ImageMsg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,19 +410,37 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Lang\en-US.xaml" />
+    <Page Include="Lang\vi-VN.xaml" />
     <Page Include="mediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\Authentication\WindowLogIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\Authentication\WindowSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\ChatContainer\ChatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\ChatWindow\HomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\ConversationList\ChatListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVC\ConversationList\ChatListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,14 +457,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VideoWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowLogIn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowSignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

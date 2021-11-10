@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Models
 {
-    class text_message:message 
+    public class text_message:message 
     {
         public string content { get; set; }
         public text_message(string content="") : base()
