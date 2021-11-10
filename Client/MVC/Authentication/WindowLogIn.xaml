@@ -69,16 +69,14 @@
                         Width="120"
                         Margin="0 0 0 16"
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                        Content="Đăng nhập" Click="LoginBtn_Click"/>
+                        Content="{DynamicResource WindowLogin.LoginLabel}" Click="LoginBtn_Click"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="Gray" Margin="0 0 0 10">
                     Tạo tài khoản
                         </TextBlock>
                         <Button x:Name="SignBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="120"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="SignBtn_Click">
-                            Đăng kí
-                        </Button>
-
+                        Content="{DynamicResource WindowLogin.RegisterLabel}"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="SignBtn_Click"/>
                     </StackPanel>
 
 

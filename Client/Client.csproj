@@ -405,6 +405,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Lang\en-US.xaml" />
+    <Page Include="Lang\vi-VN.xaml" />
     <Page Include="mediaPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
