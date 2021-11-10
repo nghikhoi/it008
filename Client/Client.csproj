@@ -372,6 +372,7 @@
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="ChangeName.xaml" />
     <Page Include="ChangePassWord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
