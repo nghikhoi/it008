@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
        
              d:DesignHeight="450" d:DesignWidth="800">
@@ -14,35 +15,56 @@
                 <RowDefinition Height="127*"></RowDefinition>
                 <RowDefinition Height="13*" ></RowDefinition>
             </Grid.RowDefinitions>
+
             <MediaElement Grid.Row="0"
             ScrubbingEnabled="True"
-            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,-0.4,5.8" Loaded="Loaded_acitivity" >
+            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,-0.4,5.8" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
 
             </MediaElement>
 
+
+            <Button x:Name="on_screen_play_button"
+                    Grid.Row="0"
+                    Background="{x:Null}" BorderBrush="{x:Null}"
+                    
+                    Height="Auto" Margin="0,0,-0.2,9.8" Click="on_screen_play_button_click" MouseEnter="Show_controller" MouseLeave="Hide_controller">
+                <Grid>
+                    <materialDesign:PackIcon 
+                         Height="50" Width="50" Name="Screen_Icon" Kind="Play"></materialDesign:PackIcon>
+
+                </Grid>
+            </Button>
+
+            <Button Width="50" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Click="Expand_button_click"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Cast"></materialDesign:PackIcon>
+            </Button>
+
             <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button
-                Grid.Row="1" Height="28" 
-                Name="PlayButton" Width="75" 
-                Click="play_video_on_click" Margin="12 0 12 0">
-                    Play
+
+                <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar">
+                    <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"></materialDesign:PackIcon>
                 </Button>
 
-                <Button
-                Grid.Row="1" Height="28" 
-                Name="PauseButton" Width="75" 
-                Click="pause_video_on_click">
-                    Pause
-                </Button>
-                <Button
-                Grid.Row="1" Height="28" 
-                Name="StopButton" Width="75" 
-                Click="Stop_video_on_click" Margin="12 0 12 0">
-                    Stop
-                </Button>
+                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted" HorizontalAlignment="Stretch" Height="27" Width="789" ValueChanged="On_Seek"></Slider>
             </StackPanel>
+
+            <Slider
+                x:Name="Volume_seeker"
+                Height="20"
+                Width="100"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Foreground="DarkGray"
+                Minimum="0"
+                Maximum="100"
+                Background="{x:Null}" MouseEnter="show_volume_bar" MouseLeave="hide_volume_bar" ValueChanged="Volume_change"></Slider>
 
         </Grid>
     </Border>
-   
+
 </UserControl>

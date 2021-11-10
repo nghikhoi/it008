@@ -119,13 +119,11 @@ namespace UI
 
         private void update_file_message(string fileurl)
         {
-            //var mebutton = new mediaPlayer();
-            //mebutton.video_link.Text = fileurl;
-            //mebutton.HorizontalAlignment = HorizontalAlignment.Right;
-            //message_container.Children.Add(mebutton);
             var videomsg = new VideoMessage();
             Uri videopath = new Uri(fileurl);
+            var tl = new MediaTimeline(videopath);
             videomsg.VideoControl.Source = videopath;
+            videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
             videomsg.MaxWidth = 300;
             videomsg.HorizontalAlignment = HorizontalAlignment.Right;
             message_container.Children.Add(videomsg);
