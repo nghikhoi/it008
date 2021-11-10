@@ -13,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
 using Microsoft.Win32;
+using UI.MVC;
+
 namespace UI
 {
     /// <summary>
     /// Interaction logic for HomeWindow.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class HomeWindow : Window, IView
     {
         public HomeWindow()
         {

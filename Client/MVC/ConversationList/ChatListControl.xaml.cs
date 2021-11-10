@@ -12,15 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.MVC;
 
 namespace UI
 {
     /// <summary>
     /// Interaction logic for ChatListControl.xaml
     /// </summary>
-    public partial class ChatListControl : UserControl
-    {
-        public ChatListControl()
+    public partial class ChatListControl : UserControl, IView {
+
+        private static ChatListControl instance;
+
+        public static ChatListControl Instance {
+            get => instance == null ? (instance = new ChatListControl()) : instance;
+        }
+        
+        private ChatListControl()
         {
             InitializeComponent();
         }

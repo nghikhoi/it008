@@ -7,9 +7,9 @@ using System.Windows.Media.Imaging;
 
 namespace UI.Models
 {
-    class image_message:message
+    public class image_message:message
     {
-        public string id { get;private set; }
+        public string id { get; private set; }
         public image_message(string id = "0") : base()
         {
             this.id = id;

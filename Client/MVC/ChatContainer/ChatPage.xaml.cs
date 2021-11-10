@@ -14,16 +14,31 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.Models;
 using Microsoft.Win32;
+using UI.MVC;
+
 namespace UI
 {
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : UserControl
-    {
+    public partial class ChatPage : UserControl, IView {
+
+        private static ChatPage instance;
+
+        public static ChatPage Instance {
+            get => instance == null ? (instance = new ChatPage()) : instance;
+        }
+        
+        private ChatContainerController controller;
+        
         public ChatPage()
         {
             InitializeComponent();
+            
+            ChatContainerModel model = new ChatContainerModel();
+            controller = new ChatContainerController(this, model);
+            ChatContainer module = new ChatContainer();
+            module.InitializeMVC(model, this, controller);
         }
         private void update_message_container(message tmp)
         {
@@ -39,6 +54,7 @@ namespace UI
             }
 
         }
+        
         private void update_meaage_container_rcv(message tmp)
         {
             if (tmp is text_message)
@@ -53,6 +69,7 @@ namespace UI
                 msg_scroll.ScrollToEnd();
             }
         }
+        
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if (ChatInput.Text != "")

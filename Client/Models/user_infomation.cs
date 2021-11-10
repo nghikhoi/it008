@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Models
 {
-    class user_infomation
+    public class user_infomation
     {
         public string email { get; set; }
         public string ho { get; set; }
