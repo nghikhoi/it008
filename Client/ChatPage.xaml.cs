@@ -94,8 +94,8 @@ namespace UI
 
         private void update_image_message(BitmapImage image)
         {
-            Image msgimage = new Image();
-            msgimage.Source = image;
+            var msgimage = new ImageMsg();
+            msgimage.ImageControl.Source = image;
             msgimage.MaxWidth = 300;
             msgimage.HorizontalAlignment = HorizontalAlignment.Right;
             message_container.Children.Add(msgimage);
