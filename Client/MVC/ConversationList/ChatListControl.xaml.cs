@@ -21,13 +21,7 @@ namespace UI
     /// </summary>
     public partial class ChatListControl : UserControl, IView {
 
-        private static ChatListControl instance;
-
-        public static ChatListControl Instance {
-            get => instance == null ? (instance = new ChatListControl()) : instance;
-        }
-        
-        private ChatListControl()
+        public ChatListControl()
         {
             InitializeComponent();
         }

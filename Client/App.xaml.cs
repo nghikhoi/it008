@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using UI.Utils;
 
 namespace UI
 {
@@ -14,6 +15,18 @@ namespace UI
     /// </summary>
     public partial class App : Application
     {
+        
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            AppConfig.StartService();
+            WindowLogIn logIn = new WindowLogIn();
+            //MediaPlayerWindow main = new MediaPlayerWindow();
+            //MainWindow main = new MainWindow();
+            //TestWindows main = new TestWindows();
+            //DownloadWindow main = new DownloadWindow();
+            logIn.Show();
+           
+        }
 
     }
 }
