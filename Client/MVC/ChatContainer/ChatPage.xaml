@@ -8,11 +8,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
-        <Border Background="{StaticResource BackgroundVeryLightBrush}" CornerRadius="8" Grid.RowSpan="2" BorderBrush="{StaticResource WordGreenBrush}">
+        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2" BorderBrush="{StaticResource WordGreenBrush}">
             <StackPanel Margin="10 0 0 0">
                 <!--Header-->
-                <StackPanel  Background="WhiteSmoke" Margin="0 5 15 0">
-                    <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 10 0"></Label>
+                <StackPanel  Background="WhiteSmoke" Margin="0 5 0 0">
+                    <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                     <Label Grid.Row="1" Content="Dang hoat dong" FontSize="10" Margin="0 -10 0 0"></Label>
                 </StackPanel>
 

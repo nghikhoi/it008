@@ -41,26 +41,15 @@ namespace UI
         {
             WindowState = WindowState.Minimized;
         }
-        private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            SettingWindow settingWindow = new SettingWindow();
-            myPopup.IsOpen = false;
-            settingWindow.Show();
-        }
-
-
         
         private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void logOutBtn_Click(object sender, RoutedEventArgs e)
+        private void ucListRecentMessage_Loaded_1(object sender, RoutedEventArgs e)
         {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            myPopup.IsOpen = false;
-            this.Close();
-            windowLogIn.ShowDialog();
+
         }
     }
     public class WindowChrome : Freezable
