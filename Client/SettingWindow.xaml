@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
             <!--2 Column-->
             <!--Row 0-->
-            <Grid Grid.Row="0">
+            <!--<Grid Grid.Row="0">
                 <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
 
                     <Border Width="30" Height="30" DockPanel.Dock="Right">
@@ -31,7 +31,7 @@
 
                     </Border>
                 </DockPanel>
-            </Grid>
+            </Grid>-->
 
             <!--Row 1-->
             <Grid Grid.Row="1">
@@ -171,27 +171,27 @@
                     <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Content="{DynamicResource WindowChangePss.Title}" 
                         HorizontalAlignment="Left"
-                        Width="120" Height="Auto"
+                        Width="160" Height="Auto"
                         Margin="137 210 0 110" Click="ChangePassWord_btn_Click_1"/>
 
 
                     <!--Controller Button-->
                     <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
                         <Button
-                    DockPanel.Dock="Right"
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    ToolTip="MaterialDesignFlatButton" 
-                    Foreground="White" 
-                    Content="{DynamicResource SettingWindow.UpdateBttn}"
-                    Width="120"/>
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            ToolTip="MaterialDesignFlatButton" 
+                            Foreground="White" 
+                            Content="{DynamicResource SettingWindow.UpdateBttn}"
+                            Width="120"/>
                         <Button
-                    DockPanel.Dock="Left"
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    ToolTip="MaterialDesignFlatButton"
-                    Background="White"
-                    Foreground="Teal" 
-                    Content="{DynamicResource WindowChangePss.Discard}"
-                    Width="120"/>
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Background="{StaticResource BackgroundVeryLightBrush}"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}" 
+                            Content="{DynamicResource WindowChangePss.Discard}"
+                            Width="120" Click="Button_Click"/>
                     </DockPanel>
 
                 </Grid>
