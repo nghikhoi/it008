@@ -39,5 +39,9 @@
 
     <!--Chat page-->
     <sys:String x:Key="ChatPage.ChatInputInstruct">Input message here...</sys:String>
-    
+    <sys:String x:Key="ChatPage.Status">Online</sys:String>
+
+    <!--ucListRecentMessage-->
+    <sys:String x:Key="RecentMessage.Info">infomation</sys:String>
+    <sys:String x:Key="RecentMessage.Logout">Log out</sys:String>
 </ResourceDictionary>

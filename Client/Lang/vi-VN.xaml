@@ -39,4 +39,9 @@
     
     <!--Chat page-->
     <sys:String x:Key="ChatPage.ChatInputInstruct">Nhập tin nhắn...</sys:String>
+    <sys:String x:Key="ChatPage.Status">Đang hoạt động</sys:String>
+    
+    <!--ucListRecentMessage-->
+    <sys:String x:Key="RecentMessage.Info">Thông tin</sys:String>
+    <sys:String x:Key="RecentMessage.Logout">Đăng xuất</sys:String>
 </ResourceDictionary>

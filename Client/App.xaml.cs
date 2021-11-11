@@ -25,7 +25,7 @@ namespace UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppConfig.StartService();
-            ApplyLanguage(defaultLanguage);
+            ApplyLanguage("en-US");
             WindowLogIn logIn = new WindowLogIn();
             //MediaPlayerWindow main = new MediaPlayerWindow();
             //MainWindow main = new MainWindow();

@@ -34,10 +34,10 @@
                                         <StackPanel>
                                             <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
                                                     Click="accInfo_Btn_Click">
-                                                Thông tin
+                                                <TextBlock Text="{DynamicResource RecentMessage.Info}"></TextBlock>
                                             </Button>
                                             <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
-                                                Đăng xuất
+                                                <TextBlock Text="{DynamicResource RecentMessage.Logout}"></TextBlock>
                                             </Button>
                                         </StackPanel>
                                     </Grid>
