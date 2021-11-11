@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="VideoWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml"/>
+                <!-- throw in some extra colour for our floating action button -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Border BorderThickness="2" BorderBrush="Green" Background="Gray">
         <Grid>
 
@@ -45,7 +56,26 @@
                 <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted" HorizontalAlignment="Stretch" Height="27" Width="789" ValueChanged="On_Seek"></Slider>
             </StackPanel>
 
-            <Slider
+            <materialDesign:PopupBox
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                PlacementMode="RightAndAlignMiddles"
+                Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Height="25"
+                Width="25"
+                StaysOpen="True"
+                >
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon x:Name="VolumeIcon"
+                                             Kind="VolumeMedium"
+                                             Foreground="White"
+                                             />
+
+                </materialDesign:PopupBox.ToggleContent>
+                <Slider 
+               
                 x:Name="Volume_seeker"
                 Height="20"
                 Width="100"
@@ -54,7 +84,10 @@
                 Foreground="DarkGray"
                 Minimum="0"
                 Maximum="100"
-                Background="{x:Null}" MouseEnter="show_volume_bar" MouseLeave="hide_volume_bar" ValueChanged="Volume_change"></Slider>
+                Background="{x:Null}"
+                ValueChanged="Volume_change"
+                />
+            </materialDesign:PopupBox>
 
         </Grid>
     </Border>

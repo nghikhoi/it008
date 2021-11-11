@@ -72,7 +72,6 @@ namespace UI
 
 
                 Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-                Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
             }
             else
             {
@@ -85,7 +84,6 @@ namespace UI
                 myDoubleAnimation.To = 0.0;
                 myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-                Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
 
             }
 
@@ -105,7 +103,6 @@ namespace UI
 
 
             Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-            Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
 
 
         }
@@ -121,7 +118,6 @@ namespace UI
 
 
             Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-            Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
         }
 
 
@@ -212,35 +208,24 @@ namespace UI
         private void Volume_change(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             VideoControl.Volume = Volume_seeker.Value / 100;
+            if (Volume_seeker.Value >= 70)
+                VolumeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.VolumeHigh;
+
+            if (Volume_seeker.Value < 70 && Volume_seeker.Value > 20)
+                VolumeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.VolumeMedium;
+
+            if (Volume_seeker.Value <= 20 && Volume_seeker.Value != 0)
+                VolumeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.VolumeLow;
+
+            if (Volume_seeker.Value == 0)
+            {
+                VolumeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.VolumeMute;
+            }
         }
 
-        private void show_volume_bar(object sender, MouseEventArgs e)
-        {
-            DoubleAnimation myDoubleAnimation = new DoubleAnimation();
-            myDoubleAnimation.From = 1.0;
-            myDoubleAnimation.To = 1.0;
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+    
 
-
-
-
-            Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-            Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
-        }
-
-        private void hide_volume_bar(object sender, MouseEventArgs e)
-        {
-            DoubleAnimation myDoubleAnimation = new DoubleAnimation();
-            myDoubleAnimation.From = 1.0;
-            myDoubleAnimation.To = 0.0;
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-
-
-
-
-            Screen_Icon.BeginAnimation(OpacityProperty, myDoubleAnimation);
-            Volume_seeker.BeginAnimation(OpacityProperty, myDoubleAnimation);
-        }
+    
 
         private void clock_completed(object sender, EventArgs e)
         {

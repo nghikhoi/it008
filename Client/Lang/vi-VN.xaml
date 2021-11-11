@@ -1,6 +1,47 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--Login Window-->
     <sys:String x:Key="WindowLogin.LoginLabel">Đăng nhập</sys:String>
     <sys:String x:Key="WindowLogin.RegisterLabel">Đăng kí</sys:String>
+    <sys:String x:Key="WindowLogin.RegisterTitle">Tạo tài khoản</sys:String>
+    <sys:String x:Key="WindowLogin.UsernameBox">Nhập email</sys:String>
+    <sys:String x:Key="WindowLogin.PasswordBox">Nhập mật khẩu</sys:String>
+    
+    <!--Sign up window-->
+    <sys:String x:Key="WindowSignUp.HeadTitle">Đăng ký</sys:String>
+    <sys:String x:Key="WindowSignUp.FirstName">Tên</sys:String>
+    <sys:String x:Key="WindowSignUp.LastName">Họ</sys:String>
+    <sys:String x:Key="WindowSignUp.Birth">Ngày sinh</sys:String>
+    <sys:String x:Key="WindowSignUp.Gender">Giới tính</sys:String>
+    <sys:String x:Key="WindowSignUp.UsernameBox">Nhập email</sys:String>
+    <sys:String x:Key="WindowSignUp.PasswordBox">Nhập mật khẩu</sys:String>
+    <sys:String x:Key="WindowSignUp.psswdverify">Nhập lại mật khẩu</sys:String>
+    <sys:String x:Key="WindowSignUp.ReturnButton">Quay lại</sys:String>
+    <sys:String x:Key="WindowSignUp.RegisterButton">Đăng ký</sys:String>
+    
+    <!--Change name window-->
+    <sys:String x:Key="WindowChangeName.Title">Đổi tên</sys:String>
+    <sys:String x:Key="WindowChangeName.LastName">Tên</sys:String>
+    <sys:String x:Key="WindowChangeName.FirstName">Họ</sys:String>
+
+    <!--Change password window-->
+    <sys:String x:Key="WindowChangePss.Title">Đổi mật khẩu</sys:String>
+    <sys:String x:Key="WindowChangePss.PasswordBox">Nhập mật khẩu</sys:String>
+    <sys:String x:Key="WindowChangePss.ChangePassword">Nhập mật khẩu mới</sys:String>
+    <sys:String x:Key="WindowChangePss.ChangePassword-re">Nhập lại mật khẩu mới</sys:String>
+    <sys:String x:Key="WindowChangePss.Discard">Hủy</sys:String>
+    <sys:String x:Key="WindowChangePss.Save">Lưu</sys:String>
+    
+    <!--setting window-->
+    <sys:String x:Key="SettingWindow.changeavt">Đổi ảnh đại diện</sys:String>
+    <sys:String x:Key="SettingWindow.UpdateBttn">Cập nhật</sys:String>
+    
+    <!--Chat page-->
+    <sys:String x:Key="ChatPage.ChatInputInstruct">Nhập tin nhắn...</sys:String>
+    <sys:String x:Key="ChatPage.Status">Đang hoạt động</sys:String>
+    
+    <!--ucListRecentMessage-->
+    <sys:String x:Key="RecentMessage.Info">Thông tin</sys:String>
+    <sys:String x:Key="RecentMessage.Logout">Đăng xuất</sys:String>
 </ResourceDictionary>

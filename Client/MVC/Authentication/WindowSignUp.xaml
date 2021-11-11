@@ -14,7 +14,7 @@
         <Grid Background="Transparent">
             <DockPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 28 0 6">
-                    <TextBlock FontSize="20" Foreground="teal">Đăng kí</TextBlock>
+                    <TextBlock FontSize="20" Foreground="teal" Text="{DynamicResource WindowSignUp.HeadTitle}"></TextBlock>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="4">
                     <Border BorderThickness="8" Width="110" BorderBrush="#FFC5C5C5"/>
@@ -25,29 +25,29 @@
                 <StackPanel Margin="50 94 50 0">
 
                     <DockPanel Margin="0 0 0 16" LastChildFill="False">
-                        <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="Nhập họ"
+                        <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.FirstName}"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="145"/>
-                        <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="Nhập tên"
+                        <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.LastName}"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="90" DockPanel.Dock="Right" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" Margin="0 0 0 16">
-                        <DatePicker x:Name="BirthdayPicker" materialDesign:HintAssist.Hint="Ngày sinh"
+                        <DatePicker x:Name="BirthdayPicker" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Birth}"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="145" />
 
                         <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              materialDesign:HintAssist.Hint="Giới tính" DockPanel.Dock="Right" Width="90">
+                              materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Gender}" DockPanel.Dock="Right" Width="90">
                             <ComboBoxItem>Nam</ComboBoxItem>
                             <ComboBoxItem>Nữ</ComboBoxItem>
                             <ComboBoxItem>Khác</ComboBoxItem>
                         </ComboBox>
                     </DockPanel>
-                    <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="Nhập email"
+                    <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.UsernameBox}"
                         Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-                    <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Nhập mật khẩu"
+                    <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.PasswordBox}"
                         Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
-                    <PasswordBox x:Name="VerifyPasswordBox" materialDesign:HintAssist.Hint="Nhập lại mật khẩu"
+                    <PasswordBox x:Name="VerifyPasswordBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.psswdverify}"
                         Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
                     <DockPanel LastChildFill="False" Margin="0 50 0 0">
@@ -58,14 +58,14 @@
                                 Foreground="teal"
                                 HorizontalAlignment="Right" 
                                 Click="backBtn_Click">
-                                Quay lại
+                                <TextBlock Text="{DynamicResource WindowSignUp.ReturnButton}"></TextBlock>
                             </Button>
                         </Border>
                         <Border Style="{StaticResource OriginalBorder}"  DockPanel.Dock="Right">
                             <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="100"
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                                Đăng kí
+                                <TextBlock Text="{DynamicResource WindowSignUp.RegisterButton}"></TextBlock>
                         </Button>
                         </Border>
                     </DockPanel>
