@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
+             xmlns:components="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              d:DesignWidth="300" >
 
-    <Border Padding="5">
+    
         <Grid MaxWidth="300">
-            <Border x:Name="message_border" CornerRadius="15" Background="teal">
+            <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}">
                 
                 <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                            Grid.IsSharedSizeScope="True"
@@ -18,6 +19,6 @@
                 </TextBlock>
             </Border>
         </Grid>
-    </Border>
-
+    
+    
 </UserControl>

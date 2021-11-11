@@ -60,7 +60,7 @@ namespace UI
             if (tmp is text_message)
             {
                 text_message offi = (text_message)tmp;
-                var msg = new ucChatItem();
+                var msg = new Components.ucChatItemSender();
                 msg.message_border.Background = Brushes.Gray;
                 msg.text_msg_content.Text = offi.content;
                 msg.HorizontalAlignment = HorizontalAlignment.Left;
