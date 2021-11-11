@@ -73,7 +73,7 @@
                         <Button Width="180"
                             Command="{Binding ClickChangeImageCommand}"
                             Visibility="{Binding Visibility}">
-                            Thay đổi ảnh đại diện
+                            <TextBlock Text="{DynamicResource SettingWindow.changeavt}"></TextBlock>
                         </Button>
 
                         <!--change name btn-->
@@ -133,12 +133,12 @@
                         </StackPanel>
                         <DockPanel LastChildFill="False" Margin="0 0 0 20">
                             <StackPanel>
-                                <TextBlock> Ngày sinh</TextBlock>
+                                <TextBlock Text="{DynamicResource WindowSignUp.Birth}"></TextBlock>
                                 <DatePicker x:Name="BirthdayPicker" 
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Right">
-                                <TextBlock> Giới tính</TextBlock>
+                                <TextBlock Text="{DynamicResource WindowSignUp.Gender}"></TextBlock>
                                 <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                               Width="79">
 
@@ -169,7 +169,7 @@
                     <!--ChangePassWordButton-->
 
                     <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Content="Đổi mật khẩu" 
+                        Content="{DynamicResource WindowChangePss.Title}" 
                         HorizontalAlignment="Left"
                         Width="120" Height="Auto"
                         Margin="137 210 0 110" Click="ChangePassWord_btn_Click_1"/>
@@ -182,7 +182,7 @@
                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     ToolTip="MaterialDesignFlatButton" 
                     Foreground="White" 
-                    Content="Cập nhật"
+                    Content="{DynamicResource SettingWindow.UpdateBttn}"
                     Width="120"/>
                         <Button
                     DockPanel.Dock="Left"
@@ -190,7 +190,7 @@
                     ToolTip="MaterialDesignFlatButton"
                     Background="White"
                     Foreground="Teal" 
-                    Content="HỦY"
+                    Content="{DynamicResource WindowChangePss.Discard}"
                     Width="120"/>
                     </DockPanel>
 

@@ -39,7 +39,7 @@
                     </Button>
                     <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
-                                         materialDesign:HintAssist.Hint="Input message here..."
+                                         materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
                                          KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
                                          Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                          VerticalContentAlignment="Center" MaxHeight="82"

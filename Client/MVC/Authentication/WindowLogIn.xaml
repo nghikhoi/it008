@@ -54,12 +54,12 @@
 
                 <StackPanel Margin="40 100 40 4">
                     <StackPanel Margin="0 0 0 10">
-                        <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="Nhập email"
+                        <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowLogin.UsernameBox}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" />
                     </StackPanel>
                     <StackPanel Margin="0 0 0 48">
                         <PasswordBox x:Name="PasswordBox"
-                             materialDesign:HintAssist.Hint="Nhập mật khẩu"
+                             materialDesign:HintAssist.Hint="{DynamicResource WindowLogin.PasswordBox}"
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              />
                     </StackPanel>
@@ -70,8 +70,9 @@
                         Margin="0 0 0 16"
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                         Content="{DynamicResource WindowLogin.LoginLabel}" Click="LoginBtn_Click"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="Gray" Margin="0 0 0 10">
-                    Tạo tài khoản
+                        <TextBlock HorizontalAlignment="Center" Foreground="Gray" Margin="0 0 0 10"
+                                   Text="{DynamicResource WindowLogin.RegisterTitle}">
+                    
                         </TextBlock>
                         <Button x:Name="SignBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="120"
