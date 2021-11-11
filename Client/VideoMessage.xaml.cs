@@ -201,6 +201,7 @@ namespace UI
             VideoControl.Clock.Controller.Pause();
             control_icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
             Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+            videomsg.playinit = SeekBar.Value;
             videomsg.Show();
 
         }

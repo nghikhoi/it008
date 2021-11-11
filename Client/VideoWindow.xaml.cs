@@ -23,7 +23,7 @@ namespace UI
     {
         DispatcherTimer timer;
         bool isDragging = false, mediaPlaying = false;
-
+        public double playinit { get; set; }=0;
         public VideoWindow()
         {
             InitializeComponent();
@@ -146,6 +146,7 @@ namespace UI
                 SeekBar.MaxWidth = 750;
                 Volume_seeker.Value = 100;
                 VideoControl.Volume = 1;
+                VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(playinit), TimeSeekOrigin.BeginTime);
             }
             timer.Start();
         }
