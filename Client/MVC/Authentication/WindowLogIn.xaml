@@ -10,28 +10,15 @@
         WindowStyle="None"
         MouseDown="Window_MouseDown"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}" Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
-        Title="WindowLogIn"   AllowsTransparency="True" Background="{x:Null}" Height="500" Width="350" WindowStartupLocation="CenterScreen">
-
-    <Border   CornerRadius="8" Background="{StaticResource BackgroundLightBrush}">
+    <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="159*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--Controlbar-->
-            <!--<DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
             
-            <Border Width="30" Height="30" DockPanel.Dock="Right">
-                <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 10 10 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
-            </Border>
-            <Border Width="30" Height="30" DockPanel.Dock="Right">
-                <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Margin="0 10 5 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_minimize" Cursor="Hand"/>
-            </Border>
-        </DockPanel>-->
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
