@@ -6,18 +6,18 @@
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="500"  d:DesignWidth="600">
     <Grid>
         <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2" BorderBrush="{StaticResource WordGreenBrush}">
-            <StackPanel Margin="10 0 0 0">
+            <DockPanel Margin="10 0 0 0">
                 <!--Header-->
-                <StackPanel  Background="WhiteSmoke" Margin="0 5 0 0">
+                <StackPanel DockPanel.Dock="Top" Background="WhiteSmoke" Margin="0 5 0 0">
                     <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
                     <Label Grid.Row="1" Content="{DynamicResource ChatPage.Status}" FontSize="10" Margin="0 -10 0 0"></Label>
                 </StackPanel>
 
                 <!--Button Control-->
-                <DockPanel Margin="0 360 0 0">
+                <DockPanel DockPanel.Dock="Bottom">
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
                         <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
                             <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
@@ -46,7 +46,7 @@
                                           />
                     </Border>
                 </DockPanel>
-            </StackPanel>
+            </DockPanel>
             
         </Border>
         <!--Chat Page-->
