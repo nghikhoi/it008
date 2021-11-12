@@ -48,6 +48,14 @@ namespace UI
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void settingButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenu cm = this.FindResource("cm") as ContextMenu;
+            cm.PlacementTarget = sender as Button;
+            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
+            cm.IsOpen = true;
+        }
     }
 
 

@@ -12,6 +12,16 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}" Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <ContextMenu x:Key="cm" >
+            <MenuItem  Header="Ngon ngu">
+                <MenuItem  Header="Tieng Viet">
+                </MenuItem>
+                <MenuItem  Header="English"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Gioi thieu"></MenuItem>
+            </ContextMenu>
+    </Window.Resources>
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
@@ -24,10 +34,16 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
+               
+
+           
             <!--title bar-->
             <uc:ucTitleBar  Margin="0 -5 0 0"  Loaded="ucTitleBar_Loaded_1" Grid.Row="0" Grid.ColumnSpan="2"/>
-
-            <!--body-->
+            <Grid>
+                <Button x:Name="settingButton" Width="50" HorizontalAlignment="Left" Click="settingButton_Click"></Button>
+            </Grid>
+   
+                    <!--body-->
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 40 0 6">
