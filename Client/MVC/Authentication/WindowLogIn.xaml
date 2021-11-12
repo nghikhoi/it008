@@ -12,38 +12,71 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}" Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
-    <Window.Resources>
-        <ContextMenu x:Key="cm" >
-            <MenuItem  Header="Ngon ngu">
-                <MenuItem  Header="Tieng Viet">
-                </MenuItem>
-                <MenuItem  Header="English"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Gioi thieu"></MenuItem>
-            </ContextMenu>
-    </Window.Resources>
+    <Window.Resources/>
+
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="159*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-               
 
-           
-            <!--title bar-->
-            <uc:ucTitleBar  Margin="0 -5 0 0"  Loaded="ucTitleBar_Loaded_1" Grid.Row="0" Grid.ColumnSpan="2"/>
-            <Grid>
-                <Button x:Name="settingButton" Width="50" HorizontalAlignment="Left" Click="settingButton_Click"></Button>
-            </Grid>
-   
-                    <!--body-->
+
+            <!--Row 0-->
+            <DockPanel>
+                <!--title bar-->
+                <uc:ucTitleBar DockPanel.Dock="Right"  Margin="0 -5 0 0"  Loaded="ucTitleBar_Loaded_1" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                <!--Optional Button-->
+                <!--<Button x:Name="settingButton" Width="50" HorizontalAlignment="Left" Click="settingButton_Click"></Button>-->
+                <ToggleButton x:Name="TogglePopupButton" Margin="-250 0 0 0" Width="24" Height="24"
+                                              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                                              ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Earth" Height="24" Width="24" />
+                        <Popup x:Name="myPopup" Placement="Bottom" HorizontalOffset="90"
+                                               IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
+                                               PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
+                            <Border  BorderBrush="{StaticResource PrimaryHueDarkBrush}" Height="60" Width="100">
+                                <Grid Width="100" HorizontalAlignment="Center" Background="{StaticResource BackgroundVeryLightBrush}">
+
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                                        <CheckBox
+                                            x:Name="VietnameseButton" Click="VietnameseButton_Click"
+                                            Content="Tiếng Việt"  FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
+                                            Checked="EnglishButton_Unchecked" Unchecked="EnglishButton_Unchecked">
+                                            
+                                        </CheckBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                        <CheckBox
+                                            x:Name="EnglishButton" Click="EnglishButton_Click"
+                                            Content="English" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
+                                            Checked="EnglishButton_Checked" >
+
+                                        </CheckBox>
+                                    </StackPanel>
+
+                                   
+                                </Grid>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </ToggleButton>
+            </DockPanel>
+
+            <!--body-->
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 40 0 6">
@@ -75,7 +108,7 @@
                         Content="{DynamicResource WindowLogin.LoginLabel}" Click="LoginBtn_Click"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="Gray" Margin="0 0 0 10"
                                    Text="{DynamicResource WindowLogin.RegisterTitle}">
-                    
+
                         </TextBlock>
                         <Button x:Name="SignBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="120"
