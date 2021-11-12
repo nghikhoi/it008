@@ -5,6 +5,7 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
@@ -14,7 +15,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         public string ConversationID { get; set; }
         public string SenderID { get; set; }
         public int PreviewCode { get; set; }
-        public message Message { get; set; }
+        public AbstractMessage Message { get; set; }
 
         public void Decode(IByteBuffer buffer)
         {
@@ -59,7 +60,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var module = ModuleContainer.GetModule<ChatContainer>();
+                var module = ModuleContainer.GetModule<ChatWindow>();
                 module.controller.AddMessage(Message);
                 /*var app = MainWindow.chatApplication;
                 if (!app.model.Conversations.ContainsKey(ConversationID))

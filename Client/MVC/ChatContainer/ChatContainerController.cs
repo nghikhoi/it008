@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Media;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.MVC {
@@ -8,57 +10,30 @@ namespace UI.MVC {
 	public partial class ChatContainerController : IController {
 
 		private ChatPage view;
-		private ChatContainerModel model;
 
-		public ChatContainerController(ChatPage view, ChatContainerModel model) {
+		public ChatContainerController(ChatPage view) {
 			this.view = view;
-			this.model = model;
 		}
 
 		#region Message
 
-		public void Buzz() {
-			//TODO
-		}
-
 		public void SetBubbleColor(Color color) {
+			//TODO Đổi màu bubble chat
+		}
+
+		public void AddMediaToCurrentSelectedConversation(List<string> FileIDs, List<string> FileNames, List<int> Positions) {
 			//TODO
+			// Cập nhật các media vô trình media hiện tại
 		}
 
-		public void AddConversation(Conversation conversation) {
+		public void AddMessage(AbstractMessage message) {
 			//TODO
+			// Kiểm tra Id người gửi xem có giống với id của user hay không để xác định msg nằm trái hay phải
+			// Hiển thị lên giao diện
 		}
-		
-		public void AddShortInfoConversation(Conversation conversation) {
-			//TODO
-		}
-
-		public void AddMessage(message message) {
-			//TODO
-		}
-
-		public void LoadConversation(String userId, String conversationId) {
-			
-		}
-
-		#endregion
-
-		#region Notification
 		
 		#endregion
 
-		#region Profile
-
-		#endregion
-
-		#region Search
-
-		#endregion
-
-		#region Sticker
-		
-		#endregion
-		
 	}
 
 }

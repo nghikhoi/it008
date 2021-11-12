@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
 using UI.Components;
+using UI.MVC;
 
 
 namespace UI
@@ -21,7 +22,7 @@ namespace UI
     /// <summary>
     /// Interaction logic for SettingWindow.xaml
     /// </summary>
-    public partial class SettingWindow : Window
+    public partial class SettingWindow : Window, IView
     {
         public SettingWindow()
         {

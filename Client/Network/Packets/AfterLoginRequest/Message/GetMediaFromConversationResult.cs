@@ -5,15 +5,16 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
     public class GetMediaFromConversationResult : IPacket
     {
-        public List<string> FileIDs { get; set; } = new List<string>();
-        public List<string> FileNames { get; set; } = new List<string>();
-        public List<int> Positions { get; set; } = new List<int>();
+        public List<string> FileIDs { get; set; } = new List<string>(); //Mã file
+        public List<string> FileNames { get; set; } = new List<string>(); //Tên file
+        public List<int> Positions { get; set; } = new List<int>(); //Vị trí của file trong media gallery
 
         public void Decode(IByteBuffer buffer)
         {
@@ -35,9 +36,9 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         public void Handle(ISession session)
         {
             Console.WriteLine("New media player");
-            Conversation conversation = null; //TODO
+            AbstractConversation conversation = null; //TODO
             var module = ModuleContainer.GetModule<ChatContainer>();
-            module.controller.AddShortInfoConversation(conversation);
+            module.controller.AddMediaToCurrentSelectedConversation(FileIDs, FileNames, Positions);
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 //MainWindow.Instance.MediaPlayerWindow = new MediaPlayerWindow();

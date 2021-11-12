@@ -38,7 +38,6 @@ namespace UI.Components
         }
         public ChangeUserInfomation()
         {
-            user_infomation userinfo = new user_infomation();
             Visibility = "Collapsed";
             Image = "";
             ClickImageCommand = new RelayCommand<object>(

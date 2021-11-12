@@ -2,7 +2,7 @@
 
 namespace UI.MVC {
 	
-	public class Authentication : Module<AuthenticationModel, HomeWindow, AuthenticationController> {
+	public class Authentication : Module<ChatModel, HomeWindow, AuthenticationController> {
 		
 	}
 	

@@ -12,6 +12,14 @@ namespace UI.Models.Message
     public class TextMessage : AbstractMessage
     {
         private string _message = String.Empty;
+
+        public TextMessage() {
+        }
+
+        public TextMessage(string msg) {
+            this._message = msg;
+        }
+
         public string Message
         {
             get => _message;

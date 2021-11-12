@@ -6,6 +6,7 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
@@ -30,7 +31,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         public List<int> MessType { get; set; } = new List<int>();
         public List<string> SenderID { get; set; } = new List<string>();
 
-        public List<message> Content { get; set; } = new List<message>();
+        public List<AbstractMessage> Content { get; set; } = new List<AbstractMessage>();
         public bool LoadConversation { get; set; }
 
         public void Decode(IByteBuffer buffer) {
@@ -65,7 +66,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
                 MessType.Add(buffer.ReadInt());
 
                 //TODO
-                message Message = null;
+                AbstractMessage Message = null;
                 /*switch (MessType.Last())
                 {
                     case 1:

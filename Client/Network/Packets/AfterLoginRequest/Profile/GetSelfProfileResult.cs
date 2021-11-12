@@ -4,7 +4,9 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Utils;
+using UI.Models;
+using UI.MVC;
+using Gender = UI.Utils.Gender;
 
 namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
@@ -16,6 +18,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
         public String Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
+
+        public UserProfile Profile;
 
 
         public void Decode(IByteBuffer buffer)
@@ -38,6 +42,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
         public void Handle(ISession session)
         {
             // Display information on setting tab
+            var module = ModuleContainer.GetModule<SettingPage>();
+            module.controller.updateProfile(Profile);
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 var setting = SettingPage.Instance;
