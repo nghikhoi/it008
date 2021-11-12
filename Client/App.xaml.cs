@@ -21,7 +21,11 @@ namespace UI
             "en-US",
             "vi-VN"
         };
-        
+        public static App instance;
+        public App()
+        {
+            instance = this;
+        }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppConfig.StartService();

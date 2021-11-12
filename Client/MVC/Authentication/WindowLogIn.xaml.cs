@@ -49,12 +49,25 @@ namespace UI
                 this.DragMove();
         }
 
-        private void settingButton_Click(object sender, RoutedEventArgs e)
+        private void VietnameseButton_Click(object sender, RoutedEventArgs e)
         {
-            ContextMenu cm = this.FindResource("cm") as ContextMenu;
-            cm.PlacementTarget = sender as Button;
-            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.Right;
-            cm.IsOpen = true;
+            App.instance.ApplyLanguage("vi-VN");
+        }
+
+        private void EnglishButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.instance.ApplyLanguage("en-US");
+
+        }
+
+        private void VietnameseButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EnglishButton_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

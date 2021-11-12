@@ -12,7 +12,7 @@
     <sys:String x:Key="WindowSignUp.HeadTitle">Register</sys:String>
     <sys:String x:Key="WindowSignUp.FirstName">First name</sys:String>
     <sys:String x:Key="WindowSignUp.LastName">Last name</sys:String>
-    <sys:String x:Key="WindowSignUp.Birth">date of birth</sys:String>
+    <sys:String x:Key="WindowSignUp.Birth">Date of birth</sys:String>
     <sys:String x:Key="WindowSignUp.Gender">Gender</sys:String>
     <sys:String x:Key="WindowSignUp.UsernameBox">Enter email</sys:String>
     <sys:String x:Key="WindowSignUp.PasswordBox">Enter passowrd</sys:String>
@@ -42,6 +42,6 @@
     <sys:String x:Key="ChatPage.Status">Online</sys:String>
 
     <!--ucListRecentMessage-->
-    <sys:String x:Key="RecentMessage.Info">profile</sys:String>
-    <sys:String x:Key="RecentMessage.Logout">Log out</sys:String>
+    <sys:String x:Key="RecentMessage.Info">Profile</sys:String>
+    <sys:String x:Key="RecentMessage.Logout">Log Out</sys:String>
 </ResourceDictionary>
