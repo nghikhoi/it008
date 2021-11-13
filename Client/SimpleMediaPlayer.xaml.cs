@@ -143,7 +143,6 @@ namespace UI
                 SeekBar.Maximum = ts.TotalSeconds;
                 SeekBar.SmallChange = 1;
                 SeekBar.LargeChange = Math.Min(10, ts.Seconds / 10);
-                SeekBar.MaxWidth = 250;
                 Volume_seeker.Value = 100;
                 VideoControl.Volume = 1;
             }
