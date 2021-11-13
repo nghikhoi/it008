@@ -20,11 +20,11 @@ namespace UI
     /// <summary>
     /// Interaction logic for VideoMessage.xaml
     /// </summary>
-    public partial class VideoMessage : UserControl
+    public partial class SimpleMediaPlayer : UserControl
     {
         DispatcherTimer timer;
         bool isDragging = false, mediaPlaying = false;
-        public VideoMessage()
+        public SimpleMediaPlayer()
         {
             InitializeComponent();
             timer = new DispatcherTimer();

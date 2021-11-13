@@ -369,8 +369,8 @@
     <Compile Include="Utils\ThreadUtil.cs" />
     <Compile Include="Utils\UIElementUltils.cs" />
     <Compile Include="Utils\UserUtils.cs" />
-    <Compile Include="VideoMessage.xaml.cs">
-      <DependentUpon>VideoMessage.xaml</DependentUpon>
+    <Compile Include="SimpleMediaPlayer.xaml.cs">
+      <DependentUpon>SimpleMediaPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
@@ -466,7 +466,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="VideoMessage.xaml">
+    <Page Include="SimpleMediaPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

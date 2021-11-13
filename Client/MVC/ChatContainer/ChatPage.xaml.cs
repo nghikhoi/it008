@@ -40,7 +40,7 @@ namespace UI
             ChatContainer module = new ChatContainer();
             module.InitializeMVC(ChatModel.Instance, this, controller);
         }
-        private void update_message_container(AbstractMessage tmp)
+        public void update_message_container(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
             {
@@ -55,7 +55,7 @@ namespace UI
 
         }
         
-        private void update_meaage_container_rcv(AbstractMessage tmp)
+        public void update_meaage_container_rcv(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
             {
@@ -70,7 +70,7 @@ namespace UI
             }
         }
         
-        private void btnSend_Click(object sender, RoutedEventArgs e)
+        public void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if (ChatInput.Text != "")
             {
@@ -85,7 +85,7 @@ namespace UI
         }
 
 
-        private void send_by_enter(object sender, KeyEventArgs e)
+        public void send_by_enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -110,7 +110,7 @@ namespace UI
 
         }
 
-        private void update_image_message(BitmapImage image)
+        public void update_image_message(BitmapImage image)
         {
             var msgimage = new ImageMsg();
             msgimage.ImageControl.Source = image;
@@ -120,7 +120,17 @@ namespace UI
             msg_scroll.ScrollToEnd();
         }
 
-        private void send_image_on_click(object sender, RoutedEventArgs e)
+        public void update_image_message_rcv(BitmapImage image)
+        {
+            var msgimage = new ImageMsg();
+            msgimage.ImageControl.Source = image;
+            msgimage.MaxWidth = 300;
+            msgimage.HorizontalAlignment = HorizontalAlignment.Left;
+            message_container.Children.Add(msgimage);
+            msg_scroll.ScrollToEnd();
+        }
+
+        public void send_image_on_click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog opendlg = new OpenFileDialog();
             opendlg.Filter = "Image files (*.jpg, *.png) |*.jpg;*.png";
@@ -135,15 +145,26 @@ namespace UI
             }
         }
 
-        private void update_file_message(string fileurl)
+        public void update_file_message(Uri videopath)
         {
-            var videomsg = new VideoMessage();
-            Uri videopath = new Uri(fileurl);
+            var videomsg = new SimpleMediaPlayer();
             var tl = new MediaTimeline(videopath);
             videomsg.VideoControl.Source = videopath;
             videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
             videomsg.MaxWidth = 300;
             videomsg.HorizontalAlignment = HorizontalAlignment.Right;
+            message_container.Children.Add(videomsg);
+            msg_scroll.ScrollToEnd();
+        }
+
+        public void update_file_message_rcv(Uri videopath)
+        {
+            var videomsg = new SimpleMediaPlayer();
+            var tl = new MediaTimeline(videopath);
+            videomsg.VideoControl.Source = videopath;
+            videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
+            videomsg.MaxWidth = 300;
+            videomsg.HorizontalAlignment = HorizontalAlignment.Left;
             message_container.Children.Add(videomsg);
             msg_scroll.ScrollToEnd();
         }
@@ -153,7 +174,8 @@ namespace UI
             opendlg.Filter = "Video files (*.MP4) |*.MP4";
             if (opendlg.ShowDialog() == true)
             {
-                update_file_message(opendlg.FileName);
+                Uri filepath = new Uri(opendlg.FileName);
+                update_file_message(filepath);
             }
 
         }
