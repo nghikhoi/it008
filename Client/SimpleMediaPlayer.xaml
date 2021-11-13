@@ -61,28 +61,23 @@
                                              VerticalAlignment="Stretch"></materialDesign:PackIcon>
                 </Button>
 
-                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted" HorizontalAlignment="Stretch" Height="27" Width="789" ValueChanged="On_Seek"></Slider>
-            </StackPanel>
-
-            <materialDesign:PopupBox
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                PlacementMode="RightAndAlignMiddles"
+                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
+                        Style="{StaticResource VideoSlider}"></Slider>
+                <materialDesign:PopupBox
                 Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Height="25"
-                Width="25"
-                StaysOpen="True"
-                >
-                <materialDesign:PopupBox.ToggleContent>
-                    <materialDesign:PackIcon x:Name="VolumeIcon"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                Height="35"
+                Width="35"
+                StaysOpen="True">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon x:Name="VolumeIcon"
                                              Kind="VolumeMedium"
                                              Foreground="White"
                                              />
-                   
-                </materialDesign:PopupBox.ToggleContent>
-                <Slider 
+
+                    </materialDesign:PopupBox.ToggleContent>
+                    <Slider 
                
                 x:Name="Volume_seeker"
                 Height="20"
@@ -95,7 +90,10 @@
                 Background="{x:Null}"
                 ValueChanged="Volume_change"
                 />
-            </materialDesign:PopupBox>
+                </materialDesign:PopupBox>
+
+            </StackPanel>
+
    
         </Grid>
     </Border>

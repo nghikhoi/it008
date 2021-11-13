@@ -18,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Border BorderThickness="2" BorderBrush="Green" Background="Gray">
+    <Border  BorderThickness="2" BorderBrush="{StaticResource LightBrush}"  Background="Gray">
         <Grid>
 
             <Grid.RowDefinitions>
@@ -45,7 +45,8 @@
                 </Grid>
             </Button>
 
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Grid.Row="1"
+                        VerticalAlignment="Center" Orientation="Horizontal">
 
                 <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar">
                     <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
@@ -53,28 +54,29 @@
                                              VerticalAlignment="Stretch"></materialDesign:PackIcon>
                 </Button>
 
-                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted" HorizontalAlignment="Stretch" Height="27" Width="789" ValueChanged="On_Seek"></Slider>
-            </StackPanel>
-
-            <materialDesign:PopupBox
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                PlacementMode="RightAndAlignMiddles"
+                <Slider x:Name="SeekBar" 
+                        Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted"
+                        HorizontalAlignment="Stretch" Height="27" Width="600"
+                        Background="Transparent" Foreground="{StaticResource ForegroundLightBrush}"
+                        materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
+                        ValueChanged="On_Seek"></Slider>
+                <materialDesign:PopupBox
+                Margin="20 0 0 0"
                 Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
-                Height="25"
-                Width="25"
+                Height="30"
+                Width="30"
                 StaysOpen="True"
                 >
-                <materialDesign:PopupBox.ToggleContent>
-                    <materialDesign:PackIcon x:Name="VolumeIcon"
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon x:Name="VolumeIcon"
                                              Kind="VolumeMedium"
                                              Foreground="White"
                                              />
 
-                </materialDesign:PopupBox.ToggleContent>
-                <Slider 
+                    </materialDesign:PopupBox.ToggleContent>
+                    <Slider 
                
                 x:Name="Volume_seeker"
                 Height="20"
@@ -87,7 +89,10 @@
                 Background="{x:Null}"
                 ValueChanged="Volume_change"
                 />
-            </materialDesign:PopupBox>
+                </materialDesign:PopupBox>
+            </StackPanel>
+
+
 
         </Grid>
     </Border>
