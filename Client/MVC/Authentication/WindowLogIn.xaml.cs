@@ -20,9 +20,13 @@ namespace UI
     /// </summary>
     public partial class WindowLogIn : Window
     {
+
         public WindowLogIn()
         {
             InitializeComponent();
+            //Default language
+            App.instance.ApplyLanguage("vi-VN");
+            VietnameseButton.IsChecked = true;
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -59,15 +63,26 @@ namespace UI
             App.instance.ApplyLanguage("en-US");
 
         }
-
         private void VietnameseButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            if (EnglishButton.IsChecked == true)
+                EnglishButton.IsChecked = false;
+        }
+        private void VietnameseButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            if(EnglishButton.IsChecked == false)
+            VietnameseButton.IsChecked = true;
         }
 
         private void EnglishButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            if (VietnameseButton.IsChecked == true)
+                VietnameseButton.IsChecked = false;
+        }
+        private void EnglishButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            if(VietnameseButton.IsChecked == false)
+            EnglishButton.IsChecked = true;
         }
     }
 

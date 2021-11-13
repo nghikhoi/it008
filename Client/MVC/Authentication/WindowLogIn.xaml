@@ -26,8 +26,6 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-
-
             <!--Row 0-->
             <DockPanel>
                 <!--title bar-->
@@ -55,7 +53,7 @@
                                         <CheckBox
                                             x:Name="VietnameseButton" Click="VietnameseButton_Click"
                                             Content="Tiếng Việt"  FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
-                                            Checked="EnglishButton_Unchecked" Unchecked="EnglishButton_Unchecked">
+                                            Checked="VietnameseButton_Checked" Unchecked="VietnameseButton_UnChecked">
                                             
                                         </CheckBox>
                                     </StackPanel>
@@ -63,7 +61,7 @@
                                         <CheckBox
                                             x:Name="EnglishButton" Click="EnglishButton_Click"
                                             Content="English" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
-                                            Checked="EnglishButton_Checked" >
+                                            Checked="EnglishButton_Checked" Unchecked="EnglishButton_UnChecked">
 
                                         </CheckBox>
                                     </StackPanel>
