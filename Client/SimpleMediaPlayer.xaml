@@ -55,43 +55,35 @@
             </Button>
 
             <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal">
-
                 <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar">
                     <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
                                              HorizontalAlignment="Stretch"
                                              VerticalAlignment="Stretch"></materialDesign:PackIcon>
                 </Button>
-
-                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
-                        Style="{StaticResource VideoSlider}"></Slider>
-
-
+                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"></Slider>
                 <materialDesign:PopupBox
-                Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                Height="35"
-                Width="35"
-                StaysOpen="True">
+                    Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="35"
+                    Width="35"
+                    StaysOpen="True">
                     <materialDesign:PopupBox.ToggleContent>
                         <materialDesign:PackIcon x:Name="VolumeIcon"
-                                             Kind="VolumeMedium"
-                                             Foreground="White"
-                                             />
-
+                                                 Kind="VolumeMedium"
+                                                 Foreground="White"/>
                     </materialDesign:PopupBox.ToggleContent>
                     <Slider 
-               
-                x:Name="Volume_seeker"
-                Height="20"
-                Width="100"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Foreground="DarkGray"
-                Minimum="0"
-                Maximum="100"
-                Background="{x:Null}"
-                ValueChanged="Volume_change" />
+                        x:Name="Volume_seeker"
+                        Height="20"
+                        Width="100"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Foreground="DarkGray"
+                        Minimum="0"
+                        Maximum="100"
+                        Background="{x:Null}"
+                        ValueChanged="Volume_change" />
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
