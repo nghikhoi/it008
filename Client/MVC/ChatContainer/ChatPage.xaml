@@ -47,18 +47,24 @@
                     </Border>
                 </DockPanel>
             </DockPanel>
-            
+
         </Border>
         <!--Chat Page-->
+
+        
         <ScrollViewer x:Name="msg_scroll" 
                                       
                                       VerticalScrollBarVisibility="Visible" 
                                       HorizontalScrollBarVisibility="Auto"
                                       
-                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50" ScrollChanged="detect_at_top">
-            <StackPanel x:Name="message_container" />
+                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50"
+                      ScrollChanged="detect_at_top">
+            <StackPanel x:Name="message_container">
+                <StackPanel x:Name="spc_chat_container"></StackPanel>
+            </StackPanel>
 
         </ScrollViewer>
+
 
     </Grid>
 </UserControl>
