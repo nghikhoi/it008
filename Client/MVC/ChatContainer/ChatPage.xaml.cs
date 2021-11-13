@@ -179,5 +179,14 @@ namespace UI
             }
 
         }
+
+        private void detect_at_top(object sender, ScrollChangedEventArgs e)
+        {
+            if (msg_scroll.Height != 0)
+            {
+                if (msg_scroll.VerticalOffset == 0) { }
+                   //todo: do something here
+            }
+        }
     }
 }

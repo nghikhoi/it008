@@ -50,11 +50,12 @@
             
         </Border>
         <!--Chat Page-->
-        <ScrollViewer x:Name="msg_scroll"
+        <ScrollViewer x:Name="msg_scroll" 
+                                      
                                       VerticalScrollBarVisibility="Visible" 
                                       HorizontalScrollBarVisibility="Auto"
                                       
-                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50">
+                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50" ScrollChanged="detect_at_top">
             <StackPanel x:Name="message_container" />
 
         </ScrollViewer>
