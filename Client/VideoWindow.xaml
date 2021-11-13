@@ -56,10 +56,12 @@
 
                 <Slider x:Name="SeekBar" 
                         Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted"
-                        HorizontalAlignment="Stretch" Height="27" Width="600"
-                        Background="Transparent" Foreground="{StaticResource ForegroundLightBrush}"
+                        HorizontalAlignment="Stretch" Height="27" Width="650"
+                        MaxWidth="1200"
+                        Background="Transparent" 
                         materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
-                        ValueChanged="On_Seek"></Slider>
+                        ValueChanged="On_Seek">
+                </Slider>
                 <materialDesign:PopupBox
                 Margin="20 0 0 0"
                 Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"

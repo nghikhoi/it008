@@ -60,7 +60,12 @@
                                              HorizontalAlignment="Stretch"
                                              VerticalAlignment="Stretch"></materialDesign:PackIcon>
                 </Button>
-                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"></Slider>
+                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
+                        Width="200"
+                        MaxWidth="200"
+                        Thumb.DragCompleted="SeekBar_DragCompleted"
+                        VerticalAlignment="Center"
+                        ></Slider>
                 <materialDesign:PopupBox
                     Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
                     Background="Transparent"
