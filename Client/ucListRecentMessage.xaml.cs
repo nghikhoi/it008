@@ -41,5 +41,11 @@ namespace UI
                 window.Close();
             windowLogIn.ShowDialog();
         }
+
+        private void newMessage_Click(object sender, RoutedEventArgs e)
+        {
+            NewConversationWindow newcon = new NewConversationWindow();
+            newcon.ShowDialog();
+        }
     }
 }

@@ -55,7 +55,7 @@
                                         <CheckBox
                                             x:Name="VietnameseButton" Click="VietnameseButton_Click"
                                             Content="Tiếng Việt"  FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
-                                            Checked="EnglishButton_Unchecked" Unchecked="EnglishButton_Unchecked">
+                                            Checked="EnglishButton_Unchecked">
                                             
                                         </CheckBox>
                                     </StackPanel>

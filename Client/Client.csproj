@@ -343,6 +343,9 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
+    <Compile Include="NewConversationWindow.xaml.cs">
+      <DependentUpon>NewConversationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucListRecentMessage.xaml.cs">
       <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
     </Compile>
@@ -452,6 +455,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVC\Setting\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewConversationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

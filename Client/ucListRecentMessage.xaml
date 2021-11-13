@@ -16,7 +16,7 @@
 
             <!--setting button (avt)-->
             <Grid Grid.Row="0">
-                <DockPanel>
+                <DockPanel LastChildFill="False">
                     <!--popup setting-->
 
                     <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
@@ -48,7 +48,13 @@
 
                     <TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>
 
-                    <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 4 16 0" Cursor="Hand"/>
+                    <Button x:Name="newMessage" DockPanel.Dock="Right" Style="{StaticResource OriginalButton}"
+                            Width="24" Height="24" Click="newMessage_Click"
+                            Margin="0,0,12,6" VerticalAlignment="Bottom" >
+                        <materialDesign:PackIcon  HorizontalAlignment="Right" Kind="MessagePlus" 
+                                             Width="24" Height="24" Cursor="Hand"/>
+                    </Button>
+                    
                 </DockPanel>
             </Grid>
 
