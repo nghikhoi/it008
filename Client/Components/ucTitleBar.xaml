@@ -19,7 +19,7 @@
         <Border Background="Transparent">
             <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <Button Style="{StaticResource OriginalButton}"
+                    <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnClose"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
@@ -27,7 +27,7 @@
                     </Button>
                 </Border>
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
-                    <Button Style="{StaticResource OriginalButton}"
+                    <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnMinimize"
                         Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
