@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.MVC {
@@ -8,9 +9,9 @@ namespace UI.MVC {
 	public partial class ChatWindowController : IController {
 
 		private HomeWindow view;
-		private ChatWindowModel model;
+		private ChatModel model;
 
-		public ChatWindowController(HomeWindow view, ChatWindowModel model) {
+		public ChatWindowController(HomeWindow view, ChatModel model) {
 			this.view = view;
 			this.model = model;
 		}
@@ -18,27 +19,19 @@ namespace UI.MVC {
 		#region Message
 
 		public void Buzz() {
-			//TODO
+			//TODO Như tên gọi
 		}
 
-		public void SetBubbleColor(Color color) {
-			//TODO
-		}
-
-		public void AddConversation(Conversation conversation) {
-			//TODO
-		}
-		
-		public void AddShortInfoConversation(Conversation conversation) {
-			//TODO
-		}
-
-		public void AddMessage(message message) {
-			//TODO
+		public void AddMessage(AbstractMessage message) {
+			// TODO:
+			// 1. Kiểm tra tin nhắn xem có phải tin nhắn mới nhất không để update vô ConversationList
+			// 2. Cập nhật message vào chat model
+			// 3. Kiểm tra xem message có thuộc về conversation đang mở hay ko để add vào panel
 		}
 
 		public void LoadConversation(String userId, String conversationId) {
-			
+			// TODO:
+			// Thêm data vô Chat Model
 		}
 
 		#endregion
@@ -46,7 +39,9 @@ namespace UI.MVC {
 		#region Notification
 
 		public void UpdateOnlineStatus(String userId, bool status) {
-			
+			//TODO:
+			// Cập nhật data vào ChatModel
+			// Cập nhật trạng thái hiển thị trên ConversationList
 		}
 
 		public void AddFriendAcceptedNoti(String userId, String userName) {
@@ -57,17 +52,10 @@ namespace UI.MVC {
 			
 		}
 
-		#endregion
-
-		#region Profile
-
-		#endregion
-
-		#region Search
-
-		#endregion
-
-		#region Sticker
+		public void NotifyModifyPasswordResult(bool result) {
+			//TODO
+			// Hiển thị thông báo cập nhật mật khẩu thành công
+		}
 
 		#endregion
 

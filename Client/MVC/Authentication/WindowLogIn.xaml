@@ -54,7 +54,7 @@
                                             x:Name="VietnameseButton" Click="VietnameseButton_Click"
                                             Content="Tiếng Việt"  FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"
                                             Checked="VietnameseButton_Checked" Unchecked="VietnameseButton_UnChecked">
-                                            
+
                                         </CheckBox>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -66,7 +66,7 @@
                                         </CheckBox>
                                     </StackPanel>
 
-                                   
+
                                 </Grid>
                             </Border>
                         </Popup>
@@ -76,7 +76,11 @@
 
             <!--body-->
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                <DockPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="309*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.ColumnSpan="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 40 0 6">
                         <TextBlock FontSize="20" Foreground="teal">App Name</TextBlock>
                     </StackPanel>
@@ -86,7 +90,7 @@
                 </DockPanel>
 
 
-                <StackPanel Margin="40 100 40 4">
+                <StackPanel Margin="6.5,100,40,4" Grid.Column="1">
                     <StackPanel Margin="0 0 0 10">
                         <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowLogin.UsernameBox}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" />
@@ -117,7 +121,7 @@
 
                 </StackPanel>
 
-                <Image Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom"></Image>
+                <Image Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom" Grid.Column="1" Margin="67.5,0,101,0"></Image>
             </Grid>
         </Grid>
     </Border>

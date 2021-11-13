@@ -1,64 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Media;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
+using UI.Network.Packets.AfterLoginRequest.Search;
 
 namespace UI.MVC {
 	
 	public partial class ConversationListController : IController {
 
 		private ChatListControl view;
-		private ConversationListModel model;
 
-		public ConversationListController(ChatListControl view, ConversationListModel model) {
+		public ConversationListController(ChatListControl view) {
 			this.view = view;
-			this.model = model;
 		}
 
 		#region Message
 
-		public void Buzz() {
+		public void AddConversation(AbstractConversation conversation) {
 			//TODO
-		}
-
-		public void SetBubbleColor(Color color) {
-			//TODO
-		}
-
-		public void AddConversation(Conversation conversation) {
-			//TODO
+			// 1. Cập nhật data vào ChatModel
+			// 2. Hiển thị lên danh sách
 		}
 		
-		public void AddShortInfoConversation(Conversation conversation) {
+		public void AddShortInfoConversation(string ConversationId, string ConversationName, long lastActive) {
 			//TODO
+			// 1. Cập nhật data vào ChatModel
+			// 2. Hiển thị lên danh sách
 		}
-
-		public void AddMessage(message message) {
-			//TODO
-		}
-
-		public void LoadConversation(String userId, String conversationId) {
-			
-		}
-
-		#endregion
-
-		#region Notification
-		
-		#endregion
-
-		#region Profile
 
 		#endregion
 
 		#region Search
 
+		public void ShowSearchResult(List<SearchResult> list) {
+			//TODO hiển thị danh sách lên giao diện
+		}
+
 		#endregion
 
-		#region Sticker
-		
-		#endregion
-		
 	}
 
 }

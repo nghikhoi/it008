@@ -5,6 +5,7 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
@@ -53,8 +54,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
         public void Handle(ISession session)
         {
-            Conversation conversation = null; //TODO
-            var module = ModuleContainer.GetModule<ChatContainer>();
+            AbstractConversation conversation = null; //TODO
+            var module = ModuleContainer.GetModule<ConversationList>();
             module.controller.AddConversation(conversation);
             /*// Load message to UI
             Application.Current.Dispatcher.Invoke(() =>

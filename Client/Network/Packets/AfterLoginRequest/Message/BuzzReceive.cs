@@ -26,7 +26,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         }
 
         public void Handle(ISession session) {
-            var module = ModuleContainer.GetModule<ChatContainer>();
+            var module = ModuleContainer.GetModule<ChatWindow>();
             Application.Current.Dispatcher.Invoke(() => 
             {
                 module.controller.Buzz();

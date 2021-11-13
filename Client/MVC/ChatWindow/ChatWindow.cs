@@ -2,7 +2,7 @@
 
 namespace UI.MVC {
 	
-	public class ChatWindow : Module<ChatWindowModel, HomeWindow, ChatWindowController> {
+	public class ChatWindow : Module<ChatModel, HomeWindow, ChatWindowController> {
 		
 	}
 	

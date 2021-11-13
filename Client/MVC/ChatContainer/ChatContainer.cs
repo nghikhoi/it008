@@ -2,7 +2,7 @@
 
 namespace UI.MVC {
 	
-	public class ChatContainer : Module<ChatContainerModel, ChatPage, ChatContainerController> {
+	public class ChatContainer : Module<ChatModel, ChatPage, ChatContainerController> {
 		
 	}
 	

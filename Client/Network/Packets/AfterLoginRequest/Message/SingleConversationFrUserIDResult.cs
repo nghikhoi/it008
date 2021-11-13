@@ -29,7 +29,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             Application.Current.Dispatcher.Invoke(
             () =>
             {
-                var module = ModuleContainer.GetModule<ChatContainer>();
+                var module = ModuleContainer.GetModule<ChatWindow>();
                 module.controller.LoadConversation(UserID, ConversationID);
                 /*var app = MainWindow.chatApplication;
                 app.model.PrivateConversations[UserID] = ConversationID;

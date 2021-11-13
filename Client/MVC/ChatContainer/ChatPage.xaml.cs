@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI.Models;
 using Microsoft.Win32;
+using UI.Models.Message;
 using UI.MVC;
 
 namespace UI
@@ -35,18 +36,17 @@ namespace UI
         {
             InitializeComponent();
             
-            ChatContainerModel model = new ChatContainerModel();
-            controller = new ChatContainerController(this, model);
+            controller = new ChatContainerController(this);
             ChatContainer module = new ChatContainer();
-            module.InitializeMVC(model, this, controller);
+            module.InitializeMVC(ChatModel.Instance, this, controller);
         }
-        private void update_message_container(message tmp)
+        private void update_message_container(AbstractMessage tmp)
         {
-            if (tmp is text_message)
+            if (tmp is TextMessage)
             {
-                text_message offi = (text_message)tmp;
+                TextMessage offi = (TextMessage) tmp;
                 var msg = new ucChatItem();
-                msg.text_msg_content.Text = offi.content;
+                msg.text_msg_content.Text = offi.Message;
                 msg.HorizontalAlignment = HorizontalAlignment.Right;
                 msg.VerticalAlignment = VerticalAlignment.Bottom;
                 message_container.Children.Add(msg);
@@ -55,14 +55,14 @@ namespace UI
 
         }
         
-        private void update_meaage_container_rcv(message tmp)
+        private void update_meaage_container_rcv(AbstractMessage tmp)
         {
-            if (tmp is text_message)
+            if (tmp is TextMessage)
             {
-                text_message offi = (text_message)tmp;
+                TextMessage offi = (TextMessage)tmp;
                 var msg = new Components.ucChatItemSender();
                 msg.message_border.Background = Brushes.Gray;
-                msg.text_msg_content.Text = offi.content;
+                msg.text_msg_content.Text = offi.Message;
                 msg.HorizontalAlignment = HorizontalAlignment.Left;
                 msg.VerticalAlignment = VerticalAlignment.Bottom;
                 message_container.Children.Add(msg);
@@ -74,11 +74,12 @@ namespace UI
         {
             if (ChatInput.Text != "")
             {
-                text_message tmp = new text_message(ChatInput.Text);
+                TextMessage tmp = new TextMessage();
+                tmp.Message = ChatInput.Text;
 
                 update_message_container(tmp);
 
-                update_meaage_container_rcv(new text_message("test recieve."));
+                update_meaage_container_rcv(new TextMessage("test recieve."));
                 ChatInput.Text = "";
             }
         }
@@ -96,7 +97,7 @@ namespace UI
                 }
                 if (ChatInput.Text != "")
                 {
-                    text_message tmp = new text_message(ChatInput.Text);
+                    TextMessage tmp = new TextMessage(ChatInput.Text);
 
                     update_message_container(tmp);
                     ChatInput.Text = "";
