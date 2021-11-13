@@ -22,6 +22,8 @@ namespace UI.MVC {
 
 		public void SetBubbleColor(Color color) {
 			//TODO Đổi màu bubble chat
+			var chatitem = new ucChatItem();
+			chatitem.Background = new SolidColorBrush(color);
 		}
 
 		public void AddMediaToCurrentSelectedConversation(List<string> FileIDs, List<string> FileNames, List<int> Positions) {
