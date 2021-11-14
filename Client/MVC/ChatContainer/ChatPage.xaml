@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="500"  d:DesignWidth="600">
+
     <Grid>
-        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2" BorderBrush="{StaticResource WordGreenBrush}">
+        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel Margin="10 0 0 0">
                 <!--Header-->
                 <StackPanel DockPanel.Dock="Top" Background="WhiteSmoke" Margin="0 5 0 0">
@@ -51,12 +52,13 @@
         </Border>
         <!--Chat Page-->
         <ScrollViewer x:Name="msg_scroll" 
-                                      
-                                      VerticalScrollBarVisibility="Visible" 
-                                      HorizontalScrollBarVisibility="Auto"
-                                      
-                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50" ScrollChanged="detect_at_top">
-            <StackPanel x:Name="message_container" />
+                      Padding="0,0,0,10" Margin="0 40 0 45" ScrollChanged="detect_at_top">
+            <StackPanel>
+                <Button x:Name="LoadMessagesBtn" Width="128" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD000000" Click="LoadMessagesBtn_Click">See More...</Button>
+
+                <StackPanel x:Name="message_container" />
+
+            </StackPanel>
 
         </ScrollViewer>
 

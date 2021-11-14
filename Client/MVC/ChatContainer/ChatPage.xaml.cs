@@ -54,7 +54,6 @@ namespace UI
             }
 
         }
-        
         public void update_meaage_container_rcv(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
@@ -188,5 +187,10 @@ namespace UI
                    //todo: do something here
             }
         }
+        private void LoadMessagesBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
