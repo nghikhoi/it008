@@ -76,9 +76,7 @@ namespace UI
                 TextMessage tmp = new TextMessage();
                 tmp.Message = ChatInput.Text;
 
-                update_message_container(tmp);
-
-                update_meaage_container_rcv(new TextMessage("test recieve."));
+                update_msgcontainer_at_top(tmp);
                 ChatInput.Text = "";
             }
         }
@@ -177,6 +175,32 @@ namespace UI
                 update_file_message(filepath);
             }
 
+        }
+
+        public void update_msgcontainer_at_top(AbstractMessage tmp)
+        {
+            if (tmp is TextMessage)
+            {
+                TextMessage offi = (TextMessage)tmp;
+                var msg = new ucChatItem();
+                msg.text_msg_content.Text = offi.Message;
+                msg.HorizontalAlignment = HorizontalAlignment.Right;
+                msg.VerticalAlignment = VerticalAlignment.Top;
+                spc_chat_container.Children.Add(msg);
+            }
+        }
+
+        public void update_msgcontainer_at_top_rcv(AbstractMessage tmp)
+        {
+            if (tmp is TextMessage)
+            {
+                TextMessage offi = (TextMessage)tmp;
+                var msg = new ucChatItem();
+                msg.text_msg_content.Text = offi.Message;
+                msg.HorizontalAlignment = HorizontalAlignment.Left;
+                msg.VerticalAlignment = VerticalAlignment.Top;
+                spc_chat_container.Children.Add(msg);
+            }
         }
 
         private void detect_at_top(object sender, ScrollChangedEventArgs e)

@@ -10,8 +10,8 @@
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
         <Grid Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="36"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--setting button (avt)-->
@@ -46,24 +46,71 @@
                         </StackPanel>
                     </ToggleButton>
 
-                    <TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>
+                    <!--<TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>-->
 
-                    <Button x:Name="newMessage" DockPanel.Dock="Right" Style="{StaticResource OriginalButton}"
+                    <!--<Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
                             Width="24" Height="24" Click="newMessage_Click"
                             Margin="0,0,12,6" VerticalAlignment="Bottom" >
-                        <materialDesign:PackIcon  HorizontalAlignment="Right" Kind="MessagePlus" 
-                                             Width="24" Height="24" Cursor="Hand"/>
-                    </Button>
-                    
+                        <materialDesign:PackIcon x:Name="icon"  HorizontalAlignment="Right" Kind="MessagePlus" 
+                                             Width="24" Height="24" Cursor="Hand" Foreground="Black">
+                        </materialDesign:PackIcon>
+                        
+                    </Button>-->
                 </DockPanel>
             </Grid>
 
-            <Grid Grid.Row="1">
-                <StackPanel>
-                    <!--List Chat Item-->
-                    <local:ChatListControl x:Name="testabc"/>
+            <DockPanel Grid.Row="1" LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button x:Name="btnRecent" Width="100" Background="{x:Null}" Foreground="{StaticResource ForegroundDarkBrush}" BorderBrush="{x:Null}" Click="btnRecent_Click">Gần đây</Button>
+                    <Button x:Name="btnListFriend" Width="100" Background="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" BorderBrush="{x:Null}" Click="btnListFriend_Click">Bạn bè</Button>
                 </StackPanel>
-            </Grid>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
+                    <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="#FFC5C5C5"/>
+                    <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                </StackPanel>
+                <!--List Chat Item-->
+                <!--<local:ChatListControl x:Name="testabc"/>-->
+
+                <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1" DockPanel.Dock="Bottom">
+                    <!-- Recent tab -->
+                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+                            <DockPanel Margin="0,8,0,0">
+                                <ScrollViewer Margin="0" DockPanel.Dock="Top" >
+                                    <local:ChatListControl x:Name="testabc"/>
+                                </ScrollViewer>
+                            </DockPanel>
+                        </ScrollViewer>
+                    </materialDesign:TransitionerSlide>
+
+                    <!-- Contacts tab -->
+                    <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                        <DockPanel Margin="0,8,0,0">
+                            <!--search-->
+                            <Border Background="{StaticResource BackgroundVeryLightBrush}" 
+                                    DockPanel.Dock="Top" CornerRadius="16"
+                                    Height="32" Margin="4 0 4 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountSearch" Margin="4 0 0 0" VerticalAlignment="Center"/>
+                                    <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                                             materialDesign:TextFieldAssist.HasClearButton="True"
+                                             materialDesign:HintAssist.Hint="Tim kiem..."
+                                             RenderTransformOrigin="0.5,0.5"
+                                             x:Name="searchInput"
+                                             Margin="10,0,10,0" FontSize="12" 
+                                             VerticalContentAlignment="Center">
+                                    </TextBox>
+                                </StackPanel>
+                            </Border>
+
+                            <ScrollViewer Margin="0" DockPanel.Dock="Top">
+                                <StackPanel x:Name="listFriend">
+                                </StackPanel>
+                            </ScrollViewer>
+                        </DockPanel>
+                    </materialDesign:TransitionerSlide>
+                </materialDesign:Transitioner>
+            </DockPanel>
         </Grid>
     </Border>
 </UserControl>
