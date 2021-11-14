@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="{StaticResource MaterialDesignLightBackground}">
+    <Grid Background="Transparent">
         <ScrollViewer VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto">
             <StackPanel x:Name="Container"/>
