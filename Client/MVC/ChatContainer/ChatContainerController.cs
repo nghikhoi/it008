@@ -6,6 +6,10 @@ using UI.Models.Message;
 using UI.MVC;
 using System.Windows.Media.Imaging;
 
+//todo: cac ham de add tin nhan trong view : text: update_message_container update_meaage_container_rcv (up load vao cuoi trang); update_msgcontainer_at_top update_msgcontainer_rcv_at_top (up vao dau trang)
+//todo: hinh anh: update_image_message update_image_message_rcv update_image_message_at_top update_image_message_rcv_at_top
+//todo: video: update_file_message update_file_message_rcv update_file_message_at_top update_file_message_rcv_at_top
+//todo: xu not phan cap nhat tin nhan nha ck.
 namespace UI.MVC {
 	
 	public partial class ChatContainerController : IController {

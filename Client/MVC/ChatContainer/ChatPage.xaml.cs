@@ -40,6 +40,8 @@ namespace UI
             ChatContainer module = new ChatContainer();
             module.InitializeMVC(ChatModel.Instance, this, controller);
         }
+
+        #region TextMessage function
         public void update_message_container(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
@@ -54,7 +56,7 @@ namespace UI
             }
 
         }
-        
+
         public void update_meaage_container_rcv(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
@@ -69,7 +71,33 @@ namespace UI
                 msg_scroll.ScrollToEnd();
             }
         }
-        
+
+        public void update_msgcontainer_at_top(AbstractMessage tmp)
+        {
+            if (tmp is TextMessage)
+            {
+                TextMessage offi = (TextMessage)tmp;
+                var msg = new ucChatItem();
+                msg.text_msg_content.Text = offi.Message;
+                msg.HorizontalAlignment = HorizontalAlignment.Right;
+                msg.VerticalAlignment = VerticalAlignment.Top;
+                spc_chat_container.Children.Add(msg);
+            }
+        }
+
+        public void update_msgcontainer_rcv_at_top(AbstractMessage tmp)
+        {
+            if (tmp is TextMessage)
+            {
+                TextMessage offi = (TextMessage)tmp;
+                var msg = new ucChatItem();
+                msg.text_msg_content.Text = offi.Message;
+                msg.HorizontalAlignment = HorizontalAlignment.Left;
+                msg.VerticalAlignment = VerticalAlignment.Top;
+                spc_chat_container.Children.Add(msg);
+            }
+        }
+        #endregion
         public void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if (ChatInput.Text != "")
@@ -108,6 +136,7 @@ namespace UI
 
         }
 
+        #region Image function
         public void update_image_message(BitmapImage image)
         {
             var msgimage = new ImageMsg();
@@ -128,6 +157,24 @@ namespace UI
             msg_scroll.ScrollToEnd();
         }
 
+        public void update_image_message_at_top(BitmapImage image)
+        {
+            var msgimage = new ImageMsg();
+            msgimage.ImageControl.Source = image;
+            msgimage.MaxWidth = 300;
+            msgimage.HorizontalAlignment = HorizontalAlignment.Right;
+            spc_chat_container.Children.Add(msgimage);
+        }
+
+        public void update_image_message_rcv_at_top(BitmapImage image)
+        {
+            var msgimage = new ImageMsg();
+            msgimage.ImageControl.Source = image;
+            msgimage.MaxWidth = 300;
+            msgimage.HorizontalAlignment = HorizontalAlignment.Left;
+            spc_chat_container.Children.Add(msgimage);
+        }
+        #endregion
         public void send_image_on_click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog opendlg = new OpenFileDialog();
@@ -143,6 +190,7 @@ namespace UI
             }
         }
 
+        #region media
         public void update_file_message(Uri videopath)
         {
             var videomsg = new SimpleMediaPlayer();
@@ -166,6 +214,30 @@ namespace UI
             message_container.Children.Add(videomsg);
             msg_scroll.ScrollToEnd();
         }
+
+        public void update_file_message_at_top(Uri videopath)
+        {
+            var videomsg = new SimpleMediaPlayer();
+            var tl = new MediaTimeline(videopath);
+            videomsg.VideoControl.Source = videopath;
+            videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
+            videomsg.MaxWidth = 300;
+            videomsg.HorizontalAlignment = HorizontalAlignment.Right;
+            spc_chat_container.Children.Add(videomsg);
+        }
+
+        public void update_file_message_rcv_at_top(Uri videopath)
+        {
+            var videomsg = new SimpleMediaPlayer();
+            var tl = new MediaTimeline(videopath);
+            videomsg.VideoControl.Source = videopath;
+            videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
+            videomsg.MaxWidth = 300;
+            videomsg.HorizontalAlignment = HorizontalAlignment.Left;
+            spc_chat_container.Children.Add(videomsg);
+        }
+
+        #endregion
         private void send_files_on_click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog opendlg = new OpenFileDialog();
@@ -178,31 +250,7 @@ namespace UI
 
         }
 
-        public void update_msgcontainer_at_top(AbstractMessage tmp)
-        {
-            if (tmp is TextMessage)
-            {
-                TextMessage offi = (TextMessage)tmp;
-                var msg = new ucChatItem();
-                msg.text_msg_content.Text = offi.Message;
-                msg.HorizontalAlignment = HorizontalAlignment.Right;
-                msg.VerticalAlignment = VerticalAlignment.Top;
-                spc_chat_container.Children.Add(msg);
-            }
-        }
-
-        public void update_msgcontainer_at_top_rcv(AbstractMessage tmp)
-        {
-            if (tmp is TextMessage)
-            {
-                TextMessage offi = (TextMessage)tmp;
-                var msg = new ucChatItem();
-                msg.text_msg_content.Text = offi.Message;
-                msg.HorizontalAlignment = HorizontalAlignment.Left;
-                msg.VerticalAlignment = VerticalAlignment.Top;
-                spc_chat_container.Children.Add(msg);
-            }
-        }
+        
 
         private void detect_at_top(object sender, ScrollChangedEventArgs e)
         {
