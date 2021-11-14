@@ -19,7 +19,78 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border BorderThickness="2" BorderBrush="Green" Background="Gray">
+
+    <Border BorderThickness="2" BorderBrush="Black" Background="Gray">
+        <Grid>
+            <MediaElement
+            ScrubbingEnabled="True"
+            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,-0.4,5.8" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
+
+            </MediaElement>
+
+
+            <Button x:Name="on_screen_play_button"
+                    Grid.Row="0"
+                    Background="{x:Null}" BorderBrush="{x:Null}"
+                    
+                    Height="Auto" Margin="0,0,-0.2,9.8" Click="on_screen_play_button_click" MouseEnter="Show_controller" MouseLeave="Hide_controller">
+                <Grid>
+                    <materialDesign:PackIcon 
+                         Height="50" Width="50" Name="Screen_Icon" Kind="Play"></materialDesign:PackIcon>
+
+                </Grid>
+            </Button>
+
+
+            <Button Width="50" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Click="Expand_button_click"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Cast"></materialDesign:PackIcon>
+            </Button>
+
+            <DockPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0 0 0 16">
+                <Button Width="38" BorderThickness="0" Padding="0"
+                        Background="{x:Null}" 
+                        Click="Play_on_controlbar">
+                    <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch"></materialDesign:PackIcon>
+                </Button>
+
+                <materialDesign:PopupBox
+                    Style="{StaticResource MaterialDesignMultiFloatingActionDarkPopupBox}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Height="35"
+                    Width="35"
+                    StaysOpen="True"
+                    PlacementMode="TopAndAlignCentres"
+                    DockPanel.Dock="Right">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <materialDesign:PackIcon x:Name="VolumeIcon"
+                                                 Kind="VolumeMedium"
+                                                 Foreground="White"/>
+                    </materialDesign:PopupBox.ToggleContent>
+                    <Slider Style="{StaticResource VideoSlider}"
+                        x:Name="Volume_seeker"
+                        Height="100" Width="20"
+                        Foreground="Black"
+                        Minimum="0"
+                        Maximum="100" 
+                        Background="{x:Null}"
+                        Orientation="Vertical"
+                        ValueChanged="Volume_change" />
+                </materialDesign:PopupBox>
+
+                <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
+                        Thumb.DragCompleted="SeekBar_DragCompleted"
+                        VerticalAlignment="Center" Margin="8 0 6 0"/>
+            </DockPanel>
+        </Grid>
+    </Border>
+
+    <!--<Border BorderThickness="2" BorderBrush="Green" Background="Gray">
         <Grid>
 
             <Grid.RowDefinitions>
@@ -92,6 +163,6 @@
                 </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
-    </Border>
+    </Border>-->
 
 </UserControl>

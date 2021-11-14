@@ -9,9 +9,20 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="{x:Null}"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="480" Width="815" WindowStartupLocation="CenterScreen">
-
-    <Border CornerRadius="8" Background="{StaticResource BackgroundVeryLightBrush}">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        MinHeight="300" MinWidth="500"
+        Height="480" Width="815"  WindowStartupLocation="CenterScreen">
+    <!--Resize when AllowsTransparency-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome     
+        CaptionHeight="1"  
+        CornerRadius ="0"
+        ResizeBorderThickness="4">
+        </WindowChrome>
+    </WindowChrome.WindowChrome>
+    
+    <!--Main-->
+    <Border CornerRadius="8" Background="{StaticResource BackgroundVeryLightBrush}" AllowDrop="True">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height ="30"></RowDefinition>
@@ -24,7 +35,7 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="208"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
@@ -90,7 +101,7 @@
 
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
-                    <DockPanel>
+                    <DockPanel MinHeight="250" MinWidth="300">
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>
