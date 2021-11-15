@@ -106,6 +106,7 @@ namespace UI
                 tmp.Message = ChatInput.Text;
 
                 update_msgcontainer_at_top(tmp);
+                update_offline_status();
                 ChatInput.Text = "";
             }
         }
@@ -250,7 +251,28 @@ namespace UI
 
         }
 
-        
+        #region Status
+
+        public void update_online_status()
+        {
+            OnlineStatus onl = new OnlineStatus();
+            if (Status_container.Children.Count > 0)
+            {
+                Status_container.Children.RemoveAt(Status_container.Children.Count - 1);
+            }
+            Status_container.Children.Add(onl);
+        }
+
+        public void update_offline_status()
+        {
+            OfflineStatus off = new OfflineStatus();
+            if (Status_container.Children.Count > 0)
+            {
+                Status_container.Children.RemoveAt(Status_container.Children.Count - 1);
+            }
+            Status_container.Children.Add(off);
+        }
+        #endregion
 
         private void detect_at_top(object sender, ScrollChangedEventArgs e)
         {
