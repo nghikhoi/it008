@@ -56,10 +56,7 @@ namespace UI
             }
 
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> ef7ec2edc40dbc5cabe5e57d94ea2bde2617f11d
         public void update_meaage_container_rcv(AbstractMessage tmp)
         {
             if (tmp is TextMessage)
@@ -268,5 +265,10 @@ namespace UI
 
         }
 
+        private void Load_chat_page(object sender, RoutedEventArgs e)
+        {
+            OnlineStatus onlsta = new OnlineStatus();
+            Status_container.Children.Add(onlsta);
+        }
     }
 }

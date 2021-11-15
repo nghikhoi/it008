@@ -44,4 +44,8 @@
     <!--ucListRecentMessage-->
     <sys:String x:Key="RecentMessage.Info">Profile</sys:String>
     <sys:String x:Key="RecentMessage.Logout">Log Out</sys:String>
+    
+    <!--Online status-->
+    <sys:String x:Key="Status.online">Online</sys:String>
+    <sys:String x:Key="Status.offline">Offline</sys:String>
 </ResourceDictionary>

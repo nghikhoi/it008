@@ -343,6 +343,12 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
+    <Compile Include="OfflineStatus.xaml.cs">
+      <DependentUpon>OfflineStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineStatus.xaml.cs">
+      <DependentUpon>OnlineStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucListRecentMessage.xaml.cs">
       <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
     </Compile>
@@ -452,6 +458,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVC\Setting\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OfflineStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OnlineStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,4 +44,8 @@
     <!--ucListRecentMessage-->
     <sys:String x:Key="RecentMessage.Info">Thông tin</sys:String>
     <sys:String x:Key="RecentMessage.Logout">Đăng xuất</sys:String>
+
+    <!--Online status-->
+    <sys:String x:Key="Status.online">Đang hoạt động</sys:String>
+    <sys:String x:Key="Status.offline">Ngoại tuyến</sys:String>
 </ResourceDictionary>
