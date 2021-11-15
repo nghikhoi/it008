@@ -12,7 +12,6 @@ namespace UI.Models.Message
         public Guid ID { get; set; }
         public long LastActive { get; set; }
         public HashSet<Guid> Members { get; set; } = new HashSet<Guid>();
-        public List<Guid> MessagesID { get; set; } = new List<Guid>();
-        public Dictionary<Guid, IMessage> LoadedMessages { get; set; } = new Dictionary<Guid, IMessage>();
+        public List<Guid> MessagesID { get; set; } = new List<Guid>(); 
     }
 }

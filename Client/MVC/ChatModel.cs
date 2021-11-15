@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Forms;
+using UI.Models;
 using UI.Models.Message;
-using UI.MVC;
 using UI.Utils;
 
 namespace UI.MVC {
@@ -27,7 +26,16 @@ namespace UI.MVC {
         public string previousSelectedConversation { get; set; } = "";
         public string currentSelectedConversation { get; set; } = "";
         public List<BubbleInfo> CurrentUserMessages { get; set; } = new List<BubbleInfo>();
-        public Dictionary<string, ConversationBubble> Conversations { get; set; } = new Dictionary<string, ConversationBubble>();
+        public Dictionary<string, ConversationCache> Conversations { get; set; } = new Dictionary<string, ConversationCache>();
+
+        public ConversationCache computeIfAbsent(string id, ConversationCache cache) {
+	        if (!Conversations.ContainsKey(id))
+		        Conversations.Add(id, cache);
+	        return Conversations[id];
+        }
+        public ConversationCache getConversationCache(string id) {
+	        return Conversations[id];
+        }
         public Dictionary<string, string> PrivateConversations { get; set; } = new Dictionary<string, string>();
         public Dictionary<string, UserControl> UserControls { get; set; } = new Dictionary<string, UserControl>();
 
