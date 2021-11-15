@@ -42,6 +42,9 @@ namespace UI.MVC {
 			//TODO:
 			// Cập nhật data vào ChatModel
 			// Cập nhật trạng thái hiển thị trên ConversationList
+			//update_online_status() de cap nhat trng thai onl
+			//update_offline_status() de cap nhat trang thai offline
+			//tu xu tiep nha ck 
 		}
 
 		public void AddFriendAcceptedNoti(String userId, String userName) {

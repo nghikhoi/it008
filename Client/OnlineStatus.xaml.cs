@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for NewConversationWindow.xaml
+    /// Interaction logic for OnlineStatus.xaml
     /// </summary>
-    public partial class NewConversationWindow : Window
+    public partial class OnlineStatus : UserControl
     {
-        public NewConversationWindow()
+        public OnlineStatus()
         {
             InitializeComponent();
         }

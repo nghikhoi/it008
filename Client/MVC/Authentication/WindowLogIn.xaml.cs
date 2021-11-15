@@ -38,8 +38,8 @@ namespace UI
 
         private void SignBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowRegister home = new WindowRegister();
-            home.Show();
+            WindowRegister signupwin = new WindowRegister();
+            signupwin.Show();
             this.Close();
         }
 

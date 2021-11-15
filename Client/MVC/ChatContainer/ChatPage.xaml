@@ -6,14 +6,15 @@
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="500"  d:DesignWidth="600">
+             d:DesignHeight="500"  d:DesignWidth="600" Loaded="Load_chat_page">
+
     <Grid>
-        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2" BorderBrush="{StaticResource WordGreenBrush}">
+        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel Margin="10 0 0 0">
                 <!--Header-->
-                <StackPanel DockPanel.Dock="Top" Background="WhiteSmoke" Margin="0 5 0 0">
-                    <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="20" Margin="0 -6 0 0"></Label>
-                    <Label Grid.Row="1" Content="{DynamicResource ChatPage.Status}" FontSize="10" Margin="0 -10 0 0"></Label>
+                <StackPanel DockPanel.Dock="Top" Background="WhiteSmoke" Margin="0 5 0 0" Orientation="Vertical" Height="40">
+                    <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
+                    <StackPanel Grid.Row="1" x:Name="Status_container" Margin="0 -3 0 0" Height="15"></StackPanel>
                 </StackPanel>
 
                 <!--Button Control-->
@@ -47,17 +48,34 @@
                     </Border>
                 </DockPanel>
             </DockPanel>
-            
+
         </Border>
         <!--Chat Page-->
-        <ScrollViewer x:Name="msg_scroll"
-                                      VerticalScrollBarVisibility="Visible" 
-                                      HorizontalScrollBarVisibility="Auto"
-                                      
-                                      Style="{StaticResource MaterialDesignScrollViewer}" Margin="0 40 0 50">
-            <StackPanel x:Name="message_container" />
 
+        
+        <ScrollViewer x:Name="msg_scroll" 
+                      VerticalScrollBarVisibility="Visible" 
+                      HorizontalScrollBarVisibility="Auto"
+                      Style="{StaticResource MaterialDesignScrollViewer}"
+                      Padding="0,0,0,10" Margin="0 40 0 45" ScrollChanged="detect_at_top">
+            <StackPanel>
+                <Button x:Name="LoadMessagesBtn" Width="128" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD000000" Click="LoadMessagesBtn_Click">
+                    <TextBlock Text="See more...">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="Blue"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Button>
+                <StackPanel x:Name="message_container">
+                    <StackPanel x:Name="spc_chat_container"/>
+                </StackPanel>
+            </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </UserControl>

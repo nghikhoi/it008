@@ -344,8 +344,11 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
-    <Compile Include="NewConversationWindow.xaml.cs">
-      <DependentUpon>NewConversationWindow.xaml</DependentUpon>
+    <Compile Include="OfflineStatus.xaml.cs">
+      <DependentUpon>OfflineStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OnlineStatus.xaml.cs">
+      <DependentUpon>OnlineStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucListRecentMessage.xaml.cs">
       <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
@@ -458,7 +461,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewConversationWindow.xaml">
+    <Page Include="OfflineStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OnlineStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

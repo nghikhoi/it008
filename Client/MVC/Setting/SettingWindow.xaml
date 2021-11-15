@@ -11,6 +11,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="SettingWindow" Height="450" Width="800" Background="{x:Null}"
         AllowDrop="True" AllowsTransparency="True">
+    
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid>
             <!--2 Row-->

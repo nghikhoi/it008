@@ -20,9 +20,15 @@ namespace UI
     /// </summary>
     public partial class ucListRecentMessage : UserControl
     {
+        private Border[] tabMarks = new Border[2];
+
         public ucListRecentMessage()
         {
             InitializeComponent();
+            transitioner.SelectedIndex = 1;
+            tabMarks[0] = RecentTabSelectMark;
+            tabMarks[1] = ContactsRabSelectMark;
+            selectTab(1);
         }
 
         private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
@@ -42,10 +48,31 @@ namespace UI
             windowLogIn.ShowDialog();
         }
 
-        private void newMessage_Click(object sender, RoutedEventArgs e)
+        private void selectTab(int index)
         {
-            NewConversationWindow newcon = new NewConversationWindow();
-            newcon.ShowDialog();
+            foreach (var mark in tabMarks) mark.Visibility = Visibility.Hidden;
+            tabMarks[index].Visibility = Visibility.Visible;
         }
+
+        private void btnRecent_Click(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 0;
+            selectTab(0);
+        }
+
+        private void btnListFriend_Click(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 1;
+            selectTab(1);
+        }
+
+        //private void newMessage_Click(object sender, RoutedEventArgs e)
+        //{
+        //    NewConversationWindow newcon = new NewConversationWindow();
+        //    newcon.ShowDialog();
+        //}
+
+
+
     }
 }
