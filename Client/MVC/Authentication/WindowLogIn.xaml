@@ -14,6 +14,16 @@
 
     <Window.Resources/>
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" FillBehavior="HoldEnd" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>

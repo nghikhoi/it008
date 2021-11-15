@@ -61,11 +61,11 @@
 
             <DockPanel Grid.Row="1" LastChildFill="True">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button x:Name="btnRecent" Width="100" Background="{x:Null}" Foreground="{StaticResource ForegroundDarkBrush}" BorderBrush="{x:Null}" Click="btnRecent_Click">Gần đây</Button>
+                    <Button x:Name="btnRecent" Width="100" Background="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" BorderBrush="{x:Null}" Click="btnRecent_Click">Gần đây</Button>
                     <Button x:Name="btnListFriend" Width="100" Background="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" BorderBrush="{x:Null}" Click="btnListFriend_Click">Bạn bè</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
-                    <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="#FFC5C5C5"/>
+                    <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                     <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
                 <!--List Chat Item-->

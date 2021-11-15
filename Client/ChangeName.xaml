@@ -10,9 +10,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Background="{x:Null}"
         AllowsTransparency="True"
-        Height="170" Width="250">
-    <Border CornerRadius="8" Background="{StaticResource ForegroundLightBrush}">
-        <Grid Margin="4">
+        Height="200" Width="250">
+    
+    <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource ForegroundLightBrush}">
+        <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="201*"/>
                 <ColumnDefinition Width="41*"/>
