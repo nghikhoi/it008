@@ -51,13 +51,27 @@ namespace UI
         {
 
         }
-    }
-    public class WindowChrome : Freezable
-    {
-        protected override Freezable CreateInstanceCore()
+
+        private void LockHomeWindow(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            SettingWindow settingWindow = new SettingWindow();
+            if(settingWindow.IsActive == true)
+            {
+                FullFade.Visibility = Visibility.Visible;
+                if (!settingWindow.IsActive)
+                {
+                    FullFade.Visibility = Visibility.Hidden;
+                }
+            }
         }
+
     }
+    //public class WindowChrome : Freezable
+    //{
+    //    protected override Freezable CreateInstanceCore()
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
+    //}
 
 }

@@ -20,7 +20,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderThickness="2" BorderBrush="Black" Background="Gray">
+    <Border BorderThickness="2" BorderBrush="Black" Background="Gray" Margin="0 0 10 0"  >
         <Grid>
             <MediaElement
             ScrubbingEnabled="True"
@@ -84,6 +84,7 @@
                 </materialDesign:PopupBox>
 
                 <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
+                        Background="Transparent" Foreground="LightGray"
                         Thumb.DragCompleted="SeekBar_DragCompleted"
                         VerticalAlignment="Center" Margin="8 0 6 0"/>
             </DockPanel>

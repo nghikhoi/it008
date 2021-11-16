@@ -9,9 +9,9 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="SettingWindow" Height="450" Width="800" Background="{x:Null}"
+        Title="SettingWindow" Height="450" Width="500" Background="{x:Null}"
         AllowDrop="True" AllowsTransparency="True">
-    
+
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid>
             <!--2 Row-->
@@ -45,7 +45,7 @@
                 <Grid Grid.Column="0" Grid.ColumnSpan="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.ColumnSpan="2">
@@ -71,7 +71,7 @@
                             </Button.Template>
 
                         </Button>
-                        <Button Width="180"
+                        <Button Width="150"
                             Command="{Binding ClickChangeImageCommand}"
                             Visibility="{Binding Visibility}">
                             <TextBlock Text="{DynamicResource SettingWindow.changeavt}"></TextBlock>
@@ -79,11 +79,11 @@
 
                         <!--change name btn-->
                         <Button x:Name="ChangeNameBtn"
-                                HorizontalAlignment="Stretch" Margin="0 40 0 0" Click="ChangeNameBtn_Click">
+                                HorizontalAlignment="Stretch" Margin="10,40,0,0" Click="ChangeNameBtn_Click">
                             <Canvas>
-                                <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
-                                <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
-                                <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
+                                <materialDesign:PackIcon Kind="Account" Canvas.Left="-115" Canvas.Top="-9" Height="17" Width="17"/>
+                                <materialDesign:PackIcon Kind="Pencil" Canvas.Left="96" Canvas.Top="-9" Height="17" Width="17" />
+                                <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="76">
                                     Hiep Chau
                                 </TextBox>
                             </Canvas>
@@ -94,21 +94,18 @@
                     Margin="10,30,10,0"
                     TextWrapping="Wrap"
                     VerticalAlignment="Stretch"
-                    MinWidth="280"
+                    MinWidth="25"
                     AcceptsReturn="True"
                     VerticalScrollBarVisibility="Auto"
                     SpellCheck.IsEnabled="True"
                     materialDesign:HintAssist.Hint="Bio..."
-                    Height="82"/>
+                    Height="82" Width="230"/>
 
                         <!--NAME-->
 
-
-
-
                     </StackPanel>
                 </Grid>
-                
+
                 <!--Dimmed Overplay-->
                 <Border x:Name="FullFade"
                         Grid.ColumnSpan="2"
@@ -118,7 +115,7 @@
                         >
                     <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
                 </Border>
-                
+
                 <!--Column 1-->
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -127,7 +124,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <StackPanel Margin="40,0,30,0" Grid.RowSpan="2">
+                    <StackPanel Grid.RowSpan="2">
                         <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
                             <StackPanel />
                             <StackPanel/>
@@ -136,12 +133,12 @@
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource WindowSignUp.Birth}"></TextBlock>
                                 <DatePicker x:Name="BirthdayPicker" 
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="38" />
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Right">
                                 <TextBlock Text="{DynamicResource WindowSignUp.Gender}"></TextBlock>
                                 <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              Width="79">
+                              Width="79" Margin="0 0 10 0">
 
                                     <ComboBoxItem Content="Nam"/>
                                     <ComboBoxItem Content="Nữ"/>
@@ -153,7 +150,7 @@
                         <StackPanel Margin="0 0 0 40">
                             <TextBlock>Email</TextBlock>
                             <TextBox x:Name="UsernameBox" 
-                        Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,10,0" />
                         </StackPanel>
                         <StackPanel Margin="0 0 0 0">
                             <Canvas>
@@ -161,8 +158,8 @@
                             </Canvas>
                             <TextBox
                         x:Name="PhoneTextBox"
-                        materialDesign:TransitionAssist.DisableTransitions="True"
-                        Margin="26,0,174,0"/>
+                        materialDesign:TransitionAssist.DisableTransitions="True" Width="100"
+                        Margin="26,0,124,0"/>
 
                         </StackPanel>
 
@@ -172,19 +169,19 @@
                     <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Content="{DynamicResource WindowChangePss.Title}" 
                         HorizontalAlignment="Left"
-                        Width="160" Height="Auto"
-                        Margin="137 210 0 110" Click="ChangePassWord_btn_Click_1"/>
+                        Width="130" Height="Auto"
+                        Margin="66,208,0,111" Click="ChangePassWord_btn_Click_1"/>
 
 
                     <!--Controller Button-->
-                    <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
+                    <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10,300,10,0">
                         <Button
                             DockPanel.Dock="Right"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             ToolTip="MaterialDesignFlatButton" 
                             Foreground="White" 
                             Content="{DynamicResource SettingWindow.UpdateBttn}"
-                            Width="120"/>
+                            Width="100" Margin="0,19"/>
                         <Button
                             DockPanel.Dock="Left"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -192,7 +189,7 @@
                             Background="{StaticResource BackgroundVeryLightBrush}"
                             Foreground="{StaticResource PrimaryHueDarkBrush}" 
                             Content="{DynamicResource WindowChangePss.Discard}"
-                            Width="120" Click="Button_Click"/>
+                            Width="100" Click="DiscardButton_Click" Margin="0,19"/>
                     </DockPanel>
 
                 </Grid>
