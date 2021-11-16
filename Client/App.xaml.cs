@@ -18,7 +18,7 @@ namespace UI
     /// </summary>
     public partial class App : Application {
 
-        public static readonly bool IS_LOCAL_DEBUG = false;
+        public static readonly bool IS_LOCAL_DEBUG = true;
 
         private readonly String defaultLanguage = "vi-VN";
         private readonly List<String> availableLanguage = new List<string>() {
