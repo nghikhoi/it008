@@ -4,6 +4,8 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.Models;
+using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -51,34 +53,33 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Handle(ISession session)
         {
-            //TODO
-            /*var id = ID;
+            var id = ID;
             Console.WriteLine(Relationship); 
 
-            Application.Current.Dispatcher.Invoke(() => UserList.Instance.AddUserToListView(
+            //TODO
+            /*Application.Current.Dispatcher.Invoke(() => UserList.Instance.AddUserToListView(
                 new UserMessageViewModel()
                 {
                     Id = id,
                     Name = FirstName + " " + LastName,
                     IsOnline = IsOnline,
                     IncomingMsg = PreviewCode == -1 ? String.Empty : (PreviewCode == 4 ? LastMessage : TranslatedPreviewCode[PreviewCode])
-                }, Relationship == 2));
+                }, Relationship == 2));*/
 
             if (Relationship == 2)
             {
-                var app = MainWindow.chatApplication;
-                if (!app.model.Conversations.ContainsKey(ConversationID))
-                    app.model.Conversations.Add(ConversationID, new ConversationBubble());
+               ChatModel model = ChatModel.Instance;
+               ConversationCache cache = model.computeIfAbsent(ConversationID, new ConversationCache());
 
-                app.model.Conversations[ConversationID].Members.Clear();
-                app.model.Conversations[ConversationID].Members.Add(ID);
+               cache.Members.Clear();
+               cache.Members.Add(ID);
 
-                if (!app.model.PrivateConversations.ContainsKey(ID))
-                    app.model.PrivateConversations.Add(ID, ConversationID);
+               if (!model.PrivateConversations.ContainsKey(ID))
+                   model.PrivateConversations.Add(ID, ConversationID);
 
-                if (!app.model.IsOnline.ContainsKey(id))
-                    app.model.IsOnline.Add(id, IsOnline);
-            }*/
+               model.updateOnlineStatus(id, IsOnline);
+                  
+            }
         }
     }
 }

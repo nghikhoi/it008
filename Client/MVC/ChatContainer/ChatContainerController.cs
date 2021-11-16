@@ -92,6 +92,10 @@ namespace UI.MVC {
 			}
 
 		}
+
+		public void LoadMessages(string id) {
+			
+		}
 		
 		#endregion
 

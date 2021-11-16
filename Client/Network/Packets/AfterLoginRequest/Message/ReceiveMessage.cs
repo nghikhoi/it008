@@ -7,6 +7,7 @@ using DotNetty.Buffers;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -22,31 +23,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             ConversationID = ByteBufUtils.ReadUTF8(buffer);
             SenderID = ByteBufUtils.ReadUTF8(buffer);
             PreviewCode = buffer.ReadInt();
-
-            //TODO
-            /*switch (PreviewCode)
-            {
-                case 1:
-                    Message = new AttachmentMessage();
-                    (Message as AttachmentMessage).DecodeFromBuffer(buffer);
-                    break;
-                case 2:
-                    Message = new ImageMessage();
-                    (Message as ImageMessage).DecodeFromBuffer(buffer);
-                    break;
-                case 3:
-                    Message = new StickerMessage();
-                    (Message as StickerMessage).DecodeFromBuffer(buffer);
-                    break;
-                case 4:
-                    Message = new TextMessage();
-                    (Message as TextMessage).DecodeFromBuffer(buffer);
-                    break;
-                case 5:
-                    Message = new VideoMessage();
-                    (Message as VideoMessage).DecodeFromBuffer(buffer);
-                    break;
-            }*/
+            Message = MessageUtil.createMessage(PreviewCode);
+            Message.DecodeFromBuffer(buffer);
         }
 
         public IByteBuffer Encode(IByteBuffer byteBuf)
@@ -61,7 +39,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var module = ModuleContainer.GetModule<ChatWindow>();
-                module.controller.AddMessage(Message);
+                module.controller.AddMessage(ConversationID, SenderID, Message);
                 /*var app = MainWindow.chatApplication;
                 if (!app.model.Conversations.ContainsKey(ConversationID))
                 {
