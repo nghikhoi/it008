@@ -25,10 +25,10 @@ namespace UI
             "en-US",
             "vi-VN"
         };
-        public static App instance;
+        public static App Instance { get; private set; }
         public App()
         {
-            instance = this;
+            Instance = this;
         }
         private void Application_Startup(object sender, StartupEventArgs e)
         {
@@ -49,6 +49,13 @@ namespace UI
             AuthenticationController controller = new AuthenticationController(logIn, register);
             AuthenticationView view = new AuthenticationView(logIn, register);
             Authentication module = new Authentication();
+            module.InitializeMVC(ChatModel.Instance, view, controller);
+        }
+
+        public void initHomeWindow() {
+            HomeWindow view = new HomeWindow();
+            ChatWindowController controller = new ChatWindowController(view);
+            ChatWindow module = new ChatWindow();
             module.InitializeMVC(ChatModel.Instance, view, controller);
         }
 

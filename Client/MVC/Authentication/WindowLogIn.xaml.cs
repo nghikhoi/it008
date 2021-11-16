@@ -30,14 +30,11 @@ namespace UI
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e) {
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
             if (App.IS_LOCAL_DEBUG) {
-                HomeWindow home = new HomeWindow();
-                home.Show();
-                this.Close();
+                controller.EnterMainWindow();
                 return;
             }
-            
-            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
             controller.doLogin(new LoginInfo(UsernameBox.Text, PasswordBox.Password));
         }
 
@@ -59,12 +56,12 @@ namespace UI
 
         private void VietnameseButton_Click(object sender, RoutedEventArgs e)
         {
-            App.instance.ApplyLanguage("vi-VN");
+            App.Instance.ApplyLanguage("vi-VN");
         }
 
         private void EnglishButton_Click(object sender, RoutedEventArgs e)
         {
-            App.instance.ApplyLanguage("en-US");
+            App.Instance.ApplyLanguage("en-US");
 
         }
         private void VietnameseButton_Checked(object sender, RoutedEventArgs e)

@@ -61,8 +61,9 @@ namespace UI.MVC {
 		{
 			ChatModel.Instance.Hashed = HashUtils.MD5(loginView.PasswordBox.Password);
 			close();
-			HomeWindow home = new HomeWindow();
-			home.Show();
+			App.Instance.initHomeWindow();
+			ChatWindow module = ModuleContainer.GetModule<ChatWindow>();
+			module.view.Show();
 		}
 
 		public void LoginResponde(int statusCode) {

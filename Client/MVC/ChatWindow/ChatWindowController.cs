@@ -9,11 +9,9 @@ namespace UI.MVC {
 	public partial class ChatWindowController : IController {
 
 		private HomeWindow view;
-		private ChatModel model;
 
-		public ChatWindowController(HomeWindow view, ChatModel model) {
+		public ChatWindowController(HomeWindow view) {
 			this.view = view;
-			this.model = model;
 		}
 
 		#region Message
