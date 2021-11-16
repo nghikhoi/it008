@@ -9,11 +9,9 @@ namespace UI.MVC {
 	public partial class ChatWindowController : IController {
 
 		private HomeWindow view;
-		private ChatModel model;
 
-		public ChatWindowController(HomeWindow view, ChatModel model) {
+		public ChatWindowController(HomeWindow view) {
 			this.view = view;
-			this.model = model;
 		}
 
 		#region Message
@@ -22,11 +20,33 @@ namespace UI.MVC {
 			//TODO Như tên gọi
 		}
 
-		public void AddMessage(AbstractMessage message) {
+		public void AddMessage(string ConversationId, string SenderId, AbstractMessage message) {
 			// TODO:
 			// 1. Kiểm tra tin nhắn xem có phải tin nhắn mới nhất không để update vô ConversationList
 			// 2. Cập nhật message vào chat model
 			// 3. Kiểm tra xem message có thuộc về conversation đang mở hay ko để add vào panel
+			
+			ChatModel model = ChatModel.Instance;
+			ConversationCache cache = model.computeIfAbsent(ConversationId, new ConversationCache());
+			cache.Members.Add(SenderId);
+			
+			cache.Bubbles.Add(new BubbleInfo(message, true));
+
+			model.PrivateConversations[SenderId] = ConversationId;
+
+			ConversationListController conversationListController = ModuleContainer.GetModule<ConversationList>().controller; 
+
+			if (model.currentSelectedConversation.CompareTo(ConversationId) == 0)
+			{
+				ChatContainerController chatContainerController = ModuleContainer.GetModule<ChatContainer>().controller;
+				chatContainerController.AddMessage(message);
+
+				if (!model.SelfID.Equals(SenderId)) {
+					conversationListController.IncomingMessage(ConversationId, message, true);
+				}
+			}
+			else if (!model.SelfID.Equals(SenderId))
+				conversationListController.IncomingMessage(ConversationId, message, false);
 		}
 
 		public void LoadConversation(String userId, String conversationId) {

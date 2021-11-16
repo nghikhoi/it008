@@ -58,7 +58,7 @@
                         Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted"
                         HorizontalAlignment="Stretch" Height="27" Width="650"
                         MaxWidth="1200"
-                        Background="Transparent" 
+                        Background="Transparent" Foreground="LightGray"
                         materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
                         ValueChanged="On_Seek">
                 </Slider>
@@ -78,19 +78,18 @@
                                              />
 
                     </materialDesign:PopupBox.ToggleContent>
-                    <Slider 
+   
                
-                x:Name="Volume_seeker"
-                Height="20"
-                Width="100"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Foreground="DarkGray"
-                Minimum="0"
-                Maximum="100"
-                Background="{x:Null}"
-                ValueChanged="Volume_change"
-                />
+                   <Slider Style="{StaticResource VideoSlider}"
+                        x:Name="Volume_seeker"
+                        Height="100" Width="20"
+                        Foreground="Black"
+                        Minimum="0"
+                        Maximum="100" 
+                        Background="{x:Null}"
+                        Orientation="Vertical"
+                        ValueChanged="Volume_change" />
+                
                 </materialDesign:PopupBox>
             </StackPanel>
 

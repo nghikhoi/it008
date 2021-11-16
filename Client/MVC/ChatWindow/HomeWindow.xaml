@@ -115,8 +115,16 @@
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>
+                <!--Dimmed Overplay-->
+                <Border x:Name="FullFade"
+                        Grid.ColumnSpan="2"
+                        Panel.ZIndex="10"
+                        Opacity="0.5"
+                        Visibility="Hidden">
+                    <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
+                </Border>
             </Grid>
-
+            
 
         </Grid>
     </Border>
