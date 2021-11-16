@@ -114,8 +114,8 @@
                     <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
                 </Border>
             </Grid>
-            
 
+            <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
         </Grid>
     </Border>
 </Window>
