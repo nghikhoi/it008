@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
@@ -8,6 +9,7 @@ using DotNetty.Buffers;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -63,33 +65,12 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             while (!temp.Equals("~"))
             {
                 SenderID.Add(temp);
-                MessType.Add(buffer.ReadInt());
+                int messageType = buffer.ReadInt();
+                MessType.Add(messageType);
 
                 //TODO
-                AbstractMessage Message = null;
-                /*switch (MessType.Last())
-                {
-                    case 1:
-                        Message = new AttachmentMessage();
-                        (Message as AttachmentMessage).DecodeFromBuffer(buffer);
-                        break;
-                    case 2:
-                        Message = new ImageMessage();
-                        (Message as ImageMessage).DecodeFromBuffer(buffer);
-                        break;
-                    case 3:
-                        Message = new StickerMessage();
-                        (Message as StickerMessage).DecodeFromBuffer(buffer);
-                        break;
-                    case 4:
-                        Message = new TextMessage();
-                        (Message as TextMessage).DecodeFromBuffer(buffer);
-                        break;
-                    case 5:
-                        Message = new VideoMessage();
-                        (Message as VideoMessage).DecodeFromBuffer(buffer);
-                        break;
-                }*/
+                AbstractMessage Message = MessageUtil.createMessage(messageType);
+                Message.DecodeFromBuffer(buffer);
                 Content.Add(Message);
                 temp = ByteBufUtils.ReadUTF8(buffer);
             }

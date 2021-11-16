@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
@@ -7,6 +9,7 @@ using DotNetty.Buffers;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -56,28 +59,25 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         {
             AbstractConversation conversation = null; //TODO
             var module = ModuleContainer.GetModule<ConversationList>();
-            module.controller.AddConversation(conversation);
-            /*// Load message to UI
+            //module.controller.AddConversation(conversation);
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var app = MainWindow.chatApplication;
+                ChatModel model = ChatModel.Instance;
+                ConversationCache modelConversation = model.Conversations[ConversationID];
+                modelConversation.LastMessID = LastMessID;
 
-                app.model.Conversations[ConversationID].LastMessID = LastMessID;
-
-                if (app.model.Conversations[ConversationID].FirstTimeLoaded)
+                if (modelConversation.FirstTimeLoaded)
                 {
-                    app.model.Conversations[ConversationID].FirstTimeLoaded = false;
-                    app.model.Conversations[ConversationID].LastMediaID = LastMediaID;
-                    app.model.Conversations[ConversationID].LastMediaIDBackup = LastMediaID;
+                    modelConversation.FirstTimeLoaded = false;
+                    modelConversation.LastMediaID = LastMediaID;
+                    modelConversation.LastMediaIDBackup = LastMediaID;
                 }
 
-                app.model.Conversations[ConversationID].LastAttachmentID = LastAttachmentID;
-                app.model.Conversations[ConversationID].ConversationName = ConversationName;
-                app.model.Conversations[ConversationID].Members = Members.ToList();
+                modelConversation.LastAttachmentID = LastAttachmentID;
+                modelConversation.ConversationName = ConversationName;
+                modelConversation.Members = Members.ToList();
 
-                app.model.Conversations[ConversationID].Color = ColorUtils.IntToColor(BubbleColor);
-                ChatPage.Instance.bubbleColor = app.model.Conversations[ConversationID].Color;
-                ChatPage.Instance.bubbleColorPicker.ColorPicker.Color = ColorUtils.IntToColor(BubbleColor);
+                modelConversation.Color = ColorUtils.IntToColor(BubbleColor);
 
                 //if (app.model.MediaWindows.ContainsKey(ConversationID)
                 //&& app.model.MediaWindows[ConversationID] != null)
@@ -85,36 +85,10 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
                 //    app.model.MediaWindows[ConversationID].Close();
                 //    app.model.MediaWindows[ConversationID] = null;
                 //}
-                ChatPage.Instance.LoadMessages(ConversationID, true);
-                //MainWindow.Instance.MediaPlayerWindow.MediaPlayer.Clean();
-
-                Console.WriteLine("Conversation load");
-
-                if (LastActive > 0)
-                {
-                    string active = "Active ";
-                    string timeUnit = "minute";
-
-                    if (LastActive > 1) timeUnit += "s";
-
-                    if (LastActive > 59)
-                    {
-                        timeUnit = "hour";
-                        LastActive /= 60;
-
-                        if (LastActive > 1) timeUnit += "s";
-                    }
-
-                    active += LastActive + " " + timeUnit + " ago";
-                    ChatPage.Instance.LastActive.Text = active;
-                    ChatPage.Instance.Avatar.IsOnline = false;
-                }
-                else
-                {
-                    ChatPage.Instance.LastActive.Text = "Active Now";
-                    ChatPage.Instance.Avatar.IsOnline = true;
-                }
-            });*/
+                ChatContainerController controller = ModuleContainer.GetModule<ChatContainer>().controller;
+                controller.LoadMessages(ConversationID);
+                //TODO: update last active
+            });
         }
     }
 }

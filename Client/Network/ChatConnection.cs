@@ -91,9 +91,9 @@ namespace UI.Network
             if (CanReconnect)
             {
                 ReconnectResquest packet = new ReconnectResquest();
-                /*packet.UserID = MainWindow.chatApplication.model.SelfID;
-                packet.Hash = MainWindow.chatApplication.model.Hashed;*/
-                //TODO
+                ChatModel model = ChatModel.Instance;
+                packet.UserID = model.SelfID;
+                packet.Hash = model.Hashed;
                 Send(packet);
             }
         }

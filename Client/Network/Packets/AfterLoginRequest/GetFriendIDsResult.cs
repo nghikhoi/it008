@@ -5,6 +5,7 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -31,20 +32,19 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Handle(ISession session)
         {
-            //TODO
-            /*ChatModel.FriendIDs.Clear();
-            Application.Current.Dispatcher.Invoke(() => UserList.Instance.ClearListView());
+            ChatModel.Instance.FriendIDs.Clear();
+            //TODO Application.Current.Dispatcher.Invoke(() => UserList.Instance.ClearListView());
 
             foreach (var id in ids)
             {
                 Console.WriteLine(id);
-                ChatModel.FriendIDs.Add(id);
+                ChatModel.Instance.FriendIDs.Add(id);
 
                 // Get short info from ID
                 GetShortInfo packet = new GetShortInfo();
                 packet.ID = id;
                 _ = ChatConnection.Instance.Send(packet);
-            }*/
+            }
         }
     }
 }
