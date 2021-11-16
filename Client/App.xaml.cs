@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using UI.MVC;
+using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Utils;
 
 namespace UI
@@ -15,6 +17,8 @@ namespace UI
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application {
+
+        public static readonly bool IS_LOCAL_DEBUG = false;
 
         private readonly String defaultLanguage = "vi-VN";
         private readonly List<String> availableLanguage = new List<string>() {
@@ -29,15 +33,25 @@ namespace UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppConfig.StartService();
-            ApplyLanguage("en-US");
-            WindowLogIn logIn = new WindowLogIn();
+            ApplyLanguage(defaultLanguage);
+            initAuthentication();
             //MediaPlayerWindow main = new MediaPlayerWindow();
             //MainWindow main = new MainWindow();
             //TestWindows main = new TestWindows();
             //DownloadWindow main = new DownloadWindow();
-            logIn.Show();
+            ModuleContainer.GetModule<Authentication>().controller.showLogin();
         }
-        
+
+        public void initAuthentication() {
+            WindowLogIn logIn = new WindowLogIn();
+            WindowRegister register = new WindowRegister();
+
+            AuthenticationController controller = new AuthenticationController(logIn, register);
+            AuthenticationView view = new AuthenticationView(logIn, register);
+            Authentication module = new Authentication();
+            module.InitializeMVC(ChatModel.Instance, view, controller);
+        }
+
         public void ApplyLanguage(string cultureName = null) {
             if (cultureName != null)
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);

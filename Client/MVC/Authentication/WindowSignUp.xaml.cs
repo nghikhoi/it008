@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI.Models;
+using UI.MVC;
 
 namespace UI
 {
@@ -26,10 +28,18 @@ namespace UI
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            windowLogIn.Show();
-            this.Close();
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            controller.showLogin();
         }
+        
+        private void signUpBth_Click(object sender, RoutedEventArgs e) {
+            RegisterInfo info = new RegisterInfo(FirstNameBox.Text, LastNameBox.Text, UsernameBox.Text,
+                PasswordBox.Password, BirthdayPicker.SelectedDate.Value, Gender.Male); //TODO update gender
+            
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            controller.doRegister(info);
+        }
+        
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

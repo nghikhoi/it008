@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI.Models;
+using UI.MVC;
 
 namespace UI
 {
@@ -24,23 +26,25 @@ namespace UI
         public WindowLogIn()
         {
             InitializeComponent();
-            //Default language
-            App.instance.ApplyLanguage("vi-VN");
             VietnameseButton.IsChecked = true;
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
-        {
-            HomeWindow home = new HomeWindow();
-            home.Show();
-            this.Close();
+        private void LoginBtn_Click(object sender, RoutedEventArgs e) {
+            if (App.IS_LOCAL_DEBUG) {
+                HomeWindow home = new HomeWindow();
+                home.Show();
+                this.Close();
+                return;
+            }
+            
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            controller.doLogin(new LoginInfo(UsernameBox.Text, PasswordBox.Password));
         }
 
         private void SignBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowRegister signupwin = new WindowRegister();
-            signupwin.Show();
-            this.Close();
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            controller.showRegister();
         }
 
         private void ucTitleBar_Loaded_1(object sender, RoutedEventArgs e)

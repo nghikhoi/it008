@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="Models\ConservationCache.cs" />
     <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\Message\AbstractConversation.cs" />
     <Compile Include="Models\Message\AbstractMessage.cs" />
     <Compile Include="Models\Message\AttachmentMessage.cs" />
@@ -229,9 +230,11 @@
     <Compile Include="Models\Message\StickerMessage.cs" />
     <Compile Include="Models\Message\TextMessage.cs" />
     <Compile Include="Models\Message\VideoMessage.cs" />
+    <Compile Include="Models\RegisterInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MVC\Authentication\Authentication.cs" />
     <Compile Include="MVC\Authentication\AuthenticationController.cs" />
+    <Compile Include="MVC\Authentication\AuthenticationView.cs" />
     <Compile Include="MVC\Authentication\WindowLogIn.xaml.cs">
       <DependentUpon>WindowLogIn.xaml</DependentUpon>
     </Compile>
