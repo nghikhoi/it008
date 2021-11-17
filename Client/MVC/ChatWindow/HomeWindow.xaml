@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <local:ucListRecentMessage Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
+                <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
                 
                 <!--<Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
                     <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">

@@ -10,9 +10,9 @@ namespace UI.MVC {
 	
 	public partial class ConversationListController : IController {
 
-		private ChatListControl view;
+		private ucListRecentMessage view;
 
-		public ConversationListController(ChatListControl view) {
+		public ConversationListController(ucListRecentMessage view) {
 			this.view = view;
 		}
 

@@ -2,7 +2,7 @@
 
 namespace UI.MVC {
 	
-	public class ConversationList : Module<ChatModel, ChatListControl, ConversationListController> {
+	public class ConversationList : Module<ChatModel, ucListRecentMessage, ConversationListController> {
 		
 	}
 	

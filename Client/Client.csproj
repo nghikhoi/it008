@@ -260,6 +260,9 @@
     <Compile Include="MVC\ConversationList\ChatListItemControl.xaml.cs">
       <DependentUpon>ChatListItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVC\ConversationList\ucListRecentMessage.xaml.cs">
+      <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVC\IController.cs" />
     <Compile Include="MVC\IModel.cs" />
     <Compile Include="MVC\Module.cs" />
@@ -352,9 +355,6 @@
     </Compile>
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ucListRecentMessage.xaml.cs">
-      <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
@@ -461,6 +461,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVC\ConversationList\ucListRecentMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\Setting\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -470,10 +474,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OnlineStatus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucListRecentMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

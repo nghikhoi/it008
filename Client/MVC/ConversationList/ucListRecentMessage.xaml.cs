@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.MVC;
 
 namespace UI
 {
     /// <summary>
     /// Interaction logic for ucListRecentMessage.xaml
     /// </summary>
-    public partial class ucListRecentMessage : UserControl
+    public partial class ucListRecentMessage : UserControl, IView
     {
         private Border[] tabMarks = new Border[2];
 

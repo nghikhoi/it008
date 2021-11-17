@@ -12,6 +12,22 @@ namespace UI.MVC {
 
 		public ChatWindowController(HomeWindow view) {
 			this.view = view;
+			initChatContainer();
+			initConversationList();
+		}
+
+		private void initChatContainer() {
+			ChatPage view = this.view.ChatPage;
+			ChatContainerController controller = new ChatContainerController(view);
+			ChatContainer module = new ChatContainer();
+			module.InitializeMVC(ChatModel.Instance, view, controller);
+		}
+
+		private void initConversationList() {
+			ucListRecentMessage view = this.view.MessageList;
+			ConversationListController controller = new ConversationListController(view);
+			ConversationList module = new ConversationList();
+			module.InitializeMVC(ChatModel.Instance, view, controller);
 		}
 
 		#region Message
