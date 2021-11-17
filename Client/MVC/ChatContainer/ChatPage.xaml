@@ -20,23 +20,23 @@
                 <!--Button Control-->
                 <DockPanel DockPanel.Dock="Bottom">
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" >
-                            <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
+                        <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" >
+                            <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Button>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Background="{x:Null}" BorderBrush="{x:Null}" Click="send_files_on_click" >
-                            <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="#FF2C2C2C"/>
+                        <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="send_files_on_click" >
+                            <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Button>
                     </Border>
 
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Width="32" Click="send_image_on_click">
-                            <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" Foreground="#FF2C2C2C"/>
+                        <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" Height="32" BorderBrush="{x:Null}" Width="32"  Style="{StaticResource IconButton}" Click="send_image_on_click">
+                            <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" />
                         </Button>
                     </Border>
-                    <Button x:Name="btnSend" Margin="2, 4" Width="50" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="btnSend_Click" >
-                        <materialDesign:PackIcon x:Name="iconSend" Kind="Send" Foreground="#FF2C2C2C"  Width="24" Height="Auto"/>
+                    <Button x:Name="btnSend" Margin="2, 4" Width="50" Height="34" Style="{StaticResource IconButton}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="btnSend_Click" >
+                        <materialDesign:PackIcon x:Name="iconSend" Kind="Send"  Width="24" Height="Auto"/>
                     </Button>
                     <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
