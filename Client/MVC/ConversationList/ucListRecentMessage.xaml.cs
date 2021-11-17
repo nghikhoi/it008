@@ -69,6 +69,14 @@ namespace UI
             selectTab(1);
         }
 
+        private void BtnNoti_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+   
+   
+
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{
         //    NewConversationWindow newcon = new NewConversationWindow();
