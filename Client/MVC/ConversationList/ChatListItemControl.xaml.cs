@@ -20,6 +20,8 @@ namespace UI
     /// </summary>
     public partial class ChatListItemControl : UserControl
     {
+        public string ConversationID{get;set;}
+        public DateTime LastActive = new DateTime();
         public ChatListItemControl()
         {
             InitializeComponent();
