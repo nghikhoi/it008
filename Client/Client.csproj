@@ -200,6 +200,12 @@
     <Compile Include="Components\ucChatItemSender.xaml.cs">
       <DependentUpon>ucChatItemSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
+      <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -356,6 +362,9 @@
     <Compile Include="ucListRecentMessage.xaml.cs">
       <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ucNotificationPage.xaml.cs">
+      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -400,6 +409,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucTitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\AnnouncementDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LoadingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -478,6 +495,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
