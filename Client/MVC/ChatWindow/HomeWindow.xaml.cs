@@ -75,6 +75,11 @@ namespace UI
             this.Fade.Visibility = Visibility.Hidden;
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            foreach (Window win in Application.Current.Windows)
+                win.Close();
+        }
     }
     //public class WindowChrome : Freezable
     //{

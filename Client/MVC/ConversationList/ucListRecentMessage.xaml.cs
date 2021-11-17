@@ -69,7 +69,6 @@ namespace UI
             selectTab(1);
         }
 
-<<<<<<< HEAD
         private void LoadConverstionList(object sender, RoutedEventArgs e)
         {
             ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
@@ -96,7 +95,6 @@ namespace UI
                 controller.AddShortInfoConversation_active();
             }
         }
-=======
         private void BtnNoti_Click(object sender, RoutedEventArgs e)
         {
 
@@ -105,7 +103,6 @@ namespace UI
    
    
 
->>>>>>> 1ed7d40b4728e38f6588a6674c784b5dd39ec23e
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{
         //    NewConversationWindow newcon = new NewConversationWindow();
