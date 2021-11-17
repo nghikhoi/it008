@@ -73,7 +73,16 @@ namespace UI
 
         private void DiscardButton_Click(object sender, RoutedEventArgs e)
         {
+            HomeWindow module = ModuleContainer.GetModule<ChatWindow>().view;
+            module.make_clear();
             this.Close();
+        }
+
+
+        private void deactivate_setting(object sender, EventArgs e)
+        {
+            HomeWindow module = ModuleContainer.GetModule<ChatWindow>().view;
+            module.make_clear();
         }
     }
 }
