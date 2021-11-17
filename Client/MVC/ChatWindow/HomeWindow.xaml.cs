@@ -65,6 +65,16 @@ namespace UI
             }
         }
 
+        public void make_fade()
+        {
+            this.Fade.Visibility = Visibility.Visible;
+        }
+
+        public void make_clear()
+        {
+            this.Fade.Visibility = Visibility.Hidden;
+        }
+
     }
     //public class WindowChrome : Freezable
     //{

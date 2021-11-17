@@ -10,32 +10,11 @@
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="SettingWindow" Height="450" Width="500" Background="{x:Null}"
-        AllowDrop="True" AllowsTransparency="True">
+        AllowDrop="True" AllowsTransparency="True" Deactivated="deactivate_setting">
 
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid>
-            <!--2 Row-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height ="20"></RowDefinition>
-                <RowDefinition Height="430"></RowDefinition>
-            </Grid.RowDefinitions>
-            <!--2 Column-->
-            <!--Row 0-->
-            <!--<Grid Grid.Row="0">
-                <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
-
-                    <Border Width="30" Height="30" DockPanel.Dock="Right">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
-                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
-                    </Border>
-                    <Border Width="30" Height="30" DockPanel.Dock="Right">
-
-                    </Border>
-                </DockPanel>
-            </Grid>-->
-
-            <!--Row 1-->
-            <Grid Grid.Row="1">
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
