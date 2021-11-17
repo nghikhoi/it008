@@ -35,6 +35,8 @@ namespace UI
         {
             SettingWindow settingWindow = new SettingWindow();
             myPopup.IsOpen = false;
+            var parentwin = Window.GetWindow(this) as HomeWindow;
+            parentwin.make_fade();
             settingWindow.Show();
         }
 
