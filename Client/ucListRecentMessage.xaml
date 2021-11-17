@@ -46,16 +46,16 @@
                         </StackPanel>
                     </ToggleButton>
 
-                    <!--<TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>-->
+                    <TextBlock FontSize="15" Foreground="teal" Margin=" 24 10 10 10" FontFamily="Segoe Ui Bold">App Name</TextBlock>
 
-                    <!--<Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Width="24" Height="24" Click="newMessage_Click"
+                    <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Width="24" Height="24" 
                             Margin="0,0,12,6" VerticalAlignment="Bottom" >
                         <materialDesign:PackIcon x:Name="icon"  HorizontalAlignment="Right" Kind="MessagePlus" 
                                              Width="24" Height="24" Cursor="Hand" Foreground="Black">
                         </materialDesign:PackIcon>
                         
-                    </Button>-->
+                    </Button>
                 </DockPanel>
             </Grid>
 
