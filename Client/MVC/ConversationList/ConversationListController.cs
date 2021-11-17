@@ -10,14 +10,19 @@ namespace UI.MVC {
 	
 	public partial class ConversationListController : IController {
 
-		private ChatListControl view;
+		private ucListRecentMessage view;
 
-		public ConversationListController(ChatListControl view) {
+		public ConversationListController(ucListRecentMessage view) {
 			this.view = view;
 		}
 
 		#region Message
 
+		public void IncomingMessage(string ConversationId, AbstractMessage message, bool seeing) {
+			//TODO:
+			// 1. Hiển thị tin nhắn mới nhất lên danh sách chat
+		}
+		
 		public void AddConversation(AbstractConversation conversation) {
 			//TODO
 			// 1. Cập nhật data vào ChatModel

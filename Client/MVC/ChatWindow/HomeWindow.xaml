@@ -20,7 +20,17 @@
         ResizeBorderThickness="4">
         </WindowChrome>
     </WindowChrome.WindowChrome>
-    
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" FillBehavior="HoldEnd" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <!--Main-->
     <Border CornerRadius="8" Background="{StaticResource BackgroundVeryLightBrush}" AllowDrop="True">
         <Grid>
@@ -39,7 +49,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <local:ucListRecentMessage Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
+                <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
                 
                 <!--<Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
                     <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
@@ -114,8 +124,8 @@
                     <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
                 </Border>
             </Grid>
-            
 
+            <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
         </Grid>
     </Border>
 </Window>

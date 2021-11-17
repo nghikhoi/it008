@@ -10,6 +10,16 @@
         MouseDown="Window_MouseDown"
         Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}"  Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.5" To="1" Duration="0:0:0.4" FillBehavior="HoldEnd" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid Background="Transparent">
             <DockPanel>
@@ -64,7 +74,8 @@
                         <Border Style="{StaticResource OriginalBorder}"  DockPanel.Dock="Right">
                             <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                        Click="signUpBth_Click">
                                 <TextBlock Text="{DynamicResource WindowSignUp.RegisterButton}"></TextBlock>
                         </Button>
                         </Border>

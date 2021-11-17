@@ -3,7 +3,7 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Utils;
+using UI.Models;
 
 namespace UI.Network.Packets.Register
 {

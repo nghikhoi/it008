@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI.Models;
+using UI.MVC;
 
 namespace UI
 {
@@ -24,23 +27,22 @@ namespace UI
         public WindowLogIn()
         {
             InitializeComponent();
-            //Default language
-            App.instance.ApplyLanguage("vi-VN");
             VietnameseButton.IsChecked = true;
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
-        {
-            HomeWindow home = new HomeWindow();
-            home.Show();
-            this.Close();
+        private void LoginBtn_Click(object sender, RoutedEventArgs e) {
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            if (App.IS_LOCAL_DEBUG) {
+                controller.EnterMainWindow();
+                return;
+            }
+            controller.doLogin(new LoginInfo(UsernameBox.Text, PasswordBox.Password));
         }
 
         private void SignBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowRegister signupwin = new WindowRegister();
-            signupwin.Show();
-            this.Close();
+            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+            controller.showRegister();
         }
 
         private void ucTitleBar_Loaded_1(object sender, RoutedEventArgs e)
@@ -55,12 +57,12 @@ namespace UI
 
         private void VietnameseButton_Click(object sender, RoutedEventArgs e)
         {
-            App.instance.ApplyLanguage("vi-VN");
+            App.Instance.ApplyLanguage("vi-VN");
         }
 
         private void EnglishButton_Click(object sender, RoutedEventArgs e)
         {
-            App.instance.ApplyLanguage("en-US");
+            App.Instance.ApplyLanguage("en-US");
 
         }
         private void VietnameseButton_Checked(object sender, RoutedEventArgs e)

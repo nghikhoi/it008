@@ -200,6 +200,12 @@
     <Compile Include="Components\ucChatItemSender.xaml.cs">
       <DependentUpon>ucChatItemSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
+      <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -218,6 +224,7 @@
     </Compile>
     <Compile Include="Models\ConservationCache.cs" />
     <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\Message\AbstractConversation.cs" />
     <Compile Include="Models\Message\AbstractMessage.cs" />
     <Compile Include="Models\Message\AttachmentMessage.cs" />
@@ -229,9 +236,11 @@
     <Compile Include="Models\Message\StickerMessage.cs" />
     <Compile Include="Models\Message\TextMessage.cs" />
     <Compile Include="Models\Message\VideoMessage.cs" />
+    <Compile Include="Models\RegisterInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MVC\Authentication\Authentication.cs" />
     <Compile Include="MVC\Authentication\AuthenticationController.cs" />
+    <Compile Include="MVC\Authentication\AuthenticationView.cs" />
     <Compile Include="MVC\Authentication\WindowLogIn.xaml.cs">
       <DependentUpon>WindowLogIn.xaml</DependentUpon>
     </Compile>
@@ -256,6 +265,9 @@
     </Compile>
     <Compile Include="MVC\ConversationList\ChatListItemControl.xaml.cs">
       <DependentUpon>ChatListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\ConversationList\ucListRecentMessage.xaml.cs">
+      <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVC\IController.cs" />
     <Compile Include="MVC\IModel.cs" />
@@ -350,8 +362,8 @@
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ucListRecentMessage.xaml.cs">
-      <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
+    <Compile Include="ucNotificationPage.xaml.cs">
+      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
@@ -364,6 +376,7 @@
     <Compile Include="Utils\Genders.cs" />
     <Compile Include="Utils\HashUtils.cs" />
     <Compile Include="Utils\MediaUtils.cs" />
+    <Compile Include="Utils\MessageUtil.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />
     <Compile Include="Utils\Packets.cs" />
     <Compile Include="Utils\ResourceUtil.cs" />
@@ -396,6 +409,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucTitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\AnnouncementDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\LoadingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -457,6 +478,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVC\ConversationList\ucListRecentMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\Setting\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -469,11 +494,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ucListRecentMessage.xaml">
+    <Page Include="SimpleMediaPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SimpleMediaPlayer.xaml">
+    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
