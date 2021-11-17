@@ -146,10 +146,11 @@
                     <!--ChangePassWordButton-->
 
                     <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Content="{DynamicResource WindowChangePss.Title}" 
+                        Content="{DynamicResource WindowChangePss.Title}"
+                           
                         HorizontalAlignment="Left"
-                        Width="130" Height="Auto"
-                        Margin="66,208,0,111" Click="ChangePassWord_btn_Click_1"/>
+                        Width="120" Height="Auto"
+                         Click="ChangePassWord_btn_Click_1" Margin="64,207,0,129"/>
 
 
                     <!--Controller Button-->

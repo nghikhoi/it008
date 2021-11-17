@@ -29,7 +29,9 @@ namespace UI
         public static ChatPage Instance {
             get => instance == null ? (instance = new ChatPage()) : instance;
         }
-        
+        public int Top { get; private set; }
+        public int Left { get; private set; }
+
         private ChatContainerController controller;
         
         public ChatPage()
@@ -100,17 +102,46 @@ namespace UI
         #endregion
         public void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            if (ChatInput.Text != "")
+            //if (ChatInput.Text != "")
+            //{
+            //    TextMessage tmp = new TextMessage();
+            //    tmp.Message = ChatInput.Text;
+
+            //    update_msgcontainer_at_top(tmp);
+            //    update_offline_status();
+            //    ChatInput.Text = "";
+            //}
+
+            Action<object> buzz = (o) =>
             {
-                TextMessage tmp = new TextMessage();
-                tmp.Message = ChatInput.Text;
+                Action a = () => Left += 10;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
 
-                update_msgcontainer_at_top(tmp);
-                update_offline_status();
-                ChatInput.Text = "";
-            }
+                a = () => Top -= 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Left -= 4;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Top += 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Left -= 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+            };
+            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(buzz));
         }
-
+        private double randomDouble(double a, double b)
+        {
+            Random rand = new Random();
+            double result = (rand.NextDouble() * (b - a)) + a;
+            return result;
+        }
 
         public void send_by_enter(object sender, KeyEventArgs e)
         {
