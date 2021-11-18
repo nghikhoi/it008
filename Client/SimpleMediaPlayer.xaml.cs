@@ -46,10 +46,7 @@ namespace UI
 
         private void Loaded_acitivity(object sender, RoutedEventArgs e)
         {
-            VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(0), TimeSeekOrigin.BeginTime);
-            VideoControl.Clock.Controller.Pause();
-            Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
-            Screen_Icon.Opacity = 1;
+           
         }
 
 
@@ -139,6 +136,10 @@ namespace UI
         {
             if (VideoControl.NaturalDuration.HasTimeSpan)
             {
+                VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(0), TimeSeekOrigin.BeginTime);
+                VideoControl.Clock.Controller.Pause();
+                Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                Screen_Icon.Opacity = 1;
                 TimeSpan ts = VideoControl.NaturalDuration.TimeSpan;
                 SeekBar.Maximum = ts.TotalSeconds;
                 SeekBar.SmallChange = 1;
