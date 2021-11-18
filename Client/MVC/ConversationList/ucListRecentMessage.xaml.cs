@@ -71,8 +71,8 @@ namespace UI
 
         private void LoadConverstionList(object sender, RoutedEventArgs e)
         {
-            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
-            controller.AddShortInfoConversation_active();
+            //ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            //controller.AddShortInfoConversation_active();
         }
 
         public void update_conversation_list(object ob)

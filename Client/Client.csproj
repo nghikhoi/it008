@@ -200,6 +200,9 @@
     <Compile Include="Components\ucChatItemSender.xaml.cs">
       <DependentUpon>ucChatItemSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ucMediaGallery.xaml.cs">
+      <DependentUpon>ucMediaGallery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
@@ -405,6 +408,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucChatItemSender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucMediaGallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

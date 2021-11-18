@@ -51,64 +51,6 @@
 
                 <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
                 
-                <!--<Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
-                    <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="23*"/>
-                            <ColumnDefinition Width="77*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="36"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        --><!--setting button (avt)--><!--
-                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                            <DockPanel>
-                                --><!--popup setting--><!--
-
-                                <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
-                                            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                            ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0">
-                                    <StackPanel>
-                                        --><!--binding avt--><!--
-                                        <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
-
-                                        <Popup Name="myPopup" Placement="Relative"  HorizontalOffset="100" VerticalOffset="30"
-                                            IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
-                                            PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                                            <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}">
-                                                <Grid Width="100" HorizontalAlignment="Center" Background="White">
-                                                    <StackPanel>
-                                                        <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
-                                                    Click="accInfo_Btn_Click">
-                                                            Thông tin
-                                                        </Button>
-                                                        <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
-                                                            Đăng xuất
-                                                        </Button>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
-                                        </Popup>
-                                    </StackPanel>
-                                </ToggleButton>
-
-                                <TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>
-
-                                <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 4 16 0" Cursor="Hand"/>
-                            </DockPanel>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                            <StackPanel>
-                                --><!--List Chat Item--><!--
-                                <local:ChatListControl x:Name="testabc"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-                </Border>-->
-
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel MinHeight="250" MinWidth="300">
