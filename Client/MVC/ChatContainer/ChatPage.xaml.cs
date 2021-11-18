@@ -265,6 +265,7 @@ namespace UI
             videomsg.VideoControl.Source = videopath;
             videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
             videomsg.MaxWidth = 300;
+            videomsg.MaxHeight = 300 * 0.5625;
             videomsg.HorizontalAlignment = HorizontalAlignment.Left;
             spc_chat_container.Children.Add(videomsg);
         }
