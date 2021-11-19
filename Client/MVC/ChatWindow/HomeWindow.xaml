@@ -21,6 +21,33 @@
         </WindowChrome>
     </WindowChrome.WindowChrome>
 
+    <Window.Resources>
+        <Storyboard x:Key="left-side-panel-expand">
+            <DoubleAnimation
+                Storyboard.TargetName="ProfileDisplayer"
+                Storyboard.TargetProperty="Width"
+                From="0" To="256" Duration="0:0:0.25"
+                AutoReverse="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+        </Storyboard>
+
+        <Storyboard x:Key="left-side-panel-compress">
+            <DoubleAnimation
+                Storyboard.TargetName="ProfileDisplayer"
+                Storyboard.TargetProperty="Width"
+                From="256" To="0" Duration="0:0:0.25"
+                AutoReverse="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
+
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>
@@ -47,7 +74,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="208"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="0"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
@@ -55,6 +81,7 @@
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel MinHeight="250" MinWidth="300">
+                        <local:ucInfoConversationSlideBar x:Name="ProfileDisplayer" Margin="4 0 0 0" Width="0" DockPanel.Dock="Right"></local:ucInfoConversationSlideBar>
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>

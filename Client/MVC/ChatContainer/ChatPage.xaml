@@ -11,14 +11,12 @@
 
     <Grid>
 
-        <Grid Width="600" HorizontalAlignment="Left" x:Name="media">
-        
         <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel Margin="10 0 0 0">
                 <!--Header-->
                 <DockPanel DockPanel.Dock="Top" Background="WhiteSmoke" x:Name="panel">
                     <StackPanel DockPanel.Dock="Right">
-                        <ToggleButton x:Name="ChatInfoMenuBtn">
+                        <ToggleButton x:Name="ChatInfoMenuBtn" Checked="ChatInfoMenuBtn_Checked" Unchecked="ChatInfoMenuBtn_Unchecked">
                             <ToggleButton.Style>
                                 <Style TargetType="{x:Type ToggleButton}">
                                     <Setter Property="Background" Value="Transparent"></Setter>
@@ -46,7 +44,7 @@
                                     </Border>
                                 </Popup>-->
                             </StackPanel>
-                            <ToggleButton.Triggers>
+                            <!--<ToggleButton.Triggers>
                                 <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                                     <BeginStoryboard>
                                         <Storyboard x:Name="Hide">
@@ -62,7 +60,7 @@
                                                 BeginTime="0:0:0"
                                                 From="240" To="0"
                                                 Duration="0:0:0.2"/>
-                                            </Storyboard>
+                                        </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
                                 <EventTrigger RoutedEvent="ToggleButton.Checked">
@@ -80,17 +78,17 @@
                                                 BeginTime="0:0:0"
                                                 From="0" To="240"
                                                 Duration="0:0:0.2"/>
-                                            </Storyboard>
+                                        </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                            </ToggleButton.Triggers>
+                            </ToggleButton.Triggers>-->
                         </ToggleButton>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
                         <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
                         <StackPanel Grid.Row="1" x:Name="Status_container" Margin="0 -3 0 0" Height="15"></StackPanel>
                     </StackPanel>
-                    
+
                 </DockPanel>
 
                 <!--Button Control-->
@@ -126,8 +124,6 @@
             </DockPanel>
 
         </Border>
-        
-        <!--Chat Page-->
         <ScrollViewer x:Name="msg_scroll" 
                       VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
@@ -153,11 +149,5 @@
             </StackPanel>
         </ScrollViewer>
 
-        </Grid>
-
-        <!--info-->
-        <Grid x:Name="info" Width="0" HorizontalAlignment="Right">
-            <local:ucInfoConversationSlideBar Background="{StaticResource BackgroundVeryLightBrush}" Loaded="ucInfoConversationSlideBar_Loaded"></local:ucInfoConversationSlideBar>
-        </Grid>
     </Grid>
 </UserControl>

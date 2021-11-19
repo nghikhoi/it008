@@ -16,6 +16,7 @@ using UI.Models;
 using Microsoft.Win32;
 using UI.Models.Message;
 using UI.MVC;
+using System.Windows.Media.Animation;
 
 namespace UI
 {
@@ -311,9 +312,10 @@ namespace UI
             if (msg_scroll.Height != 0)
             {
                 if (msg_scroll.VerticalOffset == 0) { }
-                   //todo: do something here
+                //todo: do something here
             }
         }
+
         private void LoadMessagesBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -333,6 +335,18 @@ namespace UI
         private void ucInfoConversationSlideBar_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ChatInfoMenuBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.OpenProfileDisplayer();
+        }
+
+        private void ChatInfoMenuBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.CloseProfileDisplayer();
         }
     }
 }

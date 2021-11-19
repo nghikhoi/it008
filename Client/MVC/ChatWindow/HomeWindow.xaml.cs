@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using UI.Models;
 using Microsoft.Win32;
 using UI.MVC;
+using System.Windows.Media.Animation;
 
 namespace UI
 {
@@ -79,6 +80,19 @@ namespace UI
         {
             foreach (Window win in Application.Current.Windows)
                 win.Close();
+        }
+
+        public void OpenProfileDisplayer()
+        {
+            //ProfileDisplayer.Display(id, name, email, dob, address);
+            var sb = this.FindResource("left-side-panel-expand") as Storyboard;
+            sb.Begin();
+        }
+
+        public void CloseProfileDisplayer()
+        {
+            var sb = this.FindResource("left-side-panel-compress") as Storyboard;
+            sb.Begin();
         }
     }
     //public class WindowChrome : Freezable
