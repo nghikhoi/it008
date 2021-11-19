@@ -47,6 +47,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="208"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="0"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
@@ -68,6 +69,7 @@
             </Grid>
 
             <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
+            
         </Grid>
     </Border>
 </Window>

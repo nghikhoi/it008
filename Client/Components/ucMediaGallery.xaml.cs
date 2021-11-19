@@ -20,14 +20,38 @@ namespace UI.Components
     /// </summary>
     public partial class ucMediaGallery : UserControl
     {
+        private Border[] tabMarks = new Border[2];
+
         public ucMediaGallery()
         {
             InitializeComponent();
+            transitioner.SelectedIndex = 0;
+            tabMarks[0] = MeidiaTabSelectMark;
+            tabMarks[1] = FilesRabSelectMark;
+            selectTab(0);
         }
 
         private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void selectTab(int index)
+        {
+            foreach (var mark in tabMarks) mark.Visibility = Visibility.Hidden;
+            tabMarks[index].Visibility = Visibility.Visible;
+        }
+
+        private void btnMediaTab_Click(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 0;
+            selectTab(0);
+        }
+
+        private void btnFilesTab_Click(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 1;
+            selectTab(1);
         }
     }
 }

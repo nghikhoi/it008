@@ -324,5 +324,15 @@ namespace UI
             OnlineStatus onlsta = new OnlineStatus();
             Status_container.Children.Add(onlsta);
         }
+
+        private void MediaGalleryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //var homewin 
+        }
+
+        private void ucInfoConversationSlideBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

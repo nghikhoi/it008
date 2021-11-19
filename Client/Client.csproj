@@ -365,6 +365,9 @@
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
+      <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ucNotificationPage.xaml.cs">
       <DependentUpon>ucNotificationPage.xaml</DependentUpon>
     </Compile>
@@ -502,6 +505,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucInfoConversationSlideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

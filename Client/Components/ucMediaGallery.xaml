@@ -5,55 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Background="{StaticResource BackgroundVeryLightBrush}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <local:ucTitleBar Loaded="ucTitleBar_Loaded"></local:ucTitleBar>
-            </Grid>
-            <TextBlock Grid.Row="0" DockPanel.Dock="Top" 
-                       FontSize="24" FontWeight="DemiBold" 
+        
+        <TextBlock Grid.Row="0" DockPanel.Dock="Top" 
+                       FontSize="20" FontWeight="DemiBold" 
                        Foreground="{StaticResource PrimaryHueDarkBrush}" 
-                       HorizontalAlignment="Center">
-                Media Gallery
-            </TextBlock>
-        </Grid>
-        <!--<TextBlock Grid.Row="0" DockPanel.Dock="Top" 
-                       FontSize="24" FontWeight="DemiBold" 
-                       Foreground="{StaticResource PrimaryHueDarkBrush}" 
-                       HorizontalAlignment="Center">
-                Media Gallery
-        </TextBlock>-->
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                Thư viện
+        </TextBlock>
+
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="btnImagesTab" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" Content="Hình ảnh và Video" Margin="0,2" />
-                <Button x:Name="btnFilesTab" Width="200" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" Content="Tệp" Margin="0,2" />
+                <Button x:Name="btnMediaTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" Content="Hình ảnh/Video" Margin="0,2" Padding="0" Click="btnMediaTab_Click"/>
+                <Button x:Name="btnFilesTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}" Content="Tệp" Margin="0,2" Click="btnFilesTab_Click" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
-                <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="200" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
-                <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="200" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                <Border x:Name="MeidiaTabSelectMark" BorderThickness="8" Width="120" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                <Border x:Name="FilesRabSelectMark" BorderThickness="8" Width="120" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
             </StackPanel>
         </StackPanel>
         
         <!--load-->
         <Grid Grid.Row="2">
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1" DockPanel.Dock="Bottom">
-            <!-- Images tab -->
+        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0" DockPanel.Dock="Bottom">
+            <!-- Media tab -->
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
-                        <ScrollViewer x:Name="ImagesList" Margin="0" DockPanel.Dock="Top" >
-                            <!--<local:ChatListControl x:Name="testabc"/>-->
+                        <ScrollViewer x:Name="MediaList" Margin="0" DockPanel.Dock="Top" >
+                            <!--load list media-->
                         </ScrollViewer>
                     </DockPanel>
                 </ScrollViewer>
@@ -61,13 +48,14 @@
 
             <!-- Files tab -->
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
-                <DockPanel Margin="0,8,0,0">
-                    <ScrollViewer Margin="0" DockPanel.Dock="Top">
-                        <StackPanel x:Name="FilesList">
-                        </StackPanel>
-                    </ScrollViewer>
-                </DockPanel>
-            </materialDesign:TransitionerSlide>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+                    <DockPanel Margin="0,8,0,0">
+                        <!--<ScrollViewer x:Name="FilesList" Margin="0" DockPanel.Dock="Top" >
+                            --><!--load list files--><!--
+                        </ScrollViewer>-->
+                    </DockPanel>
+                </ScrollViewer>
+                </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
         </Grid>
     </Grid>
