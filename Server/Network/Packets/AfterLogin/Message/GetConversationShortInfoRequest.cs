@@ -13,7 +13,7 @@ using ChatServer.MessageCore.Conversation;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class GetConversationShortInfoRequest : IPacket
+    public class GetConversationShortInfoRequest : RequestPacket
     {
         public Guid ConversationID { get; set; }
 
@@ -29,6 +29,10 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             GetConversationShortInfoResponse packet = new GetConversationShortInfoResponse();
 
             packet.ConversationID = ConversationID.ToString();
@@ -58,7 +62,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
             conversation.UpdateLastActive(chatSession);
             packet.LastActive = conversation.LastActive;
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

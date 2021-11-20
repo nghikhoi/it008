@@ -4,13 +4,14 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.Models;
 using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Search
 {
     public class SearchUserResult : IPacket
     {
-        public List<SearchResult> Results = new List<SearchResult>();
+        public List<UserShortInfo> Results = new List<UserShortInfo>();
 
         public void Decode(IByteBuffer buffer)
         {
@@ -18,7 +19,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Search
 
             while (id != "~")
             {
-                SearchResult result = new SearchResult();
+                UserShortInfo result = new UserShortInfo();
 
                 result.ID = id;
                 result.FirstName = ByteBufUtils.ReadUTF8(buffer);
@@ -90,18 +91,5 @@ namespace UI.Network.Packets.AfterLoginRequest.Search
             "Video"
         };
     }
-
-    public class SearchResult
-    {
-        public string ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string LastMessage { get; set; }
-        public string ConversationID { get; set; }
-        public int PreviewCode { get; set; }
-        public bool IsOnline { get; set; }
-        public DateTime LastLogout { get; set; }
-        public int Relationship { get; set; }
-        public long LastActive { get; set; }
-    }
+    
 }

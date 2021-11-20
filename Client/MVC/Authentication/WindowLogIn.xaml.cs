@@ -57,13 +57,12 @@ namespace UI
 
         private void VietnameseButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Instance.ApplyLanguage("vi-VN");
+            Lang.Language.ApplyLanguage("vi-VN");
         }
 
         private void EnglishButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Instance.ApplyLanguage("en-US");
-
+            Lang.Language.ApplyLanguage("en-US");
         }
         private void VietnameseButton_Checked(object sender, RoutedEventArgs e)
         {

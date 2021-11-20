@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI.Network.Packets.AfterLoginRequest.Profile;
 
 namespace UI
 {
@@ -23,11 +24,25 @@ namespace UI
         {
             InitializeComponent();
         }
+        
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        private void ConfirmButton_OnClick(object sender, RoutedEventArgs e) {
+            string oldPassword = this.PasswordBox.Password;
+            string newPassword = this.ChangePasswordBox.Password;
+            string newPasswordConfirm = this.ConfirmNewPasswordBox.Password;
+            if (String.CompareOrdinal(newPassword, newPasswordConfirm) != 0) {
+                //TODO show error
+                return;
+            }
 
+            ModifyPassword packet = new ModifyPassword();
+            packet.OldPassword = oldPassword;
+            packet.NewPassword = newPassword;
+            //TODO send packet
+        }
     }
 }

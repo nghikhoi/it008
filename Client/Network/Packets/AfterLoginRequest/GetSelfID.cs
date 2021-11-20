@@ -5,7 +5,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
-    public class GetSelfID : IPacket
+    public class GetSelfID : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

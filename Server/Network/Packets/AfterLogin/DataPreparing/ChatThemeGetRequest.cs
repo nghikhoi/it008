@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class ChatThemeGetRequest : IPacket
+    public class ChatThemeGetRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -24,11 +24,17 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
         public void Handle(ISession session)
         {
             ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+            ChatSession chatSession = session as ChatSession;
             ChatThemeSetRequest response = new ChatThemeSetRequest();
 
             response.Theme = chatSession.Owner.ChatThemeSettings;
 
             session.Send(response);
+            return response;
         }
     }
 }

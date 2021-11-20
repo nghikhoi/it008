@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
-    public class RecentConversations : IPacket
+    public class RecentConversations : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

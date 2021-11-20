@@ -4,25 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
+             xmlns:uc="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="500" d:DesignWidth="600" Loaded="Load_chat_page">
 
     <Grid>
+
         <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel Margin="10 0 0 0">
                 <!--Header-->
-                <StackPanel DockPanel.Dock="Top" Background="WhiteSmoke" Margin="0 5 0 0" Orientation="Vertical" Height="40">
-                    <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
-                    <StackPanel Grid.Row="1" x:Name="Status_container" Margin="0 -3 0 0" Height="15"></StackPanel>
-                </StackPanel>
+                <DockPanel DockPanel.Dock="Top" Background="WhiteSmoke" x:Name="panel">
+                    <StackPanel DockPanel.Dock="Right">
+                        <ToggleButton x:Name="ChatInfoMenuBtn" Checked="ChatInfoMenuBtn_Checked" Unchecked="ChatInfoMenuBtn_Unchecked">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Background" Value="Transparent"></Setter>
+                                    <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                    <Setter Property="Width" Value="40"></Setter>
+                                    <Setter Property="Height" Value="42"></Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                            <StackPanel>
+                                <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="Black"/>
+                            </StackPanel>
+                        </ToggleButton>
+                    </StackPanel>
+                    <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
+                        <Label Grid.Row="0" Content="ten nguoi dung" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
+                        <StackPanel Grid.Row="1" x:Name="Status_container" Margin="0 -3 0 0" Height="15"></StackPanel>
+                    </StackPanel>
+
+                </DockPanel>
 
                 <!--Button Control-->
                 <DockPanel DockPanel.Dock="Bottom">
-                    <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" >
+                    <Border VerticalAlignment="Bottom" Margin="2, 4" >
+                        <!--<Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="btnSticker_Click" >
                             <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        </Button>
+                        </Button>--> 
+                        <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges" PopupVerticalOffset="40" StaysOpen="True" Margin="0,0,0,0" VerticalContentAlignment="Center" IsTabStop="False" Width="32" Height="32">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" Foreground="#FF2C2C2C" Margin="2" />
+                            </materialDesign:PopupBox.ToggleContent>
+                            <StackPanel Width="380" Height="320">
+                                <uc:ucTabStickerContainer></uc:ucTabStickerContainer>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
                         <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="send_files_on_click" >
@@ -50,9 +78,6 @@
             </DockPanel>
 
         </Border>
-        <!--Chat Page-->
-
-        
         <ScrollViewer x:Name="msg_scroll" 
                       VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
@@ -77,5 +102,6 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+
     </Grid>
 </UserControl>

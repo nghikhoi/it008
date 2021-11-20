@@ -15,7 +15,7 @@ using ChatServer.MessageCore.Message;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class ShortProfileRequest : IPacket
+    public class ShortProfileRequest : RequestPacket
     {
         public Guid TargetID { get; set; }
 
@@ -32,10 +32,15 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
         public void Handle(ISession session)
         {
             ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+                  ChatSession chatSession = session as ChatSession;
 
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);
 
-            if (targetUser == null) return;
+            if (targetUser == null) return null;
             
             ShortProfileResponse response = new ShortProfileResponse();
 
@@ -90,7 +95,7 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
                 response.RelationshipType = (int) Relation.Type.None;
             }
 
-            chatSession.Send(response);
+            return response;
         }
     }
 }

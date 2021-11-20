@@ -1,6 +1,15 @@
 ﻿using System;
 
 namespace UI.Models {
+	
+	public class RegisterRespondeCode {
+
+		public static readonly int REGISTER_SUCCESS = 200;
+		public static readonly int EXCEPTION = 404;
+		public static readonly int ALREADY_EXISTS = 409;
+
+	}
+	
 	public class RegisterInfo {
 		public string Firstname { get; private set; }
 		public string Lastname { get; private set; }

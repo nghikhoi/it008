@@ -9,8 +9,9 @@ using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
-    public class GetShortInfoResult : IPacket
-    {
+    public class GetShortInfoResult : IPacket {
+
+        public UserShortInfo info;
         public string ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -33,15 +34,15 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Decode(IByteBuffer buffer)
         {
-            ID = ByteBufUtils.ReadUTF8(buffer);
-            FirstName = ByteBufUtils.ReadUTF8(buffer);
-            LastName = ByteBufUtils.ReadUTF8(buffer);
-            LastMessage = ByteBufUtils.ReadUTF8(buffer);
-            ConversationID = ByteBufUtils.ReadUTF8(buffer);
-            PreviewCode = buffer.ReadInt();
-            IsOnline = buffer.ReadBoolean();
-            LastLogout = new DateTime(buffer.ReadLong());
-            Relationship = buffer.ReadInt();
+            info.ID = ByteBufUtils.ReadUTF8(buffer);
+            info.FirstName = ByteBufUtils.ReadUTF8(buffer);
+            info.LastName = ByteBufUtils.ReadUTF8(buffer);
+            info.LastMessage = ByteBufUtils.ReadUTF8(buffer);
+            info.ConversationID = ByteBufUtils.ReadUTF8(buffer);
+            info.PreviewCode = buffer.ReadInt();
+            info.IsOnline = buffer.ReadBoolean();
+            info.LastLogout = new DateTime(buffer.ReadLong());
+            info.Relationship = buffer.ReadInt();
 
             Console.WriteLine(FirstName + " " + LastName);
         }

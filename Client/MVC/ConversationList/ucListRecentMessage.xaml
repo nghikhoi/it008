@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Loaded="LoadConverstionList">
+             d:DesignHeight="450">
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
         <Grid  Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
 
@@ -17,6 +17,7 @@
 
             <!--Header-->
             <Grid Grid.Row="0">
+                
                 <DockPanel LastChildFill="False">
                     <!--Popup settings-->
                     <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
@@ -25,7 +26,9 @@
                                   Checked="TogglePopupButton_Checked" Unchecked="TogglePopupButton_UnChecked">
                         <!--binding avt-->
                         <StackPanel>
+
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
+
                         </StackPanel>
                         <!--NotiView Transition-->
                         <ToggleButton.Triggers>
@@ -77,7 +80,7 @@
                     </ToggleButton>
                     
                     <!--App Name-->
-                    <TextBlock FontSize="15" Foreground="teal" Margin=" 20 10 0 10" FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
+                    <TextBlock FontSize="15" Foreground="teal" Margin="32 10 0 10" FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
                     <!--New Message Button-->
                     <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
                             Width="24" Height="24" 
@@ -85,7 +88,9 @@
                         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="MessagePlus" 
                                              Width="24" Height="24" Cursor="Hand" Foreground="{StaticResource PrimaryHueDarkBrush}">
                         </materialDesign:PackIcon>
+
                     </Button>
+
 
 
                 </DockPanel>
@@ -110,7 +115,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                             <DockPanel Margin="0,8,0,0">
                                 <ScrollViewer Margin="0" DockPanel.Dock="Top" >
-                                    <local:ChatListControl x:Name="testabc"/>
+                                    <local:ChatListControl x:Name="RecentTab" Loaded="LoadConverstionList"/>
                                 </ScrollViewer>
                             </DockPanel>
                         </ScrollViewer>
@@ -137,8 +142,7 @@
                             </Border>
 
                             <ScrollViewer Margin="0" DockPanel.Dock="Top">
-                                <StackPanel x:Name="listFriend">
-                                </StackPanel>
+                                <StackPanel x:Name="listFriend"/>
                             </ScrollViewer>
                         </DockPanel>
                     </materialDesign:TransitionerSlide>

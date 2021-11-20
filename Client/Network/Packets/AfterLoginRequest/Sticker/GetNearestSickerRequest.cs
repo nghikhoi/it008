@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Sticker
 {
-    public class GetNearestSickerRequest : IPacket
+    public class GetNearestSickerRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

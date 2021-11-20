@@ -12,14 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.Command;
 
 namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for ucTitleBar.xaml
     /// </summary>
-    public partial class ucTitleBar : UserControl
-    {
+    public partial class ucTitleBar : UserControl {
+
+        public ICommand CloseWindowCommand { get; set; } = new RelayCommand<string>((s => true)
+            , s => App.Instance.exit());
+        public ICommand MinimizeWindowCommand { get; set; } = new RelayCommand<string>((s => true)
+            , s => App.Instance.minimized());
+
         public ucTitleBar()
         {
             InitializeComponent();

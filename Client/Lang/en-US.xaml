@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--General-->
+    <sys:String x:Key="General.Gender.Male">Male</sys:String>
+    <sys:String x:Key="General.Gender.Female">Female</sys:String>
+    <sys:String x:Key="General.Gender.Other">Other</sys:String>
+    
     <!--Window login-->
     <sys:String x:Key="WindowLogin.LoginLabel">Login</sys:String>
     <sys:String x:Key="WindowLogin.RegisterLabel">Register</sys:String>
@@ -48,4 +53,11 @@
     <!--Online status-->
     <sys:String x:Key="Status.online">Online</sys:String>
     <sys:String x:Key="Status.offline">Offline</sys:String>
+    
+    <!--authentication-->
+    <sys:String x:Key="Authentication.InvalidUser">Invalid username or password.
+        Check your login information and try again.</sys:String>
+    <sys:String x:Key="Authentication.Banned">Your account has been banned.
+        Please contact the administrator for more information.</sys:String>
+    <sys:String x:Key="Authentication.Unhandled">Unknown exception.</sys:String>
 </ResourceDictionary>

@@ -16,6 +16,7 @@ using UI.Models;
 using Microsoft.Win32;
 using UI.Models.Message;
 using UI.MVC;
+using System.Windows.Media.Animation;
 
 namespace UI
 {
@@ -24,23 +25,15 @@ namespace UI
     /// </summary>
     public partial class ChatPage : UserControl, IView {
 
-        private static ChatPage instance;
-
-        public static ChatPage Instance {
-            get => instance == null ? (instance = new ChatPage()) : instance;
+        private ChatContainer module {
+            get => ModuleContainer.GetModule<ChatContainer>();
         }
         public int Top { get; private set; }
         public int Left { get; private set; }
 
-        private ChatContainerController controller;
-        
         public ChatPage()
         {
             InitializeComponent();
-            
-            controller = new ChatContainerController(this);
-            ChatContainer module = new ChatContainer();
-            module.InitializeMVC(ChatModel.Instance, this, controller);
         }
 
         #region TextMessage function
@@ -100,7 +93,34 @@ namespace UI
             }
         }
         #endregion
-        public void btnSend_Click(object sender, RoutedEventArgs e)
+
+        //Return remove task
+        public Action addFakeLoading() {
+            UserControl bubble = null; //TODO
+
+            bubble.HorizontalAlignment = HorizontalAlignment.Right;
+            spc_chat_container.Children.Add(bubble);
+
+            return () => {
+                spc_chat_container.Children.Remove(bubble);
+            };
+        }
+        
+        public bool trySendTextMessage() {
+            string text = ChatInput.Text;
+            if (String.IsNullOrEmpty(text)) return false;
+            TextMessage tmp = new TextMessage(text);
+            update_message_container(tmp);
+            ChatInput.Text = "";
+            module.controller.sendTextMessage(text);
+            return true;
+        }
+        
+        public void btnSend_Click(object sender, RoutedEventArgs e) {
+            trySendTextMessage();
+        }
+        
+        public void buzz(object sender, RoutedEventArgs e)
         {
             //if (ChatInput.Text != "")
             //{
@@ -150,16 +170,9 @@ namespace UI
                 if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 {
                     ChatInput.Text += "\n";
-
                     return;
                 }
-                if (ChatInput.Text != "")
-                {
-                    TextMessage tmp = new TextMessage(ChatInput.Text);
-
-                    update_message_container(tmp);
-                    ChatInput.Text = "";
-                }
+                trySendTextMessage();
             }
         }
 
@@ -222,7 +235,7 @@ namespace UI
             }
         }
 
-        #region media
+        #region Media
         public void update_file_message(Uri videopath)
         {
             var videomsg = new SimpleMediaPlayer();
@@ -265,6 +278,7 @@ namespace UI
             videomsg.VideoControl.Source = videopath;
             videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
             videomsg.MaxWidth = 300;
+            videomsg.MaxHeight = 300 * 0.5625;
             videomsg.HorizontalAlignment = HorizontalAlignment.Left;
             spc_chat_container.Children.Add(videomsg);
         }
@@ -313,6 +327,7 @@ namespace UI
                    //todo: do something here
             }
         }
+
         private void LoadMessagesBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -322,6 +337,33 @@ namespace UI
         {
             OnlineStatus onlsta = new OnlineStatus();
             Status_container.Children.Add(onlsta);
+        }
+
+        private void MediaGalleryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //var homewin 
+        }
+
+        private void ucInfoConversationSlideBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChatInfoMenuBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.OpenProfileDisplayer();
+        }
+
+        private void ChatInfoMenuBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.CloseProfileDisplayer();
+        }
+
+        private void btnSticker_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

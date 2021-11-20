@@ -16,7 +16,7 @@ using ChatServer.MessageCore.Message;
 
 namespace ChatServer.Network.Packets.AfterLogin.Search
 {
-    public class UserSearchRequest : IPacket
+    public class UserSearchRequest : RequestPacket
     {
         public String Email { get; set; }
 
@@ -32,7 +32,11 @@ namespace ChatServer.Network.Packets.AfterLogin.Search
 
         public void Handle(ISession session)
         {
-            ChatSession chatSession = session as ChatSession;
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+                     ChatSession chatSession = session as ChatSession;
 
             UserSearchResponse response = new UserSearchResponse();
             List<String> UserIDs = new ChatUserStore().SearchUserIDByEmail(Email, (session as ChatSession).Owner);
@@ -99,7 +103,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Search
                 response.Results.Add(result);
             }
 
-            session.Send(response);
+            return response;
         }
     }
 }

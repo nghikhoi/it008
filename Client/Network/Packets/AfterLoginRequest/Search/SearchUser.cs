@@ -6,7 +6,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Search
 {
-    public class SearchUser : IPacket
+    public class SearchUser : RequestPacket
     {
         public string Email { get; set; }
 

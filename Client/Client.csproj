@@ -182,32 +182,52 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Annotations.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ChangeName.xaml.cs">
       <DependentUpon>ChangeName.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangePassWord.xaml.cs">
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\EnumBindingSource.cs" />
     <Compile Include="Components\ucAvatarSender.xaml.cs">
       <DependentUpon>ucAvatarSender.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ucChatItemSender.xaml.cs">
       <DependentUpon>ucChatItemSender.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
+      <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ucMediaGallery.xaml.cs">
+      <DependentUpon>ucMediaGallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ucTabSticker.xaml.cs">
+      <DependentUpon>ucTabSticker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ucTabStickerContainer.xaml.cs">
+      <DependentUpon>ucTabStickerContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ucTabStickerStore.xaml.cs">
+      <DependentUpon>ucTabStickerStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\Dialogs.cs" />
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FriendRequestNoti.xaml.cs">
-      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
@@ -215,6 +235,7 @@
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Lang\Language.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Components\BaseComponent.cs" />
@@ -228,6 +249,7 @@
     <Compile Include="Models\ConservationCache.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\LoginInfo.cs" />
+    <Compile Include="Models\MediaInfo.cs" />
     <Compile Include="Models\Message\AbstractConversation.cs" />
     <Compile Include="Models\Message\AbstractMessage.cs" />
     <Compile Include="Models\Message\AttachmentMessage.cs" />
@@ -240,6 +262,7 @@
     <Compile Include="Models\Message\TextMessage.cs" />
     <Compile Include="Models\Message\VideoMessage.cs" />
     <Compile Include="Models\RegisterInfo.cs" />
+    <Compile Include="Models\UserShortInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MVC\Authentication\Authentication.cs" />
     <Compile Include="MVC\Authentication\AuthenticationController.cs" />
@@ -343,12 +366,14 @@
     <Compile Include="Network\Packets\ReconnectResquest.cs" />
     <Compile Include="Network\Packets\Register\RegisterData.cs" />
     <Compile Include="Network\Packets\Register\RegisterResult.cs" />
+    <Compile Include="Network\Packets\RequestId.cs" />
     <Compile Include="Network\Packets\TestPacket.cs" />
     <Compile Include="Network\Pipiline\ChannelInitializer.cs" />
     <Compile Include="Network\Protocol\LoggedInProtocol.cs" />
     <Compile Include="Network\Protocol\ChatProtocol.cs" />
     <Compile Include="Network\Protocol\PreLoginProtocol.cs" />
     <Compile Include="Network\Protocol\ProtocolProvider.cs" />
+    <Compile Include="Network\RestAPI\DataAPI.cs" />
     <Compile Include="Network\RestAPI\FileAPI.cs" />
     <Compile Include="Network\RestAPI\ProfileAPI.cs" />
     <Compile Include="Network\RestAPI\ResourceAPI.cs" />
@@ -371,6 +396,8 @@
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources.Designer.cs" />
+    <Compile Include="Settings.Designer.cs" />
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -385,6 +412,7 @@
     <Compile Include="Utils\MessageUtil.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />
     <Compile Include="Utils\Packets.cs" />
+    <Compile Include="Utils\PacketUtil.cs" />
     <Compile Include="Utils\ResourceUtil.cs" />
     <Compile Include="Utils\RestUtils.cs" />
     <Compile Include="Utils\SystemPlacesUtils.cs" />
@@ -414,6 +442,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\ucInfoConversationSlideBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\ucMediaGallery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucTabSticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucTabStickerContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucTabStickerStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ucTitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -426,6 +474,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\Sticker.xaml" />
+    <Page Include="CustomControls\ThumbnailBubble.xaml" />
     <Page Include="Dictionaries\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -539,11 +589,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Settings.settings" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -560,6 +612,9 @@
   <ItemGroup>
     <Folder Include="Resoucres\" />
     <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DefaultThumbnail.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
