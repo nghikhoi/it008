@@ -65,7 +65,7 @@
                             <Canvas>
                                 <materialDesign:PackIcon Kind="Account" Canvas.Left="-115" Canvas.Top="-9" Height="17" Width="17"/>
                                 <materialDesign:PackIcon Kind="Pencil" Canvas.Left="96" Canvas.Top="-9" Height="17" Width="17" />
-                                <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="180" Text="{Binding FullName}" />
+                                <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="180" Text="{Binding Path=FullName, UpdateSourceTrigger=PropertyChanged}" />
                             </Canvas>
                         </Button>
 
@@ -115,7 +115,7 @@
                                 <DatePicker x:Name="BirthdayPicker"
                                             DisplayDate="{Binding Path=BirthDay, UpdateSourceTrigger=PropertyChanged}"
                                             SelectedDate="{Binding Path=BirthDay, Mode=TwoWay}"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="38" />
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="38"/>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Right">
                                 <TextBlock Text="{DynamicResource WindowSignUp.Gender}"></TextBlock>
@@ -123,8 +123,7 @@
                                           Width="79" Margin="0 0 10 0"
                                           ItemsSource="{Binding Source={local:GenderEnum {x:Type model:Gender}}}"
                                           DisplayMemberPath="Display" SelectedValuePath="Value"
-                                          SelectedValue="{Binding Path=Gender, Mode=TwoWay}"
-                                          SelectionChanged="CbSex_OnSelectionChanged">
+                                          SelectedValue="{Binding Path=Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 </ComboBox>
                             </StackPanel>
                         </DockPanel>
@@ -132,10 +131,9 @@
                         <StackPanel Margin="0 0 0 40">
                             <TextBlock>Email</TextBlock>
                             <TextBox x:Name="UsernameBox" 
-                                     Text="{Binding Path=Email, Mode=TwoWay}" 
+                                     Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                                     Margin="0,0,10,0"
-                                     TextChanged="UsernameBox_OnTextChanged"/>
+                                     Margin="0,0,10,0"/>
                         </StackPanel>
                         <StackPanel Margin="0 0 0 0">
                             <Canvas>

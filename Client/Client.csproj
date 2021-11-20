@@ -390,6 +390,7 @@
     <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
       <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ucNotificationPage.xaml.cs">
       <DependentUpon>ucNotificationPage.xaml</DependentUpon>
     </Compile>
