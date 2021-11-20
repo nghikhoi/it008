@@ -400,9 +400,6 @@
       <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ucNotificationPage.xaml.cs">
-      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -568,10 +565,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucInfoConversationSlideBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

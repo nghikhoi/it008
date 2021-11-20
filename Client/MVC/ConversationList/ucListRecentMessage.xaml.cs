@@ -107,7 +107,23 @@ namespace UI
             //else
             //    controller.SearchAction(searchInput.Text);
         }
-        private void BtnNoti_Click(object sender, RoutedEventArgs e)
+        
+        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
+        {
+            //FullFade.Visibility = Visibility.Visible;
+
+        }
+
+        private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            //FullFade.Visibility = Visibility.Hidden;
+        }
+
+        private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow settingWindow = new SettingWindow();
             var parentwin = Window.GetWindow(this) as HomeWindow;
