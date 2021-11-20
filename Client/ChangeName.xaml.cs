@@ -19,13 +19,23 @@ namespace UI
     /// </summary>
     public partial class ChangeName : Window
     {
-        public ChangeName()
-        {
+        
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
+        public ChangeName(string firstName = "", string lastName = "") {
+            FirstName = firstName;
+            LastName = lastName;
             InitializeComponent();
         }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
+        
+        private void BackButton_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
+
+        private void acceptButtonClick(object sender, RoutedEventArgs e) {
+            this.DialogResult = true;
+        }
+        
     }
 }
