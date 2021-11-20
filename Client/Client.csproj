@@ -198,6 +198,7 @@
     <Compile Include="ChangePassWord.xaml.cs">
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\EnumBindingSource.cs" />
     <Compile Include="Components\ucAvatarSender.xaml.cs">
       <DependentUpon>ucAvatarSender.xaml</DependentUpon>
     </Compile>
@@ -258,6 +259,7 @@
     <Compile Include="Models\Message\TextMessage.cs" />
     <Compile Include="Models\Message\VideoMessage.cs" />
     <Compile Include="Models\RegisterInfo.cs" />
+    <Compile Include="Models\UserShortInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MVC\Authentication\Authentication.cs" />
     <Compile Include="MVC\Authentication\AuthenticationController.cs" />

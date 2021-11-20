@@ -4,6 +4,7 @@ using System.Windows.Media;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Network.Packets.AfterLoginRequest;
 using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.Packets.AfterLoginRequest.Search;
 using UI.Network.RestAPI;
@@ -25,6 +26,30 @@ namespace UI.MVC {
 					packet.ConversationID = key;
 					DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult => {
 						AddShortInfoConversation(infoResult.ConversationID, infoResult.ConversationName, infoResult.LastActive);
+					});
+				}
+			});
+		}
+
+		public void addShortInfo(UserShortInfo info) {
+			//TODO thêm item hiển thị info lên listFriend
+		}
+
+		public void loadFriends() {
+			DataAPI.getData<GetFriendIDs, GetFriendIDsResult>(listResult => {
+				ChatModel model = ChatModel.Instance;
+				model.FriendIDs.Clear();
+				//TODO Clear listFriend
+
+				foreach (string id in listResult.ids)
+				{
+					model.FriendIDs.Add(id);
+
+					// Get short info from ID
+					GetShortInfo packet = new GetShortInfo();
+					packet.ID = id;
+					DataAPI.getData<GetShortInfoResult>(packet, infoResult => {
+						addShortInfo(infoResult.info);
 					});
 				}
 			});
@@ -65,23 +90,23 @@ namespace UI.MVC {
 			//TODO
 			// 1. Cập nhật data vào ChatModel
 			// 2. Hiển thị lên danh sách
-				ChatListItemControl item = new ChatListItemControl();
-				item.ConversationID = ConversationId;
-				item.NameBlock.Text = ConversationName;
-				System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-				dtDateTime = dtDateTime.AddSeconds(lastActive).ToLocalTime();
-				item.LastActive = dtDateTime;
-				string s = "";
-				s += ConversationName[0];
-				for(int i = 0; i < ConversationName.Length; i++)
+			ChatListItemControl item = new ChatListItemControl();
+			item.ConversationID = ConversationId;
+			item.NameBlock.Text = ConversationName;
+			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+			dtDateTime = dtDateTime.AddSeconds(lastActive).ToLocalTime();
+			item.LastActive = dtDateTime;
+			string s = "";
+			s += ConversationName[0];
+			for(int i = 0; i < ConversationName.Length; i++)
+			{
+				if(ConversationName[i]==' ' && i<ConversationName.Length &&ConversationName[i + 1] != '\0')
 				{
-					if(ConversationName[i]==' ' && i<ConversationName.Length &&ConversationName[i + 1] != '\0')
-					{
-						s += ConversationName[i + 1];
-					}
+					s += ConversationName[i + 1];
 				}
-				item.ConverstionIcon.Text = s;
-				view.update_conversation_list(item);
+			}
+			item.ConverstionIcon.Text = s;
+			view.update_conversation_list(item);
 		}
 
 		public void AddShortInfoConversation_active()
@@ -98,28 +123,29 @@ namespace UI.MVC {
 		#region Search
 		public void SearchAction(string s)
         {
-			List<SearchResult> searchlist = new List<SearchResult>();
-			Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
-			foreach (var con in conversations)
-			{
-                if (s.Contains(con.Value.ConversationName))
-                {
-					SearchResult result = new SearchResult();
-					result.ConversationID = con.Key;
-					result.FirstName = con.Value.ConversationName;
-					result.LastActive = con.Value.LastActiveTime;
-					searchlist.Add(result);
-                }
-			}
-			ShowSearchResult(searchlist);
+	        List<UserShortInfo> searchlist = new List<UserShortInfo>();
+	        Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
+	        foreach (var con in conversations)
+	        {
+		        if (s.Contains(con.Value.ConversationName))
+		        {
+			        UserShortInfo result = new UserShortInfo();
+			        result.ConversationID = con.Key;
+			        result.FirstName = con.Value.ConversationName;
+			        result.LastActive = con.Value.LastActiveTime;
+			        searchlist.Add(result);
+		        }
+	        }
+	        ShowSearchResult(searchlist);
 		}
-		public void ShowSearchResult(List<SearchResult> list) {
+		
+		public void ShowSearchResult(List<UserShortInfo> list) {
 			view.clear_friend_list();
-			foreach(var item in list)
+			foreach (var item in list)
             {
-				AddShortInfoConversation(item.ConversationID, item.FirstName, item.LastActive);
+				//AddShortInfoConversation(item.ConversationID, item.FirstName, item.LastActive);
+				//TODO hiển tại item lên tab listFriend
             }
-
 		}
 
 		#endregion

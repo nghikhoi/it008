@@ -33,6 +33,10 @@ namespace UI.MVC {
 		        Conversations.Add(id, cache);
 	        return Conversations[id];
         }
+
+        public ConversationCache getConversationCacheOrDefault(string id) {
+	        return computeIfAbsent(id, new ConversationCache());
+        }
         public ConversationCache getConversationCache(string id) {
 	        return Conversations[id];
         }

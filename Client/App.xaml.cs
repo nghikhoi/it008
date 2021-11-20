@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows;
 using UI.Lang;
 using UI.MVC;
+using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Utils;
 
@@ -56,6 +57,32 @@ namespace UI
             ChatWindowController controller = new ChatWindowController(view);
             ChatWindow module = new ChatWindow();
             module.InitializeMVC(ChatModel.Instance, view, controller);
+        }
+
+        public void exit() {
+            Environment.Exit(0);
+        }
+        
+        private bool _isMaximized;
+        public bool isMaximized
+        {
+            get
+            {
+                return _isMaximized;
+            }
+            set
+            {
+                _isMaximized = value;
+                Application.Current.MainWindow.WindowState = _isMaximized == false ? WindowState.Normal : WindowState.Maximized;
+            }
+        }
+
+        public void changeMaximized() {
+            isMaximized = !isMaximized;
+        }
+
+        public void minimized() {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
     }

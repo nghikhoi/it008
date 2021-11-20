@@ -99,7 +99,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                             <DockPanel Margin="0,8,0,0">
                                 <ScrollViewer Margin="0" DockPanel.Dock="Top" >
-                                    <local:ChatListControl x:Name="testabc"/>
+                                    <local:ChatListControl x:Name="RecentTab"/>
                                 </ScrollViewer>
                             </DockPanel>
                         </ScrollViewer>

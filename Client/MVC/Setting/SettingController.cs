@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Media;
-using UI.Models;
-using UI.MVC;
+﻿using UI.Models;
 
 namespace UI.MVC {
 	
@@ -15,7 +12,7 @@ namespace UI.MVC {
 
 		public void updateProfile(UserProfile profile) {
 			ChatModel.Instance.Profile = profile;
-			//TODO cập nhật thông tin lên giao diện
+			view.updateProfile(profile);
 		}
 
 	}

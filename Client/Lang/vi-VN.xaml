@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--General-->
+    <sys:String x:Key="General.Gender.Male">Nam</sys:String>
+    <sys:String x:Key="General.Gender.Female">Nữ</sys:String>
+    <sys:String x:Key="General.Gender.Other">Khác</sys:String>
+    
     <!--Login Window-->
     <sys:String x:Key="WindowLogin.LoginLabel">Đăng nhập</sys:String>
     <sys:String x:Key="WindowLogin.RegisterLabel">Đăng kí</sys:String>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media;
 using UI.Models;
 using UI.Models.Message;
@@ -41,11 +42,12 @@ namespace UI.MVC {
 		}
 
 		private void initData() {
+			if (App.IS_LOCAL_DEBUG) return;
 			initSelfId();
 			DataAPI.getData<GetSelfProfile, GetSelfProfileResult>();
-			DataAPI.getData<GetFriendIDs, GetFriendIDsResult>();
 			initNotifications();
 			conversationList.controller.loadRecentConversation();
+			conversationList.controller.loadFriends();
 			DataAPI.getData<GetBoughtStickerPacksRequest, GetBoughtStickerPacksResponse>();
 		}
 
@@ -71,6 +73,7 @@ namespace UI.MVC {
 				isFirstView = false;
 			}
 			view.Show();
+			Application.Current.MainWindow = view;
 		}
 
 		#region Message

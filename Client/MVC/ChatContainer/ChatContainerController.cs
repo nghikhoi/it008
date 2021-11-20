@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI;
 using System.Windows.Media;
 using UI.Models;
@@ -7,6 +8,8 @@ using UI.Models.Message;
 using UI.MVC;
 using System.Windows.Media.Imaging;
 using UI.Network;
+using UI.Network.Packets;
+using UI.Network.Packets.AfterLoginRequest;
 using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.RestAPI;
 using UI.Utils;
@@ -191,9 +194,66 @@ namespace UI.MVC {
 			}
 
 		}
+		
+		public void LoadChatPage(string conversationID, string userID = "")
+		{
+			ChatModel model = ChatModel.Instance;
+			if (conversationID.Equals("~") && !string.IsNullOrEmpty(userID))
+			{
+				SingleConversationFrUserID packet = new SingleConversationFrUserID();
+				packet.UserID = userID;
+				DataAPI.getData<SingleConversationFrUserIDResult>(packet, result => {
+					model.PrivateConversations[result.UserID] = ConversationID;
+					model.getConversationCacheOrDefault(result.ConversationID).Members.Add(result.UserID);
+					conversationID = result.ConversationID;
+				});
+				return;
+			}
 
-		public void LoadMessages(string id) {
-			
+			model.currentSelectedConversation = conversationID;
+			ConversationFromID request = new ConversationFromID();
+			request.ConversationID = conversationID;
+			DataAPI.getData<ConversationFromIDResult>(request, result => {
+				ConversationCache conversation = model.Conversations[ConversationID];
+				conversation.LastMessID = result.LastMessID;
+
+				if (conversation.FirstTimeLoaded)
+				{
+					conversation.FirstTimeLoaded = false;
+					conversation.LastMediaID = result.LastMediaID;
+					conversation.LastMediaIDBackup = result.LastMediaID;
+				}
+
+				conversation.LastAttachmentID = result.LastAttachmentID;
+				conversation.ConversationName = result.ConversationName;
+				conversation.Members = result.Members.ToList();
+
+				conversation.Color = ColorUtils.IntToColor(result.BubbleColor);
+				//TODO update chat container color
+				
+				LoadMessages(conversationID, true);
+			});
+		}
+
+		public void LoadMessages(string id, bool loadConversation = false) {
+			ChatModel model = ChatModel.Instance;
+
+			if (model.Conversations[id].LastMessID < 0)
+				return;
+			int quantity = 10;
+				
+			GetMessageFromConversation msgPacket = new GetMessageFromConversation();
+			msgPacket.ConversationID = id;
+			msgPacket.MessagePosition = model.Conversations[id].LastMessID;
+			msgPacket.Quantity = quantity;
+			msgPacket.LoadConversation = loadConversation;
+			model.Conversations[id].LastMessID -= quantity;
+			DataAPI.getData<GetMessageFromConversationResult>(msgPacket, result => {
+				for (int i = 0; i < result.SenderID.Count; ++i) {
+					result.Content[i].SenderID = result.SenderID[i];
+					AddMessage(result.Content[i]);
+				}
+			});
 		}
 		
 		#endregion
