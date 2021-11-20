@@ -192,8 +192,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Annotations.cs" />
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="ChangeName.xaml.cs">
       <DependentUpon>ChangeName.xaml</DependentUpon>
     </Compile>
@@ -206,9 +204,6 @@
     </Compile>
     <Compile Include="Components\ucChatItemSender.xaml.cs">
       <DependentUpon>ucChatItemSender.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
-      <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ucMediaGallery.xaml.cs">
       <DependentUpon>ucMediaGallery.xaml</DependentUpon>
@@ -229,11 +224,22 @@
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\Sticker.xaml.cs" />
+    <Compile Include="CustomControls\ThumbnailBubble.xaml.cs" />
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FriendRequestNoti.xaml.cs">
+      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationTagItem.xaml.cs">
+      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lang\Language.cs" />
     <Compile Include="Logger.cs" />
@@ -384,20 +390,19 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
-    <Compile Include="NotificationPage.xaml.cs">
-      <DependentUpon>NotificationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NotificationTagItem.xaml.cs">
-      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="OfflineStatus.xaml.cs">
       <DependentUpon>OfflineStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources.Designer.cs" />
-    <Compile Include="Settings.Designer.cs" />
+    <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
+      <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ucNotificationPage.xaml.cs">
+      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -434,6 +439,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FriendRequestNoti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationTagItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ucAvatarSender.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -441,10 +458,6 @@
     <Page Include="Components\ucChatItemSender.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Components\ucInfoConversationSlideBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Components\ucMediaGallery.xaml">
       <SubType>Designer</SubType>
@@ -485,10 +498,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Resource>
     <Page Include="Dictionaries\Styles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -546,14 +555,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NotificationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NotificationTagItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="OfflineStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -563,6 +564,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucInfoConversationSlideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -589,13 +598,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Settings.settings" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
