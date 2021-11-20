@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
+using UI.CustomControls;
 using UI.Models;
 using UI.MVC;
 using UI.Network;
@@ -14,6 +15,7 @@ namespace UI.MVC {
 
 		private WindowLogIn loginView;
 		private WindowRegister registerView;
+		private string hash;
 
 		public AuthenticationController(WindowLogIn loginView, WindowRegister registerView) {
 			this.loginView = loginView;
@@ -59,16 +61,14 @@ namespace UI.MVC {
 		
 		public void EnterMainWindow()
 		{
-			ChatModel.Instance.Hashed = HashUtils.MD5(loginView.PasswordBox.Password);
+			hash = HashUtils.MD5(loginView.PasswordBox.Password);
 			close();
-			App.Instance.initHomeWindow();
-			ChatWindow module = ModuleContainer.GetModule<ChatWindow>();
-			module.view.Show();
+			App.Instance.openHomeWindow(hash);
 		}
 
 		public void LoginResponde(int statusCode) {
 			DialogHost.CloseDialogCommand.Execute(null, null);
-			if (statusCode == 200)
+			if (statusCode == LoginRespondeCode.LOGIN_SUCCESS)
 			{
 				/*AppConfig.Instance.SavedAccount.Clear();
 				if (LgRemember && AppConfig.Instance.SavedAccount.TryAdd(LgUserName, lgPassword))
@@ -79,21 +79,23 @@ namespace UI.MVC {
 			}
 			else
 			{
-				/*AnnouncementDialog dialog = null;
-				string message;
+				string[] msgs;
 				switch (statusCode)
 				{
 					case 404:
-						message = "Invalid username or password", "Check your info and try again");
+						msgs = new [] { "Invalid username or password", "Check your info and try again" };
 						break;
 					case 401:
-						dialog = new AnnouncementDialog("Invalid username or password", "Check your info and try again");
+						msgs = new [] { "Invalid username or password", "Check your info and try again" };
 						break;
 					case 403:
-						dialog = new AnnouncementDialog("Your account got banned", "Please contact the admin to get more information");
+						msgs = new [] { "Your account got banned", "Please contact the admin to get more information" };
+						break;
+					default:
+						msgs = new [] { "Unhandle status code " + statusCode };
 						break;
 				}
-				DialogHost.Show(dialog);*/
+				Dialogs.openAnnouncement(msgs);
 			}
 		}
 
@@ -110,21 +112,23 @@ namespace UI.MVC {
 			}
 			else
 			{
-				/*AnnouncementDialog dialog = null;
-				string message;
+				string[] msgs;
 				switch (statusCode)
 				{
 					case 404:
-						message = "Invalid username or password", "Check your info and try again");
+						msgs = new [] { "Invalid username or password", "Check your info and try again" };
 						break;
 					case 401:
-						dialog = new AnnouncementDialog("Invalid username or password", "Check your info and try again");
+						msgs = new [] { "Invalid username or password", "Check your info and try again" };
 						break;
 					case 403:
-						dialog = new AnnouncementDialog("Your account got banned", "Please contact the admin to get more information");
+						msgs = new [] { "Your account got banned", "Please contact the admin to get more information" };
+						break;
+					default:
+						msgs = new [] { "Unhandle status code " + statusCode };
 						break;
 				}
-				DialogHost.Show(dialog);*/
+				Dialogs.openAnnouncement(msgs);
 			}
 		}
 

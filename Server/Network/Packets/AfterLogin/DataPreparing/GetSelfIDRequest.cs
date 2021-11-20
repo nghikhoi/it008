@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class GetSelfIDRequest : IPacket
+    public class GetSelfIDRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -23,9 +23,14 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
         public void Handle(ISession session)
         {
             ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+            ChatSession chatSession = session as ChatSession;
             GetSelfIDResponse packet = new GetSelfIDResponse();
             packet.ID = chatSession.Owner.ID.ToString();
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

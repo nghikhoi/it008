@@ -4,7 +4,9 @@ using System.Windows.Media;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.Packets.AfterLoginRequest.Search;
+using UI.Network.RestAPI;
 
 namespace UI.MVC {
 	
@@ -14,6 +16,18 @@ namespace UI.MVC {
 
 		public ConversationListController(ucListRecentMessage view) {
 			this.view = view;
+		}
+
+		public void loadRecentConversation() {
+			DataAPI.getData<RecentConversations, RecentConversationsResult>(recentResult => {
+				foreach (string key in recentResult.Conversations.Keys) {
+					GetConversationShortInfo packet = new GetConversationShortInfo();
+					packet.ConversationID = key;
+					DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult => {
+						AddShortInfoConversation(infoResult.ConversationID, infoResult.ConversationName, infoResult.LastActive);
+					});
+				}
+			});
 		}
 
 		#region Message

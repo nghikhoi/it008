@@ -11,7 +11,7 @@ using ChatServer.Entity;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class DisplayedProfileRequest : IPacket
+    public class DisplayedProfileRequest : RequestPacket
     {
         public Guid TargetID { get; set; }
 
@@ -28,9 +28,13 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
         public void Handle(ISession session)
         {
             ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);
 
-            if (targetUser == null) return;
+            if (targetUser == null) return null;
 
             DisplayedProfileResponse packet = new DisplayedProfileResponse();
             packet.ID = targetUser.ID.ToString();
@@ -39,7 +43,7 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
             packet.DoB = targetUser.DateOfBirth.ToString();
             packet.Town = targetUser.Town;
 
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

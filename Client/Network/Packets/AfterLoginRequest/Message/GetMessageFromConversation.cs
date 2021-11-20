@@ -5,7 +5,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
-    public class GetMessageFromConversation : IPacket
+    public class GetMessageFromConversation : RequestPacket
     {
         public string ConversationID { get; set; }
         public int MessagePosition { get; set; }

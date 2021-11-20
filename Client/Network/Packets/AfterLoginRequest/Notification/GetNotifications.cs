@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Notification
 {
-    public class GetNotifications : IPacket
+    public class GetNotifications : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

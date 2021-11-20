@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class RecentConversationsRequest : IPacket
+    public class RecentConversationsRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -23,6 +24,10 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             RecentConversationsResponse packet = new RecentConversationsResponse();
@@ -32,7 +37,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
                 packet.Conversations.Add(conversation.Key, conversation.Value);
             }
 
-            session.Send(packet);
+            return packet;
         }
     }
 }

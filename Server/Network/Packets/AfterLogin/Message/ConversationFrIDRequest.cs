@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatServer.IO.Message;
 using ChatServer.MessageCore.Conversation;
+using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class ConversationFrIDRequest : IPacket
+    public class ConversationFrIDRequest : RequestPacket
     {
         public Guid ConversationID { get; set; }
 
@@ -28,6 +29,11 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
+            ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             ConversationFrIDResponse packet = new ConversationFrIDResponse();
@@ -67,8 +73,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
             // Update later
             packet.PreviewCode = -1;
             packet.PreviewContent = "";
-
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

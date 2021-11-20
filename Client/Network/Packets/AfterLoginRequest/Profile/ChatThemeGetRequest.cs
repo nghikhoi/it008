@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
-    public class ChatThemeGetRequest : IPacket
+    public class ChatThemeGetRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

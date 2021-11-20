@@ -24,21 +24,13 @@ namespace UI
     /// </summary>
     public partial class ChatPage : UserControl, IView {
 
-        private static ChatPage instance;
-
-        public static ChatPage Instance {
-            get => instance == null ? (instance = new ChatPage()) : instance;
+        private ChatContainer module {
+            get => ModuleContainer.GetModule<ChatContainer>();
         }
-        
-        private ChatContainerController controller;
         
         public ChatPage()
         {
             InitializeComponent();
-            
-            controller = new ChatContainerController(this);
-            ChatContainer module = new ChatContainer();
-            module.InitializeMVC(ChatModel.Instance, this, controller);
         }
 
         #region TextMessage function
@@ -98,19 +90,32 @@ namespace UI
             }
         }
         #endregion
-        public void btnSend_Click(object sender, RoutedEventArgs e)
-        {
-            if (ChatInput.Text != "")
-            {
-                TextMessage tmp = new TextMessage();
-                tmp.Message = ChatInput.Text;
 
-                update_msgcontainer_at_top(tmp);
-                update_offline_status();
-                ChatInput.Text = "";
-            }
+        //Return remove task
+        public Action addFakeLoading() {
+            UserControl bubble = null; //TODO
+
+            bubble.HorizontalAlignment = HorizontalAlignment.Right;
+            spc_chat_container.Children.Add(bubble);
+
+            return () => {
+                spc_chat_container.Children.Remove(bubble);
+            };
         }
-
+        
+        public bool trySendTextMessage() {
+            string text = ChatInput.Text;
+            if (String.IsNullOrEmpty(text)) return false;
+            TextMessage tmp = new TextMessage(text);
+            update_message_container(tmp);
+            ChatInput.Text = "";
+            module.controller.sendTextMessage(text);
+            return true;
+        }
+        
+        public void btnSend_Click(object sender, RoutedEventArgs e) {
+            trySendTextMessage();
+        }
 
         public void send_by_enter(object sender, KeyEventArgs e)
         {
@@ -119,16 +124,9 @@ namespace UI
                 if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 {
                     ChatInput.Text += "\n";
-
                     return;
                 }
-                if (ChatInput.Text != "")
-                {
-                    TextMessage tmp = new TextMessage(ChatInput.Text);
-
-                    update_message_container(tmp);
-                    ChatInput.Text = "";
-                }
+                trySendTextMessage();
             }
         }
 
@@ -191,7 +189,7 @@ namespace UI
             }
         }
 
-        #region media
+        #region Media
         public void update_file_message(Uri videopath)
         {
             var videomsg = new SimpleMediaPlayer();
