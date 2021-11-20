@@ -22,18 +22,31 @@
 
     <Border BorderThickness="2" BorderBrush="Black" Background="Gray" Margin="0 0 10 0"  >
         <Grid>
-            <MediaElement
+            <Grid>
+                <MediaElement
             ScrubbingEnabled="True"
-            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,-0.4,5.8" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
+            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,0,0" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
 
-            </MediaElement>
+                </MediaElement>
+
+                <ProgressBar x:Name="Loading" IsIndeterminate="True" 
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
+                                Height="100" Width="100" IsTabStop="False"
+                     Visibility="Hidden"   />
+
+                <Image x:Name="ThumbNail" Visibility="Hidden" Source="Images/DefaultThumbnail.jpg" Stretch="UniformToFill"
+                       Margin="0,0,0,0"></Image>
+            </Grid>
+
 
 
             <Button x:Name="on_screen_play_button"
                     Grid.Row="0"
                     Background="{x:Null}" BorderBrush="{x:Null}"
                     
-                    Height="Auto" Margin="0,0,-0.2,9.8" Click="on_screen_play_button_click" MouseEnter="Show_controller" MouseLeave="Hide_controller">
+                    Height="Auto" Margin="0,0,0,5" Click="on_screen_play_button_click" MouseEnter="Show_controller" MouseLeave="Hide_controller">
                 <Grid>
                     <materialDesign:PackIcon 
                          Height="50" Width="50" Name="Screen_Icon" Kind="Play"></materialDesign:PackIcon>

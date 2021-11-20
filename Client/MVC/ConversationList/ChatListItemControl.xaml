@@ -29,17 +29,20 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBodyLight}"
-                               FontSize="20"/>
+                               FontSize="20"
+                           x:Name="ConverstionIcon"/>
             </Border>
         </Border>
 
         <Border Grid.Column="2" Padding="0 0 8 0" >
             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                <TextBlock Text="Hiep Chau"/>
-                <TextBlock Text="Lon Dung"
+                <TextBlock x:Name="NameBlock" Text="Hiep Chau"/>
+                <TextBlock Text="Content"
+                       TextWrapping="WrapWithOverflow"
                        FontStyle="Italic"
                        Foreground="{StaticResource LightBrush}"
-                       TextTrimming="CharacterEllipsis"/>
+                       TextTrimming="CharacterEllipsis"
+                           x:Name="LatestMsg"/>
 
             </StackPanel>
         </Border>

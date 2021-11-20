@@ -102,5 +102,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Search
         public bool IsOnline { get; set; }
         public DateTime LastLogout { get; set; }
         public int Relationship { get; set; }
+        public long LastActive { get; set; }
     }
 }

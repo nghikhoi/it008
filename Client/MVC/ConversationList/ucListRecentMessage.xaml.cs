@@ -69,13 +69,44 @@ namespace UI
             selectTab(1);
         }
 
+        private void LoadConverstionList(object sender, RoutedEventArgs e)
+        {
+            //ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            //controller.AddShortInfoConversation_active();
+        }
+
+        public void update_conversation_list(object ob)
+        {
+            if(ob is ChatListItemControl)
+            {
+                this.listFriend.Children.Add(ob as ChatListItemControl);
+            }
+        }
+
+        public void clear_friend_list()
+        {
+            this.listFriend.Children.Clear();
+        }
+        private void SearchAction(object sender, TextChangedEventArgs e)
+        {
+            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            if (searchInput.Text == "")
+            {
+                controller.AddShortInfoConversation_active();
+            }
+        }
+        private void BtnNoti_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+   
+   
+
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{
         //    NewConversationWindow newcon = new NewConversationWindow();
         //    newcon.ShowDialog();
         //}
-
-
-
     }
 }

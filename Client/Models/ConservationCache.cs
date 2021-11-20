@@ -29,6 +29,7 @@ namespace UI.Models {
 		public bool FirstTimeLoaded { get; set; } = true;
 		public List<BubbleInfo> Bubbles = new List<BubbleInfo>();
 		public Dictionary<Guid, IMessage> LoadedMessages { get; set; } = new Dictionary<Guid, IMessage>();
+		public long LastActiveTime { get; set; }
 	}
 
 	public enum BubbleType

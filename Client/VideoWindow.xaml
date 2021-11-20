@@ -26,11 +26,22 @@
                 <RowDefinition Height="13*" ></RowDefinition>
             </Grid.RowDefinitions>
 
-            <MediaElement Grid.Row="0"
+            <Grid>
+                <MediaElement
             ScrubbingEnabled="True"
-            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,-0.4,5.8" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
+            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,0,0" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened">
 
-            </MediaElement>
+                </MediaElement>
+
+                <ProgressBar x:Name="Loading" IsIndeterminate="True" 
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
+                                Height="100" Width="100" IsTabStop="False"
+                     Visibility="Hidden"   />
+
+                <Image x:Name="ThumbNail" Visibility="Hidden" Source="Images/DefaultThumbnail.jpg" Stretch="UniformToFill"></Image>
+            </Grid>
 
 
             <Button x:Name="on_screen_play_button"

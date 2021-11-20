@@ -13,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI
+namespace UI.Components
 {
     /// <summary>
-    /// Interaction logic for ChatListItemControl.xaml
+    /// Interaction logic for ucTabStickerStore.xaml
     /// </summary>
-    public partial class ChatListItemControl : UserControl
+    public partial class ucTabStickerStore : UserControl
     {
-        public string ConversationID{get;set;}
-        public DateTime LastActive = new DateTime();
-        public ChatListItemControl()
+        public ucTabStickerStore()
         {
             InitializeComponent();
         }
-        public bool IsFriend { get; set; }
-
     }
 }

@@ -11,7 +11,7 @@
         Background="{x:Null}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         MinHeight="300" MinWidth="500"
-        Height="480" Width="815"  WindowStartupLocation="CenterScreen">
+        Height="480" Width="815"  WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <!--Resize when AllowsTransparency-->
     <WindowChrome.WindowChrome>
         <WindowChrome     
@@ -20,6 +20,33 @@
         ResizeBorderThickness="4">
         </WindowChrome>
     </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Storyboard x:Key="left-side-panel-expand">
+            <DoubleAnimation
+                Storyboard.TargetName="ProfileDisplayer"
+                Storyboard.TargetProperty="Width"
+                From="0" To="256" Duration="0:0:0.25"
+                AutoReverse="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+        </Storyboard>
+
+        <Storyboard x:Key="left-side-panel-compress">
+            <DoubleAnimation
+                Storyboard.TargetName="ProfileDisplayer"
+                Storyboard.TargetProperty="Width"
+                From="256" To="0" Duration="0:0:0.25"
+                AutoReverse="False">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Window.Resources>
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
@@ -51,67 +78,10 @@
 
                 <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
                 
-                <!--<Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
-                    <Grid Grid.Column="0" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="23*"/>
-                            <ColumnDefinition Width="77*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="36"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        --><!--setting button (avt)--><!--
-                        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-                            <DockPanel>
-                                --><!--popup setting--><!--
-
-                                <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
-                                            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                            ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0">
-                                    <StackPanel>
-                                        --><!--binding avt--><!--
-                                        <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
-
-                                        <Popup Name="myPopup" Placement="Relative"  HorizontalOffset="100" VerticalOffset="30"
-                                            IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
-                                            PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                                            <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}">
-                                                <Grid Width="100" HorizontalAlignment="Center" Background="White">
-                                                    <StackPanel>
-                                                        <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
-                                                    Click="accInfo_Btn_Click">
-                                                            Thông tin
-                                                        </Button>
-                                                        <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
-                                                            Đăng xuất
-                                                        </Button>
-                                                    </StackPanel>
-                                                </Grid>
-                                            </Border>
-                                        </Popup>
-                                    </StackPanel>
-                                </ToggleButton>
-
-                                <TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>
-
-                                <materialDesign:PackIcon x:Name="newMessage" HorizontalAlignment="Right" Kind="MessagePlus" Width="24" Height="24" Margin="0 4 16 0" Cursor="Hand"/>
-                            </DockPanel>
-                        </Grid>
-
-                        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                            <StackPanel>
-                                --><!--List Chat Item--><!--
-                                <local:ChatListControl x:Name="testabc"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-                </Border>-->
-
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel MinHeight="250" MinWidth="300">
+                        <local:ucInfoConversationSlideBar x:Name="ProfileDisplayer" Margin="4 0 0 0" Width="0" DockPanel.Dock="Right"></local:ucInfoConversationSlideBar>
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>
@@ -126,6 +96,7 @@
             </Grid>
 
             <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
+            
         </Grid>
     </Border>
 </Window>

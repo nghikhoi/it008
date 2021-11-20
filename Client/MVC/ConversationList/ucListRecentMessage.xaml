@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450">
+             d:DesignHeight="450" Loaded="LoadConverstionList">
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
         <Grid Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
             <Grid.RowDefinitions>
@@ -14,15 +14,16 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <!--setting button (avt)-->
+            <!--Header-->
             <Grid Grid.Row="0">
+                
                 <DockPanel LastChildFill="False">
-                    <!--popup setting-->
-
+                    <!--Popup settings-->
                     <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
                                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                                             ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0">
                         <StackPanel>
+                           
                             <!--binding avt-->
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
 
@@ -34,7 +35,15 @@
                                         <StackPanel>
                                             <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
                                                     Click="accInfo_Btn_Click">
-                                                <TextBlock Text="{DynamicResource RecentMessage.Info}"></TextBlock>
+                                                <TextBlock Text="{DynamicResource RecentMessage.Info}" Margin="-3 0 0 0"></TextBlock>
+                                            </Button>
+                                            <Button x:Name="NotiBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Padding="0">
+                                                <DockPanel Height="31" Width="100">
+                                                    <TextBlock Text="Thông Báo" VerticalAlignment="Center" Margin="16 0 0 0"></TextBlock>
+                                                    <Border DockPanel.Dock="Right" x:Name="NotificationDot" BorderThickness="1" CornerRadius="16" Background="#FFFF1C1C"
+                                                            Width="10" Height="10" Margin="0 -12 0 0" />
+                                                </DockPanel>
+                                                
                                             </Button>
                                             <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
                                                 <TextBlock Text="{DynamicResource RecentMessage.Logout}"></TextBlock>
@@ -45,17 +54,30 @@
                             </Popup>
                         </StackPanel>
                     </ToggleButton>
-
-                    <!--<TextBlock FontSize="15" Foreground="teal" Margin=" 24 5 10 10">App Name</TextBlock>-->
-
-                    <!--<Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Width="24" Height="24" Click="newMessage_Click"
-                            Margin="0,0,12,6" VerticalAlignment="Bottom" >
-                        <materialDesign:PackIcon x:Name="icon"  HorizontalAlignment="Right" Kind="MessagePlus" 
-                                             Width="24" Height="24" Cursor="Hand" Foreground="Black">
+                    <!--App Name-->
+                    <TextBlock FontSize="15" Foreground="teal" Margin="32 10 0 10" FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
+                    <!--New Message Button-->
+                    <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Width="24" Height="24" 
+                            Margin="0,0,5,6" VerticalAlignment="Bottom" >
+                        <materialDesign:PackIcon x:Name="Notification"  HorizontalAlignment="Right" Kind="MessagePlus" 
+                                             Width="24" Height="24" Cursor="Hand" Foreground="{StaticResource PrimaryHueDarkBrush}">
                         </materialDesign:PackIcon>
-                        
+
+                    </Button>
+                    <!--Notifications Button--><!--
+                    <Button x:Name="BtnNoti" Background="{x:Null}" BorderBrush="{x:Null}" 
+                            Width="24" Height="24" Margin="10,0,0,0"
+                            Padding="0" Cursor="Hand" Click="BtnNoti_Click">
+                        <Grid>
+                            <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Notifications"
+                                                     Width="24" Height="24"
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Cursor="Hand"/>
+                            <Border x:Name="NotificationDot" BorderThickness="1" CornerRadius="16" Background="#FFFF1C1C"
+                                    Width="10" Height="10" Margin="14,1,0,14"/>
+                        </Grid>
                     </Button>-->
+
                 </DockPanel>
             </Grid>
 
@@ -91,14 +113,14 @@
                                     DockPanel.Dock="Top" CornerRadius="16"
                                     Height="32" Margin="4 0 4 0">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AccountSearch" Margin="4 0 0 0" VerticalAlignment="Center"/>
+                                    <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="AccountSearch" Margin="4 0 0 0" VerticalAlignment="Center"/>
                                     <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                              materialDesign:TextFieldAssist.HasClearButton="True"
                                              materialDesign:HintAssist.Hint="Tim kiem..."
                                              RenderTransformOrigin="0.5,0.5"
                                              x:Name="searchInput"
                                              Margin="10,0,10,0" FontSize="12" 
-                                             VerticalContentAlignment="Center">
+                                             VerticalContentAlignment="Center" TextChanged="SearchAction">
                                     </TextBox>
                                 </StackPanel>
                             </Border>

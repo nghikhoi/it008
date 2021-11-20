@@ -16,6 +16,7 @@ using UI.Models;
 using Microsoft.Win32;
 using UI.Models.Message;
 using UI.MVC;
+using System.Windows.Media.Animation;
 
 namespace UI
 {
@@ -27,7 +28,9 @@ namespace UI
         private ChatContainer module {
             get => ModuleContainer.GetModule<ChatContainer>();
         }
-        
+        public int Top { get; private set; }
+        public int Left { get; private set; }
+
         public ChatPage()
         {
             InitializeComponent();
@@ -115,6 +118,49 @@ namespace UI
         
         public void btnSend_Click(object sender, RoutedEventArgs e) {
             trySendTextMessage();
+        }
+        
+        public void buzz(object sender, RoutedEventArgs e)
+        {
+            //if (ChatInput.Text != "")
+            //{
+            //    TextMessage tmp = new TextMessage();
+            //    tmp.Message = ChatInput.Text;
+
+            //    update_msgcontainer_at_top(tmp);
+            //    update_offline_status();
+            //    ChatInput.Text = "";
+            //}
+
+            Action<object> buzz = (o) =>
+            {
+                Action a = () => Left += 10;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Top -= 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Left -= 4;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Top += 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+
+                a = () => Left -= 6;
+                Dispatcher.Invoke(a);
+                System.Threading.Thread.Sleep(100);
+            };
+            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(buzz));
+        }
+        private double randomDouble(double a, double b)
+        {
+            Random rand = new Random();
+            double result = (rand.NextDouble() * (b - a)) + a;
+            return result;
         }
 
         public void send_by_enter(object sender, KeyEventArgs e)
@@ -232,6 +278,7 @@ namespace UI
             videomsg.VideoControl.Source = videopath;
             videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
             videomsg.MaxWidth = 300;
+            videomsg.MaxHeight = 300 * 0.5625;
             videomsg.HorizontalAlignment = HorizontalAlignment.Left;
             spc_chat_container.Children.Add(videomsg);
         }
@@ -280,6 +327,7 @@ namespace UI
                    //todo: do something here
             }
         }
+
         private void LoadMessagesBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -289,6 +337,33 @@ namespace UI
         {
             OnlineStatus onlsta = new OnlineStatus();
             Status_container.Children.Add(onlsta);
+        }
+
+        private void MediaGalleryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //var homewin 
+        }
+
+        private void ucInfoConversationSlideBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChatInfoMenuBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.OpenProfileDisplayer();
+        }
+
+        private void ChatInfoMenuBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+            homewin.CloseProfileDisplayer();
+        }
+
+        private void btnSticker_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

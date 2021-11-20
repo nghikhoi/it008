@@ -46,10 +46,7 @@ namespace UI
 
         private void Loaded_acitivity(object sender, RoutedEventArgs e)
         {
-            VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(0), TimeSeekOrigin.BeginTime);
-            VideoControl.Clock.Controller.Pause();
-            Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
-            Screen_Icon.Opacity = 1;
+            
         }
 
 
@@ -57,6 +54,7 @@ namespace UI
 
         private void on_screen_play_button_click(object sender, RoutedEventArgs e)
         {
+            if (VideoControl.Clock == null) return;
             if (VideoControl.Clock.IsPaused)
             {
                 VideoControl.Clock.Controller.Resume();
@@ -139,6 +137,9 @@ namespace UI
         {
             if (VideoControl.NaturalDuration.HasTimeSpan)
             {
+                //VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(0), TimeSeekOrigin.BeginTime);
+                Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                Screen_Icon.Opacity = 1;
                 TimeSpan ts = VideoControl.NaturalDuration.TimeSpan;
                 SeekBar.Maximum = ts.TotalSeconds;
                 SeekBar.SmallChange = 1;
@@ -146,12 +147,14 @@ namespace UI
                 Volume_seeker.Value = 100;
                 VideoControl.Volume = 1;
                 VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(playinit), TimeSeekOrigin.BeginTime);
+                VideoControl.Clock.Controller.Pause();
             }
             timer.Start();
         }
 
         private void Play_on_controlbar(object sender, RoutedEventArgs e)
         {
+            if (VideoControl.Clock == null) return;
             if (VideoControl.Clock.IsPaused)
             {
                 VideoControl.Clock.Controller.Resume();
@@ -185,6 +188,7 @@ namespace UI
 
         private void On_Seek(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (VideoControl.Clock == null) return;
             if (isDragging || mediaPlaying)
                 return;
             TimeSpan ts = TimeSpan.FromSeconds(SeekBar.Value);
@@ -222,6 +226,7 @@ namespace UI
 
         private void clock_completed(object sender, EventArgs e)
         {
+            if (VideoControl.Clock == null) return;
             VideoControl.Clock.Controller.Seek(TimeSpan.FromSeconds(0), TimeSeekOrigin.BeginTime);
             VideoControl.Clock.Controller.Pause();
             Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
