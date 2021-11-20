@@ -73,6 +73,7 @@ namespace UI.MVC {
 		public void AddShortInfoConversation_active()
         {
 			Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
+			if (conversations.Count == 0) return;
 			foreach (var con in conversations)
 			{
 				AddShortInfoConversation(con.Key, con.Value.ConversationName, con.Value.LastActiveTime);
