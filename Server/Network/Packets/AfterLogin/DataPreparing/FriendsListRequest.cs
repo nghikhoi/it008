@@ -11,7 +11,7 @@ using ChatServer.Entity.EntityProperty;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class FriendsListRequest : IPacket
+    public class FriendsListRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -25,6 +25,11 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 
         public void Handle(ISession session)
         {
+            ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             FriendsListResponse response = new FriendsListResponse();
@@ -42,7 +47,7 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
                 }
             }
 
-            chatSession.Send(response);
+            return response;
         }
     }
 }

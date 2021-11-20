@@ -32,13 +32,20 @@ namespace UI.Utils
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            return Convert.ToBase64String(plainTextBytes);
+            return Base64Encode(plainTextBytes);
         }
 
-        public static string Base64Decode(string base64EncodedData)
-        {
-            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+        public static string Base64Encode(byte[] bytes) {
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static string Base64Decode(string base64EncodedData) {
+            var base64EncodedBytes = Base64DecodeAsBytes(base64EncodedData);
             return Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public static byte[] Base64DecodeAsBytes(string base64EncodedData) {
+            return Convert.FromBase64String(base64EncodedData);
         }
 
         public static String AESEncrypt(String source, String password)

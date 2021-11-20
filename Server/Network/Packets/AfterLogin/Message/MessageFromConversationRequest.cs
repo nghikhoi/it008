@@ -13,7 +13,7 @@ using ChatServer.MessageCore.Message;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class MessageFromConversationRequest : IPacket
+    public class MessageFromConversationRequest : RequestPacket
     {
         public Guid ConversationID { get; set; }
         public int MessagePosition { get; set; }
@@ -35,7 +35,11 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
-            if (MessagePosition == -1) return;
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+            if (MessagePosition == -1) return null;
 
             ChatSession chatSession = session as ChatSession;
             ConversationStore store = new ConversationStore();
@@ -46,7 +50,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
             var messages = conversation.MessagesID;
 
-            if (messages.Count == 0) return;
+            if (messages.Count == 0) return null;
             MessageStore messageStore = new MessageStore();
 
             for (int i = MessagePosition; i >= Math.Max(0, MessagePosition - Quantity + 1); --i)
@@ -61,8 +65,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
             }
 
             packet.LoadConversation = LoadConversation;
-
-            chatSession.Owner.SendOnly(packet, chatSession);
+            return packet;
         }
     }
 }

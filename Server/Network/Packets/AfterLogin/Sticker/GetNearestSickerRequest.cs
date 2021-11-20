@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ChatServer.Network.Packets.AfterLogin.Sticker
 {
-    public class GetNearestSickerRequest : IPacket
+    public class GetNearestSickerRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -23,13 +23,18 @@ namespace ChatServer.Network.Packets.AfterLogin.Sticker
 
         public void Handle(ISession session)
         {
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
             GetNearestSickerResponse response = new GetNearestSickerResponse();
             for (int i = 0; i < 20 && i < chatSession.Owner.NearestStickers.Count; i++)
             {
                 response.NearestSticker.Add(chatSession.Owner.NearestStickers[i]);
             }
-            chatSession.Send(response);
+
+            return response;
         }
     }
 }

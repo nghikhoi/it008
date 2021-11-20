@@ -14,6 +14,7 @@ namespace UI.MVC {
 		}
 
 		public void updateProfile(UserProfile profile) {
+			ChatModel.Instance.Profile = profile;
 			//TODO cập nhật thông tin lên giao diện
 		}
 

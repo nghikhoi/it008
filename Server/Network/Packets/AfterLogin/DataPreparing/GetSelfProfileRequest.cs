@@ -11,7 +11,7 @@ using ChatServer.IO.Entity;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class GetSelfProfileRequest : IPacket
+    public class GetSelfProfileRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -25,6 +25,11 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
         public void Handle(ISession session)
         {
             ChatSession chatSession = session as ChatSession;
+            chatSession.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+            ChatSession chatSession = session as ChatSession;
 
             ChatUser user = new ChatUserStore().Load(chatSession.Owner.ID);
             GetSelfProfileResponse packet = new GetSelfProfileResponse();
@@ -34,8 +39,7 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
             packet.Town = user.Town;
             packet.DateOfBirth = user.DateOfBirth;
             packet.Gender = user.Gender;
-
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.UI;
 using System.Windows.Media;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
 using System.Windows.Media.Imaging;
+using UI.Network;
+using UI.Network.Packets.AfterLoginRequest.Message;
+using UI.Network.RestAPI;
+using UI.Utils;
 
 //todo: cac ham de add tin nhan trong view : text: update_message_container update_meaage_container_rcv (up load vao cuoi trang); update_msgcontainer_at_top update_msgcontainer_rcv_at_top (up vao dau trang)
 //todo: hinh anh: update_image_message update_image_message_rcv update_image_message_at_top update_image_message_rcv_at_top
@@ -15,14 +20,105 @@ namespace UI.MVC {
 	public partial class ChatContainerController : IController {
 
 		private ChatPage view;
-		private ChatModel model;
 
 		public ChatContainerController(ChatPage view) {
 			this.view = view;
 		}
+		
+		public string ConversationID {
+			get => ChatModel.Instance.currentSelectedConversation;
+		}
 
 		#region Message
 
+		#region sendMessage
+
+		public void sendTextMessage(string text) {
+			TextMessage message = null;
+			//TODO
+			sendMessage(message);
+		}
+
+		public void sendImageMessage(List<string> imagePaths) {
+			Action removeAction = view.addFakeLoading();
+			FileAPI.UploadMedia(ConversationID, imagePaths, result => {
+				foreach (var image in result)
+				{
+					string fileName = image.Key;
+					string fileID = image.Value;
+
+					ImageMessage message = new ImageMessage();
+					message.FileID = fileID;
+					message.FileName = fileName;
+
+					sendMessage(message);
+				}
+				removeAction.Invoke();
+			}, error => {
+				
+			});
+		}
+
+		public void sendVideoMessage(List<string> videoPaths) {
+			Action removeAction = view.addFakeLoading();
+			FileAPI.UploadMedia(ConversationID, videoPaths, result => {
+				foreach (var video in result)
+				{
+					string fileName = video.Key;
+					string fileID = video.Value;
+
+					VideoMessage message = new VideoMessage();
+					message.FileID = fileID;
+					message.FileName = fileName;
+
+					sendMessage(message);
+				}
+				removeAction.Invoke();
+			}, error => {
+				
+			});
+		}
+
+		public void sendAttachmentMessage(List<string> attachmentPaths) {
+			Action removeAction = view.addFakeLoading();
+			FileAPI.UploadAttachment(ConversationID, attachmentPaths, result => {
+				foreach (var attachment in result)
+				{
+					string fileName = attachment.Key;
+					string fileID = attachment.Value;
+
+					AttachmentMessage message = new AttachmentMessage();
+					message.FileID = fileID;
+					message.FileName = fileName;
+
+					sendMessage(message);
+				}
+				removeAction.Invoke();
+			}, error => {
+				
+			});
+		}
+
+		public void sendStickerMessage(Sticker sticker) {
+			StickerMessage message = new StickerMessage();
+			message.Sticker = sticker;
+			sendMessage(message);
+		}
+		
+		public void sendMessage(AbstractMessage message) {
+			#region DisplayToView
+			AddMessage(message);
+			#endregion
+
+			#region SendToServer
+			SendMessage packet = new SendMessage();
+			packet.Message = message;
+			packet.ConversationID = ConversationID;
+			_ = ChatConnection.Instance.Send(packet);
+			#endregion
+		}
+
+		#endregion
 
 		public void SetBubbleColor(Color color) {
 			//TODO Đổi màu bubble chat
@@ -39,6 +135,7 @@ namespace UI.MVC {
 			//TODO
 			// Kiểm tra Id người gửi xem có giống với id của user hay không để xác định msg nằm trái hay phải
 			// Hiển thị lên giao diện
+			ChatModel model = ChatModel.Instance;
 			if(message is TextMessage)
             {
 				TextMessage txtmsg = (TextMessage)message;
@@ -89,6 +186,8 @@ namespace UI.MVC {
 				{
 					view.update_image_message_rcv(myimage);
 				}
+			} else if (message is StickerMessage) {
+				
 			}
 
 		}

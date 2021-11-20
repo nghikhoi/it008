@@ -136,7 +136,6 @@
     <Compile Include="Network\Packets\AfterLogin\Message\MediaFromConversationResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\MessageFromConversationRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\MessageFromConversationResponse.cs" />
-    <Compile Include="Network\Packets\AfterLogin\Message\Messagestore.cs" />
     <Compile Include="Network\Packets\AfterLogin\Notification\AcceptedFriendResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Notification\AddFriendRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Notification\FinalizeAcceptedFriendRequest.cs" />
@@ -173,6 +172,7 @@
     <Compile Include="Network\Packets\ReconnectResquest.cs" />
     <Compile Include="Network\Packets\Register\RegisterRequest.cs" />
     <Compile Include="Network\Packets\Register\RegisterResult.cs" />
+    <Compile Include="Network\Packets\RequestPacket.cs" />
     <Compile Include="Network\Packets\TestPacket.cs" />
     <Compile Include="Network\Pipeline\ChannelInitializer.cs" />
     <Compile Include="Network\Protocol\AfterLoginProtocol.cs" />
@@ -181,6 +181,7 @@
     <Compile Include="Network\Protocol\ProtocolProvider.cs" />
     <Compile Include="Network\ResponeCode.cs" />
     <Compile Include="Network\RestAPI\Controller\AttachmentController.cs" />
+    <Compile Include="Network\RestAPI\Controller\DataController.cs" />
     <Compile Include="Network\RestAPI\Controller\MediaController.cs" />
     <Compile Include="Network\RestAPI\Controller\ProfileController.cs" />
     <Compile Include="Network\RestAPI\Controller\ResourceController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Utils\HashStack.cs" />
     <Compile Include="Utils\HashUtils.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />
+    <Compile Include="Utils\PacketUtil.cs" />
     <Compile Include="Utils\ThreadUtils\CountdownLatch.cs" />
   </ItemGroup>
   <ItemGroup>

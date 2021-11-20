@@ -1,16 +1,12 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
 
 namespace ChatServer.Network.Packets.AfterLogin.Notification
 {
-    public class GetNotificationsRequest : IPacket
+    public class GetNotificationsRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {
@@ -23,6 +19,10 @@ namespace ChatServer.Network.Packets.AfterLogin.Notification
 
         public void Handle(ISession session)
         {
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             GetNotificationsResponse packet = new GetNotificationsResponse();
@@ -33,7 +33,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Notification
                 packet.Notifications.Add(noti);
             }
 
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }

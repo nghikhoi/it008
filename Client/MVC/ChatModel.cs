@@ -63,12 +63,7 @@ namespace UI.MVC {
         #endregion
 
         #region OnSettingPage: UserProfile
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime BirthDay { get; set; }
-        public int Gender { get; set; }
+        public UserProfile Profile { get; set; }
         #endregion
 
         #region OnSettingPage: UserProfile

@@ -6,7 +6,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
-    public class GetMediaFromConversation : IPacket
+    public class GetMediaFromConversation : RequestPacket
     {
         public string ConversationID { get; set; }
         public int MediaPosition { get; set; }

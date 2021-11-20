@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using ChatServer.Entity;
 using ChatServer.IO.Message;
 using ChatServer.MessageCore.Conversation;
+using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class SingleConversationFrUserIDRequest : IPacket
+    public class SingleConversationFrUserIDRequest : RequestPacket
     {
         public Guid TargetID { get; set; } = Guid.Empty;
 
@@ -36,10 +37,14 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
-            if (TargetID.Equals(Guid.Empty)) return;
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
+            if (TargetID.Equals(Guid.Empty)) return null;
 
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);
-            if (targetUser == null) return;
+            if (targetUser == null) return null;
 
             ChatSession chatSession = session as ChatSession;
 
@@ -80,8 +85,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
             SingleConversationFrUserIDResponse response = new SingleConversationFrUserIDResponse();
             response.UserID = TargetID;
             response.ResponseID = resultID;
-
-            chatSession.Send(response);
+            return response;
         }
     }
 }
