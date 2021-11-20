@@ -71,11 +71,11 @@ namespace UI
 
         private void LoadConverstionList(object sender, RoutedEventArgs e)
         {
-            //ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
-            //controller.AddShortInfoConversation_active();
+            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            controller.loadRecentConversation();
         }
 
-        public void update_conversation_list(object ob)
+        public void update_friend_list(object ob)
         {
             if(ob is ChatListItemControl)
             {
@@ -83,16 +83,29 @@ namespace UI
             }
         }
 
+        public void update_recent_conversation(object ob)
+        {
+            if (ob is ChatListItemControl)
+            {
+                this.RecentTab.Container.Children.Add(ob as ChatListItemControl);
+            }
+        }
+
         public void clear_friend_list()
         {
             this.listFriend.Children.Clear();
+        }
+
+        public void clear_recent_conversation()
+        {
+            this.RecentTab.Container.Children.Clear();
         }
         private void SearchAction(object sender, TextChangedEventArgs e)
         {
             ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
             if (searchInput.Text == "")
             {
-                controller.AddShortInfoConversation_active();
+                
             }
             else
                 controller.SearchAction(searchInput.Text);

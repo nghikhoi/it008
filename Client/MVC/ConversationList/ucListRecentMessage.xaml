@@ -99,7 +99,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                             <DockPanel Margin="0,8,0,0">
                                 <ScrollViewer Margin="0" DockPanel.Dock="Top" >
-                                    <local:ChatListControl x:Name="RecentTab"/>
+                                    <local:ChatListControl x:Name="RecentTab" Loaded="LoadConverstionList"/>
                                 </ScrollViewer>
                             </DockPanel>
                         </ScrollViewer>
@@ -126,8 +126,7 @@
                             </Border>
 
                             <ScrollViewer Margin="0" DockPanel.Dock="Top">
-                                <StackPanel x:Name="listFriend" Loaded="LoadConverstionList">
-                                </StackPanel>
+                                <StackPanel x:Name="listFriend"/>
                             </ScrollViewer>
                         </DockPanel>
                     </materialDesign:TransitionerSlide>

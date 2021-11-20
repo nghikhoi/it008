@@ -21,6 +21,7 @@ namespace UI.MVC {
 
 		public void loadRecentConversation() {
 			DataAPI.getData<RecentConversations, RecentConversationsResult>(recentResult => {
+				view.clear_recent_conversation();
 				foreach (string key in recentResult.Conversations.Keys) {
 					GetConversationShortInfo packet = new GetConversationShortInfo();
 					packet.ConversationID = key;
@@ -32,14 +33,24 @@ namespace UI.MVC {
 		}
 
 		public void addShortInfo(UserShortInfo info) {
-			//TODO thêm item hiển thị info lên listFriend
+			ChatListItemControl item = new ChatListItemControl();
+			item.ConversationID = info.ConversationID;
+			item.NameBlock.Text = info.FirstName+" "+info.LastName;
+			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+			dtDateTime = dtDateTime.AddSeconds(info.LastActive).ToLocalTime();
+			item.LastActive = dtDateTime;
+			string s = "";
+			s += info.FirstName[0];
+			s += " " + info.LastName[0];
+			item.ConverstionIcon.Text = s;
+			view.update_friend_list(item);
 		}
 
 		public void loadFriends() {
 			DataAPI.getData<GetFriendIDs, GetFriendIDsResult>(listResult => {
 				ChatModel model = ChatModel.Instance;
 				model.FriendIDs.Clear();
-				//TODO Clear listFriend
+				view.clear_friend_list();
 
 				foreach (string id in listResult.ids)
 				{
@@ -106,7 +117,7 @@ namespace UI.MVC {
 				}
 			}
 			item.ConverstionIcon.Text = s;
-			view.update_conversation_list(item);
+			view.update_recent_conversation(item);
 		}
 
 		public void AddShortInfoConversation_active()
@@ -122,30 +133,37 @@ namespace UI.MVC {
 		#endregion
 
 		#region Search
-		public void SearchAction(string s)
-        {
-	        List<UserShortInfo> searchlist = new List<UserShortInfo>();
-	        Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
-	        foreach (var con in conversations)
-	        {
-		        if (s.Contains(con.Value.ConversationName))
-		        {
-			        UserShortInfo result = new UserShortInfo();
-			        result.ConversationID = con.Key;
-			        result.FirstName = con.Value.ConversationName;
-			        result.LastActive = con.Value.LastActiveTime;
-			        searchlist.Add(result);
-		        }
-	        }
-	        ShowSearchResult(searchlist);
+		public void SearchRecentConversation(string s)
+		{
+			List<UserShortInfo> searchlist = new List<UserShortInfo>();
+			Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
+			foreach (var con in conversations)
+			{
+				if (s.Contains(con.Value.ConversationName))
+				{
+					UserShortInfo result = new UserShortInfo();
+					result.ConversationID = con.Key;
+					result.FirstName = con.Value.ConversationName;
+					result.LastActive = con.Value.LastActiveTime;
+					searchlist.Add(result);
+				}
+			}
+			//TODO show recent
 		}
-		
+		public void SearchAction(string s)
+		{
+			SearchUser packet = new SearchUser();
+			packet.Email = s;
+			DataAPI.getData<SearchUserResult>(packet, result => {
+				ShowSearchResult(result.Results);
+			});
+		}
+
 		public void ShowSearchResult(List<UserShortInfo> list) {
 			view.clear_friend_list();
 			foreach (var item in list)
             {
-				//AddShortInfoConversation(item.ConversationID, item.FirstName, item.LastActive);
-				//TODO hiển tại item lên tab listFriend
+				addShortInfo(item);
             }
 		}
 
