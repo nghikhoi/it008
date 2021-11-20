@@ -71,11 +71,6 @@ namespace UI
             selectTab(1);
         }
 
-        private void LoadConverstionList(object sender, RoutedEventArgs e)
-        {
-            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
-            controller.loadRecentConversation();
-        }
 
         public void update_friend_list(object ob)
         {
@@ -104,13 +99,14 @@ namespace UI
         }
         private void SearchAction(object sender, TextChangedEventArgs e)
         {
-            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
-            if (searchInput.Text == "")
-            {
+            //ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            //if (searchInput.Text == "")
+            //{
                 
-            }
+            //}
+            //else
+            //    controller.SearchAction(searchInput.Text);
         }
-=======
         private void BtnNoti_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow settingWindow = new SettingWindow();

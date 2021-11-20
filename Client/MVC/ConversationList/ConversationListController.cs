@@ -21,8 +21,8 @@ namespace UI.MVC {
 
 		public void loadRecentConversation() {
 			DataAPI.getData<RecentConversations, RecentConversationsResult>(recentResult => {
-				view.clear_recent_conversation();
-				foreach (string key in recentResult.Conversations.Keys) {
+                view.clear_recent_conversation();
+                foreach (string key in recentResult.Conversations.Keys) {
 					GetConversationShortInfo packet = new GetConversationShortInfo();
 					packet.ConversationID = key;
 					DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult => {
