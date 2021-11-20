@@ -76,8 +76,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
-                
+                <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0" />
+
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel MinHeight="250" MinWidth="300">

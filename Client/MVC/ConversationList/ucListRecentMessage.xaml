@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Loaded="LoadConverstionList">
+             d:DesignHeight="450">
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
         <Grid Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
             <Grid.RowDefinitions>
@@ -126,7 +126,7 @@
                             </Border>
 
                             <ScrollViewer Margin="0" DockPanel.Dock="Top">
-                                <StackPanel x:Name="listFriend">
+                                <StackPanel x:Name="listFriend" Loaded="LoadConverstionList">
                                 </StackPanel>
                             </ScrollViewer>
                         </DockPanel>

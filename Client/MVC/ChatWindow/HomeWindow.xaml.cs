@@ -94,6 +94,7 @@ namespace UI
             var sb = this.FindResource("left-side-panel-compress") as Storyboard;
             sb.Begin();
         }
+
     }
     //public class WindowChrome : Freezable
     //{

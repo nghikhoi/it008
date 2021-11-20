@@ -53,4 +53,11 @@
     <!--Online status-->
     <sys:String x:Key="Status.online">Online</sys:String>
     <sys:String x:Key="Status.offline">Offline</sys:String>
+    
+    <!--authentication-->
+    <sys:String x:Key="Authentication.InvalidUser">Invalid username or password.
+        Check your login information and try again.</sys:String>
+    <sys:String x:Key="Authentication.Banned">Your account has been banned.
+        Please contact the administrator for more information.</sys:String>
+    <sys:String x:Key="Authentication.Unhandled">Unknown exception.</sys:String>
 </ResourceDictionary>

@@ -94,6 +94,8 @@ namespace UI
             {
                 controller.AddShortInfoConversation_active();
             }
+            else
+                controller.SearchAction(searchInput.Text);
         }
         private void BtnNoti_Click(object sender, RoutedEventArgs e)
         {

@@ -116,16 +116,16 @@ namespace UI.MVC {
 				switch (statusCode)
 				{
 					case 404:
-						msgs = new [] { "Invalid username or password", "Check your info and try again" };
+						msgs = new[] { Lang.Language.getText("Authentication.InvalidUser") };
 						break;
 					case 401:
-						msgs = new [] { "Invalid username or password", "Check your info and try again" };
+						msgs = new [] {Lang.Language.getText("Authentication.InvalidUser") };
 						break;
 					case 403:
-						msgs = new [] { "Your account got banned", "Please contact the admin to get more information" };
+						msgs = new [] { Lang.Language.getText("Authentication.Banned") };
 						break;
 					default:
-						msgs = new [] { "Unhandle status code " + statusCode };
+						msgs = new [] { Lang.Language.getText("Authentication.Unhandled") };
 						break;
 				}
 				Dialogs.openAnnouncement(msgs);
