@@ -32,25 +32,27 @@ namespace UI
             selectTab(1);
         }
 
-        private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            SettingWindow settingWindow = new SettingWindow();
-            myPopup.IsOpen = false;
-            var parentwin = Window.GetWindow(this) as HomeWindow;
-            parentwin.make_fade();
-            settingWindow.Show();
-        }
+        //private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    SettingWindow settingWindow = new SettingWindow();
+        //    myPopup.IsOpen = false;
+        //    var parentwin = Window.GetWindow(this) as HomeWindow;
+        //    parentwin.make_fade();
+        //    settingWindow.Show();
+        //}
 
-        private void logOutBtn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            myPopup.IsOpen = false;
-            Window window = Window.GetWindow(this);
-            if (window != null)
-                window.Close();
-            windowLogIn.ShowDialog();
-        }
+        //private void logOutBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    WindowLogIn windowLogIn = new WindowLogIn();
+        //    myPopup.IsOpen = false;
+        //    Window window = Window.GetWindow(this);
+        //    if (window != null)
+        //        window.Close();
+        //    windowLogIn.ShowDialog();
+        //}
 
+
+        //ROW 1
         private void selectTab(int index)
         {
             foreach (var mark in tabMarks) mark.Visibility = Visibility.Hidden;
@@ -69,7 +71,6 @@ namespace UI
             selectTab(1);
         }
 
-<<<<<<< HEAD
         private void LoadConverstionList(object sender, RoutedEventArgs e)
         {
             ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
@@ -96,16 +97,42 @@ namespace UI
                 controller.AddShortInfoConversation_active();
             }
         }
-=======
-        private void BtnNoti_Click(object sender, RoutedEventArgs e)
+
+        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
         {
+            //FullFade.Visibility = Visibility.Visible;
 
         }
 
-   
-   
+        private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
+        {
+            //FullFade.Visibility = Visibility.Hidden;
+        }
 
->>>>>>> 1ed7d40b4728e38f6588a6674c784b5dd39ec23e
+        private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow settingWindow = new SettingWindow();
+            var parentwin = Window.GetWindow(this) as HomeWindow;
+            parentwin.make_fade();
+            settingWindow.Show();
+        }
+
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLogIn windowLogIn = new WindowLogIn();
+            Window window = Window.GetWindow(this);
+            if (window != null)
+                window.Close();
+            windowLogIn.Show();
+        }
+
+
+
+
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{
         //    NewConversationWindow newcon = new NewConversationWindow();

@@ -206,6 +206,9 @@
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FriendRequestNoti.xaml.cs">
+      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -356,14 +359,17 @@
     </Compile>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Components\TitleBar.cs" />
+    <Compile Include="NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationTagItem.xaml.cs">
+      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OfflineStatus.xaml.cs">
       <DependentUpon>OfflineStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="OnlineStatus.xaml.cs">
       <DependentUpon>OnlineStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ucNotificationPage.xaml.cs">
-      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
@@ -432,6 +438,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FriendRequestNoti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImageMsg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -486,6 +496,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationTagItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OfflineStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -495,10 +513,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleMediaPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
