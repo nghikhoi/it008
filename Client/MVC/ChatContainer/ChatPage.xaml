@@ -27,61 +27,7 @@
                             </ToggleButton.Style>
                             <StackPanel>
                                 <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="Black"/>
-                                <!--<Popup Name="MenuPopup" Placement="Bottom" HorizontalOffset="-12" VerticalOffset="10" 
-                                            IsOpen="{Binding IsChecked, ElementName=ChatInfoMenuBtn}" StaysOpen="False" 
-                                            PopupAnimation="Fade" PlacementTarget="{Binding ElementName=ChatInfoMenuBtn}">
-                                    <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}">
-                                        <Grid Width="120" HorizontalAlignment="Center" Background="White">
-                                            <StackPanel>
-                                                <Button x:Name="MediaGalleryBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="MediaGalleryBtn_Click" >
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <materialDesign:PackIcon Kind="ImageAlbum" Width="20" Height="20" Margin="-4 0 6 0"/>
-                                                        <TextBlock Text="Thư viện"></TextBlock>
-                                                    </StackPanel>
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </Popup>-->
                             </StackPanel>
-                            <!--<ToggleButton.Triggers>
-                                <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-                                    <BeginStoryboard>
-                                        <Storyboard x:Name="Hide">
-                                            <DoubleAnimation  
-                                                Storyboard.TargetName="media"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="360" To="600"
-                                                Duration="0:0:0.2"/>
-                                            <DoubleAnimation  
-                                                Storyboard.TargetName="info"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="240" To="0"
-                                                Duration="0:0:0.2"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                                <EventTrigger RoutedEvent="ToggleButton.Checked">
-                                    <BeginStoryboard>
-                                        <Storyboard x:Name="Show">
-                                            <DoubleAnimation 
-                                                Storyboard.TargetName="media"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="600" To="360"
-                                                Duration="0:0:0.2"/>
-                                            <DoubleAnimation 
-                                                Storyboard.TargetName="info"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="0" To="240"
-                                                Duration="0:0:0.2"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </ToggleButton.Triggers>-->
                         </ToggleButton>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
@@ -93,10 +39,18 @@
 
                 <!--Button Control-->
                 <DockPanel DockPanel.Dock="Bottom">
-                    <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" >
+                    <Border VerticalAlignment="Bottom" Margin="2, 4" >
+                        <!--<Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="btnSticker_Click" >
                             <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        </Button>
+                        </Button>--> 
+                        <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges" PopupVerticalOffset="40" StaysOpen="True" Margin="0,0,0,0" VerticalContentAlignment="Center" IsTabStop="False" Width="32" Height="32">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" Foreground="#FF2C2C2C" Margin="2" />
+                            </materialDesign:PopupBox.ToggleContent>
+                            <StackPanel Width="380" Height="320">
+                                <uc:ucTabStickerContainer></uc:ucTabStickerContainer>
+                            </StackPanel>
+                        </materialDesign:PopupBox>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
                         <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="send_files_on_click" >

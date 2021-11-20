@@ -348,5 +348,10 @@ namespace UI
             HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
             homewin.CloseProfileDisplayer();
         }
+
+        private void btnSticker_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
