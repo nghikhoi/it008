@@ -33,26 +33,7 @@ namespace UI
             selectTab(1);
         }
 
-        //private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SettingWindow settingWindow = new SettingWindow();
-        //    myPopup.IsOpen = false;
-        //    var parentwin = Window.GetWindow(this) as HomeWindow;
-        //    parentwin.make_fade();
-        //    settingWindow.Show();
-        //}
-
-        //private void logOutBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    WindowLogIn windowLogIn = new WindowLogIn();
-        //    myPopup.IsOpen = false;
-        //    Window window = Window.GetWindow(this);
-        //    if (window != null)
-        //        window.Close();
-        //    windowLogIn.ShowDialog();
-        //}
-
-
+        #region RecentMsg & FriendList
         //ROW 1
         private void selectTab(int index)
         {
@@ -108,8 +89,10 @@ namespace UI
             //else
             //    controller.SearchAction(searchInput.Text);
         }
-        
-        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e) {
+        #endregion
+
+        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
+        {
             ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
             chatWindow.view.ChatPage.Fade.Visibility = Visibility.Visible;
         }
@@ -119,30 +102,6 @@ namespace UI
             ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
             chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
         }
-
-        private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SettingWindow settingWindow = new SettingWindow();
-            var parentwin = Window.GetWindow(this) as HomeWindow;
-            parentwin.make_fade();
-            settingWindow.Show();
-        }
-
-        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            Window window = Window.GetWindow(this);
-            if (window != null)
-                window.Close();
-            windowLogIn.Show();
-        }
-
-
-
 
 
 

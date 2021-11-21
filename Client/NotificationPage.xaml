@@ -6,32 +6,80 @@
              xmlns:local="clr-namespace:UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="355" d:DesignWidth="200">
+             d:DesignHeight="450" Width="200">
     <!--TODO: List ActionNoti, Friend Request Noti-->
-    <Grid Background="White">
+    <Grid  Background="{StaticResource BackgroundLightBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="3"/>
-            <RowDefinition Height="200*"/>
+            <RowDefinition Height="320"/>
+            <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
         <!--Header-->
-        <DockPanel Grid.Row="0">
+        <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn" Click="InfOpenBtn_Click"
+                            BorderThickness="0"
+                            Margin="0 0 0 0"
+                            MinWidth="200"
+                            Command="{Binding ClickImageCommand}">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Ellipse Height="50" Width="50" Grid.Column="1">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+
+        <DockPanel Grid.Row="1">
             <TextBlock FontSize="15" 
                        Foreground="{StaticResource PrimaryHueDarkBrush}" FontWeight="DemiBold" 
-                       HorizontalAlignment="Left" Margin="0,5,0,0" Width="75" 
+                       HorizontalAlignment="Left" Margin="2,5,0,0" Width="75" 
                        >Thông Báo</TextBlock>
         </DockPanel>
-        <!--Body-->
-        <Line Grid.Row="1" X1="0" Y1="0" X2="1"  Y2="0" Width="200"
+        
+        <Line Grid.Row="2" X1="0" Y1="0" X2="1"  Y2="0" Width="200"
               Stroke="LightGray" StrokeThickness="1" Stretch="Uniform"></Line>
+        
+        <!--Body-->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"></RowDefinition>
+                <RowDefinition Height="160"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Mới nhất" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
+                <!--Action Noti-->
+                <local:NotificationTagItem></local:NotificationTagItem>
+            </StackPanel>
 
-        <StackPanel Grid.Row="2">
-            <TextBlock Text="Mới nhất" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
-            <!--Action Noti-->
-            <local:NotificationTagItem></local:NotificationTagItem>
-            <TextBlock Text="Lời mời kết bạn" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
-            <!--Friend Request Noti-->
-            <local:FriendRequestNoti></local:FriendRequestNoti>
-        </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Lời mời kết bạn" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
+                <!--Friend Request Noti-->
+                <local:FriendRequestNoti></local:FriendRequestNoti>
+            </StackPanel>
+           
+        </Grid>
+        <!--End-->
+        <DockPanel Grid.Row="4">
+            <!--LogOut Button-->
+            <Button Name="LogOutBtn" Click="LogOutBtn_Click"
+                    Width="24" Height="24" Margin="160 0 0 0"
+                    Background="{x:Null}" BorderBrush="Transparent"
+                    Style="{StaticResource IconButton}">
+                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20">
+
+                </materialDesign:PackIcon>
+            </Button>
+        </DockPanel>
     </Grid>
 </UserControl>

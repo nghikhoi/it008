@@ -7,8 +7,10 @@
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
              d:DesignHeight="450">
-    <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
-        <Grid  Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
+    
+    <Border CornerRadius="4" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
+        <Grid>
+        <Grid Margin="-3" Width="200" HorizontalAlignment="Left" Background="{x:Null}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
@@ -41,7 +43,7 @@
 
                                         <DoubleAnimation    
                                                 
-                                                Storyboard.TargetName="NotiView"
+                                                Storyboard.TargetName="NotificaionPage"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
                                                 From="200" To="0"
@@ -63,7 +65,7 @@
 
                                         <DoubleAnimation
                                                 
-                                                Storyboard.TargetName="NotiView"
+                                                Storyboard.TargetName="NotificaionPage"
                                                 Storyboard.TargetProperty="Width"
                                                 BeginTime="0:0:0"
                                                 From="0" To="200"
@@ -76,7 +78,9 @@
                                 </BeginStoryboard>
 
                             </EventTrigger>
+                            
                         </ToggleButton.Triggers>
+                        
                     </ToggleButton>
                     
                     <!--App Name-->
@@ -103,9 +107,9 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
                     <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
-                    <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                    <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="94" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
-
+                
                 <!--List Chat Item-->
                 <!--<local:ChatListControl x:Name="testabc"/>-->
 
@@ -148,55 +152,10 @@
                     </materialDesign:TransitionerSlide>
                 </materialDesign:Transitioner>
             </DockPanel>
-            <Border Grid.Row="1">
-                <!--Notification View-->
-                    <!--Note: Set Width = 200 to view-->
-                <Grid x:Name="NotiView" Background="White" Width="0" HorizontalAlignment="Left">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30*"></RowDefinition>
-                        <RowDefinition Height="144*"></RowDefinition>
-                        <RowDefinition Height="25*"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn" Click="InfOpenBtn_Click"
-                            BorderThickness="0"
-                            Margin="0 0 0 0"
-                            MinWidth="200"
-                            Command="{Binding ClickImageCommand}">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="20"/>
-                            </Style>
-                        </Button.Resources>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Ellipse Height="50" Width="50" Grid.Column="1">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
-                    
-                    <!--Notification Page-->
-                    <local:NotificationPage x:Name="Notification" Grid.Row="1" />
-                    <!--End-->
-                    <DockPanel Grid.Row="2">
-                        <!--LogOut Button-->
-                        <Button Name="LogOutBtn" Click="LogOutBtn_Click"
-                    Width="24" Height="24" Margin="150 0 0 0"
-                    Background="{x:Null}" BorderBrush="Transparent"
-                    Style="{StaticResource IconButton}">
-                            <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20">
-
-                            </materialDesign:PackIcon>
-                        </Button>
-                    </DockPanel>
-                </Grid>
-            </Border>
+        </Grid>
+            <!--Notification Page-->
+            <local:NotificationPage x:Name="NotificaionPage" Width="0" HorizontalAlignment="Left"></local:NotificationPage>
         </Grid>
     </Border>
+    
 </UserControl>

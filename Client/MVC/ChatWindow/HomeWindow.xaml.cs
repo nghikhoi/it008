@@ -82,6 +82,8 @@ namespace UI
                 win.Close();
         }
 
+        #region Gallery
+        //Transition Gallery
         public void OpenProfileDisplayer()
         {
             //ProfileDisplayer.Display(id, name, email, dob, address);
@@ -94,7 +96,7 @@ namespace UI
             var sb = this.FindResource("left-side-panel-compress") as Storyboard;
             sb.Begin();
         }
-
+        #endregion
     }
     //public class WindowChrome : Freezable
     //{

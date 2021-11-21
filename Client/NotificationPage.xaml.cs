@@ -25,6 +25,26 @@ namespace UI
             InitializeComponent();
         }
 
+        //HEADER
+        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SettingWindow settingWindow = new SettingWindow();
+            var parentwin = Window.GetWindow(this) as HomeWindow;
+            parentwin.make_fade();
+            settingWindow.Show();
+        }
+
+        //BODY
+
+        //END
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLogIn windowLogIn = new WindowLogIn();
+            Window window = Window.GetWindow(this);
+            if (window != null)
+                window.Close();
+            windowLogIn.Show();
+        }
 
     }
 }
