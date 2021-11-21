@@ -24,8 +24,10 @@ namespace UI
         {
             InitializeComponent();
         }
+        
+        public event EventHandler Click;
 
-        private void UnCheckNotiButton_Click(object sender, RoutedEventArgs e)
+        private void ClickMask_Click(object sender, RoutedEventArgs e)
         {
             NotificationDot.Visibility = Visibility.Hidden;
         }
