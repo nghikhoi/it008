@@ -18,9 +18,25 @@ namespace UI
     /// </summary>
     public partial class SettingWindow : Window, IView, INotifyPropertyChanged {
 
+        private double _CanUpdateOpacity;
+
+        public double CanUpdateOpacity {
+            get => _CanUpdateOpacity;
+            set {
+                _CanUpdateOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void updateConfirmOpacity() {
+            int compare = OriginalProfile.CompareTo(Profile);
+            CanUpdateOpacity = compare == 0 ? 0.33 : 1;
+        }
+
         public string FullName {
             get => FirstName + " " + LastName;
             set {
+                updateConfirmOpacity();
                 OnPropertyChanged();
             } 
         }
@@ -29,6 +45,7 @@ namespace UI
             get => Profile.Gender;
             set {
                 Profile.Gender = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -37,6 +54,7 @@ namespace UI
             get => Profile.Email;
             set {
                 Profile.Email = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -45,6 +63,7 @@ namespace UI
             get => Profile.FirstName;
             set {
                 Profile.FirstName = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -53,6 +72,7 @@ namespace UI
             get => Profile.LastName;
             set {
                 Profile.LastName = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -61,6 +81,7 @@ namespace UI
             get => Profile.BirthDay;
             set {
                 Profile.BirthDay = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -88,7 +109,7 @@ namespace UI
         private void cloneProfile() {
             //Set từng cái để đảm bảo data cập nhật lên view thông qua PropertyChangedTrigger
             if (Profile == null)
-                Profile = OriginalProfile;
+                Profile = new UserProfile();
             Email = OriginalProfile.Email;
             FirstName = OriginalProfile.FirstName;
             LastName = OriginalProfile.LastName;

@@ -163,7 +163,8 @@
                             DockPanel.Dock="Right"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             ToolTip="MaterialDesignFlatButton" 
-                            Foreground="White" 
+                            Foreground="White"
+                            Opacity="{Binding Path=CanUpdateOpacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="{DynamicResource SettingWindow.UpdateBttn}"
                             Width="100" Margin="0,19"/>
                         <Button

@@ -108,15 +108,15 @@ namespace UI
             //    controller.SearchAction(searchInput.Text);
         }
         
-        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
-        {
-            //FullFade.Visibility = Visibility.Visible;
-
+        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e) {
+            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            // chatWindow.view.FullFade.Visibility = Visibility.Visible;
         }
 
         private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
         {
-            //FullFade.Visibility = Visibility.Hidden;
+            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            // chatWindow.view.FullFade.Visibility = Visibility.Hidden;
         }
 
         private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
