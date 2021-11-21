@@ -102,6 +102,8 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
-        <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
+        <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5">
+            <Button x:Name="closenotibutton" Width="{Binding Fade.Width}" Height="{Binding Fade.Height}" Background="{x:Null}" BorderBrush="{x:Null}" Click="closenotibutton_Click"></Button>
+        </Border>
     </Grid>
 </UserControl>

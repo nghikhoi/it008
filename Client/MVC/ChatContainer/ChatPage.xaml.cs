@@ -369,5 +369,22 @@ namespace UI
         {
 
         }
+        private void HideNotificationView()
+        {
+            DoubleAnimation db = new DoubleAnimation();
+            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            ConversationList conver = ModuleContainer.GetModule<ConversationList>();
+            db.From = conver.view.NotiView.Width;
+            db.To = 0;
+            db.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+            conver.view.NotiView.BeginAnimation(WidthProperty, db);
+            conver.view.TogglePopupButton.IsChecked = false;
+            chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
+        }
+
+        private void closenotibutton_Click(object sender, RoutedEventArgs e)
+        {
+            HideNotificationView();
+        }
     }
 }

@@ -185,7 +185,7 @@
                     </Button>
                     
                     <!--Notification Page-->
-                    <local:NotificationPage x:Name="NotificationPage" Grid.Row="1" Loaded="NotificationPage_Loaded" />
+                    <local:NotificationPage x:Name="Notification" Grid.Row="1" />
                     <!--End-->
                     <DockPanel Grid.Row="2">
                         <!--LogOut Button-->
