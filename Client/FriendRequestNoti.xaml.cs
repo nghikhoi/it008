@@ -20,6 +20,7 @@ namespace UI
     /// </summary>
     public partial class FriendRequestNoti : UserControl
     {
+        public string ID { get; set; }
         public FriendRequestNoti()
         {
             InitializeComponent();

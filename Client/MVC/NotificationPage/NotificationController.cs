@@ -23,6 +23,10 @@ namespace UI.MVC {
 
 		public void addNotification(NotificationInfo info) {
 			//TODO display lên view
+			FriendRequestNoti fri = new FriendRequestNoti();
+			fri.FriendName.Text = info.Name;
+			fri.ID = info.SenderID;
+			this.view.NotificationContainer.Children.Add(fri);
 		}
 
 	}
