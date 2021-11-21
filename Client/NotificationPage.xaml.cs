@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI.MVC;
 
 namespace UI
 {
     /// <summary>
     /// Interaction logic for NotificationPage.xaml
     /// </summary>
-    public partial class NotificationPage : UserControl
+    public partial class NotificationPage : UserControl, IView
     {
         public NotificationPage()
         {

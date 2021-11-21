@@ -23,7 +23,11 @@ namespace UI
     public partial class ucListRecentMessage : UserControl, IView
     {
         private Border[] tabMarks = new Border[2];
-
+        public string UserID {
+            get => ChatModel.Instance.SelfID;
+            set {}
+        }
+        
         public ucListRecentMessage()
         {
             InitializeComponent();
@@ -103,8 +107,27 @@ namespace UI
             chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
         }
 
+        private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
+        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var parentwin = Window.GetWindow(this) as HomeWindow;
+            parentwin.make_fade();
 
+            SettingPage settingPage = ModuleContainer.GetModule<SettingPage>();
+            settingPage.view.Show();
+        }
+
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowLogIn windowLogIn = new WindowLogIn();
+            Window window = Window.GetWindow(this);
+            if (window != null)
+                window.Close();
+            windowLogIn.Show();
+        }
 
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{

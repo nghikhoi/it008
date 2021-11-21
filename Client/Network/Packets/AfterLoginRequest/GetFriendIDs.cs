@@ -2,12 +2,12 @@
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
-    public class GetFriendIDs : RequestPacket
-    {
-        public string FriendOfID { get; set; }
+    public class GetFriendIDs : RequestPacket {
+        public string FriendOfID { get; set; } = ChatModel.Instance.SelfID;
 
         public void Decode(IByteBuffer buffer)
         {

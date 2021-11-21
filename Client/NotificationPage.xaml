@@ -62,7 +62,7 @@
                 <local:NotificationTagItem></local:NotificationTagItem>
             </StackPanel>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel x:Name="NotificationContainer" Grid.Row="1">
                 <TextBlock Text="Lời mời kết bạn" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
                 <!--Friend Request Noti-->
                 <local:FriendRequestNoti></local:FriendRequestNoti>
@@ -76,9 +76,7 @@
                     Width="24" Height="24" Margin="160 0 0 0"
                     Background="{x:Null}" BorderBrush="Transparent"
                     Style="{StaticResource IconButton}">
-                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20">
-
-                </materialDesign:PackIcon>
+                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20"/>
             </Button>
         </DockPanel>
     </Grid>

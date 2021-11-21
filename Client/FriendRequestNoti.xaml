@@ -20,14 +20,16 @@
                         HorizontalAlignment="Right" Width="15" Height="15"
                         DockPanel.Dock="Right" Margin="16,24,16,14"
                         Background="{StaticResource BackgroundVeryLightBrush}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}"
+                        Click="RemoveBtn_OnClick"
                         />
                 <Button x:Name="BtnAccept" Content="Accept"
                         HorizontalAlignment="Right" Width="15" Height="15"
                         DockPanel.Dock="Right" Foreground="White" FontSize="16" Margin="1,24,0,14"
+                        Click="BtnAccept_OnClick"
                         />
             </DockPanel>
 
-            <Button x:Name="ClickMask" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click">
+            <Button x:Name="ClickMaskButton" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click">
             </Button>
 
 

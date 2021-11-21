@@ -21,6 +21,7 @@ namespace UI
     public partial class App : Application {
 
         public static readonly bool IS_LOCAL_DEBUG = true;
+        public static readonly bool SESSION_HOLDER = false;
         
         public static App Instance { get; private set; }
         public App()

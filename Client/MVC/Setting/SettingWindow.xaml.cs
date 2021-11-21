@@ -91,16 +91,22 @@ namespace UI
 
         private UserProfile OriginalProfile;
         private UserProfile Profile;
+        public string UserID {
+            get => ChatModel.Instance.SelfID;
+            set {}
+        }
 
         public SettingWindow()
         {
-            updateProfile(new UserProfile() {
-                Email = "test@gmail.com",
-                FirstName = "Nguyen",
-                LastName = "A",
-                Gender = Gender.Female,
-                BirthDay = new DateTime()
-            });
+            if (App.IS_LOCAL_DEBUG)
+                updateProfile(new UserProfile() {
+                    Email = "test@gmail.com",
+                    FirstName = "Nguyen",
+                    LastName = "A",
+                    Gender = Gender.Female,
+                    BirthDay = new DateTime()
+                });
+            
             InitializeComponent();
         }
 

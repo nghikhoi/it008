@@ -5,12 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
+             xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450">
+             d:DesignHeight="450"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
-    <Border CornerRadius="4" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
+    <Border CornerRadius="4" 
+        BorderThickness="2" 
+        Style="{StaticResource OriginalBorder}" 
+        BorderBrush="{StaticResource PrimaryHueDarkBrush}"
+        Padding="4">
         <Grid>
-        <Grid Margin="-3" Width="200" HorizontalAlignment="Left" Background="{x:Null}">
+        <Grid Margin="-3" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
@@ -29,6 +35,7 @@
                         <!--binding avt-->
                         <StackPanel>
 
+                            <!-- <cus:AvatarDisplayer UserID="{Binding UserID}"></cus:AvatarDisplayer> -->
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
 
                         </StackPanel>

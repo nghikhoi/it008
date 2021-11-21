@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ChatServer.Utils;
 using CNetwork;
 using DotNetty.Buffers;
+using Newtonsoft.Json;
 using UI.Network.Packets;
 using UI.Network.Packets.AfterLoginRequest;
 using UI.Network.Packets.AfterLoginRequest.Message;
@@ -53,40 +54,44 @@ namespace UI.Network.RestAPI {
 			getData(Activator.CreateInstance<R>(), resultHandler);
 		}
 		
-		public static void getData<T>(IPacket request, Action<T> resultHandler = null) where T : IPacket {
-			new Task(() =>
-			{
-
-				using (WebClient client = new WebClient())
-				{
-					String address = ChatConnection.Instance.WebHost;
-					int port = ChatConnection.Instance.WebPort;
-					IByteBuffer buffer = ByteBufferUtil.DefaultAllocator.Buffer();
-					request.Encode(buffer);
-					string requestData = PacketUtil.encode(buffer);
-					string id = RequestMap.getId(request);
-					string path = String.Format(DataURL, address, port, id, requestData);
+		public static async void getData<T>(IPacket request, Action<T> resultHandler = null, Action<Exception> exceptionHandler = null) where T : IPacket {
+			string id = RequestMap.getId(request);
+			try {
+				String address = ChatConnection.Instance.WebHost;
+				int port = ChatConnection.Instance.WebPort;
+				IByteBuffer buffer = ByteBufferUtil.DefaultAllocator.Buffer();
+				request.Encode(buffer);
+				string requestData = PacketUtil.encode(buffer);
+				string path = String.Format(DataURL, address, port, id, requestData);
+				
+				using (WebClient client = new WebClient()) {
 					if (App.IS_LOCAL_DEBUG) {
 						Console.WriteLine("[DataAPI] Try to get data from path: " + path);
 						return;
 					}
-					
+
 					client.Headers.Add(ClientSession.HeaderToken, ChatConnection.Instance.Session.SessionID);
-					string hashed = client.DownloadString(path);
+					string downloadedString = client.DownloadString(path);
+					string hashed = JsonConvert.DeserializeObject<string>(downloadedString);
 
 					buffer = PacketUtil.decode(hashed);
 					T responde = Activator.CreateInstance<T>();
 					responde.Decode(buffer);
 
-					if (resultHandler != null)
-					{
+					if (resultHandler != null) {
 						resultHandler.Invoke(responde);
-					}
-					else {
+					} else {
 						responde.Handle(ChatConnection.Instance.Session);
 					}
 				}
-			}).Start();
+			} catch (Exception ex) {
+				if (exceptionHandler != null)
+					exceptionHandler.Invoke(ex);
+				else {
+					Console.WriteLine("Error on get data with request id " + id);
+					throw ex;
+				}
+			}
 		}
 		
 	}

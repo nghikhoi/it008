@@ -18,12 +18,18 @@ namespace UI.MVC {
 		private HomeWindow view;
 		private ChatContainer chatContainer;
 		private ConversationList conversationList;
+		private Notification notification;
+		private SettingPage setting;
 
 		public ChatWindowController(HomeWindow view) {
 			this.view = view;
 			initChatContainer();
 			initConversationList();
+			initSettingPage();
+			initNotification();
 		}
+
+		#region Initialize
 
 		private void initChatContainer() {
 			ChatPage view = this.view.ChatPage;
@@ -40,31 +46,41 @@ namespace UI.MVC {
 			module.InitializeMVC(ChatModel.Instance, view, controller);
 			conversationList = module;
 		}
+		
+		private void initSettingPage() {
+			SettingWindow view = new SettingWindow();
+			SettingPageController controller = new SettingPageController(view);
+			SettingPage module = new SettingPage();
+			module.InitializeMVC(ChatModel.Instance, view, controller);
+			setting = module;
+		}
+
+		private void initNotification() {
+			NotificationPage view = this.conversationList.view.Notification;
+			NotificationController controller = new NotificationController(view);
+			Notification module = new Notification();
+			module.InitializeMVC(ChatModel.Instance, view, controller);
+			notification = module;
+		}
 
 		private void initData() {
 			if (App.IS_LOCAL_DEBUG) return;
 			initSelfId();
+			while (ChatModel.Instance.SelfID == null) { }
 			DataAPI.getData<GetSelfProfile, GetSelfProfileResult>();
-			initNotifications();
+			notification.controller.initNotifications();
 			conversationList.controller.loadRecentConversation();
 			conversationList.controller.loadFriends();
 			DataAPI.getData<GetBoughtStickerPacksRequest, GetBoughtStickerPacksResponse>();
 		}
 
-		private void initNotifications() {
-			DataAPI.getData<GetNotifications, GetNotificationsResult>(result => {
-				foreach (string notification in result.Notifications) {
-					NotificationInfo analyzed = NotificationDecoder.Analyze(notification);
-					//TODO display to notification controller
-				}
-			});
-		}
-		
 		private void initSelfId() {
 			DataAPI.getData<GetSelfID, GetSelfIDResult>(result => {
 				ChatModel.Instance.SelfID = result.ID;
 			});
 		}
+
+		#endregion
 
 		private bool isFirstView = true;
 		public void showView() {

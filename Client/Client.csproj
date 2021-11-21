@@ -220,6 +220,7 @@
     <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\AvatarDisplayer.xaml.cs" />
     <Compile Include="CustomControls\Dialogs.cs" />
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
@@ -235,6 +236,8 @@
     <Compile Include="FriendRequestNoti.xaml.cs">
       <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVC\NotificationPage\Notification.cs" />
+    <Compile Include="MVC\NotificationPage\NotificationController.cs" />
     <Compile Include="NotificationPage.xaml.cs">
       <DependentUpon>NotificationPage.xaml</DependentUpon>
     </Compile>
@@ -305,7 +308,7 @@
     <Compile Include="MVC\IModel.cs" />
     <Compile Include="MVC\Module.cs" />
     <Compile Include="MVC\IView.cs" />
-    <Compile Include="MVC\Setting\Setting.cs" />
+    <Compile Include="MVC\Setting\SettingPage.cs" />
     <Compile Include="MVC\Setting\SettingController.cs" />
     <Compile Include="MVC\Setting\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
@@ -435,6 +438,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\AvatarDisplayer.xaml" />
     <Page Include="FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
