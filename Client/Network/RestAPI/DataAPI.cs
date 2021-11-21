@@ -56,6 +56,7 @@ namespace UI.Network.RestAPI {
 		public static void getData<T>(IPacket request, Action<T> resultHandler = null) where T : IPacket {
 			new Task(() =>
 			{
+
 				using (WebClient client = new WebClient())
 				{
 					String address = ChatConnection.Instance.WebHost;
@@ -65,6 +66,10 @@ namespace UI.Network.RestAPI {
 					string requestData = PacketUtil.encode(buffer);
 					string id = RequestMap.getId(request);
 					string path = String.Format(DataURL, address, port, id, requestData);
+					if (App.IS_LOCAL_DEBUG) {
+						Console.WriteLine("[DataAPI] Try to get data from path: " + path);
+						return;
+					}
 					
 					client.Headers.Add(ClientSession.HeaderToken, ChatConnection.Instance.Session.SessionID);
 					string hashed = client.DownloadString(path);

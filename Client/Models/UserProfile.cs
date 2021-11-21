@@ -4,10 +4,10 @@ namespace UI.Models
 {
     public class UserProfile : IComparable<UserProfile> {
 
-        public string Email { get; set; } = "abc";
+        public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Town { get; set; }
+        public string Town { get; set; } = "Default";
         public string Password { get; set; }
         public DateTime BirthDay { get; set; }
         public Gender Gender { get; set; } = Gender.Female;

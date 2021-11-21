@@ -408,7 +408,6 @@
     <Compile Include="Utils\ChatBackgroundType.cs" />
     <Compile Include="Utils\ColorUtils.cs" />
     <Compile Include="Utils\CountdownLatch.cs" />
-    <Compile Include="Utils\Genders.cs" />
     <Compile Include="Utils\HashUtils.cs" />
     <Compile Include="Utils\MediaUtils.cs" />
     <Compile Include="Utils\MessageUtil.cs" />

@@ -164,8 +164,9 @@
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             ToolTip="MaterialDesignFlatButton" 
                             Foreground="White"
-                            Opacity="{Binding Path=CanUpdateOpacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            IsEnabled="{Binding Path=CanUpdateProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="{DynamicResource SettingWindow.UpdateBttn}"
+                            Click="UpdateButton_OnClick"
                             Width="100" Margin="0,19"/>
                         <Button
                             DockPanel.Dock="Left"
