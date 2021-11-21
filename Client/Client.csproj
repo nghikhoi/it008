@@ -222,8 +222,14 @@
     </Compile>
     <Compile Include="CustomControls\AvatarDisplayer.xaml.cs" />
     <Compile Include="CustomControls\Dialogs.cs" />
+    <Compile Include="CustomControls\FriendRequestNoti.xaml.cs">
+      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\NotificationTagItem.xaml.cs">
+      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\Sticker.xaml.cs" />
     <Compile Include="CustomControls\ThumbnailBubble.xaml.cs" />
@@ -233,16 +239,10 @@
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FriendRequestNoti.xaml.cs">
-      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MVC\NotificationPage\Notification.cs" />
     <Compile Include="MVC\NotificationPage\NotificationController.cs" />
-    <Compile Include="NotificationPage.xaml.cs">
+    <Compile Include="MVC\NotificationPage\NotificationPage.xaml.cs">
       <DependentUpon>NotificationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NotificationTagItem.xaml.cs">
-      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lang\Language.cs" />
     <Compile Include="Logger.cs" />
@@ -439,15 +439,15 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\AvatarDisplayer.xaml" />
-    <Page Include="FriendRequestNoti.xaml">
+    <Page Include="CustomControls\FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NotificationPage.xaml">
+    <Page Include="CustomControls\NotificationTagItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NotificationTagItem.xaml">
+    <Page Include="MVC\NotificationPage\NotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

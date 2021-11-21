@@ -1,4 +1,6 @@
-﻿using UI.Network.Packets.AfterLoginRequest.Notification;
+﻿using System.Windows.Controls;
+using UI.Network;
+using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.RestAPI;
 using UI.Utils;
 
@@ -23,10 +25,33 @@ namespace UI.MVC {
 
 		public void addNotification(NotificationInfo info) {
 			//TODO display lên view
-			FriendRequestNoti fri = new FriendRequestNoti();
-			fri.FriendName.Text = info.Name;
-			fri.ID = info.SenderID;
-			this.view.NotificationContainer.Children.Add(fri);
+			string prefix = info.Prefix;
+			if (string.CompareOrdinal(prefix, NotificationPrefixes.AcceptedFriend) == 0) {
+				FriendRequestNoti fri = new FriendRequestNoti();
+				fri.FriendName.Text = info.Name;
+				fri.ID = info.SenderID;
+				StackPanel viewFriendRequestContainer = this.view.FriendRequestContainer;
+				int position = viewFriendRequestContainer.Children.Count;
+				fri.AcceptClick += (s, a) => {
+					respondeFriendRequest(position, info.SenderID, true);
+				};
+				fri.DenyClick += (s, a) => {
+					respondeFriendRequest(position, info.SenderID, false);
+				};
+				viewFriendRequestContainer.Children.Add(fri);
+			} else if (string.CompareOrdinal(prefix, NotificationPrefixes.AddFriend) == 0) {
+				NotificationTagItem item = new NotificationTagItem();
+				item.Content = info.Title;
+				view.NewestContainer.Children.Add(item);
+			}
+		}
+
+		public void respondeFriendRequest(int index, string userId, bool accept) {
+			ResponseFriendRequest responde = new ResponseFriendRequest();
+			responde.NotiPosition = index;
+			responde.TargetID = userId;
+			responde.Accepted = accept;
+			ChatConnection.Instance.Send(responde);
 		}
 
 	}

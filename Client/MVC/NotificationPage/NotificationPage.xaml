@@ -7,6 +7,13 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="200">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="HorizontalExpanderContentTextBlock">
+            <Setter Property="Opacity" Value=".68"/>
+            <Setter Property="Text" Value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </UserControl.Resources>
     <!--TODO: List ActionNoti, Friend Request Noti-->
     <Grid  Background="{StaticResource BackgroundLightBrush}">
         <Grid.RowDefinitions>
@@ -37,7 +44,6 @@
                     </Ellipse>
                 </ControlTemplate>
             </Button.Template>
-
         </Button>
 
         <DockPanel Grid.Row="1">
@@ -47,28 +53,43 @@
                        >Thông Báo</TextBlock>
         </DockPanel>
         
-        <Line Grid.Row="2" X1="0" Y1="0" X2="1"  Y2="0" Width="200"
-              Stroke="LightGray" StrokeThickness="1" Stretch="Uniform"></Line>
+        <Line Grid.Row="2" X1="0" Y1="0" X2="1" Y2="0" 
+              Width="200" 
+              Stroke="LightGray" 
+              StrokeThickness="1" 
+              Stretch="Uniform"/>
         
         <!--Body-->
-        <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="160"></RowDefinition>
-                <RowDefinition Height="160"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                <TextBlock Text="Mới nhất" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
-                <!--Action Noti-->
-                <local:NotificationTagItem></local:NotificationTagItem>
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Width="200">
+                <Expander
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    Header="Mới nhất"
+                    FontWeight="ExtraLight"
+                    Background="{StaticResource BackgroundLightBrush}"
+                    materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
+                    <StackPanel
+                        x:Name="NewestContainer"
+                        Orientation="Vertical"
+                        Width="200"
+                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"/>
+                </Expander>
+                <Expander
+                    Width="200"
+                    HorizontalAlignment="Left"
+                    Header="Lời mời kết bạn"
+                    FontWeight="ExtraLight"
+                    Background="{StaticResource BackgroundLightBrush}"
+                    materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
+                    <StackPanel
+                        x:Name="FriendRequestContainer"
+                        Orientation="Vertical"
+                        Width="200"
+                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}"/>
+                </Expander>
             </StackPanel>
-
-            <StackPanel x:Name="NotificationContainer" Grid.Row="1">
-                <TextBlock Text="Lời mời kết bạn" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
-                <!--Friend Request Noti-->
-                <local:FriendRequestNoti></local:FriendRequestNoti>
-            </StackPanel>
-           
-        </Grid>
+        </ScrollViewer>
         <!--End-->
         <DockPanel Grid.Row="4">
             <!--LogOut Button-->

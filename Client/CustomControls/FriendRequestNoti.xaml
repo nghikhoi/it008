@@ -31,8 +31,6 @@
 
             <Button x:Name="ClickMaskButton" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click">
             </Button>
-
-
         </Grid>
     </Border>
 
