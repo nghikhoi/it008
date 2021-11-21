@@ -32,7 +32,7 @@ namespace UI
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e) {
             AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
-            if (App.IS_LOCAL_DEBUG) {
+            if (App.IS_LOCAL_DEBUG && !App.SESSION_HOLDER) {
                 controller.EnterMainWindow();
                 return;
             }

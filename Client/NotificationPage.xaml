@@ -25,7 +25,7 @@
         <Line Grid.Row="1" X1="0" Y1="0" X2="1"  Y2="0" Width="200"
               Stroke="LightGray" StrokeThickness="1" Stretch="Uniform"></Line>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel x:Name="NotificationContainer" Grid.Row="2">
             <TextBlock Text="Mới nhất" FontSize="10" FontWeight="ExtraLight" Opacity="0.5"/>
             <!--Action Noti-->
             <local:NotificationTagItem></local:NotificationTagItem>

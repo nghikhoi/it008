@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
+             xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450">
+             d:DesignHeight="450"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
         <Grid  Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
 
@@ -27,6 +29,7 @@
                         <!--binding avt-->
                         <StackPanel>
 
+                            <!-- <cus:AvatarDisplayer UserID="{Binding UserID}"></cus:AvatarDisplayer> -->
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
 
                         </StackPanel>
@@ -182,7 +185,7 @@
                     </Button>
                     
                     <!--Notification Page-->
-                    <local:NotificationPage Grid.Row="1" Loaded="NotificationPage_Loaded" />
+                    <local:NotificationPage x:Name="NotificationPage" Grid.Row="1" Loaded="NotificationPage_Loaded" />
                     <!--End-->
                     <DockPanel Grid.Row="2">
                         <!--LogOut Button-->

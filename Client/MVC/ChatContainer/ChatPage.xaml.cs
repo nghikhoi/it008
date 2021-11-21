@@ -36,6 +36,10 @@ namespace UI
             InitializeComponent();
         }
 
+        public void cleanChatPage() {
+            message_container.Children.Clear();
+        }
+
         #region TextMessage function
         public void update_message_container(AbstractMessage tmp)
         {
