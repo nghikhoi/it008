@@ -56,7 +56,7 @@ namespace UI.MVC {
 		}
 
 		private void initNotification() {
-			NotificationPage view = this.conversationList.view.NotificationPage;
+			NotificationPage view = this.conversationList.view.Notification;
 			NotificationController controller = new NotificationController(view);
 			Notification module = new Notification();
 			module.InitializeMVC(ChatModel.Instance, view, controller);
