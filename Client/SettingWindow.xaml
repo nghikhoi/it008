@@ -1,0 +1,201 @@
+﻿<Window x:Class="UI.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="SettingWindow" Height="450" Width="800" Background="{x:Null}"
+        AllowDrop="True" AllowsTransparency="True">
+    <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
+        <Grid>
+            <!--2 Row-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="20"></RowDefinition>
+                <RowDefinition Height="430"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--2 Column-->
+            <!--Row 0-->
+            <!--<Grid Grid.Row="0">
+                <DockPanel PreviewMouseLeftButtonDown="DockPanel_PreviewMouseLeftButtonDown"  HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top" Background="Transparent" Height="30">
+
+                    <Border Width="30" Height="30" DockPanel.Dock="Right">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Margin="0 5 10 0"
+                                     PreviewMouseDown="Image_PreviewMouseDown_close" Cursor="Hand"/>
+                    </Border>
+                    <Border Width="30" Height="30" DockPanel.Dock="Right">
+
+                    </Border>
+                </DockPanel>
+            </Grid>-->
+
+            <!--Row 1-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Column 0-->
+                <Grid Grid.Column="0" Grid.ColumnSpan="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.ColumnSpan="2">
+                        <!--Avatar-->
+                        <Button Height="150" Width="150" 
+                            BorderThickness="0"
+                            Margin="0 50 0 10"
+                            Command="{Binding ClickImageCommand}">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Ellipse Height="150" Width="150" Grid.Column="1">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+                        <Button Width="180"
+                            Command="{Binding ClickChangeImageCommand}"
+                            Visibility="{Binding Visibility}">
+                            <TextBlock Text="{DynamicResource SettingWindow.changeavt}"></TextBlock>
+                        </Button>
+
+                        <!--change name btn-->
+                        <Button x:Name="ChangeNameBtn"
+                                HorizontalAlignment="Stretch" Margin="0 40 0 0" Click="ChangeNameBtn_Click">
+                            <Canvas>
+                                <materialDesign:PackIcon Kind="Account" Canvas.Left="-195" Canvas.Top="-9" Height="19" Width="20"/>
+                                <materialDesign:PackIcon Kind="Pencil" Canvas.Left="170" Canvas.Top="-9" Height="19" Width="20" />
+                                <TextBox Canvas.Left="-152" Canvas.Top="-14" Height="38" Width="76">
+                                    Hiep Chau
+                                </TextBox>
+                            </Canvas>
+                        </Button>
+
+
+                        <TextBox
+                    Margin="10,30,10,0"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Stretch"
+                    MinWidth="280"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    SpellCheck.IsEnabled="True"
+                    materialDesign:HintAssist.Hint="Bio..."
+                    Height="82"/>
+
+                        <!--NAME-->
+
+
+
+
+                    </StackPanel>
+                </Grid>
+                
+                <!--Dimmed Overplay-->
+                <Border x:Name="FullFade"
+                        Grid.ColumnSpan="2"
+                        Panel.ZIndex="10"
+                        Opacity="0.5"
+                        Visibility="Hidden"
+                        >
+                    <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
+                </Border>
+                
+                <!--Column 1-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="190*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel Margin="40,0,30,0" Grid.RowSpan="2">
+                        <StackPanel Margin="0 0 0 20" Orientation="Horizontal">
+                            <StackPanel />
+                            <StackPanel/>
+                        </StackPanel>
+                        <DockPanel LastChildFill="False" Margin="0 0 0 20">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource WindowSignUp.Birth}"></TextBlock>
+                                <DatePicker x:Name="BirthdayPicker" 
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="187" Height="38" />
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Right">
+                                <TextBlock Text="{DynamicResource WindowSignUp.Gender}"></TextBlock>
+                                <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              Width="79">
+
+                                    <ComboBoxItem Content="Nam"/>
+                                    <ComboBoxItem Content="Nữ"/>
+                                    <ComboBoxItem Content="Khác"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <StackPanel Margin="0 0 0 40">
+                            <TextBlock>Email</TextBlock>
+                            <TextBox x:Name="UsernameBox" 
+                        Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        </StackPanel>
+                        <StackPanel Margin="0 0 0 0">
+                            <Canvas>
+                                <materialDesign:PackIcon Kind="Phone" Canvas.Left="1" RenderTransformOrigin="0.688,0.844" Height="28" Width="19" />
+                            </Canvas>
+                            <TextBox
+                        x:Name="PhoneTextBox"
+                        materialDesign:TransitionAssist.DisableTransitions="True"
+                        Margin="26,0,174,0"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!--ChangePassWordButton-->
+
+                    <Button Grid.Row="1" x:Name="ChangePassWord_btn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Content="{DynamicResource WindowChangePss.Title}" 
+                        HorizontalAlignment="Left"
+                        Width="160" Height="Auto"
+                        Margin="137 210 0 110" Click="ChangePassWord_btn_Click_1"/>
+
+
+                    <!--Controller Button-->
+                    <DockPanel   LastChildFill="False" Grid.Row="1" Margin="10 300 10 0">
+                        <Button
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            ToolTip="MaterialDesignFlatButton" 
+                            Foreground="White" 
+                            Content="{DynamicResource SettingWindow.UpdateBttn}"
+                            Width="120"/>
+                        <Button
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            ToolTip="MaterialDesignFlatButton"
+                            Background="{StaticResource BackgroundVeryLightBrush}"
+                            Foreground="{StaticResource PrimaryHueDarkBrush}" 
+                            Content="{DynamicResource WindowChangePss.Discard}"
+                            Width="120" Click="Button_Click"/>
+                    </DockPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

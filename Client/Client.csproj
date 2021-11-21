@@ -203,6 +203,9 @@
     <Compile Include="Components\ucMediaGallery.xaml.cs">
       <DependentUpon>ucMediaGallery.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ucStickerStore.xaml.cs">
+      <DependentUpon>ucStickerStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ucTabSticker.xaml.cs">
       <DependentUpon>ucTabSticker.xaml</DependentUpon>
     </Compile>
@@ -424,6 +427,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucMediaGallery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ucStickerStore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

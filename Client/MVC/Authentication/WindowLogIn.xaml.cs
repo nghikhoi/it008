@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
@@ -39,10 +40,33 @@ namespace UI
             controller.doLogin(new LoginInfo(UsernameBox.Text, PasswordBox.Password));
         }
 
+        //bool _shown;
+
+        //protected override void OnContentRendered(EventArgs e)
+        //{
+        //    base.OnContentRendered(e);
+
+        //    if (_shown)
+        //        return;
+
+        //    _shown = true;
+
+        //    DoubleAnimation animFadeIn = new DoubleAnimation();
+        //    animFadeIn.From = 0;
+        //    animFadeIn.To = 1;
+        //    animFadeIn.Duration = new Duration(TimeSpan.FromSeconds(1.5));
+        //    FillBehavior fill = FillBehavior.HoldEnd;
+        //    BeginAnimation(Window.OpacityProperty, animFadeIn, (HandoffBehavior)fill);
+        //    //BeginAnimation(Window.OpacityProperty, animFadeIn);
+
+        //    _shown = false;
+        //}
+
         private void SignBtn_Click(object sender, RoutedEventArgs e)
         {
             AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
-            controller.showRegister();
+            //OnContentRendered(e);
+            controller.showRegister(); 
         }
 
         private void ucTitleBar_Loaded_1(object sender, RoutedEventArgs e)
