@@ -102,6 +102,6 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
-
+        <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
     </Grid>
 </UserControl>
