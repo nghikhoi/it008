@@ -6,9 +6,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Loaded="LoadConverstionList">
+             d:DesignHeight="450">
     <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="2" Style="{StaticResource OriginalBorder}" Padding="4">
-        <Grid Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
+        <Grid  Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -20,63 +21,77 @@
                 <DockPanel LastChildFill="False">
                     <!--Popup settings-->
                     <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
-                                            Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                                            ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0">
+                                  Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                  ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0"
+                                  Checked="TogglePopupButton_Checked" Unchecked="TogglePopupButton_UnChecked">
+                        <!--binding avt-->
                         <StackPanel>
-                           
-                            <!--binding avt-->
+
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
 
-                            <Popup Name="myPopup" Placement="Relative"  HorizontalOffset="100" VerticalOffset="30"
-                                            IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
-                                            PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                                <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}">
-                                    <Grid Width="100" HorizontalAlignment="Center" Background="White">
-                                        <StackPanel>
-                                            <Button x:Name="accountInfoBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}"
-                                                    Click="accInfo_Btn_Click">
-                                                <TextBlock Text="{DynamicResource RecentMessage.Info}" Margin="-3 0 0 0"></TextBlock>
-                                            </Button>
-                                            <Button x:Name="NotiBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Padding="0">
-                                                <DockPanel Height="31" Width="100">
-                                                    <TextBlock Text="Thông Báo" VerticalAlignment="Center" Margin="16 0 0 0"></TextBlock>
-                                                    <Border DockPanel.Dock="Right" x:Name="NotificationDot" BorderThickness="1" CornerRadius="16" Background="#FFFF1C1C"
-                                                            Width="10" Height="10" Margin="0 -12 0 0" />
-                                                </DockPanel>
-                                                
-                                            </Button>
-                                            <Button x:Name="logOutBtn" Style="{DynamicResource MaterialDesignFlatDarkButton}" Click="logOutBtn_Click">
-                                                <TextBlock Text="{DynamicResource RecentMessage.Logout}"></TextBlock>
-                                            </Button>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </Popup>
                         </StackPanel>
+                        <!--NotiView Transition-->
+                        <ToggleButton.Triggers>
+
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="HideNotiView">
+
+                                        <DoubleAnimation    
+                                                
+                                                Storyboard.TargetName="NotiView"
+                                                Storyboard.TargetProperty="Width"
+                                                BeginTime="0:0:0"
+                                                From="200" To="0"
+                                                Duration="0:0:0.2">
+
+                                        </DoubleAnimation>
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="ShowNotiView">
+
+                                        <DoubleAnimation
+                                                
+                                                Storyboard.TargetName="NotiView"
+                                                Storyboard.TargetProperty="Width"
+                                                BeginTime="0:0:0"
+                                                From="0" To="200"
+                                                Duration="0:0:0.3">
+
+                                        </DoubleAnimation>
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+                        </ToggleButton.Triggers>
                     </ToggleButton>
+                    
                     <!--App Name-->
                     <TextBlock FontSize="15" Foreground="teal" Margin="32 10 0 10" FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
                     <!--New Message Button-->
                     <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
                             Width="24" Height="24" 
                             Margin="0,0,5,6" VerticalAlignment="Bottom" >
-                        <materialDesign:PackIcon x:Name="Notification"  HorizontalAlignment="Right" Kind="MessagePlus" 
+                        <materialDesign:PackIcon HorizontalAlignment="Right" Kind="MessagePlus" 
                                              Width="24" Height="24" Cursor="Hand" Foreground="{StaticResource PrimaryHueDarkBrush}">
                         </materialDesign:PackIcon>
 
                     </Button>
-                    <!--Notifications Button--><!--
-                    <Button x:Name="BtnNoti" Background="{x:Null}" BorderBrush="{x:Null}" 
-                            Width="24" Height="24" Margin="10,0,0,0"
-                            Padding="0" Cursor="Hand" Click="BtnNoti_Click">
-                        <Grid>
-                            <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Notifications"
-                                                     Width="24" Height="24"
-                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Cursor="Hand"/>
-                            <Border x:Name="NotificationDot" BorderThickness="1" CornerRadius="16" Background="#FFFF1C1C"
-                                    Width="10" Height="10" Margin="14,1,0,14"/>
-                        </Grid>
-                    </Button>-->
+
+
 
                 </DockPanel>
             </Grid>
@@ -90,6 +105,7 @@
                     <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                     <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
+
                 <!--List Chat Item-->
                 <!--<local:ChatListControl x:Name="testabc"/>-->
 
@@ -99,7 +115,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                             <DockPanel Margin="0,8,0,0">
                                 <ScrollViewer Margin="0" DockPanel.Dock="Top" >
-                                    <local:ChatListControl x:Name="testabc"/>
+                                    <local:ChatListControl x:Name="RecentTab"/>
                                 </ScrollViewer>
                             </DockPanel>
                         </ScrollViewer>
@@ -126,13 +142,61 @@
                             </Border>
 
                             <ScrollViewer Margin="0" DockPanel.Dock="Top">
-                                <StackPanel x:Name="listFriend">
-                                </StackPanel>
+                                <StackPanel x:Name="listFriend"/>
                             </ScrollViewer>
                         </DockPanel>
                     </materialDesign:TransitionerSlide>
                 </materialDesign:Transitioner>
             </DockPanel>
+            <Border Grid.Row="1">
+                <!--Notification View-->
+                    <!--Note: Set Width = 200 to view-->
+                <Grid x:Name="NotiView" Background="White" Width="0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"></RowDefinition>
+                        <RowDefinition Height="144*"></RowDefinition>
+                        <RowDefinition Height="25*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn" Click="InfOpenBtn_Click"
+                            BorderThickness="0"
+                            Margin="0 0 0 0"
+                            MinWidth="200"
+                            Command="{Binding ClickImageCommand}">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Ellipse Height="50" Width="50" Grid.Column="1">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    
+                    <!--Notification Page-->
+                    <local:NotificationPage Grid.Row="1" Loaded="NotificationPage_Loaded" />
+                    <!--End-->
+                    <DockPanel Grid.Row="2">
+                        <!--LogOut Button-->
+                        <Button Name="LogOutBtn" Click="LogOutBtn_Click"
+                    Width="24" Height="24" Margin="150 0 0 0"
+                    Background="{x:Null}" BorderBrush="Transparent"
+                    Style="{StaticResource IconButton}">
+                            <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20">
+
+                            </materialDesign:PackIcon>
+                        </Button>
+                    </DockPanel>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
 </UserControl>

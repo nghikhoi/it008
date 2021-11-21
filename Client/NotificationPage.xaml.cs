@@ -16,13 +16,15 @@ using System.Windows.Shapes;
 namespace UI
 {
     /// <summary>
-    /// Interaction logic for ucNotificationPage.xaml
+    /// Interaction logic for NotificationPage.xaml
     /// </summary>
-    public partial class ucNotificationPage : UserControl
+    public partial class NotificationPage : UserControl
     {
-        public ucNotificationPage()
+        public NotificationPage()
         {
             InitializeComponent();
         }
+
+
     }
 }

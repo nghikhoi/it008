@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UI"
+        xmlns:comps="clr-namespace:UI.Components"
+        xmlns:model="clr-namespace:UI.Models"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
         Title="SettingWindow" Height="450" Width="500" Background="{x:Null}"
-        AllowDrop="True" AllowsTransparency="True" Closed="deactivate_setting">
-
+        AllowDrop="True" AllowsTransparency="True" Closed="deactivate_setting"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        IsVisibleChanged="SettingWindow_OnIsVisibleChanged">
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
         <Grid>
             <Grid >
@@ -62,9 +65,7 @@
                             <Canvas>
                                 <materialDesign:PackIcon Kind="Account" Canvas.Left="-115" Canvas.Top="-9" Height="17" Width="17"/>
                                 <materialDesign:PackIcon Kind="Pencil" Canvas.Left="96" Canvas.Top="-9" Height="17" Width="17" />
-                                <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="76">
-                                    Hiep Chau
-                                </TextBox>
+                                <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="180" Text="{Binding Path=FullName, UpdateSourceTrigger=PropertyChanged}" />
                             </Canvas>
                         </Button>
 
@@ -111,17 +112,18 @@
                         <DockPanel LastChildFill="False" Margin="0 0 0 20">
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource WindowSignUp.Birth}"></TextBlock>
-                                <DatePicker x:Name="BirthdayPicker" 
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="38" />
+                                <DatePicker x:Name="BirthdayPicker"
+                                            DisplayDate="{Binding Path=BirthDay, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedDate="{Binding Path=BirthDay, Mode=TwoWay}"
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="140" Height="38"/>
                             </StackPanel>
                             <StackPanel DockPanel.Dock="Right">
                                 <TextBlock Text="{DynamicResource WindowSignUp.Gender}"></TextBlock>
                                 <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              Width="79" Margin="0 0 10 0">
-
-                                    <ComboBoxItem Content="Nam"/>
-                                    <ComboBoxItem Content="Nữ"/>
-                                    <ComboBoxItem Content="Khác"/>
+                                          Width="79" Margin="0 0 10 0"
+                                          ItemsSource="{Binding Source={local:GenderEnum {x:Type model:Gender}}}"
+                                          DisplayMemberPath="Display" SelectedValuePath="Value"
+                                          SelectedValue="{Binding Path=Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 </ComboBox>
                             </StackPanel>
                         </DockPanel>
@@ -129,7 +131,9 @@
                         <StackPanel Margin="0 0 0 40">
                             <TextBlock>Email</TextBlock>
                             <TextBox x:Name="UsernameBox" 
-                        Text="nkh@gmail.com" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,10,0" />
+                                     Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     Margin="0,0,10,0"/>
                         </StackPanel>
                         <StackPanel Margin="0 0 0 0">
                             <Canvas>

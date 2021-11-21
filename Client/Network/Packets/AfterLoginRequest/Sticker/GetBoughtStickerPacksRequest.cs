@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest.Sticker
 {
-    public class GetBoughtStickerPacksRequest : IPacket
+    public class GetBoughtStickerPacksRequest : RequestPacket
     {
         public void Decode(IByteBuffer buffer)
         {

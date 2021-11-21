@@ -10,8 +10,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Background="{x:Null}"
         AllowsTransparency="True"
-        Height="200" Width="250">
-    
+        Height="200" Width="250"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource ForegroundLightBrush}">
         <Grid Margin="20">
             <Grid.ColumnDefinitions>
@@ -32,10 +32,16 @@
             </Grid>
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <StackPanel>
-                    <TextBox x:Name="FirtNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowChangeName.FirstName}"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" Text="Chau"/>
-                    <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowChangeName.LastName}"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10,0.333,0" Text="Hiep"/>
+                    <TextBox x:Name="FirtNameBox" 
+                             materialDesign:HintAssist.Hint="{DynamicResource WindowChangeName.FirstName}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0.333,0" 
+                             Text="{Binding Path=FirstName, Mode=TwoWay}"/>
+                    <TextBox x:Name="LastNameBox" 
+                             materialDesign:HintAssist.Hint="{DynamicResource WindowChangeName.LastName}"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,10,0.333,0" 
+                             Text="{Binding Path=LastName, Mode=TwoWay}"/>
 
                     <DockPanel LastChildFill="False" Margin="0 20 0 0">
                         <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -47,7 +53,6 @@
                             HorizontalAlignment="Right" 
                             FontSize="15"
                             Click="BackButton_Click">
-
                             Hủy
                         </Button>
                         <Button x:Name="ConfirmButton"
@@ -57,9 +62,9 @@
                             Margin="0 0 20 0"
                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                             DockPanel.Dock="Right"
-                            FontSize="15">
+                            FontSize="15"
+                            Click="acceptButtonClick">
                             Lưu
-
                         </Button>
                     </DockPanel>
 

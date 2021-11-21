@@ -62,13 +62,13 @@
     <Border CornerRadius="8" Background="{StaticResource BackgroundVeryLightBrush}" AllowDrop="True">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height ="30"></RowDefinition>
+                <RowDefinition Height ="20"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--title bar-->
 
-            <uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0"></uc:ucTitleBar>
+            <uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -76,12 +76,12 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <local:ucListRecentMessage x:Name="MessageList" Loaded="ucListRecentMessage_Loaded_1" Grid.Column="0" ></local:ucListRecentMessage>
-                
+                <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0" />
+
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel MinHeight="250" MinWidth="300">
-                        <local:ucInfoConversationSlideBar x:Name="ProfileDisplayer" Margin="4 0 0 0" Width="0" DockPanel.Dock="Right"></local:ucInfoConversationSlideBar>
+                        <local:ucInfoConversationSlideBar x:Name="ProfileDisplayer" Margin="4 0 0 0" Width="0" DockPanel.Dock="Right"/>
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>

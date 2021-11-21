@@ -33,6 +33,10 @@ namespace UI.MVC {
 		        Conversations.Add(id, cache);
 	        return Conversations[id];
         }
+
+        public ConversationCache getConversationCacheOrDefault(string id) {
+	        return computeIfAbsent(id, new ConversationCache());
+        }
         public ConversationCache getConversationCache(string id) {
 	        return Conversations[id];
         }
@@ -63,12 +67,7 @@ namespace UI.MVC {
         #endregion
 
         #region OnSettingPage: UserProfile
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime BirthDay { get; set; }
-        public int Gender { get; set; }
+        public UserProfile Profile { get; set; }
         #endregion
 
         #region OnSettingPage: UserProfile

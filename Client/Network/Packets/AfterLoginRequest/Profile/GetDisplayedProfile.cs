@@ -9,7 +9,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
     /// <summary>
     /// This packet gets the profile from ID to display information on UI
     /// </summary> 
-    public class GetDisplayedProfile : IPacket
+    public class GetDisplayedProfile : RequestPacket
     {
         public string TargetID { get; set; }
 

@@ -7,7 +7,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using UI.Lang;
 using UI.MVC;
+using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Utils;
 
@@ -19,12 +21,7 @@ namespace UI
     public partial class App : Application {
 
         public static readonly bool IS_LOCAL_DEBUG = true;
-
-        private readonly String defaultLanguage = "vi-VN";
-        private readonly List<String> availableLanguage = new List<string>() {
-            "en-US",
-            "vi-VN"
-        };
+        
         public static App Instance { get; private set; }
         public App()
         {
@@ -33,12 +30,8 @@ namespace UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             AppConfig.StartService();
-            ApplyLanguage(defaultLanguage);
+            Language.ApplyLanguage(Language.defaultLanguage);
             initAuthentication();
-            //MediaPlayerWindow main = new MediaPlayerWindow();
-            //MainWindow main = new MainWindow();
-            //TestWindows main = new TestWindows();
-            //DownloadWindow main = new DownloadWindow();
             ModuleContainer.GetModule<Authentication>().controller.showLogin();
         }
 
@@ -52,6 +45,13 @@ namespace UI
             module.InitializeMVC(ChatModel.Instance, view, controller);
         }
 
+        public void openHomeWindow(string hash) {
+            ChatModel.Instance.Hashed = hash;
+            initHomeWindow();
+            ChatWindow module = ModuleContainer.GetModule<ChatWindow>();
+            module.controller.showView();
+        }
+        
         public void initHomeWindow() {
             HomeWindow view = new HomeWindow();
             ChatWindowController controller = new ChatWindowController(view);
@@ -59,17 +59,30 @@ namespace UI
             module.InitializeMVC(ChatModel.Instance, view, controller);
         }
 
-        public void ApplyLanguage(string cultureName = null) {
-            if (cultureName != null)
-                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
+        public void exit() {
+            Environment.Exit(0);
+        }
+        
+        private bool _isMaximized;
+        public bool isMaximized
+        {
+            get
+            {
+                return _isMaximized;
+            }
+            set
+            {
+                _isMaximized = value;
+                Application.Current.MainWindow.WindowState = _isMaximized == false ? WindowState.Normal : WindowState.Maximized;
+            }
+        }
 
-            ResourceDictionary dict = new ResourceDictionary();
-            String langKey = Thread.CurrentThread.CurrentCulture.ToString();
-            if (!availableLanguage.Contains(langKey))
-                langKey = defaultLanguage;
-            dict.Source = new Uri("..\\Lang\\" + langKey + ".xaml", UriKind.Relative);
+        public void changeMaximized() {
+            isMaximized = !isMaximized;
+        }
 
-            Resources.MergedDictionaries.Add(dict);
+        public void minimized() {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
     }

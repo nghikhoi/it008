@@ -5,7 +5,7 @@ using DotNetty.Buffers;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
-    public class GetFriendIDs : IPacket
+    public class GetFriendIDs : RequestPacket
     {
         public string FriendOfID { get; set; }
 

@@ -7,8 +7,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
-             x:Name="TitleBar">
-    
+             x:Name="TitleBar"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <!--Q: Border Close_Btn-->
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -16,9 +18,9 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
 
-        <Border Background="Transparent">
+        <Border Background="Transparent" CornerRadius="8">
             <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                <Border CornerRadius="8" Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnClose"
                         Command="{Binding CloseWindowCommand}"

@@ -182,6 +182,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -194,6 +198,7 @@
     <Compile Include="ChangePassWord.xaml.cs">
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\EnumBindingSource.cs" />
     <Compile Include="Components\ucAvatarSender.xaml.cs">
       <DependentUpon>ucAvatarSender.xaml</DependentUpon>
     </Compile>
@@ -218,15 +223,28 @@
     <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\Dialogs.cs" />
     <Compile Include="CustomControls\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\Sticker.xaml.cs" />
+    <Compile Include="CustomControls\ThumbnailBubble.xaml.cs" />
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FriendRequestNoti.xaml.cs">
+      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationTagItem.xaml.cs">
+      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lang\Language.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Command\BaseCommand.cs" />
     <Compile Include="Components\BaseComponent.cs" />
@@ -240,6 +258,7 @@
     <Compile Include="Models\ConservationCache.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\LoginInfo.cs" />
+    <Compile Include="Models\MediaInfo.cs" />
     <Compile Include="Models\Message\AbstractConversation.cs" />
     <Compile Include="Models\Message\AbstractMessage.cs" />
     <Compile Include="Models\Message\AttachmentMessage.cs" />
@@ -252,6 +271,7 @@
     <Compile Include="Models\Message\TextMessage.cs" />
     <Compile Include="Models\Message\VideoMessage.cs" />
     <Compile Include="Models\RegisterInfo.cs" />
+    <Compile Include="Models\UserShortInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MVC\Authentication\Authentication.cs" />
     <Compile Include="MVC\Authentication\AuthenticationController.cs" />
@@ -355,12 +375,14 @@
     <Compile Include="Network\Packets\ReconnectResquest.cs" />
     <Compile Include="Network\Packets\Register\RegisterData.cs" />
     <Compile Include="Network\Packets\Register\RegisterResult.cs" />
+    <Compile Include="Network\Packets\RequestId.cs" />
     <Compile Include="Network\Packets\TestPacket.cs" />
     <Compile Include="Network\Pipiline\ChannelInitializer.cs" />
     <Compile Include="Network\Protocol\LoggedInProtocol.cs" />
     <Compile Include="Network\Protocol\ChatProtocol.cs" />
     <Compile Include="Network\Protocol\PreLoginProtocol.cs" />
     <Compile Include="Network\Protocol\ProtocolProvider.cs" />
+    <Compile Include="Network\RestAPI\DataAPI.cs" />
     <Compile Include="Network\RestAPI\FileAPI.cs" />
     <Compile Include="Network\RestAPI\ProfileAPI.cs" />
     <Compile Include="Network\RestAPI\ResourceAPI.cs" />
@@ -380,9 +402,7 @@
     <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
       <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ucNotificationPage.xaml.cs">
-      <DependentUpon>ucNotificationPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -397,6 +417,7 @@
     <Compile Include="Utils\MessageUtil.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />
     <Compile Include="Utils\Packets.cs" />
+    <Compile Include="Utils\PacketUtil.cs" />
     <Compile Include="Utils\ResourceUtil.cs" />
     <Compile Include="Utils\RestUtils.cs" />
     <Compile Include="Utils\SystemPlacesUtils.cs" />
@@ -415,6 +436,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ContactCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendRequestNoti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationTagItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -458,6 +491,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\Sticker.xaml" />
+    <Page Include="CustomControls\ThumbnailBubble.xaml" />
     <Page Include="Dictionaries\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -537,10 +572,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ucInfoConversationSlideBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucNotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,14 +1,23 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media;
 using UI.Models;
 using UI.Models.Message;
 using UI.MVC;
+using UI.Network.Packets.AfterLoginRequest;
+using UI.Network.Packets.AfterLoginRequest.Notification;
+using UI.Network.Packets.AfterLoginRequest.Profile;
+using UI.Network.Packets.AfterLoginRequest.Sticker;
+using UI.Network.RestAPI;
+using UI.Utils;
 
 namespace UI.MVC {
 	
 	public partial class ChatWindowController : IController {
 
 		private HomeWindow view;
+		private ChatContainer chatContainer;
+		private ConversationList conversationList;
 
 		public ChatWindowController(HomeWindow view) {
 			this.view = view;
@@ -21,6 +30,7 @@ namespace UI.MVC {
 			ChatContainerController controller = new ChatContainerController(view);
 			ChatContainer module = new ChatContainer();
 			module.InitializeMVC(ChatModel.Instance, view, controller);
+			chatContainer = module;
 		}
 
 		private void initConversationList() {
@@ -28,6 +38,42 @@ namespace UI.MVC {
 			ConversationListController controller = new ConversationListController(view);
 			ConversationList module = new ConversationList();
 			module.InitializeMVC(ChatModel.Instance, view, controller);
+			conversationList = module;
+		}
+
+		private void initData() {
+			if (App.IS_LOCAL_DEBUG) return;
+			initSelfId();
+			DataAPI.getData<GetSelfProfile, GetSelfProfileResult>();
+			initNotifications();
+			conversationList.controller.loadRecentConversation();
+			conversationList.controller.loadFriends();
+			DataAPI.getData<GetBoughtStickerPacksRequest, GetBoughtStickerPacksResponse>();
+		}
+
+		private void initNotifications() {
+			DataAPI.getData<GetNotifications, GetNotificationsResult>(result => {
+				foreach (string notification in result.Notifications) {
+					NotificationInfo analyzed = NotificationDecoder.Analyze(notification);
+					//TODO display to notification controller
+				}
+			});
+		}
+		
+		private void initSelfId() {
+			DataAPI.getData<GetSelfID, GetSelfIDResult>(result => {
+				ChatModel.Instance.SelfID = result.ID;
+			});
+		}
+
+		private bool isFirstView = true;
+		public void showView() {
+			if (isFirstView) {
+				initData();
+				isFirstView = false;
+			}
+			view.Show();
+			Application.Current.MainWindow = view;
 		}
 
 		#region Message

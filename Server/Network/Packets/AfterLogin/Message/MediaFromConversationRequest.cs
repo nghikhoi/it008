@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 using ChatServer.IO.Message;
 using ChatServer.MessageCore.Conversation;
 using ChatServer.MessageCore.Message;
+using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class MediaFromConversationRequest : IPacket
+    public class MediaFromConversationRequest : RequestPacket
     {
         public Guid ConversationID { get; set; }
         public int MediaPosition { get; set; }
@@ -33,10 +34,14 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
 
         public void Handle(ISession session)
         {
+            session.Send(createResponde(session));
+        }
+
+        public IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             AbstractConversation conversation = new ConversationStore().Load(ConversationID);
-            if (conversation == null) return;
+            if (conversation == null) return null;
 
             MediaFromConversationResponse packet = new MediaFromConversationResponse();
 
@@ -66,7 +71,8 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
                     packet.FileNames.Add(fileName);
                 }
             }
-            chatSession.Send(packet);
+
+            return packet;
         }
     }
 }
