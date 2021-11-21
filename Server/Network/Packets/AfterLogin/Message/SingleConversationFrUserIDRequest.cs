@@ -14,11 +14,11 @@ using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class SingleConversationFrUserIDRequest : RequestPacket
+    public class SingleConversationFrUserIDRequest : AbstractRequestPacket
     {
         public Guid TargetID { get; set; } = Guid.Empty;
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             try
             {
@@ -30,17 +30,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
             }
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
-            session.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
             if (TargetID.Equals(Guid.Empty)) return null;
 
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);

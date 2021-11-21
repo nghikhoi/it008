@@ -16,26 +16,16 @@ using ChatServer.MessageCore.Message;
 
 namespace ChatServer.Network.Packets.AfterLogin.Search
 {
-    public class UserSearchRequest : RequestPacket
+    public class UserSearchRequest : AbstractRequestPacket
     {
         public String Email { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             Email = ByteBufUtils.ReadUTF8(buffer).ToLower();
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
-            session.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
                      ChatSession chatSession = session as ChatSession;
 
             UserSearchResponse response = new UserSearchResponse();

@@ -10,11 +10,12 @@ using System.Text;
 using System.Threading.Tasks;
 using ChatServer.Entity;
 using ChatServer.Entity.EntityProperty;
+using ChatServer.MessageCore.Message;
 using ChatServer.Network.Packets.AfterLogin.DataPreparing;
 
 namespace ChatServer.Network.Packets.AfterLogin.Setting
 {
-    public class UpdateSelfProfileRequest : IPacket
+    public class UpdateSelfProfileRequest : AbstractRequestPacket
     {
         public String FirstName { get; set; }
         public String LastName { get; set; }
@@ -22,7 +23,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Setting
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             FirstName = ByteBufUtils.ReadUTF8(buffer);
             LastName = ByteBufUtils.ReadUTF8(buffer);
@@ -31,36 +32,25 @@ namespace ChatServer.Network.Packets.AfterLogin.Setting
             Gender = (Gender)buffer.ReadInt();
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
+        public override IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
-
             
-            //if info is validated
-            if (true)
-            {
-                ChatUser user = chatSession.Owner;
-                user.FirstName = FirstName;
-                user.LastName = LastName;
-                user.Town = Town;
-                user.DateOfBirth = DateOfBirth;
-                user.Gender = Gender;
-                user.Save();
+            ChatUser user = chatSession.Owner;
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Town = Town;
+            user.DateOfBirth = DateOfBirth;
+            user.Gender = Gender;
+            user.Save();
 
-                GetSelfProfileResponse packet = new GetSelfProfileResponse();
-                packet.FirstName = user.FirstName;
-                packet.LastName = user.LastName;
-                packet.Email = user.Email;
-                packet.Town = user.Town;
-                packet.DateOfBirth = user.DateOfBirth;
-                packet.Gender = user.Gender;
-                chatSession.Owner.Send(packet);
-            }
+            GetSelfProfileResponse packet = new GetSelfProfileResponse();
+            packet.FirstName = user.FirstName;
+            packet.LastName = user.LastName;
+            packet.Email = user.Email;
+            packet.Town = user.Town;
+            packet.DateOfBirth = user.DateOfBirth;
+            packet.Gender = user.Gender;
+            return packet;
         }
     }
 }

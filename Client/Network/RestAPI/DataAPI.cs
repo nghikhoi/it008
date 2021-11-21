@@ -33,7 +33,8 @@ namespace UI.Network.RestAPI {
 			{ typeof(GetNotifications), "notifications" },
 			{ typeof(SearchUser), "search" },
 			{ typeof(GetBoughtStickerPacksRequest), "stickerpacks" },
-			{ typeof(GetNearestSickerRequest), "recentsticker" }
+			{ typeof(GetNearestSickerRequest), "recentsticker" },
+			{ typeof(UpdateSelfProfile), "updateprofile" }
 		};
 
 		public static string getId(IPacket packet) {

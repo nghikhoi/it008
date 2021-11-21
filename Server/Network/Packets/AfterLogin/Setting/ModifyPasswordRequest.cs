@@ -11,24 +11,18 @@ using ChatServer.Utils;
 
 namespace ChatServer.Network.Packets.AfterLogin.Setting
 {
-    public class ModifyPasswordRequest : IPacket
+    public class ModifyPasswordRequest : AbstractRequestPacket
     {
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             OldPassword = ByteBufUtils.ReadUTF8(buffer);
             NewPassword = ByteBufUtils.ReadUTF8(buffer);
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
+        public override IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             SimpleChatServer.GetServer().Logger.Debug(chatSession.Owner.Password);
@@ -45,7 +39,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Setting
 
             ModifyPasswordResponse packet = new ModifyPasswordResponse();
             packet.Result = result;
-            chatSession.Send(packet);
+            return packet;
         }
     }
 }
