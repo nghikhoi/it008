@@ -103,7 +103,7 @@
             </StackPanel>
         </ScrollViewer>
         <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5">
-            <Button x:Name="closenotibutton" Width="{Binding Fade.Width}" Height="{Binding Fade.Height}" Background="{x:Null}" BorderBrush="{x:Null}" Click="closenotibutton_Click"></Button>
+            <Button x:Name="closenotibutton" Width="{Binding Fade.Width}" Height="{Binding Fade.Height}" Background="{x:Null}" BorderBrush="{x:Null}" Click="closenotibutton_Click"/>
         </Border>
     </Grid>
 </UserControl>
