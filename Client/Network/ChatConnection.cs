@@ -105,7 +105,7 @@ namespace UI.Network
         }
         public void OnBindSuccess(IPEndPoint address)
         {
-            Console.WriteLine("Connected to " + address);
+            Console.WriteLine("Connected to " + address + ". Session ID: " + Session.SessionID);
         }
 
         public void OnBindFailure(IPEndPoint address, Exception e)

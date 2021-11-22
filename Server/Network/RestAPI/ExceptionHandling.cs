@@ -21,7 +21,6 @@ namespace ChatServer.Network.RestAPI
             try
             {
                 context.Response.Headers["MachineName"] = Environment.MachineName;
-
                 await Next.Invoke(context);
             } catch (Exception e)
             {

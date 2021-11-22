@@ -13,26 +13,16 @@ using ChatServer.MessageCore.Conversation;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class GetConversationShortInfoRequest : RequestPacket
+    public class GetConversationShortInfoRequest : AbstractRequestPacket
     {
         public Guid ConversationID { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             ConversationID = Guid.Parse(ByteBufUtils.ReadUTF8(buffer));
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
-            session.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
             GetConversationShortInfoResponse packet = new GetConversationShortInfoResponse();
 
             packet.ConversationID = ConversationID.ToString();

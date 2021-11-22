@@ -231,6 +231,7 @@ namespace UI.MVC {
 				conversation.Color = ColorUtils.IntToColor(result.BubbleColor);
 				//TODO update chat container color
 				
+				view.cleanChatPage();
 				LoadMessages(conversationID, true);
 			});
 		}

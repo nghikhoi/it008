@@ -6,11 +6,13 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UI"
         xmlns:comps="clr-namespace:UI.Components"
+        xmlns:cus="clr-namespace:UI.CustomControls"
         xmlns:model="clr-namespace:UI.Models"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:mvc="clr-namespace:UI.MVC"
         Title="SettingWindow" Height="450" Width="500" Background="{x:Null}"
         AllowDrop="True" AllowsTransparency="True" Closed="deactivate_setting"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -44,11 +46,12 @@
 
                             <Button.Template>
                                 <ControlTemplate TargetType="{x:Type Button}">
-                                    <Ellipse Height="150" Width="150" Grid.Column="1">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
+                                    <cus:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"></cus:AvatarDisplayer>
+                                    <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
+                                    <!--     <Ellipse.Fill> -->
+                                    <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
+                                    <!--     </Ellipse.Fill> -->
+                                    <!-- </Ellipse> -->
                                 </ControlTemplate>
                             </Button.Template>
 
@@ -163,8 +166,10 @@
                             DockPanel.Dock="Right"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             ToolTip="MaterialDesignFlatButton" 
-                            Foreground="White" 
+                            Foreground="White"
+                            IsEnabled="{Binding Path=CanUpdateProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Content="{DynamicResource SettingWindow.UpdateBttn}"
+                            Click="UpdateButton_OnClick"
                             Width="100" Margin="0,19"/>
                         <Button
                             DockPanel.Dock="Left"

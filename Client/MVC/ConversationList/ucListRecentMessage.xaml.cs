@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 using UI.MVC;
 
 namespace UI
@@ -22,7 +23,11 @@ namespace UI
     public partial class ucListRecentMessage : UserControl, IView
     {
         private Border[] tabMarks = new Border[2];
-
+        public string UserID {
+            get => ChatModel.Instance.SelfID;
+            set {}
+        }
+        
         public ucListRecentMessage()
         {
             InitializeComponent();
@@ -32,26 +37,7 @@ namespace UI
             selectTab(1);
         }
 
-        //private void accInfo_Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SettingWindow settingWindow = new SettingWindow();
-        //    myPopup.IsOpen = false;
-        //    var parentwin = Window.GetWindow(this) as HomeWindow;
-        //    parentwin.make_fade();
-        //    settingWindow.Show();
-        //}
-
-        //private void logOutBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    WindowLogIn windowLogIn = new WindowLogIn();
-        //    myPopup.IsOpen = false;
-        //    Window window = Window.GetWindow(this);
-        //    if (window != null)
-        //        window.Close();
-        //    windowLogIn.ShowDialog();
-        //}
-
-
+        #region RecentMsg & FriendList
         //ROW 1
         private void selectTab(int index)
         {
@@ -107,16 +93,18 @@ namespace UI
             //else
             //    controller.SearchAction(searchInput.Text);
         }
-        
+        #endregion
+
         private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
         {
-            //FullFade.Visibility = Visibility.Visible;
-
+            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            chatWindow.view.ChatPage.Fade.Visibility = Visibility.Visible;
         }
 
         private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
         {
-            //FullFade.Visibility = Visibility.Hidden;
+            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
         }
 
         private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
@@ -125,10 +113,11 @@ namespace UI
         }
         private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
         {
-            SettingWindow settingWindow = new SettingWindow();
             var parentwin = Window.GetWindow(this) as HomeWindow;
             parentwin.make_fade();
-            settingWindow.Show();
+
+            SettingPage settingPage = ModuleContainer.GetModule<SettingPage>();
+            settingPage.view.Show();
         }
 
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
@@ -139,9 +128,6 @@ namespace UI
                 window.Close();
             windowLogIn.Show();
         }
-
-
-
 
         //private void newMessage_Click(object sender, RoutedEventArgs e)
         //{

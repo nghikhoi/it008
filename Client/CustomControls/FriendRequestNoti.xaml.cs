@@ -20,13 +20,27 @@ namespace UI
     /// </summary>
     public partial class FriendRequestNoti : UserControl
     {
+        public string ID { get; set; }
         public FriendRequestNoti()
         {
             InitializeComponent();
         }
+
+        public event EventHandler ClickMask;
+        public event EventHandler AcceptClick;
+        public event EventHandler DenyClick;
+        
         private void ClickMask_Click(object sender, RoutedEventArgs e)
         {
-            // Display profile
+            ClickMask?.Invoke(sender, e);
+        }
+
+        private void BtnAccept_OnClick(object sender, RoutedEventArgs e) {
+            AcceptClick?.Invoke(sender, e);
+        }
+
+        private void RemoveBtn_OnClick(object sender, RoutedEventArgs e) {
+            DenyClick?.Invoke(sender, e);
         }
     }
 }

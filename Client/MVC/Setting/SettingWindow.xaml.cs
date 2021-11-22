@@ -10,6 +10,9 @@ using UI.Annotations;
 using UI.Lang;
 using UI.Models;
 using UI.MVC;
+using UI.Network.Packets;
+using UI.Network.Packets.AfterLoginRequest.Profile;
+using UI.Network.RestAPI;
 
 namespace UI
 {
@@ -18,9 +21,25 @@ namespace UI
     /// </summary>
     public partial class SettingWindow : Window, IView, INotifyPropertyChanged {
 
+        private bool _CanUpdateProfile;
+
+        public bool CanUpdateProfile {
+            get => _CanUpdateProfile;
+            set {
+                _CanUpdateProfile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void updateConfirmOpacity() {
+            int compare = OriginalProfile.CompareTo(Profile);
+            CanUpdateProfile = compare != 0;
+        }
+
         public string FullName {
             get => FirstName + " " + LastName;
             set {
+                updateConfirmOpacity();
                 OnPropertyChanged();
             } 
         }
@@ -29,6 +48,7 @@ namespace UI
             get => Profile.Gender;
             set {
                 Profile.Gender = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -37,6 +57,7 @@ namespace UI
             get => Profile.Email;
             set {
                 Profile.Email = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -45,6 +66,7 @@ namespace UI
             get => Profile.FirstName;
             set {
                 Profile.FirstName = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -53,6 +75,7 @@ namespace UI
             get => Profile.LastName;
             set {
                 Profile.LastName = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
@@ -61,22 +84,29 @@ namespace UI
             get => Profile.BirthDay;
             set {
                 Profile.BirthDay = value;
+                updateConfirmOpacity();
                 OnPropertyChanged();
             }
         }
 
         private UserProfile OriginalProfile;
         private UserProfile Profile;
+        public string UserID {
+            get => ChatModel.Instance.SelfID;
+            set {}
+        }
 
         public SettingWindow()
         {
-            updateProfile(new UserProfile() {
-                Email = "test@gmail.com",
-                FirstName = "Nguyen",
-                LastName = "A",
-                Gender = Gender.Female,
-                BirthDay = new DateTime()
-            });
+            if (App.IS_LOCAL_DEBUG)
+                updateProfile(new UserProfile() {
+                    Email = "test@gmail.com",
+                    FirstName = "Nguyen",
+                    LastName = "A",
+                    Gender = Gender.Female,
+                    BirthDay = new DateTime()
+                });
+            
             InitializeComponent();
         }
 
@@ -88,7 +118,7 @@ namespace UI
         private void cloneProfile() {
             //Set từng cái để đảm bảo data cập nhật lên view thông qua PropertyChangedTrigger
             if (Profile == null)
-                Profile = OriginalProfile;
+                Profile = new UserProfile();
             Email = OriginalProfile.Email;
             FirstName = OriginalProfile.FirstName;
             LastName = OriginalProfile.LastName;
@@ -169,7 +199,24 @@ namespace UI
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
+        private void UpdateButton_OnClick(object sender, RoutedEventArgs e) {
+            if (!CanUpdateProfile) {
+                return;
+            }
+
+            UpdateSelfProfile request = new UpdateSelfProfile();
+            request.Gender = Profile.Gender;
+            request.Town = Profile.Town;
+            request.FirstName = Profile.FirstName;
+            request.LastName = Profile.LastName;
+            request.DateOfBirth = Profile.BirthDay;
+            DataAPI.getData<GetSelfProfileResult>(request, result => {
+                ChatModel model = ChatModel.Instance;
+                model.Profile = result.Profile;
+                updateProfile(result.Profile);
+            });
+        }
     }
     
     public class GenderEnum : MarkupExtension {

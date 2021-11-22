@@ -14,30 +14,20 @@ using Org.BouncyCastle.Ocsp;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class MediaFromConversationRequest : RequestPacket
+    public class MediaFromConversationRequest : AbstractRequestPacket
     {
         public Guid ConversationID { get; set; }
         public int MediaPosition { get; set; }
         public int Quantity { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             ConversationID = Guid.Parse(ByteBufUtils.ReadUTF8(buffer));
             MediaPosition = buffer.ReadInt();
             Quantity = buffer.ReadInt();
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            return byteBuf;
-        }
-
-        public void Handle(ISession session)
-        {
-            session.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
 
             AbstractConversation conversation = new ConversationStore().Load(ConversationID);

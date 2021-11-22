@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
              mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="60" d:DesignWidth="200" MinHeight="60" MinWidth="200">
-
     <Grid>
         <Grid Background="Transparent">
 
@@ -37,9 +37,7 @@
                     Padding="0 0 8 0" Grid.ColumnSpan="2" Margin="0,0,10,0" Grid.RowSpan="2" >
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                     <DockPanel>
-                        <TextBlock x:Name="NameBlock" Text="Hiep Chau" Width="55" HorizontalAlignment="Left"/>
-                        <TextBlock x:Name="ActionBlock" Text=" đã....bạn" />
-
+                        <TextBlock x:Name="ContentBlock" Text="{Binding Content}" Width="55" HorizontalAlignment="Left"/>
                     </DockPanel>
                     <TextBlock Text="Khoảng 3 phút trước"
                        TextWrapping="WrapWithOverflow"
@@ -52,9 +50,8 @@
             <Border Grid.Column="2" x:Name="NotificationDot"
                     BorderThickness="1" CornerRadius="16" Background="{StaticResource WordGreenBrush}" BorderBrush="#FFE2E2E2"
                     Width="10" Height="10" Margin="-20 0 0 0"/>
-
         </Grid>
-        <Button Name="UnCheckNotiButton" Click="UnCheckNotiButton_Click"
+        <Button Name="ClickMask" Click="ClickMask_Click"
                 Height="60" Width="200" 
                 Style="{StaticResource MaterialDesignFlatLightBgButton}"
                 Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Transparent"/>

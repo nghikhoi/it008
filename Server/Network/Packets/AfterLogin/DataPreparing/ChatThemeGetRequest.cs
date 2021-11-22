@@ -9,25 +9,14 @@ using System.Threading.Tasks;
 
 namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
 {
-    public class ChatThemeGetRequest : RequestPacket
+    public class ChatThemeGetRequest : AbstractRequestPacket
     {
-        public void Decode(IByteBuffer buffer)
-        {
+        
+        public override void Decode(IByteBuffer buffer) {
 
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            return byteBuf;
-        }
-
-        public void Handle(ISession session)
-        {
-            ChatSession chatSession = session as ChatSession;
-            chatSession.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
             ChatSession chatSession = session as ChatSession;
             ChatThemeSetRequest response = new ChatThemeSetRequest();
 
@@ -36,5 +25,6 @@ namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
             session.Send(response);
             return response;
         }
+        
     }
 }

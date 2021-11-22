@@ -48,24 +48,6 @@ namespace UI
 
         }
 
-        private void ucListRecentMessage_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void LockHomeWindow(object sender, RoutedEventArgs e)
-        {
-            SettingWindow settingWindow = new SettingWindow();
-            if(settingWindow.IsActive == true)
-            {
-                FullFade.Visibility = Visibility.Visible;
-                if (!settingWindow.IsActive)
-                {
-                    FullFade.Visibility = Visibility.Hidden;
-                }
-            }
-        }
-
         public void make_fade()
         {
             this.Fade.Visibility = Visibility.Visible;
@@ -78,10 +60,15 @@ namespace UI
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            foreach (Window win in Application.Current.Windows)
-                win.Close();
+            foreach (Window win in Application.Current.Windows) {
+                if (win is IView)
+                    win.Hide();
+                else win.Close();
+            }
         }
 
+        #region Gallery
+        //Transition Gallery
         public void OpenProfileDisplayer()
         {
             //ProfileDisplayer.Display(id, name, email, dob, address);
@@ -94,7 +81,7 @@ namespace UI
             var sb = this.FindResource("left-side-panel-compress") as Storyboard;
             sb.Begin();
         }
-
+        #endregion
     }
     //public class WindowChrome : Freezable
     //{

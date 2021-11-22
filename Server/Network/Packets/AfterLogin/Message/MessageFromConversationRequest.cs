@@ -13,14 +13,14 @@ using ChatServer.MessageCore.Message;
 
 namespace ChatServer.Network.Packets.AfterLogin.Message
 {
-    public class MessageFromConversationRequest : RequestPacket
+    public class MessageFromConversationRequest : AbstractRequestPacket
     {
         public Guid ConversationID { get; set; }
         public int MessagePosition { get; set; }
         public int Quantity { get; set; }
         public bool LoadConversation { get; set; }
 
-        public void Decode(IByteBuffer buffer)
+        public override void Decode(IByteBuffer buffer)
         {
             ConversationID = Guid.Parse(ByteBufUtils.ReadUTF8(buffer));
             MessagePosition = buffer.ReadInt();
@@ -28,17 +28,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Message
             LoadConversation = buffer.ReadBoolean();
         }
 
-        public IByteBuffer Encode(IByteBuffer byteBuf)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Handle(ISession session)
-        {
-            session.Send(createResponde(session));
-        }
-
-        public IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ISession session) {
             if (MessagePosition == -1) return null;
 
             ChatSession chatSession = session as ChatSession;

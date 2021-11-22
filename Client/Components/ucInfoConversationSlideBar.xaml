@@ -9,7 +9,7 @@
              mc:Ignorable="d">
 
     <Grid>
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1">
+        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                 <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
@@ -57,6 +57,7 @@
 
                 </Grid>
             </materialDesign:TransitionerSlide>
+            
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                 <Grid>
                     <Button VerticalAlignment="Top" HorizontalAlignment="Left"
