@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,30 +10,25 @@ using System.Windows.Media.Imaging;
 using UI.Models;
 using UI.Utils;
 
-namespace UI.CustomControls
+namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for ThumbnailBubble.xaml
     /// </summary>
-    public partial class ThumbnailBubble : UserControl
-    {
-        public ThumbnailBubble()
-        {
+    public partial class ThumbnailBubble : UserControl {
+        public ThumbnailBubble() {
             InitializeComponent();
         }
 
-        public ThumbnailBubble(MediaInfo mediaInfo) : this()
-        {
+        public ThumbnailBubble(MediaInfo mediaInfo) : this() {
             if (mediaInfo == null)
                 throw new NullReferenceException("MediaInfo cannot be null.");
-            this.IsVideoThumbnail = false; //TODO
+            this.IsVideoThumbnail = false;//PacPlayer.IsSupport(mediaInfo.FileName);
             this.FileName = mediaInfo.FileName;
             this.FileID = mediaInfo.FileID;
             this.StreamURL = mediaInfo.StreamURL;
             this.ThumbnailUrl = mediaInfo.ThumbURL;
         }
-
-        public ImageSource Image { get => MediaThumb.ImageSource; }
 
         public String FileName { get; set; }
         public String FileID { get; set; }
@@ -44,22 +40,28 @@ namespace UI.CustomControls
         #region Custom Property
         public String ThumbnailUrl
         {
-            get { return (String) GetValue(ThumbnailURLProperty); }
+            get { return (String)GetValue(ThumbnailURLProperty); }
             set { SetValue(ThumbnailURLProperty, value); }
         }
 
-        public static readonly DependencyProperty ThumbnailURLProperty = DependencyProperty.Register("ThumbnailUrl", typeof(string), typeof(ThumbnailBubble), new PropertyMetadata(string.Empty));
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ThumbnailURLProperty =
+            DependencyProperty.Register("ThumbnailUrl", typeof(String), typeof(ThumbnailBubble), new PropertyMetadata(String.Empty));
+
         #endregion
 
-        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e) {
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
             if (e.Property == ThumbnailURLProperty && !String.IsNullOrEmpty(ThumbnailUrl)) {
                 Console.WriteLine("Inside ThumbnailURLProperty");
                 Console.WriteLine("Current Threads: {0}", ThreadUtil.GetWorkingThreads());
-                LoadingAhihi.Visibility = Visibility.Visible;
+                LoadingMask.Visibility = Visibility.Visible;
                 BubbleBkg.Height = BubbleBkg.Width = 96;
                 String url = ThumbnailUrl;
-                Task task = new Task(() => {
-                    try {
+                Task task = new Task(() =>
+                {
+                    try
+                    {
                         WebClient wc = new WebClient();
                         //BitmapFrame bitmap = BitmapFrame.Create(new MemoryStream(wc.DownloadData(url)));
 
@@ -70,7 +72,8 @@ namespace UI.CustomControls
 
                         wc.Dispose();
                         bitmap.Freeze();
-                        Application.Current.Dispatcher.Invoke(() => {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
                             BubbleBkg.Width = bitmap.PixelWidth;
                             BubbleBkg.Height = bitmap.PixelHeight;
 
@@ -91,7 +94,7 @@ namespace UI.CustomControls
                             }
 
                             MediaThumb.ImageSource = bitmap;
-                            LoadingAhihi.Visibility = Visibility.Hidden;
+                            LoadingMask.Visibility = Visibility.Hidden;
                         });
                     }
                     catch (WebException we)
@@ -113,9 +116,10 @@ namespace UI.CustomControls
 
         private void BtnClick(object sender, RoutedEventArgs e)
         {
-            if (Click != null)
-                Click(this, e);
+            Click?.Invoke(sender, e);
         }
-        
+
+        private void ClickMask_Click(object sender, RoutedEventArgs e) {
+        }
     }
 }

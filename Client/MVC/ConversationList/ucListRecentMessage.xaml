@@ -39,54 +39,6 @@
                             <Image Source="/Images/avt.jpg" Stretch="Uniform"></Image>
 
                         </StackPanel>
-                        <!--NotiView Transition-->
-                        <ToggleButton.Triggers>
-
-                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
-
-                                <BeginStoryboard>
-
-                                    <Storyboard x:Name="HideNotiView">
-
-                                        <DoubleAnimation    
-                                                
-                                                Storyboard.TargetName="NotificaionPage"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="200" To="0"
-                                                Duration="0:0:0.2">
-
-                                        </DoubleAnimation>
-
-                                    </Storyboard>
-
-                                </BeginStoryboard>
-
-                            </EventTrigger>
-
-                            <EventTrigger RoutedEvent="ToggleButton.Checked">
-
-                                <BeginStoryboard>
-
-                                    <Storyboard x:Name="ShowNotiView">
-
-                                        <DoubleAnimation
-                                                
-                                                Storyboard.TargetName="NotificaionPage"
-                                                Storyboard.TargetProperty="Width"
-                                                BeginTime="0:0:0"
-                                                From="0" To="200"
-                                                Duration="0:0:0.3">
-
-                                        </DoubleAnimation>
-
-                                    </Storyboard>
-
-                                </BeginStoryboard>
-
-                            </EventTrigger>
-                            
-                        </ToggleButton.Triggers>
                         
                     </ToggleButton>
                     
@@ -160,8 +112,6 @@
                 </materialDesign:Transitioner>
             </DockPanel>
             </Grid>
-            <!--Notification Page-->
-            <local:NotificationPage x:Name="NotificaionPage" Width="0" HorizontalAlignment="Left"></local:NotificationPage>
         </Grid>
     </Border>
     

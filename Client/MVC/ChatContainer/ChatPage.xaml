@@ -82,7 +82,7 @@
                       VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
                       Style="{StaticResource MaterialDesignScrollViewer}"
-                      Padding="0,0,0,10" Margin="0 40 0 45" ScrollChanged="detect_at_top">
+                      Padding="0,0,0,10" Margin="10 40 10 45" ScrollChanged="detect_at_top">
             <StackPanel>
                 <Button x:Name="LoadMessagesBtn" Width="128" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD000000" Click="LoadMessagesBtn_Click">
                     <TextBlock Text="See more...">
@@ -97,9 +97,7 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Button>
-                <StackPanel x:Name="message_container">
-                    <StackPanel x:Name="spc_chat_container"/>
-                </StackPanel>
+                <StackPanel x:Name="message_container"/>
             </StackPanel>
         </ScrollViewer>
         <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5">

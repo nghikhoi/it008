@@ -36,9 +36,9 @@ namespace UI.MVC {
 
 		public void close() {
 			if (registerView.IsVisible)
-				registerView.Close();
+				registerView.Hide();
 			if (loginView.IsVisible)
-				loginView.Close();
+				loginView.Hide();
 		}
 
 		public void doLogin(LoginInfo info) {

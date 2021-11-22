@@ -29,10 +29,10 @@ namespace UI
         //HEADER
         private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
         {
-            SettingWindow settingWindow = new SettingWindow();
             var parentwin = Window.GetWindow(this) as HomeWindow;
             parentwin.make_fade();
-            settingWindow.Show();
+            SettingPage settingPage = ModuleContainer.GetModule<SettingPage>();
+            settingPage.view.Show();
         }
 
         //BODY
@@ -40,11 +40,8 @@ namespace UI
         //END
         private void LogOutBtn_Click(object sender, RoutedEventArgs e)
         {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            Window window = Window.GetWindow(this);
-            if (window != null)
-                window.Close();
-            windowLogIn.Show();
+            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            chatWindow.controller.LogOut();
         }
 
     }

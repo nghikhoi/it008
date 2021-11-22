@@ -6,6 +6,7 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.MVC;
+using UI.Network.RestAPI;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -35,15 +36,19 @@ namespace UI.Network.Packets.AfterLoginRequest
             ChatModel.Instance.FriendIDs.Clear();
             //TODO Application.Current.Dispatcher.Invoke(() => UserList.Instance.ClearListView());
 
-            foreach (var id in ids)
-            {
-                Console.WriteLine(id);
-                ChatModel.Instance.FriendIDs.Add(id);
+            ChatModel model = ChatModel.Instance;
+            model.FriendIDs.Clear();
+            ConversationList conversationList = ModuleContainer.GetModule<ConversationList>();
+            conversationList.view.clear_friend_list();
 
-                // Get short info from ID
-                GetShortInfo packet = new GetShortInfo();
-                packet.ID = id;
-                _ = ChatConnection.Instance.Send(packet);
+            foreach (string id in ids)
+            {
+	            model.FriendIDs.Add(id);
+
+	            // Get short info from ID
+	            GetShortInfo packet = new GetShortInfo();
+	            packet.ID = id;
+	            DataAPI.getData<GetShortInfoResult>(packet);
             }
         }
     }

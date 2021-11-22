@@ -7,18 +7,13 @@
              xmlns:components="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              d:DesignWidth="300" >
-
-    
-        <Grid MaxWidth="300" Margin=" 0 5 15 0">
-            <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}">
-                
-                <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
-                           Grid.IsSharedSizeScope="True"
-                           Text="Hi i am huyen ne" FontSize="18" 
-                           Foreground="White" Padding="14">
-                </TextBlock>
-            </Border>
-        </Grid>
-    
-    
+    <Grid>
+        <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}">
+            <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
+                       Grid.IsSharedSizeScope="True"
+                       Text="Hi i am huyen ne" FontSize="18" 
+                       Foreground="White" Padding="14">
+            </TextBlock>
+        </Border>
+    </Grid>
 </UserControl>

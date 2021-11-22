@@ -56,7 +56,7 @@ namespace UI.MVC {
 		}
 
 		private void initNotification() {
-			NotificationPage view = this.conversationList.view.NotificaionPage;
+			NotificationPage view = this.view.NotificaionPage;
 			NotificationController controller = new NotificationController(view);
 			Notification module = new Notification();
 			module.InitializeMVC(ChatModel.Instance, view, controller);
@@ -83,6 +83,13 @@ namespace UI.MVC {
 		#endregion
 
 		private bool isFirstView = true;
+
+		public void LogOut() {
+			view.Hide();
+			Authentication authentication = ModuleContainer.GetModule<Authentication>();
+			authentication.controller.showLogin();
+		}
+		
 		public void showView() {
 			if (isFirstView) {
 				initData();

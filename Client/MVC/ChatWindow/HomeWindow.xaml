@@ -32,9 +32,7 @@
                     <BackEase EasingMode="EaseInOut"/>
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-
         </Storyboard>
-
         <Storyboard x:Key="left-side-panel-compress">
             <DoubleAnimation
                 Storyboard.TargetName="ProfileDisplayer"
@@ -44,6 +42,24 @@
                 <DoubleAnimation.EasingFunction>
                     <BackEase EasingMode="EaseIn"/>
                 </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="NotificationPageOpen">
+            <DoubleAnimation    
+                Storyboard.TargetName="NotificaionPage"
+                Storyboard.TargetProperty="Width"
+                BeginTime="0:0:0"
+                From="200" To="0"
+                Duration="0:0:0.2">
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="NotificationPageClose">
+            <DoubleAnimation
+                Storyboard.TargetName="NotificaionPage"
+                Storyboard.TargetProperty="Width"
+                BeginTime="0:0:0"
+                From="0" To="200"
+                Duration="0:0:0.3">
             </DoubleAnimation>
         </Storyboard>
     </Window.Resources>
@@ -61,22 +77,26 @@
     <!--Main-->
     <Border CornerRadius="8" Background="{StaticResource BackgroundLightBrush}" AllowDrop="True">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height ="20"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="20"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <!--title bar-->
+                <!--title bar-->
 
-            <uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>
+                <uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="208"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="208"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-                <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0" />
+                    <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0" 
+                                               AvatarUnchecked="MessageList_OnAvatarUnchecked"
+                                               AvatarChecked="MessageList_OnAvatarChecked">
+                    </local:ucListRecentMessage>
 
                 <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
@@ -85,18 +105,17 @@
                         <local:ChatPage x:Name="ChatPage" />
                     </DockPanel>
                 </Grid>
-                <!--Dimmed Overplay-->
-                <Border x:Name="FullFade"
-                        Grid.ColumnSpan="2"
-                        Panel.ZIndex="10"
-                        Opacity="0.5"
-                        Visibility="Hidden">
-                    <Border CornerRadius="8" Background="{StaticResource ForegroundDarkBrush}"></Border>
-                </Border>
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Height="Auto" x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Click="Fade_OnClick" Opacity="0"></Button>
+                </Grid>
             </Grid>
-
-            <Border x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Opacity="0.5"></Border>
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="20"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <local:NotificationPage Grid.Row="1" x:Name="NotificaionPage" Width="0" HorizontalAlignment="Left"></local:NotificationPage>
+            </Grid>
         </Grid>
     </Border>
 </Window>

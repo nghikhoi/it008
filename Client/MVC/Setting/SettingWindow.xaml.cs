@@ -90,7 +90,7 @@ namespace UI
         }
 
         private UserProfile OriginalProfile;
-        private UserProfile Profile;
+        private UserProfile Profile = new UserProfile();
         public string UserID {
             get => ChatModel.Instance.SelfID;
             set {}
@@ -119,6 +119,8 @@ namespace UI
             //Set từng cái để đảm bảo data cập nhật lên view thông qua PropertyChangedTrigger
             if (Profile == null)
                 Profile = new UserProfile();
+            if (OriginalProfile == null)
+                return;
             Email = OriginalProfile.Email;
             FirstName = OriginalProfile.FirstName;
             LastName = OriginalProfile.LastName;

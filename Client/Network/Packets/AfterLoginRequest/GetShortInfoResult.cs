@@ -11,16 +11,7 @@ namespace UI.Network.Packets.AfterLoginRequest
 {
     public class GetShortInfoResult : IPacket {
 
-        public UserShortInfo info;
-        public string ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string LastMessage { get; set; }
-        public string ConversationID { get; set; }
-        public int PreviewCode { get; set; }
-        public bool IsOnline { get; set; }
-        public DateTime LastLogout { get; set; }
-        public int Relationship { get; set; }
+        public UserShortInfo info = new UserShortInfo();
 
         private readonly string[] TranslatedPreviewCode = new string[6]
         {
@@ -43,8 +34,6 @@ namespace UI.Network.Packets.AfterLoginRequest
             info.IsOnline = buffer.ReadBoolean();
             info.LastLogout = new DateTime(buffer.ReadLong());
             info.Relationship = buffer.ReadInt();
-
-            Console.WriteLine(FirstName + " " + LastName);
         }
 
         public IByteBuffer Encode(IByteBuffer byteBuf)
@@ -54,32 +43,21 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Handle(ISession session)
         {
-            var id = ID;
-            Console.WriteLine(Relationship); 
+            var id = info.ID;
+            ConversationList conversationList = ModuleContainer.GetModule<ConversationList>();
+            conversationList.controller.addShortInfo(info);
 
-            //TODO
-            /*Application.Current.Dispatcher.Invoke(() => UserList.Instance.AddUserToListView(
-                new UserMessageViewModel()
-                {
-                    Id = id,
-                    Name = FirstName + " " + LastName,
-                    IsOnline = IsOnline,
-                    IncomingMsg = PreviewCode == -1 ? String.Empty : (PreviewCode == 4 ? LastMessage : TranslatedPreviewCode[PreviewCode])
-                }, Relationship == 2));*/
-
-            if (Relationship == 2)
-            {
+            if (info.Relationship == 2) {
                ChatModel model = ChatModel.Instance;
-               ConversationCache cache = model.computeIfAbsent(ConversationID, new ConversationCache());
+               ConversationCache cache = model.computeIfAbsent(info.ConversationID, new ConversationCache());
 
                cache.Members.Clear();
-               cache.Members.Add(ID);
+               cache.Members.Add(info.ID);
 
-               if (!model.PrivateConversations.ContainsKey(ID))
-                   model.PrivateConversations.Add(ID, ConversationID);
+               if (!model.PrivateConversations.ContainsKey(info.ID))
+                   model.PrivateConversations.Add(info.ID, info.ConversationID);
 
-               model.updateOnlineStatus(id, IsOnline);
-                  
+               model.updateOnlineStatus(id, info.IsOnline);
             }
         }
     }

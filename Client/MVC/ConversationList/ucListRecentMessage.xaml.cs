@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Media.Animation;
+using System.Windows.Controls.Primitives;
 using UI.MVC;
 
 namespace UI
@@ -20,14 +9,43 @@ namespace UI
     /// <summary>
     /// Interaction logic for ucListRecentMessage.xaml
     /// </summary>
-    public partial class ucListRecentMessage : UserControl, IView
-    {
+    public partial class ucListRecentMessage : UserControl, IView {
         private Border[] tabMarks = new Border[2];
         public string UserID {
             get => ChatModel.Instance.SelfID;
             set {}
         }
         
+        public ToggleButton AvatarButton {
+            get => this.TogglePopupButton;
+            set => this.TogglePopupButton = value;
+        }
+
+        public static readonly RoutedEvent AvatarCheckedEvent = EventManager.RegisterRoutedEvent("AvatarCheckedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ucListRecentMessage));
+        public static readonly RoutedEvent AvatarUncheckedEvent = EventManager.RegisterRoutedEvent("AvatarUncheckedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ucListRecentMessage));
+        
+        public event RoutedEventHandler AvatarChecked {
+            add {
+                this.TogglePopupButton.AddHandler(ToggleButton.CheckedEvent, value);
+                this.AddHandler(AvatarCheckedEvent, value);
+            }
+            remove {
+                this.TogglePopupButton.RemoveHandler(ToggleButton.CheckedEvent, value);
+                this.RemoveHandler(AvatarCheckedEvent, value);
+            }
+        }
+
+        public event RoutedEventHandler AvatarUnchecked {
+            add {
+                this.TogglePopupButton.AddHandler(ToggleButton.UncheckedEvent, value);
+                this.AddHandler(AvatarUncheckedEvent, value);
+            }
+            remove {
+                this.TogglePopupButton.RemoveHandler(ToggleButton.UncheckedEvent, value);
+                this.RemoveHandler(AvatarUncheckedEvent, value);
+            }
+        }
+
         public ucListRecentMessage()
         {
             InitializeComponent();
@@ -85,26 +103,23 @@ namespace UI
         }
         private void SearchAction(object sender, TextChangedEventArgs e)
         {
-            //ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
-            //if (searchInput.Text == "")
-            //{
-                
-            //}
-            //else
-            //    controller.SearchAction(searchInput.Text);
+            ConversationListController controller = ModuleContainer.GetModule<ConversationList>().controller;
+            if (searchInput.Text == "") {
+                controller.loadFriends();
+            } else controller.SearchAction(searchInput.Text);
         }
         #endregion
 
         private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
         {
-            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
-            chatWindow.view.ChatPage.Fade.Visibility = Visibility.Visible;
+            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            // chatWindow.view.ChatPage.Fade.Visibility = Visibility.Visible;
         }
 
         private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
         {
-            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
-            chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
+            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            // chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
         }
 
         private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
@@ -120,13 +135,9 @@ namespace UI
             settingPage.view.Show();
         }
 
-        private void LogOutBtn_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLogIn windowLogIn = new WindowLogIn();
-            Window window = Window.GetWindow(this);
-            if (window != null)
-                window.Close();
-            windowLogIn.Show();
+        private void LogOutBtn_Click(object sender, RoutedEventArgs e) {
+            ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
+            chatWindow.controller.LogOut();
         }
 
         //private void newMessage_Click(object sender, RoutedEventArgs e)

@@ -82,6 +82,95 @@ namespace UI
             sb.Begin();
         }
         #endregion
+
+        #region NotificationPage Toggle
+
+        private bool IsNotificationVisible {
+            get => NotificaionPage.ActualWidth > 0;
+        }
+
+        public void TurnOnNotificationPage() {
+            if (IsNotificationVisible) return;
+            DoubleAnimation open = new DoubleAnimation();
+            open.From = 0;
+            open.To = MessageList.ActualWidth;
+            open.Duration = new Duration(TimeSpan.Parse("0:0:0.2"));
+            NotificaionPage.BeginAnimation(NotificationPage.WidthProperty, open);
+            TurnOnFade();
+        }
+
+        public void TurnOffNotificationPage() {
+            if (!IsNotificationVisible) return;
+            DoubleAnimation close = new DoubleAnimation();
+            close.From = NotificaionPage.ActualWidth;
+            close.To = 0;
+            close.Duration = new Duration(TimeSpan.Parse("0:0:0.2"));
+            NotificaionPage.BeginAnimation(NotificationPage.WidthProperty, close);
+            TurnOffFade();
+        }
+
+        public void ToggleNotificationPage() {
+            if (!IsNotificationVisible) {
+                TurnOnNotificationPage();
+            }
+            else {
+                TurnOffNotificationPage();
+            }
+        }
+
+        #endregion
+
+        #region Fade Toggle
+
+        private bool IsFadeVisible {
+            get => Fade.Opacity > 0;
+        }
+
+        public void TurnOnFade() {
+            if (IsNotificationVisible) return;
+            Fade.Visibility = Visibility.Visible;
+            DoubleAnimation open = new DoubleAnimation();
+            open.From = 0;
+            open.To = 0.5;
+            open.Duration = new Duration(TimeSpan.Parse("0:0:0.2"));
+            Fade.BeginAnimation(Button.OpacityProperty, open);
+        }
+
+        public void TurnOffFade() {
+            if (!IsNotificationVisible) return;
+            DoubleAnimation close = new DoubleAnimation();
+            close.From = Fade.Opacity;
+            close.To = 0;
+            close.Duration = new Duration(TimeSpan.Parse("0:0:0.2"));
+            close.Completed += (s, e) => {
+                Fade.Visibility = Visibility.Hidden;
+            };
+            Fade.BeginAnimation(Button.OpacityProperty, close);
+        }
+
+        public void ToggleFade() {
+            if (!IsFadeVisible) {
+                TurnOnFade();
+            }
+            else {
+                TurnOffFade();
+            }
+        }
+
+        #endregion
+        
+        private void MessageList_OnAvatarChecked(object sender, RoutedEventArgs e) {
+            ToggleNotificationPage();
+        }
+
+        private void MessageList_OnAvatarUnchecked(object sender, RoutedEventArgs e) {
+            ToggleNotificationPage();
+        }
+
+        private void Fade_OnClick(object sender, RoutedEventArgs e) {
+            TurnOffNotificationPage();
+        }
+        
     }
     //public class WindowChrome : Freezable
     //{
