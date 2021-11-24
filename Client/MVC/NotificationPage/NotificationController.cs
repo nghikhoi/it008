@@ -34,9 +34,11 @@ namespace UI.MVC {
 				int position = viewFriendRequestContainer.Children.Count;
 				fri.AcceptClick += (s, a) => {
 					respondeFriendRequest(position, info.SenderID, true);
+					viewFriendRequestContainer.Children.Remove(fri);
 				};
 				fri.DenyClick += (s, a) => {
 					respondeFriendRequest(position, info.SenderID, false);
+					viewFriendRequestContainer.Children.Remove(fri);
 				};
 				viewFriendRequestContainer.Children.Add(fri);
 			} else if (string.CompareOrdinal(prefix, NotificationPrefixes.AddFriend) == 0) {

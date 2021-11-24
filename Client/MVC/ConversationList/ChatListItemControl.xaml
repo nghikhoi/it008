@@ -4,47 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
+             xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="300"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              >
     <Grid Background="{StaticResource MaterialDesignLightBackground}">
-        <Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--New Message Indicator Bar-->
+                <ColumnDefinition Width="Auto"/>
+                <!--Picture Profile-->
+                <ColumnDefinition Width="Auto"/>
+                <!--Main Content-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        
             <!--New Message Indicator Bar-->
-            <ColumnDefinition Width="Auto"/>
+            <Border Background="{StaticResource PrimaryColor}" Width="5"  ></Border>
+        
             <!--Picture Profile-->
-            <ColumnDefinition Width="Auto"/>
-            <!--Main Content-->
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <!--New Message Indicator Bar-->
-        <Border Background="{StaticResource PrimaryColor}" Width="5"  ></Border>
-        
-        <!--Picture Profile-->
-        <Border Grid.Column="1" Padding="8">
-            <Border Background="Aqua"
-                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                <TextBlock Text="HC"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="{DynamicResource MaterialDesignBodyLight}"
-                               FontSize="20"
-                           x:Name="ConverstionIcon"/>
+            <Border Grid.Column="1" Padding="8">
+                <Border Background="Aqua"
+                        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                        CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                    <cus:AvatarDisplayer></cus:AvatarDisplayer>
+                </Border>
             </Border>
-        </Border>
 
-        <Border Grid.Column="2" Padding="0 0 8 0" >
-            <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                <TextBlock x:Name="NameBlock" Text="Hiep Chau"/>
-                <TextBlock Text="Content"
-                       TextWrapping="WrapWithOverflow"
-                       FontStyle="Italic"
-                       Foreground="{StaticResource LightBrush}"
-                       TextTrimming="CharacterEllipsis"
-                           x:Name="LatestMsg"/>
-
-            </StackPanel>
-        </Border>
+            <Border Grid.Column="2" Padding="0 0 8 0" >
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <TextBlock x:Name="NameBlock" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="{Binding Subtitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                               TextWrapping="WrapWithOverflow"
+                               FontStyle="Italic"
+                               Foreground="{StaticResource LightBrush}"
+                               TextTrimming="CharacterEllipsis"
+                               x:Name="LatestMsg"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Button x:Name="ClickMaskButton" Background="Transparent" BorderBrush="{x:Null}" Height="Auto" Click="ClickMaskButton_OnClick"/>
     </Grid>
 </UserControl>

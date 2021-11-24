@@ -199,6 +199,7 @@
       <DependentUpon>ChangePassWord.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\EnumBindingSource.cs" />
+    <Compile Include="Components\ThumbnailBubble.xaml.cs" />
     <Compile Include="Components\ucAvatarSender.xaml.cs">
       <DependentUpon>ucAvatarSender.xaml</DependentUpon>
     </Compile>
@@ -235,7 +236,6 @@
       <DependentUpon>NotificationTagItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\Sticker.xaml.cs" />
-    <Compile Include="CustomControls\ThumbnailBubble.xaml.cs" />
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -441,6 +441,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\ThumbnailBubble.xaml" />
     <Page Include="CustomControls\AvatarDisplayer.xaml" />
     <Page Include="CustomControls\FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
@@ -499,7 +500,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\Sticker.xaml" />
-    <Page Include="CustomControls\ThumbnailBubble.xaml" />
     <Page Include="Dictionaries\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

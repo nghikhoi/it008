@@ -37,7 +37,7 @@ namespace UI.MVC {
 		#region sendMessage
 
 		public void sendTextMessage(string text) {
-			TextMessage message = null;
+			TextMessage message = new TextMessage(text);
 			//TODO
 			sendMessage(message);
 		}
@@ -65,8 +65,7 @@ namespace UI.MVC {
 		public void sendVideoMessage(List<string> videoPaths) {
 			Action removeAction = view.addFakeLoading();
 			FileAPI.UploadMedia(ConversationID, videoPaths, result => {
-				foreach (var video in result)
-				{
+				foreach (var video in result) {
 					string fileName = video.Key;
 					string fileID = video.Value;
 
@@ -109,6 +108,7 @@ namespace UI.MVC {
 		}
 		
 		public void sendMessage(AbstractMessage message) {
+			message.SenderID = ChatModel.Instance.SelfID;
 			#region DisplayToView
 			AddMessage(message);
 			#endregion
@@ -133,61 +133,57 @@ namespace UI.MVC {
 			//TODO
 			// Cập nhật các media vô trình media hiện tại
 		}
+		
+		public MediaInfo GetMediaInfo(string fileID, string fileName, string conversationID) {
+			String thumbUrl = StreamAPI.GetMediaThumbnailURL(fileID, conversationID);
+			String streamUrl = StreamAPI.GetMediaURL(fileID, conversationID);
 
-		public void AddMessage(AbstractMessage message) {
+			MediaInfo media = new MediaInfo(thumbUrl, streamUrl, fileName, fileID);
+			return media;
+		}
+
+		public void AddMessage(AbstractMessage message, bool toTop = false) {
 			//TODO
 			// Kiểm tra Id người gửi xem có giống với id của user hay không để xác định msg nằm trái hay phải
 			// Hiển thị lên giao diện
 			ChatModel model = ChatModel.Instance;
-			if(message is TextMessage)
-            {
+			if(message is TextMessage) {
 				TextMessage txtmsg = (TextMessage)message;
                 if (txtmsg.SenderID == model.SelfID)
                 {
-					view.update_message_container(txtmsg);
+					view.AddOwnedMessage(txtmsg, toTop);
                 }
                 else
                 {
-					view.update_meaage_container_rcv(txtmsg);
+					view.AddReceiveMessage(txtmsg, toTop);
                 }
             }
-			else if(message is VideoMessage)
+			else if (message is VideoMessage)
             {
-				string defaultpath = "C:\\";
 				//todo: lay URI cho em no nha
-				VideoMessage vimess = (VideoMessage)message;
-
-                if (vimess.ID == model.SelfID)
+				VideoMessage vimess = (VideoMessage) message;
+				string fileID = vimess.FileID;
+				string fileName = vimess.FileName;
+				MediaInfo media = GetMediaInfo(fileID, fileName, ChatModel.Instance.currentSelectedConversation);
+				if (vimess.SenderID == model.SelfID)
 				{
-
-					Uri filepath = new Uri(defaultpath);
-					view.update_file_message(filepath);
+					view.AddOwnedMessage(media, toTop);
 				}
                 else
                 {
-					Uri filepath = new Uri(defaultpath);
-					view.update_file_message_rcv(filepath);
+					view.AddReceiveMessage(media, toTop);
 				}
             }
 			else if(message is ImageMessage)
             {
-				string defaultpath = "C:\\";
-				//todo: lay URI cho em no nha
-				ImageMessage immesg = (ImageMessage)message;
-				Uri filepath = new Uri(defaultpath);
-
-				BitmapImage myimage = new BitmapImage();
-				myimage.BeginInit();
-				myimage.UriSource = filepath;
-				myimage.EndInit();
-				if (immesg.ID == model.SelfID)
-				{
-					view.update_image_message(myimage);
-					
-				}
-				else
-				{
-					view.update_image_message_rcv(myimage);
+				ImageMessage immesg = (ImageMessage) message;
+				string fileID = immesg.FileID;
+				string fileName = immesg.FileName;
+				MediaInfo media = GetMediaInfo(fileID, fileName, ChatModel.Instance.currentSelectedConversation);
+				if (immesg.SenderID == model.SelfID) {
+					view.AddOwnedMessage(media, toTop);
+				} else {
+					view.AddReceiveMessage(media, toTop);
 				}
 			} else if (message is StickerMessage) {
 				
@@ -214,7 +210,7 @@ namespace UI.MVC {
 			ConversationFromID request = new ConversationFromID();
 			request.ConversationID = conversationID;
 			DataAPI.getData<ConversationFromIDResult>(request, result => {
-				ConversationCache conversation = model.Conversations[ConversationID];
+				ConversationCache conversation = model.getConversationCacheOrDefault(result.ConversationID);
 				conversation.LastMessID = result.LastMessID;
 
 				if (conversation.FirstTimeLoaded)
@@ -252,7 +248,7 @@ namespace UI.MVC {
 			DataAPI.getData<GetMessageFromConversationResult>(msgPacket, result => {
 				for (int i = 0; i < result.SenderID.Count; ++i) {
 					result.Content[i].SenderID = result.SenderID[i];
-					AddMessage(result.Content[i]);
+					AddMessage(result.Content[i], true);
 				}
 			});
 		}

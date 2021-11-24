@@ -39,56 +39,42 @@ namespace UI.MVC {
 			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
 			dtDateTime = dtDateTime.AddSeconds(info.LastActive).ToLocalTime();
 			item.LastActive = dtDateTime;
-			string s = "";
-			s += info.FirstName[0];
-			s += " " + info.LastName[0];
-			item.ConverstionIcon.Text = s;
+			item.Click += (s, e) => {
+				ChatContainer chatContainer = ModuleContainer.GetModule<ChatContainer>();
+				chatContainer.controller.LoadChatPage(info.ConversationID, info.ID);
+			};
 			view.update_friend_list(item);
 		}
 
 		public void loadFriends() {
-			DataAPI.getData<GetFriendIDs, GetFriendIDsResult>(listResult => {
-				ChatModel model = ChatModel.Instance;
-				model.FriendIDs.Clear();
-				view.clear_friend_list();
-
-				foreach (string id in listResult.ids)
-				{
-					model.FriendIDs.Add(id);
-
-					// Get short info from ID
-					GetShortInfo packet = new GetShortInfo();
-					packet.ID = id;
-					DataAPI.getData<GetShortInfoResult>(packet, infoResult => {
-						addShortInfo(infoResult.info);
-					});
-				}
-			});
+			DataAPI.getData<GetFriendIDs, GetFriendIDsResult>();
 		}
 
 		#region Message
 
 		public void IncomingMessage(string ConversationId, AbstractMessage message, bool seeing) {
 			//TODO:
-			// 1. Hiển thị tin nhắn mới nhất lên danh sách 
-			foreach(ChatListItemControl item in view.listFriend.Children)
-            {
-				if(item != null)
-                {
+			// 1. Hiển thị tin nhắn mới nhất lên danh sách
+			for (var i = 0; i < view.listFriend.Children.Count; i++) {
+				ChatListItemControl item = (ChatListItemControl) view.listFriend.Children[i];
+				if (item != null && string.CompareOrdinal(ConversationId, item.ConversationID) == 0)
+				{
 					if(message is TextMessage)
-                    {
+					{
 						item.LatestMsg.Text = (message as TextMessage).Message;
-                    }
+					}
 					else if(message is VideoMessage)
-                    {
+					{
 						item.LatestMsg.Text = "Sent a video.";
-                    }
-                    else if(message is ImageMessage)
-                    {
+					}
+					else if(message is ImageMessage)
+					{
 						item.LatestMsg.Text = "Sent a picture.";
-                    }
-                }
-            }
+					}
+					view.listFriend.Children.RemoveAt(i);
+					view.listFriend.Children.Insert(0, item);
+				}
+			}
 		}
 		
 		public void AddConversation(AbstractConversation conversation) {
@@ -107,16 +93,10 @@ namespace UI.MVC {
 			System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
 			dtDateTime = dtDateTime.AddSeconds(lastActive).ToLocalTime();
 			item.LastActive = dtDateTime;
-			string s = "";
-			s += ConversationName[0];
-			for(int i = 0; i < ConversationName.Length; i++)
-			{
-				if(ConversationName[i]==' ' && i<ConversationName.Length &&ConversationName[i + 1] != '\0')
-				{
-					s += ConversationName[i + 1];
-				}
-			}
-			item.ConverstionIcon.Text = s;
+			item.Click += (s, e) => {
+				ChatContainer chatContainer = ModuleContainer.GetModule<ChatContainer>();
+				chatContainer.controller.LoadChatPage(ConversationId);
+			};
 			view.update_recent_conversation(item);
 		}
 

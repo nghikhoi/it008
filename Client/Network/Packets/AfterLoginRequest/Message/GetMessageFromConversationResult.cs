@@ -93,7 +93,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
                 {
                     //Content[i].SenderID = SenderID[i];
 
-                    module.controller.AddMessage(Content[i]);
+                    module.controller.AddMessage(Content[i], true);
                 }
             });
             /*Application.Current.Dispatcher.Invoke(() =>

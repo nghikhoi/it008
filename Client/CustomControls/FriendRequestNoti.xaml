@@ -29,8 +29,7 @@
                         />
             </DockPanel>
 
-            <Button x:Name="ClickMaskButton" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click">
-            </Button>
+            <Button x:Name="ClickMaskButton" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click"/>
         </Grid>
     </Border>
 

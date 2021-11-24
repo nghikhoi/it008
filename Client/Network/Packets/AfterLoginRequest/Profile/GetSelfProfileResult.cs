@@ -11,7 +11,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
     public class GetSelfProfileResult : IPacket
     {
-        public UserProfile Profile;
+        public UserProfile Profile = new UserProfile();
 
         public void Decode(IByteBuffer buffer)
         {
