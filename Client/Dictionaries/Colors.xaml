@@ -3,7 +3,8 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     
     <SolidColorBrush x:Key="PrimaryColor" Color="{DynamicResource Primary500}"></SolidColorBrush>
-    <SolidColorBrush x:Key="LightBrush" Color="#FFD1D1D1"></SolidColorBrush>
+    <SolidColorBrush x:Key="LightBrush" Color="#FFD1D1D1"></SolidColorBrush> 
+    
     <Color x:Key="BackgroundLight">#efefef</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
 

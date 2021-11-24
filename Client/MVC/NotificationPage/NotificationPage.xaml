@@ -39,7 +39,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Ellipse Height="50" Width="50" Grid.Column="1">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="Images/avt.jpg"></ImageBrush>
+                            <ImageBrush ImageSource="/../Images/avt.jpg"></ImageBrush>
                         </Ellipse.Fill>
                     </Ellipse>
                 </ControlTemplate>
