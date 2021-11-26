@@ -60,4 +60,12 @@
     <sys:String x:Key="Authentication.Banned">Your account has been banned.
         Please contact the administrator for more information.</sys:String>
     <sys:String x:Key="Authentication.Unhandled">Unknown exception.</sys:String>
+
+    <!--Change name-->
+    <sys:String x:Key="ChangeName.label">Name changing</sys:String>
+    
+    <!--Notification-->
+    <sys:String x:Key="Notfication.label">Notification</sys:String>
+    <sys:String x:Key="Notfication.latest">Latest</sys:String>
+    <sys:String x:Key="Notfication.requests">Friend requests</sys:String>
 </ResourceDictionary>

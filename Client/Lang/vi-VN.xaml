@@ -60,4 +60,12 @@
     <sys:String x:Key="Authentication.Banned">Tài khoản cảu bạn đã bị cấm.
         Vui long liên hệ quản trị viên để biết thêm thông tin.</sys:String>
     <sys:String x:Key="Authentication.Unhandled">Lỗi không xác định.</sys:String>
+    
+    <!--Change name-->
+    <sys:String x:Key="ChangeName.label">Đổi tên</sys:String>
+
+    <!--Notification-->
+    <sys:String x:Key="Notfication.label">Thông báo</sys:String>
+    <sys:String x:Key="Notfication.latest">Mới nhất</sys:String>
+    <sys:String x:Key="Notfication.requests">Thông báo</sys:String>
 </ResourceDictionary>
