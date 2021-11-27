@@ -12,6 +12,8 @@ using UI.MVC;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Utils;
+using MaterialDesignThemes.Wpf;
+using UI.Properties;
 
 namespace UI
 {
@@ -32,6 +34,7 @@ namespace UI
         {
             AppConfig.StartService();
             Language.ApplyLanguage(Language.defaultLanguage);
+            //Instance.SetTheme(Settings.Default.Theme);
             initAuthentication();
             ModuleContainer.GetModule<Authentication>().controller.showLogin();
         }
@@ -86,5 +89,43 @@ namespace UI
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
+        public void SetTheme(BaseTheme theme)
+        {
+
+            //string lightSource = "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml";
+            //string darkSource = "pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml";
+
+            //foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
+            //{
+            //    if (string.Equals(resourceDictionary.Source?.ToString(), lightSource, StringComparison.OrdinalIgnoreCase)
+            //        || string.Equals(resourceDictionary.Source?.ToString(), darkSource, StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        Resources.MergedDictionaries.Remove(resourceDictionary);
+            //        break;
+            //    }
+            //}
+            try
+            {
+                if (theme == BaseTheme.Dark)
+                {
+                    //Resources.MergedDictionaries.Insert(0, new ResourceDictionary { Source = new Uri(darkSource) });
+                    ChangeTheme(new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{"Dark"}.xaml", UriKind.RelativeOrAbsolute));
+                }
+                else
+                {
+                    //This handles both Light and Inherit
+                    //Resources.MergedDictionaries.Insert(0, new ResourceDictionary { Source = new Uri(lightSource) });
+                    ChangeTheme(new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{"Light"}.xaml", UriKind.RelativeOrAbsolute));
+                }
+            }
+            catch {
+                MessageBox.Show("dum", "chan");
+            }
+        }
+
+        void ChangeTheme(Uri uri)
+        {
+            Resources.MergedDictionaries[0] = new ResourceDictionary { Source = uri };
+        }
     }
 }

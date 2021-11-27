@@ -8,7 +8,7 @@
         xmlns:uc="clr-namespace:UI.Components"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="{x:Null}"
+        Background="{x:Null}" Foreground="{DynamicResource ForegroundResource}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         MinHeight="300" MinWidth="500"
         Height="480" Width="815"  WindowStartupLocation="CenterScreen" Closed="Window_Closed">
@@ -75,7 +75,7 @@
     </Window.Triggers>
 
     <!--Main-->
-    <Border CornerRadius="8" Background="{StaticResource BackgroundLightBrush}" AllowDrop="True">
+    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>

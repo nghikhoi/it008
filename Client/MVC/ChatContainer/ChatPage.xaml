@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
              xmlns:uc="clr-namespace:UI.Components"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight="500" d:DesignWidth="600" Loaded="Load_chat_page">
 
     <Grid>
 
-        <Border Background="{StaticResource BackgroundVeryLightBrush}" Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
-            <DockPanel Margin="10 0 0 0">
+        <Border Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
+            <DockPanel>
                 <!--Header-->
-                <DockPanel DockPanel.Dock="Top" Background="WhiteSmoke" x:Name="panel">
+                <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel">
                     <StackPanel DockPanel.Dock="Right">
                         <ToggleButton x:Name="ChatInfoMenuBtn" Checked="ChatInfoMenuBtn_Checked" Unchecked="ChatInfoMenuBtn_Unchecked">
                             <ToggleButton.Style>
@@ -45,7 +45,7 @@
                         </Button>--> 
                         <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges" PopupVerticalOffset="40" StaysOpen="True" Margin="0,0,0,0" VerticalContentAlignment="Center" IsTabStop="False" Width="32" Height="32">
                             <materialDesign:PopupBox.ToggleContent>
-                                <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" Foreground="#FF2C2C2C" Margin="2" />
+                                <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}" Margin="2" />
                             </materialDesign:PopupBox.ToggleContent>
                             <StackPanel Width="380" Height="320">
                                 <uc:ucTabStickerContainer></uc:ucTabStickerContainer>
@@ -66,7 +66,7 @@
                     <Button x:Name="btnSend" Margin="2, 4" Width="50" Height="34" Style="{StaticResource IconButton}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="btnSend_Click" >
                         <materialDesign:PackIcon x:Name="iconSend" Kind="Send"  Width="24" Height="Auto"/>
                     </Button>
-                    <Border CornerRadius="16" Background= "LightGray" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
+                    <Border CornerRadius="16" Background= "{StaticResource BackgroundOpacityBrush}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
                                          materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
                                          KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 

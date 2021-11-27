@@ -6,11 +6,12 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:UI"
         xmlns:uc ="clr-namespace:UI.Components"
+        xmlns:theme="clr-namespace:UI.Themes"
         mc:Ignorable="d"
-        WindowStyle="None"
-        MouseDown="Window_MouseDown"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}" Height="500" Width="350" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" Background="{x:Null}"
+        MouseDown="Window_MouseDown" Foreground="{DynamicResource ForegroundResource}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        Title="WindowLogIn" AllowsTransparency="True" Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
     <Window.Resources/>
 
@@ -24,7 +25,7 @@
         </EventTrigger>
     </Window.Triggers>
 
-    <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
+    <Border x:Name="BorderLoginWindow" Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="159*"/>
@@ -43,7 +44,7 @@
 
                 <!--Optional Button-->
                 <!--<Button x:Name="settingButton" Width="50" HorizontalAlignment="Left" Click="settingButton_Click"></Button>-->
-                <ToggleButton x:Name="TogglePopupButton" Margin="-250 0 0 0" Width="24" Height="24"
+                <ToggleButton x:Name="TogglePopupButton" Margin="0 0 0 0" Width="24" Height="24"
                                               Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                                               ToolTip="MaterialDesignFloatingActionMiniLightButton">
                     <StackPanel>
@@ -82,24 +83,41 @@
                         </Popup>
                     </StackPanel>
                 </ToggleButton>
+
+                <ToggleButton x:Name="tgChangeTheme" Width="24" Height="24" HorizontalAlignment="Left" Margin="4 0 0 0"
+                              Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                              ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="BorderColor" Width="24" Height="24"/>
+                        <Popup x:Name="ThemePopUp" Placement="Bottom" HorizontalOffset="60"
+                                               IsOpen="{Binding IsChecked, ElementName=tgChangeTheme}" StaysOpen="False"
+                                               PopupAnimation="Fade" PlacementTarget="{Binding ElementName=tgChangeTheme}">
+                            <Border  BorderBrush="{StaticResource PrimaryHueDarkBrush}">
+                                <theme:ThemePanel Width="200" Height="160" Loaded="ThemePanel_Loaded"></theme:ThemePanel>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                </ToggleButton>
             </DockPanel>
 
             <!--body-->
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="34*"/>
-                    <ColumnDefinition Width="309*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="154*"/>
                 </Grid.ColumnDefinitions>
-                <DockPanel Grid.ColumnSpan="2">
+                <DockPanel Grid.ColumnSpan="3">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 40 0 6">
-                        <TextBlock FontSize="20" Foreground="teal">App Name</TextBlock>
+                        <TextBlock x:Name="txtAppName" FontSize="20" Foreground="{StaticResource PrimaryColor}">App Name</TextBlock>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="4">
                         <Border BorderThickness="8" Width="110" BorderBrush="#FFC5C5C5"/>
                     </StackPanel>
                 </DockPanel>
 
-                <StackPanel Margin="6.5,100,40,4" Grid.Column="1">
+                <StackPanel Margin="6,100,40,4" Grid.Column="2">
+                    <ToggleButton x:Name="test" Checked="test_Checked" Style="{StaticResource MaterialDesignSwitchToggleButton}" Unchecked="test_Unchecked" ></ToggleButton>
                     <StackPanel Margin="0 0 0 10">
                         <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowLogin.UsernameBox}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" />
@@ -130,7 +148,7 @@
 
                 </StackPanel>
 
-                <Image Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom" Grid.Column="1" Margin="67.5,0,101,0"></Image>
+                <Image Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom" Grid.Column="2" Margin="68,0,100,0"></Image>
             </Grid>
         </Grid>
     </Border>

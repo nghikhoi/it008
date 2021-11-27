@@ -89,7 +89,7 @@ namespace UI.Network.RestAPI {
 					exceptionHandler.Invoke(ex);
 				else {
 					Console.WriteLine("Error on get data with request id " + id);
-					throw ex;
+			throw ex;
 				}
 			}
 		}

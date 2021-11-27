@@ -16,7 +16,7 @@
     </UserControl.Resources>
 
     <!--TODO: List ActionNoti, Friend Request Noti-->
-    <Grid  Background="{StaticResource BackgroundLightBrush}">
+    <Grid  Background="{DynamicResource BackgroundResource}">
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -68,7 +68,6 @@
                     HorizontalAlignment="Left"
                     Header="Mới nhất"
                     FontWeight="ExtraLight"
-                    Background="{StaticResource BackgroundLightBrush}"
                     materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
                     <StackPanel
                         x:Name="NewestContainer"
@@ -81,7 +80,6 @@
                     HorizontalAlignment="Left"
                     Header="Lời mời kết bạn"
                     FontWeight="ExtraLight"
-                    Background="{StaticResource BackgroundLightBrush}"
                     materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
                     <StackPanel
                         x:Name="FriendRequestContainer"

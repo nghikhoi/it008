@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI.Models;
 using UI.MVC;
+using UI.Properties;
 
 namespace UI
 {
@@ -31,6 +32,9 @@ namespace UI
         {
             InitializeComponent();
             VietnameseButton.IsChecked = true;
+            //Properties.Settings.Default.ColorMode = "Light";
+            //test.IsChecked = Properties.Settings.Default.Theme == BaseTheme.Dark;
+            //SetTheme();
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e) {
@@ -112,10 +116,76 @@ namespace UI
             EnglishButton.IsChecked = true;
         }
 
-        private void test_Click(object sender, RoutedEventArgs e)
+        private void ThemePanel_Loaded(object sender, RoutedEventArgs e)
         {
-            //App.Instance.
+
         }
+
+        private readonly PaletteHelper _paletteHelper = new PaletteHelper();
+        private void SetTheme(bool isDark)
+        {
+            ITheme theme = _paletteHelper.GetTheme();
+            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
+            theme.SetBaseTheme(baseTheme);
+            _paletteHelper.SetTheme(theme);
+            if (isDark)
+            {
+                var converter = new System.Windows.Media.BrushConverter();
+                //BorderLoginWindow.Background = (Brush)converter.ConvertFromString("#121212");
+                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(Color.FromRgb(18,18,18));
+                App.Current.Resources["ForegroundResource"] = new SolidColorBrush(Colors.White);
+                //this.Foreground = Brushes.White;
+            }
+            else
+            {
+                //BorderLoginWindow.Background = new SolidColorBrush(Theme.Light.MaterialDesignBackground);
+                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(Colors.White);
+                App.Current.Resources["ForegroundResource"] = new SolidColorBrush(Colors.Black);
+                //this.Foreground = Brushes.Black;
+            }
+        }
+
+        private void test_Checked(object sender, RoutedEventArgs e) => SetTheme(true);
+
+        private void test_Unchecked(object sender, RoutedEventArgs e) => SetTheme(false);
+
+        //private void SetTheme(bool isDark)
+        //{
+        //    if (isDark)
+        //    {
+        //        //test.Content = "Dark Theme";
+        //        Settings.Default.Theme = MaterialDesignThemes.Wpf.BaseTheme.Dark;
+        //        var converter = new System.Windows.Media.BrushConverter();
+        //        BorderLoginWindow.Background = (Brush)converter.ConvertFromString("#121212");
+        //        this.Foreground = Brushes.White;
+        //    }
+        //    else
+        //    {
+        //        //test.Content = "Light Theme";
+        //        Settings.Default.Theme = MaterialDesignThemes.Wpf.BaseTheme.Light;
+        //        BorderLoginWindow.Background = new SolidColorBrush(Theme.Light.MaterialDesignBackground); // sua mau lai (theme light)
+        //        this.Foreground = Brushes.Black;
+        //    }
+
+        //    Settings.Default.Save();
+        //    ((App)Application.Current).SetTheme(Settings.Default.Theme);
+        //}
+
+
+
+
+        //private void test_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    Properties.Settings.Default.ColorMode = "Black";
+        //    Properties.Settings.Default.Save();
+        //}
+
+        //private void test_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    Properties.Settings.Default.ColorMode = "Light";
+        //    Properties.Settings.Default.Save();
+        //}
+
     }
 
 

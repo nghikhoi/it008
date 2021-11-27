@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
-             mc:Ignorable="d" Background="{StaticResource BackgroundVeryLightBrush}">
+             mc:Ignorable="d" Background="{DynamicResource BackgroundResource}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>

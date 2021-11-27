@@ -170,7 +170,11 @@ namespace UI
         private void Fade_OnClick(object sender, RoutedEventArgs e) {
             TurnOffNotificationPage();
         }
-        
+
+        private void NotificaionPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     //public class WindowChrome : Freezable
     //{

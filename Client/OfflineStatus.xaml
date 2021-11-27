@@ -8,7 +8,7 @@
              d:DesignHeight="10" d:DesignWidth="600">
     <Grid>
         <Grid>
-            <StackPanel Orientation="Horizontal" Background="WhiteSmoke">
+            <StackPanel Orientation="Horizontal" >
                 <Ellipse Height="10" Width="10" Fill="Red"></Ellipse>
                 <TextBlock Text="   "></TextBlock>
                 <TextBlock Text="{StaticResource Status.offline }" FontSize="10" VerticalAlignment="Center"></TextBlock>

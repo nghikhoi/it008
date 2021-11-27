@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:UI"
+             xmlns:local="clr-namespace:UI" Background="{DynamicResource BackgroundResource}"
              xmlns:uc="clr-namespace:UI.Components"
              mc:Ignorable="d">
 
     <Grid>
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
+        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                 <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
@@ -31,25 +31,25 @@
                         </TextBlock>
                     </Border>
 
-                    <StackPanel Grid.Row="1" Background="White">
+                    <StackPanel Grid.Row="1" Background="{DynamicResource BackgroundResource}">
 
                         <StackPanel Height="80">
                             <!--avt-->
                             <!--ten/bietdanh-->
                         </StackPanel>
 
-                        <Border Height="4" Background="{StaticResource BackgroundLightBrush}"></Border>
+                        <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                         <StackPanel>
-                            <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Background="White" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
+                            <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
                                 Ảnh / Video / Tệp
                             </Button>
                         </StackPanel>
 
-                        <Border Height="4" Background="{StaticResource BackgroundLightBrush}"></Border>
+                        <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                         <StackPanel>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Background="White" HorizontalContentAlignment="Left">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left">
                                 blabla
                             </Button>
                         </StackPanel>
@@ -62,7 +62,7 @@
                 <Grid>
                     <Button VerticalAlignment="Top" HorizontalAlignment="Left"
                             HorizontalContentAlignment="Left" 
-                            Panel.ZIndex="1" Margin="8 6 0 0"
+                            Panel.ZIndex="1" Margin="8 6 0 0" Foreground="{DynamicResource ForegroundResource}"
                             Style="{StaticResource IconButton}" Background="{x:Null}" BorderBrush="{x:Null}"
                             Width="24" Height="24" Padding="0"
                             x:Name="btnBack" Click="btnBack_Click">

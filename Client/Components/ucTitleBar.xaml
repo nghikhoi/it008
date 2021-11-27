@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
-             x:Name="TitleBar"
+             x:Name="TitleBar" Foreground="{DynamicResource ForegroundResource}"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <!--Q: Border Close_Btn-->
@@ -18,14 +18,14 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
 
-        <Border Background="Transparent" CornerRadius="8">
+        <Border Background="Transparent" Style="{StaticResource OriginalBorder}">
             <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
                 <Border CornerRadius="8" Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnClose"
                         Command="{Binding CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
-                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" />
+                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>
                 </Border>
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
@@ -33,7 +33,7 @@
                          x:Name="btnMinimize"
                         Command="{Binding MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
-                        <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" />
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>
                 </Border>
             </DockPanel>

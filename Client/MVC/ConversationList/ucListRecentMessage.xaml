@@ -16,7 +16,7 @@
         BorderBrush="{StaticResource PrimaryHueDarkBrush}"
         Padding="4">
         <Grid>
-            <Grid Margin="-3" Width="200" HorizontalAlignment="Left" Background="{StaticResource BackgroundLightBrush}">
+            <Grid Margin="-3" Width="200" HorizontalAlignment="Left">
 
                 <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>

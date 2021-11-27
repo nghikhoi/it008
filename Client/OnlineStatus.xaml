@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="10" d:DesignWidth="600">
     <Grid>
-        <StackPanel Orientation="Horizontal" Background="WhiteSmoke">
+        <StackPanel Orientation="Horizontal" >
             <Ellipse Height="10" Width="10" Fill="Green"></Ellipse>
             <TextBlock Text="   "></TextBlock>
             <TextBlock Text="{StaticResource Status.online }" FontSize="10" VerticalAlignment="Center"></TextBlock>
