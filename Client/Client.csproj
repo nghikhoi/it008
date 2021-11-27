@@ -259,6 +259,9 @@
       <DependentUpon>NotificationTagItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\Sticker.xaml.cs" />
+    <Compile Include="DownloadWindow.xaml.cs">
+      <DependentUpon>DownloadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -482,6 +485,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVC\NotificationPage\NotificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -671,6 +678,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\vitvang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\ca.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Images\ca.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />

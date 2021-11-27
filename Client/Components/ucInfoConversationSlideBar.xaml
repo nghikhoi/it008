@@ -9,7 +9,7 @@
              mc:Ignorable="d">
 
     <Grid>
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1">
+        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                 <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
@@ -23,9 +23,9 @@
                         <RowDefinition Height="45"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Border Background="WhiteSmoke">
+                    <Border Background="{DynamicResource BackgroundOpacityBrush}">
                         <TextBlock FontSize="16" FontWeight="DemiBold" 
-                           Foreground="{StaticResource PrimaryHueDarkBrush}" 
+                           Foreground="{DynamicResource PrimaryColor}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center">
                     Thông tin cuộc trò chuyện
                         </TextBlock>
@@ -41,7 +41,7 @@
                         <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                         <StackPanel>
-                            <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
+                            <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
                                 Ảnh / Video / Tệp
                             </Button>
                         </StackPanel>
@@ -49,7 +49,7 @@
                         <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                         <StackPanel>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
                                 blabla
                             </Button>
                         </StackPanel>

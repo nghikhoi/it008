@@ -14,7 +14,7 @@
         <Border Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel>
                 <!--Header-->
-                <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel">
+                <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel" Margin="8 0 0 0">
                     <StackPanel DockPanel.Dock="Right">
                         <ToggleButton x:Name="ChatInfoMenuBtn" Checked="ChatInfoMenuBtn_Checked" Unchecked="ChatInfoMenuBtn_Unchecked">
                             <ToggleButton.Style>
@@ -26,7 +26,7 @@
                                 </Style>
                             </ToggleButton.Style>
                             <StackPanel>
-                                <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="Black"/>
+                                <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}"/>
                             </StackPanel>
                         </ToggleButton>
                     </StackPanel>
@@ -66,7 +66,7 @@
                     <Button x:Name="btnSend" Margin="2, 4" Width="50" Height="34" Style="{StaticResource IconButton}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="btnSend_Click" >
                         <materialDesign:PackIcon x:Name="iconSend" Kind="Send"  Width="24" Height="Auto"/>
                     </Button>
-                    <Border CornerRadius="16" Background= "{StaticResource BackgroundOpacityBrush}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
+                    <Border CornerRadius="16" Background= "{DynamicResource InputColorResource}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
                                          materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
                                          KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 

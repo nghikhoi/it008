@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:UI"
              xmlns:components="clr-namespace:UI.Components"
              mc:Ignorable="d" 
-             d:DesignWidth="300" >
+             d:DesignWidth="300" MinWidth="40">
     <Grid>
-        <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}">
+        <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="0 0 12 8" MinWidth="40">
             <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                        Grid.IsSharedSizeScope="True"
                        Text="Hi i am huyen ne" FontSize="18" 
-                       Foreground="White" Padding="14">
+                       Foreground="White" Padding="10">
             </TextBlock>
         </Border>
     </Grid>

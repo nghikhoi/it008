@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -130,19 +131,38 @@ namespace UI
             _paletteHelper.SetTheme(theme);
             if (isDark)
             {
-                var converter = new System.Windows.Media.BrushConverter();
-                //BorderLoginWindow.Background = (Brush)converter.ConvertFromString("#121212");
-                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(Color.FromRgb(18,18,18));
-                App.Current.Resources["ForegroundResource"] = new SolidColorBrush(Colors.White);
-                //this.Foreground = Brushes.White;
+                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(System.Windows.Media.Color.FromRgb(23,31,33));
+                App.Current.Resources["ForegroundResource"] = new SolidColorBrush(Colors.LightGray);
+                App.Current.Resources["InputColorResource"] = new SolidColorBrush(Colors.Transparent);
+                App.Current.Resources["PrimaryColor"] = new SolidColorBrush(Colors.WhiteSmoke);
+                App.Current.Resources["BorderColorResource"] = new SolidColorBrush(Colors.LightGray);
+                //PrimaryIconImage.Source = ImageSourceFromBitmap(Properties.Resources.ca);
+                //PrimaryIconImage.Width = 200;
+                //PrimaryIconImage.Height = 200;
             }
             else
             {
-                //BorderLoginWindow.Background = new SolidColorBrush(Theme.Light.MaterialDesignBackground);
-                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(Colors.White);
+                App.Current.Resources["BackgroundResource"] = new SolidColorBrush(Colors.WhiteSmoke);
                 App.Current.Resources["ForegroundResource"] = new SolidColorBrush(Colors.Black);
+                App.Current.Resources["InputColorResource"] = new SolidColorBrush(Colors.LightGray);
+                App.Current.Resources["BorderColorResource"] = new SolidColorBrush(Colors.Teal);
+                App.Current.Resources["PrimaryColor"] = new SolidColorBrush(Colors.Teal);
                 //this.Foreground = Brushes.Black;
             }
+        }
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool DeleteObject([In] IntPtr hObject);
+
+        public ImageSource ImageSourceFromBitmap(Bitmap bmp)
+        {
+            var handle = bmp.GetHbitmap();
+            try
+            {
+                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            finally { DeleteObject(handle); }
         }
 
         private void test_Checked(object sender, RoutedEventArgs e) => SetTheme(true);

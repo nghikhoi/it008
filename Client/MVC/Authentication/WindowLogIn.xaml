@@ -148,7 +148,7 @@
 
                 </StackPanel>
 
-                <Image Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom" Grid.Column="2" Margin="68,0,100,0"></Image>
+                <Image x:Name="PrimaryIconImage" Source="/BackGround/logo.png" Width="140" Height="140" VerticalAlignment="Bottom" Grid.Column="2" Margin="68,0,100,0"></Image>
             </Grid>
         </Grid>
     </Border>
