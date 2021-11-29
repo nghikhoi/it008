@@ -9,7 +9,7 @@
              >
     <Grid Margin="12 0 0 0">
         <local:ucAvatarSender Loaded="ucAvatarSender_Loaded" ></local:ucAvatarSender>
-        <Border Margin="40 0 0 0" x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}">
+        <Border  x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="40 0 10 6" MinWidth="40">
 
             <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                            Grid.IsSharedSizeScope="True"
@@ -17,5 +17,10 @@
                            Foreground="White" Padding="14">
             </TextBlock>
         </Border>
+        <Ellipse x:Name="Emotion" Width="18" Height="18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush>
+            </Ellipse.Fill>
+        </Ellipse>
     </Grid>
 </UserControl>
