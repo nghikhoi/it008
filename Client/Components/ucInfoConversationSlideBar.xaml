@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI" Background="{DynamicResource BackgroundResource}"
-             xmlns:uc="clr-namespace:UI.Components"
+             xmlns:uc="clr-namespace:UI.Components" xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d">
 
     <Grid>
@@ -27,18 +27,57 @@
                         <TextBlock FontSize="16" FontWeight="DemiBold" 
                            Foreground="{DynamicResource PrimaryColor}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center">
-                    Thông tin cuộc trò chuyện
+                        Thông tin cuộc trò chuyện
                         </TextBlock>
                     </Border>
 
                     <StackPanel Grid.Row="1" Background="{DynamicResource BackgroundResource}">
 
-                        <StackPanel Height="80">
+                        <StackPanel >
                             <!--avt-->
+                            <Button Height="150" Width="150" 
+                                    BorderThickness="0"
+                                    Margin="0 20 0 10">
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="20"/>
+                                    </Style>
+                                </Button.Resources>
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <cus:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"></cus:AvatarDisplayer>
+                                        <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
+                                        <!--     <Ellipse.Fill> -->
+                                        <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
+                                        <!--     </Ellipse.Fill> -->
+                                        <!-- </Ellipse> -->
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
                             <!--ten/bietdanh-->
+                            <TextBlock Height="40" FontSize="16" Margin="-24 0 0 0" HorizontalAlignment="Center">
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="Pencil" Width="24" Height="24" Margin="0 0 10 0"/>
+                                    <TextBlock x:Name="NameTxb" VerticalAlignment="Center">meow</TextBlock>
+                                </StackPanel>
+                            </TextBlock>
+                            <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="Email" Width="24" Height="24" Margin="0 0 10 0"/>
+                                    <TextBlock x:Name="EmailTxb" VerticalAlignment="Center">nkh123@gmail.com</TextBlock>
+                                </StackPanel>
+                            </TextBlock>
+                            <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <materialDesign:PackIcon VerticalAlignment="Center" Kind="Phone" Width="24" Height="24" Margin="0 0 10 0"/>
+                                    <TextBlock x:Name="PhoneNumTxb" VerticalAlignment="Center">113</TextBlock>
+                                </StackPanel>
+                            </TextBlock>
                         </StackPanel>
 
-                        <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
+                        <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}" Margin="0 25 0 0"></Border>
 
                         <StackPanel>
                             <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
@@ -46,7 +85,7 @@
                             </Button>
                         </StackPanel>
 
-                        <Border Height="4" Background="{StaticResource BackgroundOpacityBrush}"></Border>
+                        <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                         <StackPanel>
                             <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">

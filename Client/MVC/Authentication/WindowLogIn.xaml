@@ -84,7 +84,7 @@
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton x:Name="tgChangeTheme" Width="24" Height="24" HorizontalAlignment="Left" Margin="4 0 0 0"
+                <!--<ToggleButton x:Name="tgChangeTheme" Width="24" Height="24" HorizontalAlignment="Left" Margin="4 0 0 0"
                               Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
                               ToolTip="MaterialDesignFloatingActionMiniLightButton">
                     <StackPanel>
@@ -97,6 +97,12 @@
                             </Border>
                         </Popup>
                     </StackPanel>
+                </ToggleButton>-->
+
+                <ToggleButton x:Name="DarkLightTheme" Checked="DarkLightTheme_Checked" HorizontalAlignment="Left" Margin="4 0 0 0"
+                              Background="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                              Unchecked="DarkLightTheme_Unchecked" Width="24" Height="24">
+                    <materialDesign:PackIcon Kind="ThemeLightDark" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}"/>
                 </ToggleButton>
             </DockPanel>
 
@@ -117,7 +123,7 @@
                 </DockPanel>
 
                 <StackPanel Margin="6,100,40,4" Grid.Column="2">
-                    <ToggleButton x:Name="test" Checked="test_Checked" Style="{StaticResource MaterialDesignSwitchToggleButton}" Unchecked="test_Unchecked" ></ToggleButton>
+                    <!--<ToggleButton x:Name="test" Checked="test_Checked" Style="{StaticResource MaterialDesignSwitchToggleButton}" Unchecked="test_Unchecked" ></ToggleButton>-->
                     <StackPanel Margin="0 0 0 10">
                         <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowLogin.UsernameBox}"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0.333,0" />
