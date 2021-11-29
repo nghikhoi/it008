@@ -4,12 +4,71 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:ui="clr-namespace:UI"
              mc:Ignorable="d"
              >
-    <Grid Margin="12 0 0 0">
+    <Grid Margin="12 0 0 0" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
         <local:ucAvatarSender Loaded="ucAvatarSender_Loaded" ></local:ucAvatarSender>
-        <Border  x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="40 0 10 6" MinWidth="40">
+        <ToggleButton x:Name="TogglePopupButton" Width="24" Height="24"
+                      Opacity="0"
+                      Foreground="Gray"
+                      HorizontalAlignment="Right"
+                      Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+                      ToolTip="MaterialDesignFloatingActionMiniLightButton">
+            <StackPanel>
+                <materialDesign:PackIcon Kind="Smiley" Height="24" Width="24" />
+                <Popup x:Name="myPopup" Placement="Bottom" HorizontalOffset="90"
+                                               IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
+                                               PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
+                    <Border  BorderBrush="{x:Null}" >
+                        <Grid  HorizontalAlignment="Center" Background="{x:Null}">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style x:Key="Emo" TargetType="RadioButton">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsChecked" Value="False">
+                                                <Setter Property="Opacity" Value="0.5"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                        <Setter Property="BorderThickness" Value="0"/>
+
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="RadioButton">
+                                                    <Border
+                                                            Background="Transparent"
+                                                            CornerRadius="20">
+                                                        <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                                               Stretch="Fill"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+
+                                    </Style>
+                                </StackPanel.Resources>
+
+                                <ItemsControl>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <RadioButton x:Name="Like" Content="../../IconPack/Like.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Like_Checked"/>
+                                    <RadioButton x:Name="Heart" Content="../../IconPack/Heart.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Heart_Checked"/>
+                                    <RadioButton x:Name="Smile" Content="../../IconPack/Smile.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Smile_Checked"/>
+                                    <RadioButton x:Name="Sad" Content="../../IconPack/Sad.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Sad_Checked"/>
+                                    <RadioButton x:Name="Angry" Content="../../IconPack/Angry.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Angry_Checked"/>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </ToggleButton>
+        <Border  x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="40 0 25 6" MinWidth="40">
 
             <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                            Grid.IsSharedSizeScope="True"
@@ -17,10 +76,9 @@
                            Foreground="White" Padding="14">
             </TextBlock>
         </Border>
-        <Ellipse x:Name="Emotion" Width="18" Height="18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible">
-            <Ellipse.Fill>
-                <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush>
-            </Ellipse.Fill>
+        <Ellipse x:Name="Emotion" Width="18" Height="18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Visible"
+                 Stretch="Fill">
+            
         </Ellipse>
     </Grid>
 </UserControl>
