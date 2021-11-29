@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +18,33 @@ using UI.Command;
 namespace UI.Components
 {
     /// <summary>
-    /// Interaction logic for ucTitleBar.xaml
+    /// Interaction logic for ucTitleBar1.xaml
     /// </summary>
-    public partial class ucTitleBar : UserControl {
-
+    public partial class ucTitleBar1 : UserControl
+    {
         //public ICommand CloseWindowCommand { get; set; } = new RelayCommand<string>((s => true)
-        //    , s => App.Instance.exit());
+        //   , s => App.Instance.exit());
         //public ICommand MinimizeWindowCommand { get; set; } = new RelayCommand<string>((s => true)
         //    , s => App.Instance.minimized());
+        //public ICommand MaximizeWindowCommand { get; set; } = new RelayCommand<string>((s => true)
+        //    , s => App.Instance.changeMaximized());
 
-        public ucTitleBar()
+        public ucTitleBar1()
         {
             InitializeComponent();
             DataContext = new TitleBar();
+        }
+
+        private void btnFullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (FullScreenIcon.Kind == PackIconKind.Fullscreen)
+            {
+                FullScreenIcon.Kind = PackIconKind.FullscreenExit;
+            }
+            else
+            {
+                FullScreenIcon.Kind = PackIconKind.Fullscreen;
+            }
         }
     }
 }

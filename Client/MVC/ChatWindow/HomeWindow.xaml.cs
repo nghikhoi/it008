@@ -8,11 +8,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using UI.Models;
-using Microsoft.Win32;
 using UI.MVC;
 using System.Windows.Media.Animation;
 
@@ -26,6 +21,7 @@ namespace UI
         public HomeWindow()
         {
             InitializeComponent();
+            //ucTitleBar1.btnFullScreen.Click += btnFullScreen_Click;
         }
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -175,6 +171,30 @@ namespace UI
         {
 
         }
+
+        private void ucTitleBar1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //private void btnFullScreen_Click(object sender, RoutedEventArgs e)
+        //{
+        //    isMaximized = !isMaximized;
+        //}
+
+        //private bool _isMaximized;
+        //public bool isMaximized
+        //{
+        //    get
+        //    {
+        //        return _isMaximized;
+        //    }
+        //    set
+        //    {
+        //        _isMaximized = value;
+        //        this.WindowState = _isMaximized == false ? WindowState.Normal : WindowState.Maximized;
+        //    }
+        //}
     }
     //public class WindowChrome : Freezable
     //{

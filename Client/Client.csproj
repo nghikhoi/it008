@@ -244,6 +244,9 @@
     <Compile Include="Components\ucTabStickerStore.xaml.cs">
       <DependentUpon>ucTabStickerStore.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ucTitleBar1.xaml.cs">
+      <DependentUpon>ucTitleBar1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
@@ -475,6 +478,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ThumbnailBubble.xaml" />
+    <Page Include="Components\ucTitleBar1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\AvatarDisplayer.xaml" />
     <Page Include="CustomControls\FriendRequestNoti.xaml">
       <SubType>Designer</SubType>

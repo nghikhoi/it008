@@ -5,11 +5,10 @@
     <SolidColorBrush x:Key="PrimaryColor" Color="{DynamicResource Primary500}"></SolidColorBrush>
     <SolidColorBrush x:Key="LightBrush" Color="#FFD1D1D1"></SolidColorBrush>
 
+    <SolidColorBrush x:Key="BackgroundOpacityBrush" Color="#96ffffff"></SolidColorBrush>
+
     <Color x:Key="BackgroundLight">#efefef</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
-
-    <Color x:Key="BackgroundOpacity">#efefef</Color>
-    <SolidColorBrush x:Key="BackgroundOpacityBrush" Opacity="0.7" Color="{StaticResource BackgroundOpacity}" />
 
     <Color x:Key="BackgroundVeryLight">#fafafa</Color>
     <SolidColorBrush x:Key="BackgroundVeryLightBrush" Color="{StaticResource BackgroundVeryLight}" />

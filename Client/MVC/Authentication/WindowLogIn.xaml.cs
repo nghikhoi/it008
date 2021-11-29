@@ -136,6 +136,7 @@ namespace UI
                 App.Current.Resources["InputColorResource"] = new SolidColorBrush(Colors.Transparent);
                 App.Current.Resources["PrimaryColor"] = new SolidColorBrush(Colors.WhiteSmoke);
                 App.Current.Resources["BorderColorResource"] = new SolidColorBrush(Colors.LightGray);
+                //App.Current.Resources["BackgroundOpacityBrush"] = new SolidColorBrush(System.Windows.Media.Color.FromArgb(150 ,255, 255, 255));
                 //PrimaryIconImage.Source = ImageSourceFromBitmap(Properties.Resources.ca);
                 //PrimaryIconImage.Width = 200;
                 //PrimaryIconImage.Height = 200;
@@ -147,6 +148,7 @@ namespace UI
                 App.Current.Resources["InputColorResource"] = new SolidColorBrush(Colors.LightGray);
                 App.Current.Resources["BorderColorResource"] = new SolidColorBrush(Colors.Teal);
                 App.Current.Resources["PrimaryColor"] = new SolidColorBrush(Colors.Teal);
+                //App.Current.Resources["BackgroundOpacityBrush"] = new SolidColorBrush(Colors.LightGray);
                 //this.Foreground = Brushes.Black;
             }
         }
