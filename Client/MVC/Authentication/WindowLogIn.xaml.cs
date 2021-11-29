@@ -151,23 +151,23 @@ namespace UI
             }
         }
 
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteObject([In] IntPtr hObject);
+        //[DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool DeleteObject([In] IntPtr hObject);
 
-        public ImageSource ImageSourceFromBitmap(Bitmap bmp)
-        {
-            var handle = bmp.GetHbitmap();
-            try
-            {
-                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-            finally { DeleteObject(handle); }
-        }
+        //public ImageSource ImageSourceFromBitmap(Bitmap bmp)
+        //{
+        //    var handle = bmp.GetHbitmap();
+        //    try
+        //    {
+        //        return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        //    }
+        //    finally { DeleteObject(handle); }
+        //}
 
-        private void test_Checked(object sender, RoutedEventArgs e) => SetTheme(true);
+        private void DarkLightTheme_Checked(object sender, RoutedEventArgs e) => SetTheme(true);
 
-        private void test_Unchecked(object sender, RoutedEventArgs e) => SetTheme(false);
+        private void DarkLightTheme_Unchecked(object sender, RoutedEventArgs e) => SetTheme(false);
 
         //private void SetTheme(bool isDark)
         //{
