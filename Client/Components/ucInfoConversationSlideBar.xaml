@@ -4,120 +4,123 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:UI" Background="{DynamicResource BackgroundResource}"
+             xmlns:local="clr-namespace:UI" Background="{x:Null}" 
              xmlns:uc="clr-namespace:UI.Components" xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d">
 
-    <Grid>
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
-                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
+        <Grid>
+            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
+                <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                    <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
                         <ScrollViewer Margin="0" DockPanel.Dock="Top" >
                             
                         </ScrollViewer>
                     </DockPanel>
-                </ScrollViewer>-->
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Border Background="{DynamicResource BackgroundOpacityBrush}">
-                        <TextBlock FontSize="16" FontWeight="DemiBold" 
+                    </ScrollViewer>-->
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border Background="{DynamicResource BackgroundOpacityBrush}">
+                            <TextBlock FontSize="16" FontWeight="DemiBold" 
                            Foreground="{DynamicResource PrimaryColor}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center">
                         Thông tin cuộc trò chuyện
-                        </TextBlock>
-                    </Border>
+                            </TextBlock>
+                        </Border>
 
-                    <StackPanel Grid.Row="1" Background="{DynamicResource BackgroundResource}">
+                        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" Margin="0" Style="{StaticResource ScrollViewerTemplate}">
+                            <StackPanel Background="{DynamicResource BackgroundResource}" Margin="0 0 3 2">
 
-                        <StackPanel >
-                            <!--avt-->
-                            <Button Height="150" Width="150" 
+                                <StackPanel >
+                                    <!--avt-->
+                                    <Button Height="150" Width="150" 
                                     BorderThickness="0"
                                     Margin="0 20 0 10">
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="20"/>
-                                    </Style>
-                                </Button.Resources>
+                                        <Button.Resources>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="CornerRadius" Value="20"/>
+                                            </Style>
+                                        </Button.Resources>
 
-                                <Button.Template>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <cus:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"></cus:AvatarDisplayer>
-                                        <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
-                                        <!--     <Ellipse.Fill> -->
-                                        <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
-                                        <!--     </Ellipse.Fill> -->
-                                        <!-- </Ellipse> -->
-                                    </ControlTemplate>
-                                </Button.Template>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <cus:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"></cus:AvatarDisplayer>
+                                                <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
+                                                <!--     <Ellipse.Fill> -->
+                                                <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
+                                                <!--     </Ellipse.Fill> -->
+                                                <!-- </Ellipse> -->
+                                            </ControlTemplate>
+                                        </Button.Template>
 
-                            </Button>
-                            <!--ten/bietdanh-->
-                            <TextBlock Height="40" FontSize="16" Margin="-24 0 0 0" HorizontalAlignment="Center">
+                                    </Button>
+                                    <!--ten/bietdanh-->
+                                    <TextBlock Height="40" FontSize="16" Margin="-24 0 0 0" HorizontalAlignment="Center">
                                 <StackPanel Height="40" Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Kind="Pencil" Width="24" Height="24" Margin="0 0 10 0"/>
                                     <TextBlock x:Name="NameTxb" VerticalAlignment="Center">meow</TextBlock>
                                 </StackPanel>
                             </TextBlock>
-                            <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
+                                    <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
                                 <StackPanel Height="40" Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Kind="Email" Width="24" Height="24" Margin="0 0 10 0"/>
                                     <TextBlock x:Name="EmailTxb" VerticalAlignment="Center">nkh123@gmail.com</TextBlock>
                                 </StackPanel>
                             </TextBlock>
-                            <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
+                                    <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
                                 <StackPanel Height="40" Orientation="Horizontal">
                                     <materialDesign:PackIcon VerticalAlignment="Center" Kind="Phone" Width="24" Height="24" Margin="0 0 10 0"/>
                                     <TextBlock x:Name="PhoneNumTxb" VerticalAlignment="Center">113</TextBlock>
                                 </StackPanel>
                             </TextBlock>
-                        </StackPanel>
+                                </StackPanel>
 
-                        <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}" Margin="0 25 0 0"></Border>
+                                <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}" Margin="0 25 0 0"></Border>
 
-                        <StackPanel>
-                            <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
-                                Ảnh / Video / Tệp
-                            </Button>
-                        </StackPanel>
+                                <StackPanel>
+                                    <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left" Click="BtnMediaGallery_Click" >
+                                        Ảnh / Video / Tệp
+                                    </Button>
+                                </StackPanel>
 
-                        <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"></Border>
+                                <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
-                        <StackPanel>
-                            <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
-                                blabla
-                            </Button>
-                        </StackPanel>
-                    </StackPanel>
+                                <StackPanel>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
+                                        blabla
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </materialDesign:TransitionerSlide>
 
-                </Grid>
-            </materialDesign:TransitionerSlide>
-            
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
-                <Grid>
-                    <Button VerticalAlignment="Top" HorizontalAlignment="Left"
+                <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                    <Grid>
+                        <Button VerticalAlignment="Top" HorizontalAlignment="Left"
                             HorizontalContentAlignment="Left" 
                             Panel.ZIndex="1" Margin="8 6 0 0" Foreground="{DynamicResource ForegroundResource}"
                             Style="{StaticResource IconButton}" Background="{x:Null}" BorderBrush="{x:Null}"
                             Width="24" Height="24" Padding="0"
                             x:Name="btnBack" Click="btnBack_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24"/>
-                    </Button>
-                    <uc:ucMediaGallery Loaded="ucMediaGallery_Loaded"></uc:ucMediaGallery>
-                </Grid>
-            </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
-        
-        <Grid.Effect>
-            <DropShadowEffect Direction="-100" BlurRadius="6" ShadowDepth="4"></DropShadowEffect>
-        </Grid.Effect>
+                            <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24"/>
+                        </Button>
+                        <uc:ucMediaGallery Loaded="ucMediaGallery_Loaded"></uc:ucMediaGallery>
+                    </Grid>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
 
-        <!--<uc:ucMediaGallery></uc:ucMediaGallery>-->
+            <!--<Grid.Effect>
+                <DropShadowEffect Direction="-100" BlurRadius="6" ShadowDepth="4"></DropShadowEffect>
+            </Grid.Effect>-->
 
-    </Grid>
+            <!--<uc:ucMediaGallery></uc:ucMediaGallery>-->
 
+        </Grid>
+    </Border>
 </UserControl>

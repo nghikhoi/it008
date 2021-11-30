@@ -491,10 +491,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dictionaries\Theme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -667,10 +663,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="BackGround\bgxanhla.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="BackGround\logo.png" />
+    <Resource Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\avt.jpg" />

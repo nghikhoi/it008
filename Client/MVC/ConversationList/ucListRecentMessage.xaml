@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:UI"
              xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450"
+             d:DesignHeight="450" MinWidth="200" MaxWidth="350"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
     <Border CornerRadius="4" 
@@ -16,8 +16,7 @@
         BorderBrush="{DynamicResource BorderColorResource}"
         Padding="4">
         <Grid>
-            <Grid Margin="-3" Width="200" HorizontalAlignment="Left">
-
+            <Grid Margin="-3" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -26,9 +25,9 @@
             <!--Header-->
                 <Grid Grid.Row="0">
                 
-                <DockPanel LastChildFill="False">
+                <Grid Width="{Binding ActualWidth}">
                     <!--Popup settings-->
-                    <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24"
+                    <ToggleButton x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24" HorizontalAlignment="Left"
                                   Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                                   ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0"
                                   Checked="TogglePopupButton_Checked" Unchecked="TogglePopupButton_UnChecked">
@@ -43,11 +42,14 @@
                     </ToggleButton>
                     
                     <!--App Name-->
-                    <TextBlock FontSize="15" Foreground="{DynamicResource PrimaryColor}" Margin="32 10 0 10" FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
+                    <TextBlock FontSize="15" Foreground="{DynamicResource PrimaryColor}" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontFamily="Segoe Ui Bold">APP NAME</TextBlock>
+                    
                     <!--New Message Button-->
                     <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Width="24" Height="24" 
-                            Margin="0,0,5,6" VerticalAlignment="Bottom" >
+                            Width="24" Height="24" HorizontalAlignment="Right"
+                            Margin="0,0,10,6" VerticalAlignment="Bottom" >
                         <materialDesign:PackIcon HorizontalAlignment="Right" Kind="MessagePlus" 
                                              Width="24" Height="24" Cursor="Hand" Foreground="{DynamicResource PrimaryColor}">
                         </materialDesign:PackIcon>
@@ -56,17 +58,23 @@
 
 
 
-                </DockPanel>
+                </Grid>
             </Grid>
 
                 <DockPanel Grid.Row="1" LastChildFill="True">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button x:Name="btnRecent" Width="100" Background="{x:Null}" Foreground="{DynamicResource PrimaryColor}" BorderBrush="{x:Null}" Click="btnRecent_Click">Gần đây</Button>
-                    <Button x:Name="btnListFriend" Width="100" Background="{x:Null}" Foreground="{DynamicResource PrimaryColor}" BorderBrush="{x:Null}" Click="btnListFriend_Click">Bạn bè</Button>
-                </StackPanel>
+                        <Grid Width="{Binding ActualWidth}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" x:Name="btnRecent" Background="{x:Null}" Foreground="{DynamicResource PrimaryColor}" BorderBrush="{x:Null}" Click="btnRecent_Click">Gần đây</Button>
+                            <Button Grid.Column="1" x:Name="btnListFriend" Background="{x:Null}" Foreground="{DynamicResource PrimaryColor}" BorderBrush="{x:Null}" Click="btnListFriend_Click">Bạn bè</Button>
+                        </Grid>
+                    </StackPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
-                        <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="100" BorderBrush="{StaticResource PrimaryHueDarkBrush}" />
-                        <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="94" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                        <Border x:Name="RecentTabSelectMark" BorderThickness="8" Width="{Binding ElementName=btnRecent, Path=ActualWidth}" BorderBrush="{StaticResource PrimaryHueDarkBrush}" />
+                        <Border x:Name="ContactsRabSelectMark" BorderThickness="8" Width="{Binding ElementName=btnListFriend, Path=ActualWidth}" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
                 </StackPanel>
                 
                 <!--List Chat Item-->

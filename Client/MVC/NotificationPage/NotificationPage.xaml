@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" Width="200">
+             mc:Ignorable="d" >
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}" x:Key="HorizontalExpanderContentTextBlock">
             <Setter Property="Opacity" Value=".68"/>
@@ -16,7 +15,7 @@
     </UserControl.Resources>
 
     <!--TODO: List ActionNoti, Friend Request Noti-->
-    <Grid  Background="{DynamicResource BackgroundResource}">
+    <Grid x:Name="myGrid" Background="{DynamicResource BackgroundResource}">
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -62,9 +61,8 @@
 
         <!--Body-->
         <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="2">
-            <StackPanel Width="200">
-                <Expander
-                    Width="200"
+            <StackPanel >
+                <Expander Width="{Binding ElementName=myGrid, Path=ActualWidth}"
                     HorizontalAlignment="Left"
                     Header="{DynamicResource Notfication.latest}"
                     FontWeight="ExtraLight"
@@ -72,11 +70,10 @@
                     <StackPanel
                         x:Name="NewestContainer"
                         Orientation="Vertical"
-                        Width="200"
+                        Width="{Binding ElementName=myGrid, Path=ActualWidth}"
                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}"/>
                 </Expander>
-                <Expander
-                    Width="200"
+                <Expander Width="{Binding ElementName=myGrid, Path=ActualWidth}"
                     HorizontalAlignment="Left"
                     Header="{DynamicResource Notfication.requests}"
                     FontWeight="ExtraLight"
@@ -84,7 +81,7 @@
                     <StackPanel
                         x:Name="FriendRequestContainer"
                         Orientation="Vertical"
-                        Width="200"
+                        Width="{Binding ElementName=myGrid, Path=ActualWidth}"
                         TextBlock.Foreground="{DynamicResource MaterialDesignBody}"/>
                 </Expander>
             </StackPanel>

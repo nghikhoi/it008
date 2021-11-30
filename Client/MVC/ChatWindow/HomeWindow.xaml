@@ -79,31 +79,36 @@
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height ="20"></RowDefinition>
+                    <RowDefinition Height ="28"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <!--title bar-->
 
                 <!--<uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>-->
-                <uc:ucTitleBar1 x:Name="ucTitleBar1" Grid.Row="0" Margin="0 -5 0 0" Loaded="ucTitleBar1_Loaded"/>
+                <uc:ucTitleBar1 x:Name="ucTitleBar1" Grid.Row="0" Margin="0 0 0 0" Loaded="ucTitleBar1_Loaded"/>
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="208"></ColumnDefinition>
+                        <ColumnDefinition Width="220" MinWidth="200" MaxWidth="350"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0" 
+                    <local:ucListRecentMessage x:Name="MessageList" Grid.Column="0"
                                                AvatarUnchecked="MessageList_OnAvatarUnchecked"
-                                               AvatarChecked="MessageList_OnAvatarChecked">
+                                               AvatarChecked="MessageList_OnAvatarChecked" Loaded="MessageList_Loaded">
                     </local:ucListRecentMessage>
 
-                <!--cuoc tro chuyen-->
+                    <!--Split-->
+                    <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+                              Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
+                              Grid.Column="0"/>
+
+                    <!--cuoc tro chuyen-->
                 <Grid Grid.Column="1">
                     <DockPanel>
                         <local:ucInfoConversationSlideBar x:Name="ProfileDisplayer" Margin="0 0 0 0" Width="0" DockPanel.Dock="Right"/>
-                        <local:ChatPage x:Name="ChatPage" />
+                        <local:ChatPage x:Name="ChatPage" Margin="0 0 0 10"/>
                     </DockPanel>
                 </Grid>
                 <Button Grid.Column="0" Grid.ColumnSpan="2" Height="Auto" x:Name="Fade" Grid.RowSpan="2" Background="{StaticResource ForegroundDarkBrush}" Visibility="Hidden" Click="Fade_OnClick" Opacity="0"></Button>
@@ -115,7 +120,8 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 
-                <local:NotificationPage Grid.Row="1" x:Name="NotificaionPage" Width="0" HorizontalAlignment="Left"></local:NotificationPage>
+                <local:NotificationPage Grid.Row="1" x:Name="NotificaionPage" Width="0" HorizontalAlignment="Left" Loaded="NotificaionPage_Loaded_1"></local:NotificationPage>
+                
             </Grid>
         </Grid>
     </Border>

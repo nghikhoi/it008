@@ -67,7 +67,7 @@
                 </Popup>
             </StackPanel>
         </ToggleButton>
-        <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="25 0 8 6" MinWidth="40">
+        <Border x:Name="message_border" CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="25 0 12 6" MinWidth="40" MaxWidth="300">
             <TextBlock x:Name="text_msg_content" VerticalAlignment="Center" TextWrapping="Wrap" 
                        Grid.IsSharedSizeScope="True"
                        Text="Hi i am huyen ne" FontSize="18" 

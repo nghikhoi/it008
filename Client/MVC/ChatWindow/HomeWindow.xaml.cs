@@ -21,6 +21,7 @@ namespace UI
         public HomeWindow()
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             //ucTitleBar1.btnFullScreen.Click += btnFullScreen_Click;
         }
         private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -173,6 +174,16 @@ namespace UI
         }
 
         private void ucTitleBar1_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MessageList_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NotificaionPage_Loaded_1(object sender, RoutedEventArgs e)
         {
 
         }

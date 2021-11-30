@@ -42,7 +42,7 @@
                     <Border VerticalAlignment="Bottom" Margin="2, 4" >
                         <!--<Button x:Name="btnSticker" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="btnSticker_Click" >
                             <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        </Button>--> 
+                        </Button>-->
                         <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges" PopupVerticalOffset="40" StaysOpen="True" Margin="0,0,0,0" VerticalContentAlignment="Center" IsTabStop="False" Width="32" Height="32">
                             <materialDesign:PopupBox.ToggleContent>
                                 <materialDesign:PackIcon x:Name="iconSticker" Kind="Emoticon" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}" Margin="2" />
@@ -76,13 +76,13 @@
                     </Border>
                 </DockPanel>
             </DockPanel>
-
         </Border>
+        
         <ScrollViewer x:Name="msg_scroll" 
                       VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
-                      Style="{StaticResource MaterialDesignScrollViewer}"
-                      Padding="0,0,0,10" Margin="10 40 10 45" ScrollChanged="detect_at_top">
+                      Style="{StaticResource ScrollViewerTemplate}"
+                      Padding="0,0,0,10" Margin="10 50 0 45" ScrollChanged="detect_at_top">
             <StackPanel>
                 <Button x:Name="LoadMessagesBtn" Width="128" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#DD000000" Click="LoadMessagesBtn_Click">
                     <TextBlock Text="See more...">
@@ -90,7 +90,7 @@
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="Blue"></Setter>
+                                        <Setter Property="Foreground" Value="{DynamicResource ForegroundResource}"></Setter>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

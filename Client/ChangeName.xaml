@@ -8,11 +8,11 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        Background="{x:Null}"
+        Background="{x:Null}" Foreground="{DynamicResource ForegroundResource}"
         AllowsTransparency="True"
         Height="200" Width="250"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource ForegroundLightBrush}">
+    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Margin="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="201*"/>

@@ -77,15 +77,20 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                         Click="signUpBth_Click">
                                 <TextBlock Text="{DynamicResource WindowSignUp.RegisterButton}"></TextBlock>
-                        </Button>
+                            </Button>
                         </Border>
                     </DockPanel>
                 </StackPanel>
             </Grid>
 
-
-
-
+            <Image Source="/Images/logo.png" RenderTransformOrigin="0.5,0.5" Width="100" Height="100" Margin="255,-29,-5,429">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
         </Grid>
     </Border>
 </Window>
