@@ -215,6 +215,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\ChangeNameAcptCommand.cs" />
+    <Compile Include="Command\ChangeNameBackCommand.cs" />
+    <Compile Include="Command\ChangePasswordConfirmCommand.cs" />
+    <Compile Include="Command\ChatItemAngryCommand.cs" />
+    <Compile Include="Command\ChatItemHeartCommand.cs" />
+    <Compile Include="Command\ChatItemLikeCommand.cs" />
+    <Compile Include="Command\ChatItemMouseEnterCommand.cs" />
+    <Compile Include="Command\ChatItemMouseLeaveCommand.cs" />
+    <Compile Include="Command\ChatItemSadCommand.cs" />
+    <Compile Include="Command\ChatItemSmileCommand.cs" />
+    <Compile Include="Command\ChatpageLoadCommand.cs" />
+    <Compile Include="Command\ChatpageSendByEnterCommand.cs" />
+    <Compile Include="Command\ChatpageSendClickCommand.cs" />
+    <Compile Include="Command\ChatpageSendFileCommand.cs" />
+    <Compile Include="Command\ChatpageSendImageCommand.cs" />
+    <Compile Include="Command\ChatpageToggleCheckedCommand.cs" />
+    <Compile Include="Command\ChatpageToggleUncheckedCommand.cs" />
+    <Compile Include="Command\ConversationSlidebarBackCommand.cs" />
+    <Compile Include="Command\ConversationSlidebarCommand.cs" />
+    <Compile Include="Command\HomeWindowCloseCommand.cs" />
+    <Compile Include="Command\ImageMsgHideCtrl.cs" />
+    <Compile Include="Command\ImageMsgOpenWin.cs" />
+    <Compile Include="Command\ImageMsgShowCtrl.cs" />
+    <Compile Include="Command\MediaFileClickCommand.cs" />
+    <Compile Include="Command\MediaGallerySeclectCommand.cs" />
+    <Compile Include="Command\MediaTabClickCommand.cs" />
+    <Compile Include="Command\NotificationInfoCommand.cs" />
+    <Compile Include="Command\NotificationLogoutCommand.cs" />
+    <Compile Include="Command\SignUpBackClickCommand.cs" />
     <Compile Include="ChangeName.xaml.cs">
       <DependentUpon>ChangeName.xaml</DependentUpon>
     </Compile>
@@ -439,6 +468,7 @@
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Command\SignUpClickCommand.cs" />
     <Compile Include="Themes\ThemePanel.xaml.cs">
       <DependentUpon>ThemePanel.xaml</DependentUpon>
     </Compile>
@@ -468,6 +498,7 @@
     <Compile Include="VideoWindow.xaml.cs">
       <DependentUpon>VideoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\WindowMouseDownCommand.cs" />
     <Page Include="ChangeName.xaml" />
     <Page Include="ChangePassWord.xaml">
       <SubType>Designer</SubType>
@@ -653,6 +684,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Command\CommandDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

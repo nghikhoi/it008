@@ -8,7 +8,7 @@
              xmlns:ui="clr-namespace:UI"
              mc:Ignorable="d"
              >
-    <Grid Margin="12 0 0 0" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+    <Grid Margin="12 0 0 0" MouseEnter="{Binding ChatItemMouseEnterCommand}" MouseLeave="{Binding ChatItemMouseLeaveCommand}">
         <local:ucAvatarSender Loaded="ucAvatarSender_Loaded" ></local:ucAvatarSender>
         <ToggleButton x:Name="TogglePopupButton" Width="24" Height="24"
                       Opacity="0"
@@ -56,11 +56,11 @@
                                             <StackPanel Orientation="Horizontal"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
-                                    <RadioButton x:Name="Like" Content="../../IconPack/Like.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Like_Checked"/>
-                                    <RadioButton x:Name="Heart" Content="../../IconPack/Heart.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Heart_Checked"/>
-                                    <RadioButton x:Name="Smile" Content="../../IconPack/Smile.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Smile_Checked"/>
-                                    <RadioButton x:Name="Sad" Content="../../IconPack/Sad.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Sad_Checked"/>
-                                    <RadioButton x:Name="Angry" Content="../../IconPack/Angry.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="Angry_Checked"/>
+                                    <RadioButton x:Name="Like" Content="../../IconPack/Like.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="{Binding ChatItemLikeCommand}"/>
+                                    <RadioButton x:Name="Heart" Content="../../IconPack/Heart.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="{Binding ChatItemHeartCommad}"/>
+                                    <RadioButton x:Name="Smile" Content="../../IconPack/Smile.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="{Binding ChatItemSmileCommand}"/>
+                                    <RadioButton x:Name="Sad" Content="../../IconPack/Sad.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="{Binding ChatItemSadCommand}"/>
+                                    <RadioButton x:Name="Angry" Content="../../IconPack/Angry.png" Style="{StaticResource Emo}" Width="40" Height="40" Checked="{Binding ChatItemAngryCommand}"/>
                                 </ItemsControl>
                             </StackPanel>
                         </Grid>

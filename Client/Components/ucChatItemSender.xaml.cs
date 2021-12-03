@@ -75,47 +75,47 @@ namespace UI.Components
             imB.Stretch = Stretch.UniformToFill;
             Emotion.Fill = imB;
         }
-        private void Like_Checked(object sender, RoutedEventArgs e)
-        {
-            update_Like();
-        }
+        //private void Like_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    update_Like();
+        //}
 
-        private void Heart_Checked(object sender, RoutedEventArgs e)
-        {
-            update_Heart();
-        }
+        //private void Heart_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    update_Heart();
+        //}
 
-        private void Smile_Checked(object sender, RoutedEventArgs e)
-        {
-            update_Smile();
-        }
+        //private void Smile_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    update_Smile();
+        //}
 
-        private void Sad_Checked(object sender, RoutedEventArgs e)
-        {
-            update_Sad();
-        }
+        //private void Sad_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    update_Sad();
+        //}
 
-        private void Angry_Checked(object sender, RoutedEventArgs e)
-        {
-            update_Angry();
-        }
+        //private void Angry_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    update_Angry();
+        //}
 
-        private void Grid_MouseEnter(object sender, MouseEventArgs e)
-        {
-            DoubleAnimation myDoubleAnimation = new DoubleAnimation();
-            myDoubleAnimation.From = 0.0;
-            myDoubleAnimation.To = 1.0;
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-            TogglePopupButton.BeginAnimation(OpacityProperty, myDoubleAnimation);
-        }
+        //private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    DoubleAnimation myDoubleAnimation = new DoubleAnimation();
+        //    myDoubleAnimation.From = 0.0;
+        //    myDoubleAnimation.To = 1.0;
+        //    myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+        //    TogglePopupButton.BeginAnimation(OpacityProperty, myDoubleAnimation);
+        //}
 
-        private void Grid_MouseLeave(object sender, MouseEventArgs e)
-        {
-            DoubleAnimation myDoubleAnimation = new DoubleAnimation();
-            myDoubleAnimation.From = 1.0;
-            myDoubleAnimation.To = 0.0;
-            myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-            TogglePopupButton.BeginAnimation(OpacityProperty, myDoubleAnimation);
-        }
+        //private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    DoubleAnimation myDoubleAnimation = new DoubleAnimation();
+        //    myDoubleAnimation.From = 1.0;
+        //    myDoubleAnimation.To = 0.0;
+        //    myDoubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+        //    TogglePopupButton.BeginAnimation(OpacityProperty, myDoubleAnimation);
+        //}
     }
 }

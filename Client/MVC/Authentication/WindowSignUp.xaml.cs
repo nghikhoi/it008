@@ -27,12 +27,12 @@ namespace UI
             InitializeComponent();
         }
 
-        private void backBtn_Click(object sender, RoutedEventArgs e)
-        {
-            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
-            //OnContentRendered(e);
-            controller.showLogin();
-        }
+        //private void backBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+        //    //OnContentRendered(e);
+        //    controller.showLogin();
+        //}
 
         //bool _shown;
 
@@ -56,18 +56,19 @@ namespace UI
         //    _shown = false;
         //}
 
-        private void signUpBth_Click(object sender, RoutedEventArgs e) {
-            RegisterInfo info = new RegisterInfo(FirstNameBox.Text, LastNameBox.Text, UsernameBox.Text,
-                PasswordBox.Password, BirthdayPicker.SelectedDate.Value, Gender.Male); //TODO update gender
-            
-            AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
-            controller.doRegister(info);
-        }
-        
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
-        }
+        //private void signUpBth_Click(object sender, RoutedEventArgs e)
+        //{
+        //    RegisterInfo info = new RegisterInfo(FirstNameBox.Text, LastNameBox.Text, UsernameBox.Text,
+        //        PasswordBox.Password, BirthdayPicker.SelectedDate.Value, Gender.Male); //TODO update gender
+
+        //    AuthenticationController controller = ModuleContainer.GetModule<Authentication>().controller;
+        //    controller.doRegister(info);
+        //}
+
+        //private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (e.ChangedButton == MouseButton.Left)
+        //        this.DragMove();
+        //}
     }
 }

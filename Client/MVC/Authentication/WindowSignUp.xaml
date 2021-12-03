@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStyle="None" Foreground="{DynamicResource ForegroundResource}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        MouseDown="Window_MouseDown"
+        MouseDown="{Binding WindowMouseDownCommand}"
         Title="WindowLogIn" AllowsTransparency="True" Background="{x:Null}"  Height="500" Width="350" WindowStartupLocation="CenterScreen">
 
     <Window.Triggers>
@@ -75,7 +75,7 @@
                             <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="100"
                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                        Click="signUpBth_Click">
+                        Click="{Binding SignUpClickCommand}">
                                 <TextBlock Text="{DynamicResource WindowSignUp.RegisterButton}"></TextBlock>
                             </Button>
                         </Border>

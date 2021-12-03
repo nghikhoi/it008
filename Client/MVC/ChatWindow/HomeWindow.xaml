@@ -11,7 +11,7 @@
         Background="{x:Null}" Foreground="{DynamicResource ForegroundResource}"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         MinHeight="300" MinWidth="500"
-        Height="480" Width="815"  WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+        Height="480" Width="815"  WindowStartupLocation="CenterScreen" Closed="{Binding HomeWindowCloseCommand}">
     <!--Resize when AllowsTransparency-->
     <WindowChrome.WindowChrome>
         <WindowChrome     

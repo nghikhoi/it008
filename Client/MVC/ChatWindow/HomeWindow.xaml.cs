@@ -24,26 +24,26 @@ namespace UI
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             //ucTitleBar1.btnFullScreen.Click += btnFullScreen_Click;
         }
-        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
-        }
+        //private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    base.OnMouseLeftButtonDown(e);
+        //    this.DragMove();
+        //}
 
-        private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
+        //private void Image_PreviewMouseDown_close(object sender, MouseButtonEventArgs e)
+        //{
+        //    this.Close();
+        //}
 
-        private void Image_PreviewMouseDown_minimize(object sender, MouseButtonEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-        
-        private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
-        {
+        //private void Image_PreviewMouseDown_minimize(object sender, MouseButtonEventArgs e)
+        //{
+        //    WindowState = WindowState.Minimized;
+        //}
 
-        }
+        //private void ucTitleBar_Loaded(object sender, RoutedEventArgs e)
+        //{
+
+        //}
 
         public void make_fade()
         {
@@ -55,14 +55,14 @@ namespace UI
             this.Fade.Visibility = Visibility.Hidden;
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            foreach (Window win in Application.Current.Windows) {
-                if (win is IView)
-                    win.Hide();
-                else win.Close();
-            }
-        }
+        //private void Window_Closed(object sender, EventArgs e)
+        //{
+        //    foreach (Window win in Application.Current.Windows) {
+        //        if (win is IView)
+        //            win.Hide();
+        //        else win.Close();
+        //    }
+        //}
 
         #region Gallery
         //Transition Gallery

@@ -24,7 +24,7 @@
             <RowDefinition Height="320"/>
         </Grid.RowDefinitions>
         <!--Header-->
-        <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn" Click="InfOpenBtn_Click"
+        <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn" Click="{Binding NotificationInfoCommand}"
                             BorderThickness="0"
                             Margin="0 0 0 0"
                             MinWidth="200"
@@ -90,7 +90,7 @@
         <!--End-->
         <DockPanel   MaxHeight="32" MinHeight="32" VerticalAlignment="Bottom">
             <!--LogOut Button-->
-            <Button Name="LogOutBtn" Click="LogOutBtn_Click"
+            <Button Name="LogOutBtn" Click="{Binding NotificationLogoutCommand}"
                     HorizontalAlignment="Right"
                     Width="24" Height="24" 
                     Background="{x:Null}" BorderBrush="Transparent"

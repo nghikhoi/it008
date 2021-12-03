@@ -8,12 +8,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Border>
-        <Grid MouseEnter="show_control" MouseLeave="hide_control">
+        <Grid MouseEnter="{Binding ImageMsgShowCtrl}" MouseLeave="{Binding ImageMsgHideCtrl}">
             <Image x:Name="ImageControl" Stretch="UniformToFill" Margin="0.2,0.2,0.2,0.2">
                 
                 
             </Image>
-            <Button Width="50" Height="50" Background="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="open_picture_window">
+            <Button Width="50" Height="50" Background="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" BorderBrush="{x:Null}" Click="{Binding ImageMsgOpenWin}">
                 <materialDesign:PackIcon x:Name="fullsrnicon" Kind="Fullscreen" Opacity="0"  ></materialDesign:PackIcon>
             </Button>
         </Grid>

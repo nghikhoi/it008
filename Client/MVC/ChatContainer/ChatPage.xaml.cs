@@ -115,8 +115,9 @@ namespace UI
                 message_container.Children.Remove(bubble);
             };
         }
-        
-        public bool trySendTextMessage() {
+
+        public bool trySendTextMessage()
+        {
             string text = ChatInput.Text;
             if (String.IsNullOrEmpty(text)) return false;
             // TextMessage tmp = new TextMessage(text);
@@ -125,11 +126,11 @@ namespace UI
             module.controller.sendTextMessage(text);
             return true;
         }
-        
-        public void btnSend_Click(object sender, RoutedEventArgs e) {
-            trySendTextMessage();
-        }
-        
+
+        //public void btnSend_Click(object sender, RoutedEventArgs e) {
+        //    trySendTextMessage();
+        //}
+
         public void buzz(object sender, RoutedEventArgs e)
         {
             //if (ChatInput.Text != "")
@@ -173,38 +174,38 @@ namespace UI
             return result;
         }
 
-        public void send_by_enter(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-                {
-                    ChatInput.Text += "\n";
-                    return;
-                }
-                trySendTextMessage();
-            }
-        }
+        //public void send_by_enter(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+        //        {
+        //            ChatInput.Text += "\n";
+        //            return;
+        //        }
+        //        trySendTextMessage();
+        //    }
+        //}
 
-        public void send_image_on_click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog opendlg = new OpenFileDialog();
-            opendlg.Filter = "Image files (*.jpg, *.png) |*.jpg;*.png";
-            if (opendlg.ShowDialog() == true)
-            {
-                ChatContainer container = ModuleContainer.GetModule<ChatContainer>();
-                container.controller.sendImageMessage(opendlg.FileNames.ToList());
-            }
-        }
-        private void send_files_on_click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog opendlg = new OpenFileDialog();
-            opendlg.Filter = "Video files (*.MP4) |*.MP4";
-            if (opendlg.ShowDialog() == true) {
-                ChatContainer container = ModuleContainer.GetModule<ChatContainer>();
-                container.controller.sendVideoMessage(opendlg.FileNames.ToList());
-            }
-        }
+        //public void send_image_on_click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog opendlg = new OpenFileDialog();
+        //    opendlg.Filter = "Image files (*.jpg, *.png) |*.jpg;*.png";
+        //    if (opendlg.ShowDialog() == true)
+        //    {
+        //        ChatContainer container = ModuleContainer.GetModule<ChatContainer>();
+        //        container.controller.sendImageMessage(opendlg.FileNames.ToList());
+        //    }
+        //}
+        //private void send_files_on_click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog opendlg = new OpenFileDialog();
+        //    opendlg.Filter = "Video files (*.MP4) |*.MP4";
+        //    if (opendlg.ShowDialog() == true) {
+        //        ChatContainer container = ModuleContainer.GetModule<ChatContainer>();
+        //        container.controller.sendVideoMessage(opendlg.FileNames.ToList());
+        //    }
+        //}
 
         #region Status
 
@@ -243,11 +244,11 @@ namespace UI
 
         }
 
-        private void Load_chat_page(object sender, RoutedEventArgs e)
-        {
-            OnlineStatus onlsta = new OnlineStatus();
-            Status_container.Children.Add(onlsta);
-        }
+        //private void Load_chat_page(object sender, RoutedEventArgs e)
+        //{
+        //    OnlineStatus onlsta = new OnlineStatus();
+        //    Status_container.Children.Add(onlsta);
+        //}
 
         private void MediaGalleryBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -259,17 +260,17 @@ namespace UI
 
         }
 
-        private void ChatInfoMenuBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
-            homewin.OpenProfileDisplayer();
-        }
+        //private void ChatInfoMenuBtn_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+        //    homewin.OpenProfileDisplayer();
+        //}
 
-        private void ChatInfoMenuBtn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
-            homewin.CloseProfileDisplayer();
-        }
+        //private void ChatInfoMenuBtn_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    HomeWindow homewin = ModuleContainer.GetModule<ChatWindow>().view;
+        //    homewin.CloseProfileDisplayer();
+        //}
 
         private void btnSticker_Click(object sender, RoutedEventArgs e)
         {

@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:UI.Components"
              mc:Ignorable="d" Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             d:DesignHeight="500" d:DesignWidth="600" Loaded="Load_chat_page">
+             d:DesignHeight="500" d:DesignWidth="600" Loaded="{Binding ChatpageLoadCommand}">
 
     <Grid>
 
@@ -53,23 +53,23 @@
                         </materialDesign:PopupBox>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="send_files_on_click" >
+                        <Button x:Name="btnAttachment" Padding="0" Margin="0" Width="32" Height="32" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource IconButton}" Click="{Binding ChatpageSendFileCommand}" >
                             <materialDesign:PackIcon x:Name="iconAttach" Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Button>
                     </Border>
 
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" Height="32" BorderBrush="{x:Null}" Width="32"  Style="{StaticResource IconButton}" Click="send_image_on_click">
+                        <Button x:Name="btnSendImage" Padding="0" Margin="0" Background="{x:Null}" Height="32" BorderBrush="{x:Null}" Width="32"  Style="{StaticResource IconButton}" Click="{Binding ChatpageSendImageCommand}">
                             <materialDesign:PackIcon x:Name="iconImage" Kind="Image" Width="24" Height="24" />
                         </Button>
                     </Border>
-                    <Button x:Name="btnSend" Margin="2, 4" Width="50" Height="34" Style="{StaticResource IconButton}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="btnSend_Click" >
+                    <Button x:Name="btnSend" Margin="2, 4" Width="50" Height="34" Style="{StaticResource IconButton}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" Click="{Binding ChatpageSendClickCommand}" >
                         <materialDesign:PackIcon x:Name="iconSend" Kind="Send"  Width="24" Height="Auto"/>
                     </Button>
                     <Border CornerRadius="16" Background= "{DynamicResource InputColorResource}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox  BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
                                          materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
-                                         KeyDown="send_by_enter" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
+                                         KeyDown="{Binding ChatpageSendByEnterCommand}" x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
                                          Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                          VerticalContentAlignment="Center" MaxHeight="82"
                                           />

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Register Window&#xD;&#xA;">
+    <Position X="1.333" Y="1.942" Height="0.392" Width="1.3" />
+  </Comment>
+  <Comment CommentText="Home Win&#xD;&#xA;">
+    <Position X="8.767" Y="2.383" Height="0.317" Width="0.992" />
+  </Comment>
+  <Comment CommentText="chat page&#xD;&#xA;">
+    <Position X="6.881" Y="3.91" Height="0.392" Width="1.017" />
+  </Comment>
+  <Comment CommentText="Chat message&#xD;&#xA;">
+    <Position X="3.629" Y="4.083" Height="0.342" Width="1.083" />
+  </Comment>
+  <Comment CommentText="Conversation Slide&#xD;&#xA;">
+    <Position X="11.679" Y="1.367" Height="0.408" Width="1.308" />
+  </Comment>
+  <Comment CommentText="Media gallery">
+    <Position X="14.312" Y="3.433" Height="0.367" Width="1.267" />
+  </Comment>
+  <Comment CommentText="Change name">
+    <Position X="13.792" Y="0.5" Height="0.375" Width="1.242" />
+  </Comment>
+  <Comment CommentText="Notification">
+    <Position X="17.419" Y="2.517" Height="0.408" Width="1.142" />
+  </Comment>
+  <Comment CommentText="Image message&#xD;&#xA;">
+    <Position X="13.336" Y="6.133" Height="0.342" Width="1.092" />
+  </Comment>
+  <Class Name="UI.Command.BaseCommand" Collapsed="true">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\BaseCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UI.Command.RelayCommand&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.SignUpClickCommand" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\SignUpClickCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.SignUpBackClickCommand" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\SignUpBackClickCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.WindowMouseDownCommand" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Command\WindowMouseDownCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.HomeWindowCloseCommand" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\HomeWindowCloseCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageSendFileCommand" Collapsed="true">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Command\ChatpageSendFileCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageSendImageCommand" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatpageSendImageCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageSendClickCommand" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatpageSendClickCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageSendByEnterCommand" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatpageSendByEnterCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageLoadCommand" Collapsed="true">
+    <Position X="6.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Command\ChatpageLoadCommand.cs</FileName>
+      <NewMemberFileName>Command\ChatPageLoadCommand.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageToggleCheckedCommand" Collapsed="true">
+    <Position X="8" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatpageToggleCheckedCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatpageToggleUncheckedCommand" Collapsed="true">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatpageToggleUncheckedCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemMouseEnterCommand" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatItemMouseEnterCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemMouseLeaveCommand" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Command\ChatItemMouseLeaveCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemLikeCommand" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Command\ChatItemLikeCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemHeartCommand" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatItemHeartCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemAngryCommand" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatItemAngryCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemSadCommand" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChatItemSadCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChatItemSmileCommand" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Command\ChatItemSmileCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ConversationSlidebarBackCommand" Collapsed="true">
+    <Position X="11" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ConversationSlidebarBackCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ConversationSlidebarCommand" Collapsed="true">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ConversationSlidebarCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.MediaFileClickCommand" Collapsed="true">
+    <Position X="14" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\MediaFileClickCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.MediaGallerySeclectCommand" Collapsed="true">
+    <Position X="15.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\MediaGallerySeclectCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.MediaTabClickCommand" Collapsed="true">
+    <Position X="17.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\MediaTabClickCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChangeNameAcptCommand" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ChangeNameAcptCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ChangeNameBackCommand" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Command\ChangeNameBackCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.NotificationInfoCommand" Collapsed="true">
+    <Position X="18.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\NotificationInfoCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.NotificationLogoutCommand" Collapsed="true">
+    <Position X="18.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\NotificationLogoutCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ImageMsgHideCtrl" Collapsed="true">
+    <Position X="17.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Command\ImageMsgHideCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ImageMsgOpenWin" Collapsed="true">
+    <Position X="14.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ImageMsgOpenWin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.Command.ImageMsgShowCtrl" Collapsed="true">
+    <Position X="16" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\ImageMsgShowCtrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -52,7 +52,7 @@
                             Foreground="teal"
                             HorizontalAlignment="Right" 
                             FontSize="15"
-                            Click="BackButton_Click">
+                            Click="{Binding ChangeNameBackCommand}">
                             <TextBlock Text="{DynamicResource WindowChangePss.Discard}"></TextBlock>
                         </Button>
                         <Button x:Name="ConfirmButton"
@@ -63,7 +63,7 @@
                             ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                             DockPanel.Dock="Right"
                             FontSize="15"
-                            Click="acceptButtonClick">
+                            Click="{Binding ChangeNameAcptCommand}">
                             <TextBlock Text="{DynamicResource WindowChangePss.Save}"></TextBlock>
                         </Button>
                     </DockPanel>

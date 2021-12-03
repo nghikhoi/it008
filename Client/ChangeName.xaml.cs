@@ -29,13 +29,13 @@ namespace UI
             InitializeComponent();
         }
         
-        private void BackButton_Click(object sender, RoutedEventArgs e) {
-            this.Close();
-        }
+        //private void BackButton_Click(object sender, RoutedEventArgs e) {
+        //    this.Close();
+        //}
 
-        private void acceptButtonClick(object sender, RoutedEventArgs e) {
-            this.DialogResult = true;
-        }
+        //private void acceptButtonClick(object sender, RoutedEventArgs e) {
+        //    this.DialogResult = true;
+        //}
         
     }
 }
