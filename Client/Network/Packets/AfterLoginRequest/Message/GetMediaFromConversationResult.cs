@@ -4,9 +4,6 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Models;
-using UI.Models.Message;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -35,10 +32,10 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
         public void Handle(ISession session)
         {
-            Console.WriteLine("New media player");
+            /*Console.WriteLine("New media player");
             AbstractConversation conversation = null; //TODO
             var module = ModuleContainer.GetModule<ChatContainer>();
-            module.controller.AddMediaToCurrentSelectedConversation(FileIDs, FileNames, Positions);
+            module.controller.AddMediaToCurrentSelectedConversation(FileIDs, FileNames, Positions);*/
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 //MainWindow.Instance.MediaPlayerWindow = new MediaPlayerWindow();

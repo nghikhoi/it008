@@ -14,20 +14,22 @@
                                              ColorAdjustment="{materialDesign:ColorAdjustment}" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="Components/ContactCard.xaml"/>
-                <ResourceDictionary Source="Dictionaries/Styles.xaml"/>
-                <ResourceDictionary Source="Dictionaries/Colors.xaml"/>
-                <ResourceDictionary Source="Dictionaries/Scroll.xaml"/>
+                <ResourceDictionary Source="XAMLResources/Styles.xaml"/>
+                <ResourceDictionary Source="XAMLResources/Colors.xaml"/>
+                <ResourceDictionary Source="XAMLResources/Scroll.xaml"/>
+                <ResourceDictionary Source="XAMLResources/MessageTemplates.xaml"/>
+                <ResourceDictionary Source="XAMLResources/Decorate.xaml"/>
+                <ResourceDictionary Source="XAMLResources/Converters.xaml"/>
                 <ResourceDictionary>
                     <SolidColorBrush x:Key="BackgroundResource" Color="{StaticResource BackgroundLight}" />
                     <SolidColorBrush x:Key="ForegroundResource" Color="Black"/>
                     <SolidColorBrush x:Key="InputColorResource" Color="LightGray"/>
                     <SolidColorBrush x:Key="BorderColorResource" Color="Teal"/>
                     <SolidColorBrush x:Key="PrimaryColor" Color="Teal"/>
-                   
                 </ResourceDictionary>
 
                 <!-- Default Language -->
-                <ResourceDictionary Source="Lang/vi-VN.xaml"/>
+                <ResourceDictionary Source="/Resources/Lang/vi-VN.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChatItemHeartCommand:BaseCommand
+    public class ChatItemHeartCommand : BaseCommand
     {
         private void Heart_Checked(object sender, RoutedEventArgs e)
         {

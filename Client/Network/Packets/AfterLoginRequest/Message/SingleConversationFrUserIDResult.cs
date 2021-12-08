@@ -1,9 +1,7 @@
-﻿using System.Windows;
-using CNetwork;
+﻿using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -26,7 +24,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
         public void Handle(ISession session)
         {
-            Application.Current.Dispatcher.Invoke(
+            /*Application.Current.Dispatcher.Invoke(
             () =>
             {
                 var module = ModuleContainer.GetModule<ChatWindow>();
@@ -35,8 +33,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
                 app.model.PrivateConversations[UserID] = ConversationID;
                 app.model.Conversations.Add(ConversationID, new Utils.ConversationBubble());
                 app.model.Conversations[ConversationID].Members.Add(UserID);
-                ChatPage.Instance.LoadChatPage(ConversationID);*/
-            });
+                ChatPage.Instance.LoadChatPage(ConversationID);#1#
+            });*/
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
-using UI.Network.RestAPI;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -33,7 +30,7 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Handle(ISession session)
         {
-            ChatModel.Instance.FriendIDs.Clear();
+            /*ChatModel.Instance.FriendIDs.Clear();
             //TODO Application.Current.Dispatcher.Invoke(() => UserList.Instance.ClearListView());
 
             ChatModel model = ChatModel.Instance;
@@ -49,7 +46,7 @@ namespace UI.Network.Packets.AfterLoginRequest
 	            GetShortInfo packet = new GetShortInfo();
 	            packet.ID = id;
 	            DataAPI.getData<GetShortInfoResult>(packet);
-            }
+            }*/
         }
     }
 }

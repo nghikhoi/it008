@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Models;
 using UI.Models.Message;
-using UI.MVC;
 using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
@@ -87,7 +83,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         {
             // Create a message instance and put information into it
             //TODO
-            Application.Current.Dispatcher.Invoke(() => {
+            /*Application.Current.Dispatcher.Invoke(() => {
                 var module = ModuleContainer.GetModule<ChatContainer>();
                 for (int i = 0; i < SenderID.Count; ++i)
                 {
@@ -95,7 +91,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
                     module.controller.AddMessage(Content[i], true);
                 }
-            });
+            });*/
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 var app = MainWindow.chatApplication;

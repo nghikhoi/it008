@@ -4,11 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
+        xmlns:vm="clr-namespace:UI.ViewModels"
+        xmlns:v="clr-namespace:UI.Views"
         mc:Ignorable="d"
-        WindowStyle="none"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"       
-        Title="Chat" Height="350" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-
-    
-
+        WindowStyle="None"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vmAuth="clr-namespace:UI.ViewModels.Authentication"
+        x:Name="_this"
+        Height="480" Width="815"
+        MinHeight="{Binding ElementName=HomeView, Path=MinHeight}"
+        MinWidth="{Binding ElementName=HomeView, Path=MinWidth}"
+        Title="Chat" WindowStartupLocation="CenterScreen">
+        <!--<Window.Triggers>
+                <DataTrigger Binding="{Binding CurrentViewModel, Converter={StaticResource DataTypeConverter}}"
+                             Value="{x:Type vmAuth:AuthenticationViewModel}">
+                        <Setter TargetName="_this" Property="ResizeMode" Value="NoResize"/>
+                        <Setter TargetName="_this" Property="Width"
+                                Value="{Binding ElementName=Authentication, Path=Width}"/>
+                        <Setter TargetName="_this" Property="Height"
+                                Value="{Binding ElementName=Authentication, Path=Height}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentViewModel, Converter={StaticResource DataTypeConverter}}"
+                             Value="{x:Type vm:HomeViewModel}">
+                        <Setter TargetName="_this" Property="ResizeMode" Value="CanResizeWithGrip"/>
+                        <Setter TargetName="_this" Property="Width"
+                                Value="815"/>
+                        <Setter TargetName="_this" Property="Height"
+                                Value="480"/>
+                </DataTrigger>
+        </Window.Triggers>-->
+        <Border AllowDrop="True">
+                <Grid>
+                        <v:HomeView DataContext="{Binding CurrentViewModel}" x:Name="HomeView"/>
+                </Grid>
+        </Border>
 </Window>

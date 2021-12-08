@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Models;
-using UI.Models.Message;
-using UI.MVC;
-using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -57,38 +51,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
         public void Handle(ISession session)
         {
-            AbstractConversation conversation = null; //TODO
-            var module = ModuleContainer.GetModule<ConversationList>();
-            //module.controller.AddConversation(conversation);
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                ChatModel model = ChatModel.Instance;
-                ConversationCache modelConversation = model.Conversations[ConversationID];
-                modelConversation.LastMessID = LastMessID;
-
-                if (modelConversation.FirstTimeLoaded)
-                {
-                    modelConversation.FirstTimeLoaded = false;
-                    modelConversation.LastMediaID = LastMediaID;
-                    modelConversation.LastMediaIDBackup = LastMediaID;
-                }
-
-                modelConversation.LastAttachmentID = LastAttachmentID;
-                modelConversation.ConversationName = ConversationName;
-                modelConversation.Members = Members.ToList();
-
-                modelConversation.Color = ColorUtils.IntToColor(BubbleColor);
-
-                //if (app.model.MediaWindows.ContainsKey(ConversationID)
-                //&& app.model.MediaWindows[ConversationID] != null)
-                //{
-                //    app.model.MediaWindows[ConversationID].Close();
-                //    app.model.MediaWindows[ConversationID] = null;
-                //}
-                ChatContainerController controller = ModuleContainer.GetModule<ChatContainer>().controller;
-                controller.LoadMessages(ConversationID);
-                //TODO: update last active
-            });
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
@@ -32,8 +30,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
         public void Handle(ISession session)
         {
             // Display information on setting tab
-            var module = ModuleContainer.GetModule<SettingPage>();
-            module.controller.updateProfile(Profile);
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 var setting = SettingPage.Instance;

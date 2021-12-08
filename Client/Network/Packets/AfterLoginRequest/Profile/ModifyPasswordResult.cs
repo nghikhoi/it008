@@ -1,10 +1,6 @@
-﻿using System;
-using System.Windows;
-using CNetwork;
+﻿using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using MaterialDesignThemes.Wpf;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
@@ -24,8 +20,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
 
         public void Handle(ISession session)
         {
-            var module = ModuleContainer.GetModule<ChatWindow>();
-            module.controller.NotifyModifyPasswordResult(Result);
+            
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 if (Result)

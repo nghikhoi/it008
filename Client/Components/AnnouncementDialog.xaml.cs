@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.Components
+namespace UI.CustomControls
 {
     /// <summary>
     /// Interaction logic for AnnouncementDialog.xaml
     /// </summary>
     public partial class AnnouncementDialog : UserControl
     {
-        public AnnouncementDialog()
+        public AnnouncementDialog(params string[] messages)
         {
             InitializeComponent();
+            announceText.Text = String.Join("\n", messages);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
 {
     public class UpdateSelfProfile : IPacket
     {
+        public UserProfile UserProfile { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Town { get; set; } = "Default";
@@ -22,11 +23,11 @@ namespace UI.Network.Packets.AfterLoginRequest.Profile
 
         public IByteBuffer Encode(IByteBuffer byteBuf)
         {
-            ByteBufUtils.WriteUTF8(byteBuf, FirstName);
-            ByteBufUtils.WriteUTF8(byteBuf, LastName);
-            ByteBufUtils.WriteUTF8(byteBuf, Town);
-            ByteBufUtils.WriteUTF8(byteBuf, DateOfBirth.ToString());
-            byteBuf.WriteInt((int)Gender);
+            ByteBufUtils.WriteUTF8(byteBuf, UserProfile.FirstName);
+            ByteBufUtils.WriteUTF8(byteBuf, UserProfile.LastName);
+            ByteBufUtils.WriteUTF8(byteBuf, UserProfile.Town);
+            ByteBufUtils.WriteUTF8(byteBuf, UserProfile.BirthDay.ToString());
+            byteBuf.WriteInt((int) UserProfile.Gender);
             return byteBuf;
         }
 

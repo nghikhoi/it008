@@ -1,0 +1,29 @@
+﻿<Window x:Class="UI.DownloadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        xmlns:uc="clr-namespace:UI.Components"
+        mc:Ignorable="d"
+        Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize"
+        Title="DownloadWindow" Height="480" Width="256">
+    <Grid>
+        <Border x:Name="PopUp" Style="{StaticResource OriginalBorder}" 
+                Height="480" Width="256" Background="{DynamicResource BackgroundResource}"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <DockPanel>
+                <DockPanel x:Name="TitleBar" DockPanel.Dock="Top">
+                    <uc:NonResizeTitleBar DockPanel.Dock="Right"></uc:NonResizeTitleBar>
+                    <TextBlock Foreground="LightSlateGray" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="14">
+                            Tải xuống
+                    </TextBlock>
+                </DockPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="DownloadList" Margin="4,0">
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

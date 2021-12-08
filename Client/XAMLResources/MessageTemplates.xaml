@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:uc="clr-namespace:UI.Components">
+    <Style x:Key="MessageAlign" TargetType="UserControl">
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsReceivedMessage}" Value="True">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <DataTemplate x:Key="TextMessage">
+        <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="ImageMessage">
+        <uc:ThumbnailBubble MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="VideoMessage">
+        <uc:ThumbnailBubble MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>
+    </DataTemplate>
+    <!-->TODO<-->
+    <DataTemplate x:Key="StickerMessage">
+        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="AttachmentMessage">
+        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+    </DataTemplate>
+</ResourceDictionary>

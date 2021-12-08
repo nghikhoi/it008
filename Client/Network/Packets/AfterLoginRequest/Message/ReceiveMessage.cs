@@ -4,9 +4,7 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Models;
 using UI.Models.Message;
-using UI.MVC;
 using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
@@ -38,8 +36,8 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
             Application.Current.Dispatcher.Invoke(() =>
             {
-                var module = ModuleContainer.GetModule<ChatWindow>();
-                module.controller.AddMessage(ConversationID, SenderID, Message);
+                /*var module = ModuleContainer.GetModule<ChatWindow>();
+                module.controller.AddMessage(ConversationID, SenderID, Message);*/
                 /*var app = MainWindow.chatApplication;
                 if (!app.model.Conversations.ContainsKey(ConversationID))
                 {

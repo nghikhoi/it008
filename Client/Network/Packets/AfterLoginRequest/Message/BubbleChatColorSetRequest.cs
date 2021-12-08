@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Windows.Media;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
-using UI.Utils;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -34,9 +31,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             /*MainWindow.chatApplication.model.Conversations.TryGetValue(ConversationID, out var conversationBubble);
             if (conversationBubble == null) return;*/
 
-            Color color = ColorUtils.IntToColor(BubbleColor);
-            var module = ModuleContainer.GetModule<ChatContainer>();
-            module.controller.SetBubbleColor(color);
 
             /*if (MainWindow.chatApplication.model.currentSelectedConversation == ConversationID)
             {

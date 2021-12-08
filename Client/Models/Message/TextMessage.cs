@@ -26,8 +26,9 @@ namespace UI.Models.Message
             set
             {
                 _message = value;
-                while (_message.Contains(Environment.NewLine + Environment.NewLine) || _message.Contains("\n\n"))
-                {
+                if (_message == null)
+                    _message = "";
+                while (_message.Contains(Environment.NewLine + Environment.NewLine) || _message.Contains("\n\n")) {
                     _message = _message.Replace(Environment.NewLine + Environment.NewLine, Environment.NewLine).Replace("\n\n", "\n");
                 }
             }

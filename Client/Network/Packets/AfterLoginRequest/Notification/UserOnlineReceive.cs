@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Notification
 {
@@ -24,10 +22,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Notification
 
         public void Handle(ISession session)
         {
-            Utils.Packets.SendPacket<GetFriendIDs>();
-
-            ChatWindow module = ModuleContainer.GetModule<ChatWindow>();
-            module.controller.UpdateOnlineStatus(UserID, true);
             /*var friend = app.model.UserControls[UserID] as UserMessage;
 
             if (app.model.IsOnline.ContainsKey(UserID))

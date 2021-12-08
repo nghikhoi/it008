@@ -5,7 +5,6 @@ using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Search
 {
@@ -44,8 +43,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Search
         public void Handle(ISession session)
         {
             //TODO
-            var module = ModuleContainer.GetModule<ConversationList>();
-            module.controller.ShowSearchResult(Results);
             /*Application.Current.Dispatcher.Invoke(() =>
             {
                 if (String.IsNullOrEmpty(UserList.Instance.UserSearchBox.Text)) return;

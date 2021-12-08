@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Debug;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -26,12 +23,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         }
 
         public void Handle(ISession session) {
-            var module = ModuleContainer.GetModule<ChatWindow>();
-            Application.Current.Dispatcher.Invoke(() => 
-            {
-                module.controller.Buzz();
-                Logger.log(ConversationID);
-            });
+            
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChangePasswordConfirmCommand:BaseCommand
+    public class ChangePasswordConfirmCommand : BaseCommand
     {
         private void ConfirmButton_OnClick(object sender, RoutedEventArgs e)
         {

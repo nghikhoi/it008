@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="UI.FriendRequestNoti"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d"
+             x:Name="_this"
+             d:DesignHeight="60" d:DesignWidth="200" MinHeight="60" MinWidth="200">
+    <Border Background="Transparent">
+        <Grid>
+            <DockPanel>
+                <DockPanel Margin="4,4,0,0">
+                    <TextBlock x:Name="FriendName" Text="{Binding ElementName=_this, Path=SenderName}" FontFamily="Segoe UI Semibold"  Margin="8,4,0,0" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="Noti" Text="sent you a friend request." FontFamily="Segoe UI Semilight" FontSize="8" Margin="8,0,0,0" DockPanel.Dock="Bottom"/>
+                </DockPanel>
+            </DockPanel>
+            <!--Chua co y tuong design button-->
+            <DockPanel VerticalAlignment="Bottom" Height="64" Margin="0">
+                <Button x:Name="RemoveBtn" Content="Remove" FontSize="6"
+                        HorizontalAlignment="Right" Width="15" Height="15"
+                        DockPanel.Dock="Right" Margin="16,24,16,14"
+                        Background="{StaticResource BackgroundVeryLightBrush}" BorderBrush="{x:Null}" Foreground="{StaticResource PrimaryHueDarkBrush}"
+                        Click="RemoveBtn_OnClick"
+                        />
+                <Button x:Name="BtnAccept" Content="Accept"
+                        HorizontalAlignment="Right" Width="15" Height="15"
+                        DockPanel.Dock="Right" Foreground="White" FontSize="16" Margin="1,24,0,14"
+                        Click="BtnAccept_OnClick"
+                        />
+            </DockPanel>
+
+            <Button x:Name="ClickMaskButton" Background="{x:Null}" BorderBrush="{x:Null}" Height="Auto" Click="ClickMask_Click"/>
+        </Grid>
+    </Border>
+
+</UserControl>

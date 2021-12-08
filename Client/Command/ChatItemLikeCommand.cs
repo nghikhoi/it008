@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChatItemLikeCommand:BaseCommand
+    public class ChatItemLikeCommand : BaseCommand
     {
         private void Like_Checked(object sender, RoutedEventArgs e)
         {

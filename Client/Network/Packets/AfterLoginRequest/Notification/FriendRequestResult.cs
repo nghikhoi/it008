@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Notification
 {
@@ -27,10 +25,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Notification
         public void Handle(ISession session)
         {
             // Notify
-            Application.Current.Dispatcher.Invoke(() => {
-                ChatWindow module = ModuleContainer.GetModule<ChatWindow>();
-                module.controller.AddFriendAcceptedNoti(UserID, Name);
-            });
 
             Utils.Packets.SendPacket<GetFriendIDs>();   
         }

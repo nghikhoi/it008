@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChatItemMouseEnterCommand:BaseCommand
+    public class ChatItemMouseEnterCommand : BaseCommand
     {
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
         {

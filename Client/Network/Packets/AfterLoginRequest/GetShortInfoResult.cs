@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
 using UI.Models;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -43,7 +41,7 @@ namespace UI.Network.Packets.AfterLoginRequest
 
         public void Handle(ISession session)
         {
-            var id = info.ID;
+            /*var id = info.ID;
             ConversationList conversationList = ModuleContainer.GetModule<ConversationList>();
             conversationList.controller.addShortInfo(info);
 
@@ -58,7 +56,7 @@ namespace UI.Network.Packets.AfterLoginRequest
                    model.PrivateConversations.Add(info.ID, info.ConversationID);
 
                model.updateOnlineStatus(id, info.IsOnline);
-            }
+            }*/
         }
     }
 }

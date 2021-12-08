@@ -35,7 +35,7 @@
                                 <Label Content="Tải xuống" Foreground="#FFA2A2A2" Height="30" VerticalContentAlignment="Center" />
                             </StackPanel>
                         </Button>
-                    <uc:ucTitleBar1></uc:ucTitleBar1>
+                    <uc:TitleBar></uc:TitleBar>
                     </Grid>
                 <DockPanel Margin="10,0,10,10" DockPanel.Dock="Bottom">
                     <ScrollViewer DockPanel.Dock="Bottom" x:Name="GalleryScroller"

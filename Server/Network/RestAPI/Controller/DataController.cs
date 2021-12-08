@@ -37,7 +37,8 @@ namespace ChatServer.Network.RestAPI.Controller
                 { "search", typeof(UserSearchRequest) },
                 { "stickerpacks", typeof(GetBoughtStickerPacksRequest) },
                 { "recentsticker", typeof(GetNearestSickerRequest) },
-                { "updateprofile", typeof(UpdateSelfProfileRequest) }
+                { "updateprofile", typeof(UpdateSelfProfileRequest) },
+                { "modifypassword", typeof(ModifyPasswordRequest) }
         };
 
         public static Action<Action<IPacket>> getResponde(string id, ChatSession session, IByteBuffer buffer) {

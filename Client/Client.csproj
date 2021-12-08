@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -82,6 +83,16 @@
     <Reference Include="DotNetty.Transport, Version=0.7.0.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetty.Transport.0.7.0\lib\net472\DotNetty.Transport.dll</HintPath>
     </Reference>
+    <Reference Include="Emoji.Wpf, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Emoji.Wpf.0.3.3\lib\net40\Emoji.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a">
       <HintPath>..\packages\log4net.2.0.13\lib\net45\log4net.dll</HintPath>
       <Private>True</Private>
@@ -98,26 +109,83 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.2.1.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.2.1\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.6.0.0\lib\net461\Microsoft.Extensions.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.5.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.CommandLine, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.CommandLine.6.0.0\lib\net461\Microsoft.Extensions.Configuration.CommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Options.5.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.EnvironmentVariables.6.0.0\lib\net461\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.UserSecrets, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\lib\net461\Microsoft.Extensions.Configuration.UserSecrets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.6.0.0\lib\net461\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.6.0.0\lib\net461\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.6.0.0\lib\net461\Microsoft.Extensions.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.6.0.0\lib\net461\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.6.0.0\lib\net461\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Debug, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Debug.6.0.0\lib\net461\Microsoft.Extensions.Logging.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.EventLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.EventLog.6.0.0\lib\net461\Microsoft.Extensions.Logging.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.EventSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.EventSource.6.0.0\lib\net461\Microsoft.Extensions.Logging.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.6.0.0\lib\net461\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1018.0, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
@@ -143,18 +211,63 @@
     <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
       <HintPath>..\packages\System.Configuration.ConfigurationManager.6.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
       <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
@@ -167,9 +280,6 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -202,6 +312,14 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Typography.GlyphLayout, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Emoji.Wpf.0.3.3\lib\net40\Typography.GlyphLayout.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Typography.OpenFont, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Emoji.Wpf.0.3.3\lib\net40\Typography.OpenFont.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -215,110 +333,161 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command\ChangeNameAcptCommand.cs" />
-    <Compile Include="Command\ChangeNameBackCommand.cs" />
-    <Compile Include="Command\ChangePasswordConfirmCommand.cs" />
-    <Compile Include="Command\ChatItemAngryCommand.cs" />
-    <Compile Include="Command\ChatItemHeartCommand.cs" />
-    <Compile Include="Command\ChatItemLikeCommand.cs" />
-    <Compile Include="Command\ChatItemMouseEnterCommand.cs" />
-    <Compile Include="Command\ChatItemMouseLeaveCommand.cs" />
-    <Compile Include="Command\ChatItemSadCommand.cs" />
-    <Compile Include="Command\ChatItemSmileCommand.cs" />
-    <Compile Include="Command\ChatpageLoadCommand.cs" />
-    <Compile Include="Command\ChatpageSendByEnterCommand.cs" />
-    <Compile Include="Command\ChatpageSendClickCommand.cs" />
-    <Compile Include="Command\ChatpageSendFileCommand.cs" />
-    <Compile Include="Command\ChatpageSendImageCommand.cs" />
-    <Compile Include="Command\ChatpageToggleCheckedCommand.cs" />
-    <Compile Include="Command\ChatpageToggleUncheckedCommand.cs" />
-    <Compile Include="Command\ConversationSlidebarBackCommand.cs" />
-    <Compile Include="Command\ConversationSlidebarCommand.cs" />
-    <Compile Include="Command\HomeWindowCloseCommand.cs" />
-    <Compile Include="Command\ImageMsgHideCtrl.cs" />
-    <Compile Include="Command\ImageMsgOpenWin.cs" />
-    <Compile Include="Command\ImageMsgShowCtrl.cs" />
-    <Compile Include="Command\MediaFileClickCommand.cs" />
-    <Compile Include="Command\MediaGallerySeclectCommand.cs" />
-    <Compile Include="Command\MediaTabClickCommand.cs" />
-    <Compile Include="Command\NotificationInfoCommand.cs" />
-    <Compile Include="Command\NotificationLogoutCommand.cs" />
-    <Compile Include="Command\SignUpBackClickCommand.cs" />
-    <Compile Include="ChangeName.xaml.cs">
-      <DependentUpon>ChangeName.xaml</DependentUpon>
+    <Compile Include="AuthenticationWindow.xaml.cs">
+      <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChangePassWord.xaml.cs">
-      <DependentUpon>ChangePassWord.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\EnumBindingSource.cs" />
-    <Compile Include="Components\ThumbnailBubble.xaml.cs" />
-    <Compile Include="Components\ucAvatarSender.xaml.cs">
-      <DependentUpon>ucAvatarSender.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucChatItemSender.xaml.cs">
-      <DependentUpon>ucChatItemSender.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucMediaGallery.xaml.cs">
-      <DependentUpon>ucMediaGallery.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucStickerStore.xaml.cs">
-      <DependentUpon>ucStickerStore.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucTabSticker.xaml.cs">
-      <DependentUpon>ucTabSticker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucTabStickerContainer.xaml.cs">
-      <DependentUpon>ucTabStickerContainer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucTabStickerStore.xaml.cs">
-      <DependentUpon>ucTabStickerStore.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucTitleBar1.xaml.cs">
-      <DependentUpon>ucTitleBar1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\AnnouncementDialog.xaml.cs">
+    <Compile Include="Command\InitializeCommand.cs" />
+    <Compile Include="Command\ThemeSelectCommand.cs" />
+    <Compile Include="Command\TitleBarCommand.cs" />
+    <Compile Include="Command\UpdateCurrentViewModelCommand.cs" />
+    <Compile Include="Components\AnnouncementDialog.xaml.cs">
       <DependentUpon>AnnouncementDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\AvatarDisplayer.xaml.cs" />
-    <Compile Include="CustomControls\Dialogs.cs" />
-    <Compile Include="CustomControls\FriendRequestNoti.xaml.cs">
-      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    <Compile Include="Components\Authentication\LoginForm.xaml.cs">
+      <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\LoadingDialog.xaml.cs">
-      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    <Compile Include="Components\Authentication\RegisterForm.xaml.cs">
+      <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\NotificationTagItem.xaml.cs">
-      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
+    <Compile Include="Components\AvatarDisplayer.xaml.cs" />
+    <Compile Include="Components\ChatItem\AvatarSender.xaml.cs">
+      <DependentUpon>AvatarSender.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\Sticker.xaml.cs" />
-    <Compile Include="DownloadWindow.xaml.cs">
+    <Compile Include="Components\ChatItem\ConversationItem.xaml.cs">
+      <DependentUpon>ConversationItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ChatItem\Sticker.xaml.cs" />
+    <Compile Include="Components\ChatItem\TextBubble.xaml.cs">
+      <DependentUpon>TextBubble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ChatItem\ThumbnailBubble.xaml.cs" />
+    <Compile Include="Components\ConversationListTabs.xaml.cs" />
+    <Compile Include="Components\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageMsg.xaml.cs">
+    <Compile Include="Components\ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageWindow.xaml.cs">
+    <Compile Include="Components\ImageWindow.xaml.cs">
       <DependentUpon>ImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\LoadingDialog.xaml.cs">
+      <DependentUpon>LoadingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\mediaPlayer.xaml.cs">
+      <DependentUpon>mediaPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Notifications\FriendRequestNoti.xaml.cs">
+      <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Notifications\NotificationPage.xaml.cs">
+      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Notifications\NotificationTagItem.xaml.cs">
+      <DependentUpon>NotificationTagItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\OfflineStatus.xaml.cs">
+      <DependentUpon>OfflineStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\OnlineStatus.xaml.cs">
+      <DependentUpon>OnlineStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\ChangeName.xaml.cs">
+      <DependentUpon>ChangeName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\ProfileForm.xaml.cs">
+      <DependentUpon>ProfileForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SimpleMediaPlayer.xaml.cs">
+      <DependentUpon>SimpleMediaPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Sticker\StickerStore.xaml.cs">
+      <DependentUpon>StickerStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Sticker\TabSticker.xaml.cs">
+      <DependentUpon>TabSticker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Sticker\TabStickerContainer.xaml.cs">
+      <DependentUpon>TabStickerContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Sticker\TabStickerStore.xaml.cs">
+      <DependentUpon>TabStickerStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ThemePanel.xaml.cs">
+      <DependentUpon>ThemePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TitleBar\NonResizeTitleBar.xaml.cs">
+      <DependentUpon>NonResizeTitleBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TitleBar\TitleBar.xaml.cs">
+      <DependentUpon>TitleBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\VideoWindow.xaml.cs">
+      <DependentUpon>VideoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Relationship.cs" />
+    <Compile Include="Network\PacketRespondeListener.cs" />
+    <Compile Include="Network\RespondeManager.cs" />
+    <Compile Include="Services\Common\Authenticator.cs" />
+    <Compile Include="Services\Common\Dialog.cs" />
+    <Compile Include="Services\Common\UserProfileHolder.cs" />
+    <Compile Include="Services\Common\ViewModelFactory.cs" />
+    <Compile Include="Services\Common\ViewStateDelegateNavigator.cs" />
+    <Compile Include="Services\Common\MainWindowNavigator.cs" />
+    <Compile Include="Services\Exceptions\InvalidPasswordException.cs" />
+    <Compile Include="Services\Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Services\Exceptions\WrongPasswordException.cs" />
+    <Compile Include="Services\IAuthenticator.cs" />
+    <Compile Include="Services\IDialog.cs" />
+    <Compile Include="Services\INavigator.cs" />
+    <Compile Include="Services\IUserProfileHolder.cs" />
+    <Compile Include="Services\IViewModelFactory.cs" />
+    <Compile Include="Services\Language.cs" />
+    <Compile Include="Utils\Converters\DataTypeConverter.cs" />
+    <Compile Include="Utils\Converters\EnumConverter.cs" />
+    <Compile Include="Utils\FastCodeUtils.cs" />
+    <Compile Include="Utils\Markups\MessageTemplateSelector.cs" />
+    <Compile Include="Utils\Markups\NotificationTemplateSelector.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="Components\EnumBindingSource.cs" />
+    <Compile Include="Components\LanguageSelector.xaml.cs">
+      <DependentUpon>LanguageSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ThemeSelector.xaml.cs">
+      <DependentUpon>ThemeSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MediaGalleryTabs.xaml.cs">
+      <DependentUpon>MediaGalleryTabs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\PasswordBoxHelper.cs" />
+    <Compile Include="Utils\Triggers\KeyDownTrigger.cs" />
+    <Compile Include="ViewModels\Authentication\AuthenticationViewModel.cs" />
+    <Compile Include="ViewModels\Authentication\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Authentication\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Components\ChatContainerViewModel.cs" />
+    <Compile Include="ViewModels\Components\LanguageSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\ConversationListViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\ConversationViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\FriendConversationViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\InitializableViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MediaGalleryWindow.xaml.cs">
       <DependentUpon>MediaGalleryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVC\NotificationPage\Notification.cs" />
-    <Compile Include="MVC\NotificationPage\NotificationController.cs" />
-    <Compile Include="MVC\NotificationPage\NotificationPage.xaml.cs">
-      <DependentUpon>NotificationPage.xaml</DependentUpon>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Lang\Language.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Command\BaseCommand.cs" />
-    <Compile Include="Components\BaseComponent.cs" />
-    <Compile Include="Components\ChangeUserInfomation.cs" />
-    <Compile Include="Components\ucTitleBar.xaml.cs">
-      <DependentUpon>ucTitleBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="mediaPlayer.xaml.cs">
-      <DependentUpon>mediaPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\ConservationCache.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\LoginInfo.cs" />
@@ -337,46 +506,6 @@
     <Compile Include="Models\RegisterInfo.cs" />
     <Compile Include="Models\UserShortInfo.cs" />
     <Compile Include="Models\UserProfile.cs" />
-    <Compile Include="MVC\Authentication\Authentication.cs" />
-    <Compile Include="MVC\Authentication\AuthenticationController.cs" />
-    <Compile Include="MVC\Authentication\AuthenticationView.cs" />
-    <Compile Include="MVC\Authentication\WindowLogIn.xaml.cs">
-      <DependentUpon>WindowLogIn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\Authentication\WindowSignUp.xaml.cs">
-      <DependentUpon>WindowSignUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\ChatContainer\ChatContainer.cs" />
-    <Compile Include="MVC\ChatContainer\ChatContainerController.cs" />
-    <Compile Include="MVC\ChatContainer\ChatPage.xaml.cs">
-      <DependentUpon>ChatPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\ChatModel.cs" />
-    <Compile Include="MVC\ChatWindow\ChatWindow.cs" />
-    <Compile Include="MVC\ChatWindow\ChatWindowController.cs" />
-    <Compile Include="MVC\ChatWindow\HomeWindow.xaml.cs">
-      <DependentUpon>HomeWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\ConversationList\ConversationList.cs" />
-    <Compile Include="MVC\ConversationList\ConversationListController.cs" />
-    <Compile Include="MVC\ConversationList\ChatListControl.xaml.cs">
-      <DependentUpon>ChatListControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\ConversationList\ChatListItemControl.xaml.cs">
-      <DependentUpon>ChatListItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\ConversationList\ucListRecentMessage.xaml.cs">
-      <DependentUpon>ucListRecentMessage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\IController.cs" />
-    <Compile Include="MVC\IModel.cs" />
-    <Compile Include="MVC\Module.cs" />
-    <Compile Include="MVC\IView.cs" />
-    <Compile Include="MVC\Setting\SettingPage.cs" />
-    <Compile Include="MVC\Setting\SettingController.cs" />
-    <Compile Include="MVC\Setting\SettingWindow.xaml.cs">
-      <DependentUpon>SettingWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Network\ChatConnection.cs" />
     <Compile Include="Network\ClientSession.cs" />
     <Compile Include="Network\Http\Downloader.cs" />
@@ -452,26 +581,18 @@
     <Compile Include="Network\RestAPI\ResourceAPI.cs" />
     <Compile Include="Network\RestAPI\StickerAPI.cs" />
     <Compile Include="Network\RestAPI\StreamAPI.cs" />
-    <Compile Include="Components\ucChatItem.xaml.cs">
-      <DependentUpon>ucChatItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Components\TitleBar.cs" />
-    <Compile Include="OfflineStatus.xaml.cs">
-      <DependentUpon>OfflineStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OnlineStatus.xaml.cs">
-      <DependentUpon>OnlineStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ucInfoConversationSlideBar.xaml.cs">
-      <DependentUpon>ucInfoConversationSlideBar.xaml</DependentUpon>
+    <Compile Include="Components\ConversationInfoSlideBar.xaml.cs">
+      <DependentUpon>ConversationInfoSlideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Services\Common\AppSession.cs" />
+    <Compile Include="Services\Common\ViewState.cs" />
+    <Compile Include="Services\IAppSession.cs" />
+    <Compile Include="Services\ILanguageProvider.cs" />
+    <Compile Include="Services\IViewState.cs" />
+    <Compile Include="Services\Services.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Command\SignUpClickCommand.cs" />
-    <Compile Include="Themes\ThemePanel.xaml.cs">
-      <DependentUpon>ThemePanel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\AppConfig.cs" />
     <Compile Include="Utils\Cache\DataNode.cs" />
     <Compile Include="Utils\Cache\FIFOCache.cs" />
@@ -492,106 +613,185 @@
     <Compile Include="Utils\TempUtil.cs" />
     <Compile Include="Utils\ThreadUtil.cs" />
     <Compile Include="Utils\UserUtils.cs" />
-    <Compile Include="SimpleMediaPlayer.xaml.cs">
-      <DependentUpon>SimpleMediaPlayer.xaml</DependentUpon>
+    <Compile Include="ViewModels\Media\MediaGalleryViewModel.cs" />
+    <Compile Include="ViewModels\Messages\AttachmentMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\ImageMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\MessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\StickerMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\TextMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\VideoMessageViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\FriendAccpectedNotificationViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\FriendRequestNotificationViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\NotificationPageViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\NotificationViewModel.cs" />
+    <Compile Include="ViewModels\Profile\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Authentication.xaml.cs">
+      <DependentUpon>Authentication.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoWindow.xaml.cs">
-      <DependentUpon>VideoWindow.xaml</DependentUpon>
+    <Compile Include="Views\ChatPage.xaml.cs">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Command\WindowMouseDownCommand.cs" />
-    <Page Include="ChangeName.xaml" />
-    <Page Include="ChangePassWord.xaml">
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AuthenticationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\AnnouncementDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\Authentication\LoginForm.xaml" />
+    <Page Include="Components\Authentication\RegisterForm.xaml" />
+    <Page Include="Components\AvatarDisplayer.xaml" />
+    <Page Include="Components\ChatItem\AvatarSender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChatItem\ConversationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChatItem\Sticker.xaml" />
+    <Page Include="Components\ChatItem\TextBubble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChatItem\ThumbnailBubble.xaml" />
     <Page Include="Components\ContactCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ThumbnailBubble.xaml" />
-    <Page Include="Components\ucTitleBar1.xaml">
+    <Page Include="Components\ConversationListTabs.xaml" />
+    <Page Include="Components\DownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomControls\AvatarDisplayer.xaml" />
-    <Page Include="CustomControls\FriendRequestNoti.xaml">
+    <Page Include="Components\ImageMsg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomControls\NotificationTagItem.xaml">
+    <Page Include="Components\ImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DownloadWindow.xaml">
+    <Page Include="Components\LanguageSelector.xaml" />
+    <Page Include="Components\LoadingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\mediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Notifications\FriendRequestNoti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Notifications\NotificationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Notifications\NotificationTagItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\OfflineStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\OnlineStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Profile\ChangeName.xaml" />
+    <Page Include="Components\Profile\ChangePassword.xaml" />
+    <Page Include="Components\Profile\ProfileForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SimpleMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Sticker\StickerStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Sticker\TabSticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Sticker\TabStickerContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Sticker\TabStickerStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ThemePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ThemeSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TitleBar\NonResizeTitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TitleBar\TitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\VideoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MediaGalleryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\NotificationPage\NotificationPage.xaml">
+    <Page Include="Components\MediaGalleryTabs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucAvatarSender.xaml">
+    <Page Include="Resources\Lang\en-US.xaml" />
+    <Page Include="Resources\Lang\vi-VN.xaml" />
+    <Page Include="Views\Authentication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucChatItemSender.xaml">
+    <Page Include="Views\ChatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucMediaGallery.xaml">
+    <Page Include="Views\HomeView.xaml" />
+    <Page Include="XAMLResources\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucStickerStore.xaml">
+    <Page Include="XAMLResources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucTabSticker.xaml">
+    <Page Include="XAMLResources\Decorate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucTabStickerContainer.xaml">
+    <Page Include="XAMLResources\MessageTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ucTabStickerStore.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Components\ucTitleBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\AnnouncementDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\LoadingDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\Sticker.xaml" />
-    <Page Include="Dictionaries\Colors.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Resource Include="Dictionaries\Scroll.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-    <Page Include="Dictionaries\Styles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImageMsg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImageWindow.xaml">
+    <Page Include="XAMLResources\NotificationTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -599,69 +799,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Lang\en-US.xaml" />
-    <Page Include="Lang\vi-VN.xaml" />
-    <Page Include="mediaPlayer.xaml">
+    <Page Include="Components\ConversationInfoSlideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVC\Authentication\WindowLogIn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\Authentication\WindowSignUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\ChatContainer\ChatPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\ChatWindow\HomeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\ConversationList\ChatListControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\ConversationList\ChatListItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Components\ucChatItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\ConversationList\ucListRecentMessage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVC\Setting\SettingWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OfflineStatus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="OnlineStatus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SimpleMediaPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Components\ucInfoConversationSlideBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\ThemePanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoWindow.xaml">
+    <Page Include="XAMLResources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -684,27 +826,37 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
     <None Include="Command\CommandDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="ViewModels\ViewModels.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\avt.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\DefaultThumbnail.jpg" />
+    <Resource Include="Resources\IconPack\Angry.png" />
+    <Resource Include="Resources\IconPack\Heart.png" />
+    <Resource Include="Resources\IconPack\Like.png" />
+    <Resource Include="Resources\IconPack\Sad.png" />
+    <Resource Include="Resources\IconPack\Smile.png" />
+    <Resource Include="Resources\Images\avt.jpg" />
+    <Resource Include="Resources\Images\DefaultThumbnail.jpg" />
+    <Resource Include="Resources\Images\logo.png" />
+    <Resource Include="XAMLResources\Scroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -731,11 +883,7 @@
     <None Include="Properties\Images\ca.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IconPack\Angry.png" />
-    <Resource Include="IconPack\Heart.png" />
-    <Resource Include="IconPack\Like.png" />
-    <Resource Include="IconPack\Sad.png" />
-    <Resource Include="IconPack\Smile.png" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
@@ -746,7 +894,14 @@
     <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\build\Microsoft.Web.WebView2.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.UI.Xaml.2.8.0-prerelease.210927001\build\Microsoft.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.UI.Xaml.2.8.0-prerelease.210927001\build\Microsoft.UI.Xaml.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1018-prerelease\build\Microsoft.Web.WebView2.targets')" />
   <Import Project="..\packages\Microsoft.UI.Xaml.2.8.0-prerelease.210927001\build\Microsoft.UI.Xaml.targets" Condition="Exists('..\packages\Microsoft.UI.Xaml.2.8.0-prerelease.210927001\build\Microsoft.UI.Xaml.targets')" />
+  <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
+  <Import Project="..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets" Condition="Exists('..\packages\Microsoft.Extensions.Configuration.UserSecrets.6.0.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.targets')" />
 </Project>

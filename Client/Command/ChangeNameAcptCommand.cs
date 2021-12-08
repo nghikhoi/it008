@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChangeNameAcptCommand:BaseCommand
+    public class ChangeNameAcptCommand : BaseCommand
     {
         private void acceptButtonClick(object sender, RoutedEventArgs e)
         {

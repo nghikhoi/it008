@@ -3,9 +3,6 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.Models;
-using UI.Models.Message;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -29,14 +26,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
 
         public void Handle(ISession session)
         {
-            Console.WriteLine("RecvConv: " + ConversationName);
-            AbstractConversation conversation = null; //TODO
-            var module = ModuleContainer.GetModule<ConversationList>();
-            module.controller.AddShortInfoConversation(ConversationID, ConversationName, LastActive);
-            /*Application.Current.Dispatcher.Invoke(() =>
-            {
-                UserList.Instance.AddConversationToRecent(ConversationID, ConversationName, LastActive);
-            });*/
         }
     }
 }

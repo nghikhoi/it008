@@ -3,7 +3,6 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets
 {
@@ -25,12 +24,11 @@ namespace UI.Network.Packets
 
         public void Handle(ISession session)
         {
-            if (StatusCode == 200)
+            /*if (StatusCode == 200)
             {
                 (session as ClientSession).LoggedIn(Token);
                 ModuleContainer.OnDisconnection();
-            }
-            ChatConnection.Instance.OnResponse(StatusCode);
+            }*/
         }
     }
 }

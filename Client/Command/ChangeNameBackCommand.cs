@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChangeNameBackCommand:BaseCommand
+    public class ChangeNameBackCommand : BaseCommand
     {
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

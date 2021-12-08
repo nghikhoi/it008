@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.AfterLoginRequest
 {
@@ -25,10 +23,10 @@ namespace UI.Network.Packets.AfterLoginRequest
         public void Handle(ISession session)
         {
             //TODO
-            Application.Current.Dispatcher.Invoke(() =>
+            /*Application.Current.Dispatcher.Invoke(() =>
             {
                 ChatModel.Instance.SelfID = ID;
-            });
+            });*/
         }
     }
 }

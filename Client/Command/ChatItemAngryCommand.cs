@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UI.Command
 {
-    class ChatItemAngryCommand:BaseCommand
+    public class ChatItemAngryCommand : BaseCommand
     {
         private void Angry_Checked(object sender, RoutedEventArgs e)
         {

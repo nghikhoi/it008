@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.Register
 {
@@ -23,9 +21,9 @@ namespace UI.Network.Packets.Register
 
         public void Handle(ISession session)
         {
-            Authentication module = ModuleContainer.GetModule<Authentication>();
+            /*Authentication module = ModuleContainer.GetModule<Authentication>();
             if (module == null) return;
-            Application.Current.Dispatcher.Invoke(() => module.controller.RegisterResponse(StatusCode));
+            Application.Current.Dispatcher.Invoke(() => module.controller.RegisterResponse(StatusCode));*/
         }
     }
 }

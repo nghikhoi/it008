@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Windows;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using UI.MVC;
 
 namespace UI.Network.Packets.Login
 {
@@ -26,14 +24,13 @@ namespace UI.Network.Packets.Login
 
         public void Handle(ISession session)
         {
-            Authentication module = ModuleContainer.GetModule<Authentication>();
+            /*Authentication module = ModuleContainer.GetModule<Authentication>();
             if (module == null) return;
             if (StatusCode == 200)
             {
                 (session as ClientSession).LoggedIn(Token);
             }
-            Application.Current.Dispatcher.Invoke(() => module.controller.LoginResponde(StatusCode));
-            ChatConnection.Instance.OnResponse(StatusCode);
+            Application.Current.Dispatcher.Invoke(() => module.controller.LoginResponde(StatusCode));*/
         }
     }
 }
