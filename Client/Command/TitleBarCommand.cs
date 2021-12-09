@@ -75,6 +75,9 @@ namespace UI.Components
         }
 
         private static void TitleBarCommandCanExecute(object sender, CanExecuteRoutedEventArgs args) {
+            if (args.Command != CloseWindowCommand && args.Command != MaximizeWindowCommand 
+                && args.Command != MinimizeWindowCommand && args.Command != MouseMoveWindowCommand)
+                return;
             object Parameter = args.Parameter;
             if (Parameter == null || !(Parameter is DependencyObject)) {
                 args.CanExecute = false;
@@ -84,11 +87,15 @@ namespace UI.Components
         }
 
         private static void CloseWindowCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != CloseWindowCommand)
+                return;
             object Parameter = args.Parameter;
             Window.GetWindow(Parameter as DependencyObject)?.Close();
         }
 
         private static void MaximizeWindowCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != MaximizeWindowCommand)
+                return;
             object Parameter = args.Parameter;
             Window parentWindow = Window.GetWindow(Parameter as DependencyObject);
             if (parentWindow != null) {
@@ -99,6 +106,8 @@ namespace UI.Components
         }
 
         private static void MinimizeWindowCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != MinimizeWindowCommand)
+                return;
             object Parameter = args.Parameter;
             Window parentWindow = Window.GetWindow(Parameter as DependencyObject);
             if (parentWindow != null) {
@@ -109,6 +118,8 @@ namespace UI.Components
         }
 
         private static void MouseMoveWindowCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != MouseMoveWindowCommand)
+                return;
             object Parameter = args.Parameter;
             Window.GetWindow(Parameter as DependencyObject)?.DragMove();
         }

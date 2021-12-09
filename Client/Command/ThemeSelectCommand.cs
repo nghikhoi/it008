@@ -35,14 +35,20 @@ namespace UI.Command {
                 UriKind.RelativeOrAbsolute);
 
         private static void ThemeSelectCommandCanExecute(object sender, CanExecuteRoutedEventArgs args) {
+            if (args.Command != DarkSelectCommand && args.Command != LightSelectCommand)
+                return;
             args.CanExecute = true;
         }
 
         private static void DarkSelectCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != DarkSelectCommand && args.Command != LightSelectCommand)
+                return;
             SetTheme(true);
         }
 
         private static void LightSelectCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != DarkSelectCommand && args.Command != LightSelectCommand)
+                return;
             SetTheme(false);
         }
 

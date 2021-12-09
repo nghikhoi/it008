@@ -95,7 +95,7 @@ namespace UI.ViewModels {
             this._viewModelFactory = viewModelFactory;
 
             InitializeCommand.Execute(null);
-            ProfileInitalizeCommand = new InitializeCommand(o => { });
+            ProfileInitalizeCommand = new InitializeCommand(o => Profile = _viewModelFactory.Create<ProfileViewModel>());
         }
 
         public override void Dispose() {
@@ -120,7 +120,6 @@ namespace UI.ViewModels {
 
         protected override void Initialize(object parameter = null) {
             InitData();
-            Profile = _viewModelFactory.Create<ProfileViewModel>();
         }
 
         private void InitData() {

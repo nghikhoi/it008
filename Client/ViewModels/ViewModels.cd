@@ -8,65 +8,40 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="UI.ViewModels.RegisterViewModel" Collapsed="true">
-    <Position X="7.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAUAEEAAAAAAAACAAQEAgAAAAAAAAACCAAIAAAEAAAg=</HashCode>
-      <FileName>ViewModels\RegisterViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="UI.ViewModels.MediaGalleryViewModel" Collapsed="true">
     <Position X="3.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\MediaGalleryViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="UI.ViewModels.LoginViewModel" Collapsed="true">
-    <Position X="9" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAQAAAAAAABAAAAACAAIQAACAAAA=</HashCode>
-      <FileName>ViewModels\LoginViewModel.cs</FileName>
+      <FileName>ViewModels\Media\MediaGalleryViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI.ViewModels.LanguageSelectorViewModel" Collapsed="true">
     <Position X="5.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\LanguageSelectorViewModel.cs</FileName>
+      <FileName>ViewModels\Components\LanguageSelectorViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI.ViewModels.ConversationListViewModel" Collapsed="true">
     <Position X="5.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\ConversationListViewModel.cs</FileName>
+      <FileName>ViewModels\Conversation\ConversationListViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI.ViewModels.ChatContainerViewModel" Collapsed="true">
     <Position X="3.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\ChatContainerViewModel.cs</FileName>
+      <FileName>ViewModels\Components\ChatContainerViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="UI.ViewModels.MainViewModel" Collapsed="true">
     <Position X="4.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAIAAACA=</HashCode>
       <FileName>ViewModels\MainViewModel.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="UI.ViewModels.AuthenticationViewModel" Collapsed="true">
-    <Position X="8" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAICAAAAEAABAAAACA=</HashCode>
-      <FileName>ViewModels\AuthenticationViewModel.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="RegisterViewModel" />
-      <Property Name="LoginViewModel" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Delegate Name="UI.ViewModels.ViewModelCreator&lt;TViewModel&gt;" Collapsed="true">

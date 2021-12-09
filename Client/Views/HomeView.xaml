@@ -44,8 +44,11 @@
 								<i:EventTrigger EventName="ProfileClick">
 									<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
 										<i:InvokeCommandAction.CommandParameter>
-                                            <uc:ProfileForm DataContext="{Binding SelectedConversation}">
+                                            <uc:ProfileForm DataContext="{Binding Profile}">
 												<i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Loaded">
+                                                        <i:InvokeCommandAction Command="{Binding ProfileInitalizeCommand}"/>
+                                                    </i:EventTrigger>
 													<i:EventTrigger EventName="CancelClick">
 														<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
 													</i:EventTrigger>

@@ -12,7 +12,6 @@ namespace UI.ViewModels {
         #region Properties
 
         private bool _CanUpdateProfile;
-
         public bool CanUpdateProfile {
             get => _CanUpdateProfile;
             set {
