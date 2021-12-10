@@ -7,7 +7,9 @@
         xmlns:vm="clr-namespace:UI.ViewModels"
         xmlns:v="clr-namespace:UI.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
+        WindowStyle="none"
+        Background="{x:Null}"
+        AllowsTransparency="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vmAuth="clr-namespace:UI.ViewModels.Authentication"
         x:Name="_this"
@@ -33,7 +35,18 @@
                                 Value="480"/>
                 </DataTrigger>
         </Window.Triggers>-->
-        <Border AllowDrop="True">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                 From="0.0" To="1.0" Duration="0:0:0.5"
+                                 AutoReverse="False"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border AllowDrop="True">
                 <Grid>
                         <v:HomeView DataContext="{Binding CurrentViewModel}" x:Name="HomeView"/>
                 </Grid>

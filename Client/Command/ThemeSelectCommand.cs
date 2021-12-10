@@ -60,7 +60,7 @@ namespace UI.Command {
 
         private static void SetTheme(bool isDark) {
             ITheme theme = _paletteHelper.GetTheme();
-            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme) new MaterialDesignLightTheme();
+            IBaseTheme baseTheme = isDark ? new MaterialDesignDarkTheme() : (IBaseTheme)new MaterialDesignLightTheme();
             theme.SetBaseTheme(baseTheme);
             _paletteHelper.SetTheme(theme);
             ResourceDictionary _resourceDictionary = App.Current.Resources;
@@ -71,9 +71,6 @@ namespace UI.Command {
                 _resourceDictionary["PrimaryColor"] = new SolidColorBrush(Colors.WhiteSmoke);
                 _resourceDictionary["BorderColorResource"] = new SolidColorBrush(Colors.LightGray);
                 //App.Current.Resources["BackgroundOpacityBrush"] = new SolidColorBrush(System.Windows.Media.Color.FromArgb(150 ,255, 255, 255));
-                //PrimaryIconImage.Source = ImageSourceFromBitmap(Properties.Resources.ca);
-                //PrimaryIconImage.Width = 200;
-                //PrimaryIconImage.Height = 200;
             } else {
                 _resourceDictionary["BackgroundResource"] = new SolidColorBrush(Colors.WhiteSmoke);
                 _resourceDictionary["ForegroundResource"] = new SolidColorBrush(Colors.Black);

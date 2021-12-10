@@ -103,7 +103,7 @@
                     HorizontalAlignment="Right"
                     Width="24" Height="24" 
                     Background="{x:Null}" BorderBrush="Transparent"
-                    Style="{StaticResource IconButton}">
+                    Style="{StaticResource IconButton}" Panel.ZIndex="1">
                 <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20"/>
             </Button>
         </DockPanel>

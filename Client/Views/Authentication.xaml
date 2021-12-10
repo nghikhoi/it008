@@ -13,6 +13,12 @@
              mc:Ignorable="d"
              x:Name="_this"
              Height="500" Width="350">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{x:Static uc:TitleBarCommand.MouseMoveWindowCommand}"
+                                               CommandParameter="{Binding ElementName=_this}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Border x:Name="BorderLoginWindow" ClipToBounds="True"
             Style="{StaticResource OriginalBorder}" 
             Background="{DynamicResource BackgroundResource}">

@@ -26,19 +26,19 @@ namespace UI
             transitioner.SelectedIndex = 0;
         }
 
-        //private void BtnMediaGallery_Click(object sender, RoutedEventArgs e)
-        //{
-        //    transitioner.SelectedIndex = 1;
-        //}
-
         private void ucMediaGallery_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
-        //private void btnBack_Click(object sender, RoutedEventArgs e)
-        //{
-        //    transitioner.SelectedIndex = 0;
-        //}
+        private void BtnMediaGallery_Click_1(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 1;
+        }
+
+        private void btnBack_Click_1(object sender, RoutedEventArgs e)
+        {
+            transitioner.SelectedIndex = 0;
+        }
     }
 }

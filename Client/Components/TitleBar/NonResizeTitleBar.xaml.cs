@@ -26,6 +26,5 @@ namespace UI.Components
             InitializeComponent();
             DataContext = new TitleBarDataContext();
         }
-
     }
 }

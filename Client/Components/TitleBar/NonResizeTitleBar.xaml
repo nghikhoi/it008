@@ -28,9 +28,9 @@
                         <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>
                 </Border>
-                <Border Width="30" Height="30" DockPanel.Dock="Right">
+                <Border Width="30" Height="30" Background="Transparent" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
-                         x:Name="btnMinimize"
+                         x:Name="btnMinimize" Padding="0"
                         Command="{x:Static local:TitleBarCommand.MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=TitleBar}">
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>

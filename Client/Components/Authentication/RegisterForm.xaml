@@ -8,7 +8,7 @@
              xmlns:model="clr-namespace:UI.Models"
              xmlns:utils="clr-namespace:UI.Utils"
              mc:Ignorable="d"
-             d:DesignHeight="520" d:DesignWidth="350">
+             d:DesignHeight="520" d:DesignWidth="350" Foreground="{DynamicResource ForegroundResource}">
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Background="Transparent">
             <DockPanel>
@@ -75,7 +75,7 @@
                 </StackPanel>
             </Grid>
 
-            <Image Source="/Resources/Images/logo.png" RenderTransformOrigin="0.5,0.5" Width="100" Height="100" Margin="255,-50,-5,429">
+            <Image Source="/Resources/Images/logo.png" RenderTransformOrigin="0.5,0.5" Width="100" Height="100" Margin="255,-60,-5,429">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="-180"/>

@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI" Background="{x:Null}" 
+             Foreground="{DynamicResource ForegroundResource}"
              xmlns:uc="clr-namespace:UI.Components" xmlns:cus="clr-namespace:UI.CustomControls"
              mc:Ignorable="d">
 
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid>
-            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
+            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1">
                 <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                     <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
@@ -82,10 +83,36 @@
 
                                 <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}" Margin="0 25 0 0"></Border>
 
-                                <StackPanel>
-                                    <Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
+                                <StackPanel x:Name="panel">
+                                    <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
+                                              Background="Transparent"
+                                              HorizontalAlignment="Left" 
+                                              Header="Ảnh / Video / Tệp"
+                                              Foreground="{DynamicResource ForegroundResource}"
+                                              materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
+                                        <StackPanel
+                                                x:Name="StpnlMediaGallery"
+                                                Orientation="Vertical"
+                                                Width="{Binding ElementName=panel, Path=ActualWidth}"
+                                                TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                            <WrapPanel Margin="3 0 0 0" Width="240">
+                                                <Button Width="78" Height="78"></Button>
+                                                <Button Width="78" Height="78"></Button>
+                                                <Button Width="78" Height="78"></Button>
+                                                <Button Width="78" Height="78"></Button>
+                                                <Button Width="78" Height="78"></Button>
+                                                <Button Width="78" Height="78"></Button>
+                                            </WrapPanel>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                    x:Name="BtnMediaGallery"
+                                                    Height="30"
+                                                    Foreground="{DynamicResource ForegroundResource}"
+                                                    Content="Xem tất cả" Click="BtnMediaGallery_Click_1"/>
+                                        </StackPanel>
+                                    </Expander>
+                                    <!--<Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
                                         Ảnh / Video / Tệp
-                                    </Button>
+                                    </Button>-->
                                 </StackPanel>
 
                                 <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"></Border>
@@ -102,12 +129,23 @@
 
                 <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                     <Grid>
-                        <Button VerticalAlignment="Top" HorizontalAlignment="Left"
+                        <!--<Button HorizontalAlignment="Left"
                             HorizontalContentAlignment="Left" 
-                            Panel.ZIndex="1" Margin="8 6 0 0" Foreground="{DynamicResource ForegroundResource}"
-                            Style="{StaticResource IconButton}" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Width="24" Height="24" Padding="0"
-                            x:Name="btnBack">
+                            Panel.ZIndex="10" Margin="8,6,0,596.667" Foreground="{DynamicResource ForegroundResource}"
+                            Background="{x:Null}" BorderBrush="{x:Null}"
+                            Style="{StaticResource IconButton}"
+                            Width="24" Height="Auto" Padding="0"
+                            x:Name="btnBack" Click="btnBack_Click_1">
+                            <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24"/>
+                        </Button>-->
+                        <Button Background="Transparent" 
+                                Foreground="{DynamicResource ForegroundResource}"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Left"
+                                Margin="12 10 0 0"
+                                BorderBrush="{x:Null}"
+                                Style="{StaticResource IconButton}" Click="btnBack_Click_1"
+                                Width="24" Height="24" Padding="0" Panel.ZIndex="2">
                             <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24"/>
                         </Button>
                         <uc:MediaGalleryTabs Loaded="ucMediaGallery_Loaded"></uc:MediaGalleryTabs>

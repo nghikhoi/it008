@@ -17,6 +17,11 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
+    <Style TargetType="Button" x:Key="myButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
     <Style TargetType="Button" x:Key="SecondaryButton" BasedOn="{StaticResource MaterialDesignFlatDarkButton}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource PrimaryHueDarkBrush}"/>

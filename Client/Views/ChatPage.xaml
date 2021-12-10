@@ -94,7 +94,7 @@
                         <materialDesign:PackIcon Kind="Send"  Width="24" Height="Auto"/>
                     </Button>
                     <Border CornerRadius="16" Background="{DynamicResource InputColorResource}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
-                        <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
+                        <!--<TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
                                  materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
                                  x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
                                  Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
@@ -105,12 +105,10 @@
                                     <i:InvokeCommandAction Command="{Binding SendTextMessageCommand}" />
                                 </triggers:KeyDownTrigger>
                             </i:Interaction.Triggers>
-                        </TextBox>
-                        <!--<emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-                                           VerticalScrollBarVisibility="Auto" 
+                        </TextBox>-->
+                        <emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                            BorderBrush="Transparent" Background="{DynamicResource InputColorResource}"
-                                           materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
-                                           x:Name="ChatInput" Margin="10,0,25,0" 
+                                           x:Name="ChatInput" Margin="14,6,14,4" ColonSyntax="True"
                                            Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                            VerticalContentAlignment="Center" MaxHeight="82">
                             <i:Interaction.Triggers>
@@ -118,7 +116,7 @@
                                     <i:InvokeCommandAction Command="{Binding ChatpageSendByEnterCommand}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </emoji:RichTextBox>-->
+                        </emoji:RichTextBox>
                     </Border>
                 </DockPanel>
             </DockPanel>

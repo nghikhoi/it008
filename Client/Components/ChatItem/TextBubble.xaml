@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:UI"
              xmlns:components="clr-namespace:UI.Components"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+              xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
              x:Name="_this"
              mc:Ignorable="d" 
              d:DesignWidth="300" MinWidth="40">
@@ -69,10 +70,10 @@
             </StackPanel>
         </ToggleButton>
         <Border CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="25 0 12 6" MinWidth="40" MaxWidth="300">
-            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" 
-                       Grid.IsSharedSizeScope="True"
+            <emoji:RichTextBox VerticalAlignment="Center" Background="{Binding}"
+                       Grid.IsSharedSizeScope="True" BorderThickness="0"
                        Text="{Binding ElementName=_this, Path=ChatContent}" FontSize="18" 
-                       Foreground="White" Padding="10"/>
+                       Foreground="White" Margin="10"/>
         </Border>
         <Ellipse x:Name="Emotion" Width="18" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Right"  Visibility="Visible">
             
