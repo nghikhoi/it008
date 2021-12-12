@@ -23,6 +23,7 @@ namespace UI
         public MainWindow(object dataContext)
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.DataContext = dataContext;
         }
     }

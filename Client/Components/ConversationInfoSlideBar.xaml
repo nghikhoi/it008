@@ -18,7 +18,7 @@
     </UserControl.Resources>
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid>
-            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="1">
+            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0">
                 <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                     <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                     <DockPanel Margin="0,8,0,0">
@@ -46,8 +46,8 @@
                                 <StackPanel >
                                     <!--avt-->
                                     <Button Height="150" Width="150" 
-                                    BorderThickness="0"
-                                    Margin="0 20 0 10">
+                                            BorderThickness="0"
+                                            Margin="0 20 0 10"> 
                                         <Button.Resources>
                                             <Style TargetType="{x:Type Border}">
                                                 <Setter Property="CornerRadius" Value="20"/>
@@ -134,7 +134,7 @@
                                                     x:Name="BtnMediaGallery"
                                                     Height="30"
                                                     Foreground="{DynamicResource ForegroundResource}"
-                                                    Content="Xem tất cả" Click="BtnMediaGallery_Click_1"/>
+                                                    Content="Xem tất cả"/>
                                         </StackPanel>
                                     </Expander>
                                     <!--<Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
@@ -171,11 +171,11 @@
                                 HorizontalAlignment="Left"
                                 Margin="12 10 0 0"
                                 BorderBrush="{x:Null}"
-                                Style="{StaticResource IconButton}" Click="btnBack_Click_1"
+                                Style="{StaticResource IconButton}"
                                 Width="24" Height="24" Padding="0" Panel.ZIndex="2">
                             <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24"/>
                         </Button>
-                        <uc:MediaGalleryTabs Loaded="ucMediaGallery_Loaded"></uc:MediaGalleryTabs>
+                        <uc:MediaGalleryTabs/>
                     </Grid>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
