@@ -9,7 +9,19 @@
              xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
              x:Name="_this"
              mc:Ignorable="d" 
-             d:DesignWidth="300" MinWidth="40">
+             d:DesignWidth="300" MinWidth="40" >
+    <UserControl.Resources>
+        <Style x:Key="back" TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsReceivedMessage}" Value="True">
+                    <Setter Property="Background" Value="DimGray"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsReceivedMessage}" Value="False">
+                    <Setter Property="Background" Value="{StaticResource PrimaryHueDarkBrush}"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <ToggleButton x:Name="TogglePopupButton" Width="24" Height="24"
                       Opacity="0"
@@ -69,7 +81,8 @@
                 </Popup>
             </StackPanel>
         </ToggleButton>
-        <Border CornerRadius="15" Background="{StaticResource PrimaryHueDarkBrush}" Margin="25 0 12 6" MinWidth="40" MaxWidth="300">
+        <Border x:Name="TextBack" CornerRadius="15" Margin="25 0 12 6" MinWidth="40" MaxWidth="300"
+                Style="{StaticResource back}">
             <emoji:TextBlock VerticalAlignment="Center" 
                              Background="{x:Null}"
                              Grid.IsSharedSizeScope="True"                          

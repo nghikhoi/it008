@@ -13,16 +13,7 @@
     </Style>
     <DataTemplate x:Key="TextMessage">
         <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}">
-            <ResourceDictionary>
-                <Style x:Key="SetRcvStyle" TargetType="uc:TextBubble">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsReceivedMessage}" Value="True">
-                            <Setter Property="MaxWidth" Value="300"/>
-                            <Setter Property="Background" Value="Gray"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ResourceDictionary>
+            
         </uc:TextBubble>
     </DataTemplate>
     <DataTemplate x:Key="ImageMessage">
