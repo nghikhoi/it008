@@ -1,9 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using UI.Models.Message;
-using UI.Network;
-using UI.Utils;
+﻿using UI.Network;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public class FriendAccpectedNotificationViewModel : NotificationViewModel {
 
 		#region Properties

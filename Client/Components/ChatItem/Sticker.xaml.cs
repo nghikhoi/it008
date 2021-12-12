@@ -5,7 +5,7 @@ using System.Windows.Media.Animation;
 using UI.Network.RestAPI;
 using WpfAnimatedGif;
 
-namespace UI.CustomControls
+namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for Sticker.xaml

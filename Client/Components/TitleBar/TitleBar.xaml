@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:command="clr-namespace:UI.Command"
              mc:Ignorable="d" 
              x:Name="_this" Foreground="{DynamicResource ForegroundResource}">
 
@@ -12,7 +13,7 @@
     <Grid>
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{x:Static local:TitleBarCommand.MouseMoveWindowCommand}"
+                <i:InvokeCommandAction Command="{x:Static command:TitleBarCommand.MouseMoveWindowCommand}"
                                        CommandParameter="{Binding ElementName=_this}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
@@ -22,7 +23,7 @@
                 <Border CornerRadius="8" Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnClose"
-                        Command="{x:Static local:TitleBarCommand.CloseWindowCommand}"
+                        Command="{x:Static command:TitleBarCommand.CloseWindowCommand}"
                         CommandParameter="{Binding ElementName=_this}">
                         <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>
@@ -30,7 +31,7 @@
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnFullScreen" 
-                        Command="{x:Static local:TitleBarCommand.MaximizeWindowCommand}"
+                        Command="{x:Static command:TitleBarCommand.MaximizeWindowCommand}"
                         CommandParameter="{Binding ElementName=_this}" Click="btnFullScreen_Click">
                         <materialDesign:PackIcon Kind="Fullscreen" Width="20" Height="20"  x:Name="FullScreenIcon" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>
@@ -38,7 +39,7 @@
                 <Border Width="30" Height="30" DockPanel.Dock="Right">
                     <Button Style="{StaticResource TitlebarButton}"
                          x:Name="btnMinimize"
-                        Command="{x:Static local:TitleBarCommand.MinimizeWindowCommand}"
+                        Command="{x:Static command:TitleBarCommand.MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=_this}">
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15" Foreground="{DynamicResource ForegroundResource}"/>
                     </Button>

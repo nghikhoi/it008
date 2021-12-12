@@ -9,13 +9,13 @@
              xmlns:tb="UI.Components.TitleBar"
              xmlns:v="clr-namespace:UI"
              xmlns:vm="clr-namespace:UI.ViewModels"
-             xmlns:vmAuth="clr-namespace:UI.ViewModels.Authentication"
+             xmlns:command="clr-namespace:UI.Command"
              mc:Ignorable="d"
              x:Name="_this"
              Height="500" Width="350">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
-            <i:InvokeCommandAction Command="{x:Static uc:TitleBarCommand.MouseMoveWindowCommand}"
+            <i:InvokeCommandAction Command="{x:Static command:TitleBarCommand.MouseMoveWindowCommand}"
                                                CommandParameter="{Binding ElementName=_this}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
@@ -39,26 +39,11 @@
             
             <DockPanel Grid.Row="1">
                 <ContentControl x:Name="ContentControl" Content="{Binding CurrentViewModel}">
-                    <ContentControl.Style>
-                        <Style TargetType="ContentControl">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=ContentControl, Path=Content}" Value="{x:Null}">
-                                    <Setter Property="ContentControl.Template">
-                                        <Setter.Value>
-                                            <ControlTemplate>
-                                                
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ContentControl.Style>
                     <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vmAuth:LoginViewModel}">
+                        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
                             <uc:LoginForm/>
                         </DataTemplate>
-                        <DataTemplate DataType="{x:Type vmAuth:RegisterViewModel}">
+                        <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
                             <uc:RegisterForm/>
                         </DataTemplate>
                     </ContentControl.Resources>

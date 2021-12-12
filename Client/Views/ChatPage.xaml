@@ -109,12 +109,13 @@
                         <emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                            BorderBrush="Transparent" Background="{DynamicResource InputColorResource}"
                                            x:Name="ChatInput" Margin="14,6,14,4" ColonSyntax="True"
+                                           Text="{Binding Texting, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                            VerticalContentAlignment="Center" MaxHeight="82">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="KeyDown">
-                                    <i:InvokeCommandAction Command="{Binding ChatpageSendByEnterCommand}" />
-                                </i:EventTrigger>
+                                <triggers:KeyDownTrigger Key="Return">
+                                    <i:InvokeCommandAction Command="{Binding SendTextMessageCommand}" />
+                                </triggers:KeyDownTrigger>
                             </i:Interaction.Triggers>
                         </emoji:RichTextBox>
                     </Border>
@@ -126,6 +127,11 @@
                       x:Name="ChatScroll"
                       Style="{StaticResource ScrollViewerTemplate}"
                       Padding="0,0,0,10" Margin="10 50 0 45">
+            <!--<i:Interaction.Triggers>
+                <triggers:ScrollChangeReachTrigger DoubleStepMode="True">
+                    <i:InvokeCommandAction Command="{Binding LoadMoreCommand}"/>
+                </triggers:ScrollChangeReachTrigger>
+            </i:Interaction.Triggers>-->
             <StackPanel>
                 <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}" 
                         Command="{Binding LoadMoreCommand}"

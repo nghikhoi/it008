@@ -1,7 +1,7 @@
 ﻿using System;
 using UI.Services;
 
-namespace UI.ViewModels.Authentication {
+namespace UI.ViewModels {
     public class AuthenticationViewModel : InitializableViewModel, IViewState {
 
         private ViewModelBase _currentViewModel;

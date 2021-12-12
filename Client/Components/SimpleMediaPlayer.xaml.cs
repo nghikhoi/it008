@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace UI
+namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for VideoMessage.xaml
@@ -194,7 +184,7 @@ namespace UI
 
         private void Expand_button_click(object sender, RoutedEventArgs e)
         {
-            var videomsg = new VideoWindow();
+            /*var videomsg = new VideoPlayer();
             var tl = new MediaTimeline(VideoControl.Source);
             videomsg.VideoControl.Source = VideoControl.Source;
             videomsg.VideoControl.Clock = tl.CreateClock(true) as MediaClock;
@@ -202,7 +192,7 @@ namespace UI
             control_icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
             Screen_Icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
             videomsg.playinit = SeekBar.Value;
-            videomsg.Show();
+            videomsg.Show();*/
 
         }
 

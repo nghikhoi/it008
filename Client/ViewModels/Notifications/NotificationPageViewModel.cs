@@ -1,13 +1,11 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using UI.Models.Message;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public class NotificationPageViewModel : InitializableViewModel {
 
 		#region Properties
@@ -28,7 +26,7 @@ namespace UI.ViewModels.Notifications {
 		private ChatConnection _connection;
 		private IViewModelFactory _viewModelFactory;
 
-		public NotificationPageViewModel(ChatConnection connection, IViewModelFactory viewModelFactory) {
+		public NotificationPageViewModel(ChatConnection connection, IViewModelFactory viewModelFactory, PacketRespondeListener listener) {
 			_connection = connection;
 			_viewModelFactory = viewModelFactory;
 		}

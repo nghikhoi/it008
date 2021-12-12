@@ -5,14 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:UI.Components"
-             xmlns:cus="clr-namespace:UI.CustomControls"
-		     xmlns:model="clr-namespace:UI.Models"
+             xmlns:model="clr-namespace:UI.Models"
 		     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		     xmlns:converters="clr-namespace:UI.Utils.Converters"
-             x:Name="_this"
+		     xmlns:markups="clr-namespace:UI.Utils.Markups"
+		     x:Name="_this"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500">
-	<materialDesign:DialogHost>
+    <UserControl.Resources>
+        <markups:BindingProxy x:Key="LocalDataContenxt" Data="{Binding ElementName=_this, Path=DataContext}"/>
+    </UserControl.Resources>
+    <materialDesign:DialogHost>
         <Border Style="{StaticResource OriginalBorder}" Background="{StaticResource BackgroundLightBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -30,7 +33,7 @@
                                 BorderThickness="0"
                                 Margin="0 50 0 10"
                                 Command="{Binding ClickImageCommand}">
-                            <cus:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"/>
+                            <local:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"/>
                         </Button>
                         <Button Width="150"
                                 Command="{Binding ClickChangeImageCommand}"
@@ -41,10 +44,10 @@
                         <Button x:Name="ChangeNameBtn"
                                     HorizontalAlignment="Stretch" Margin="10,40,0,0">
                             <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="ProfileClick">
+                                <i:EventTrigger EventName="Click">
                                     <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                         <i:InvokeCommandAction.CommandParameter>
-                                            <local:ChangeName DataContext="{Binding ElementName=_this, Path=DataContext}"/>
+                                            <local:ChangeName DataContext="{Binding Path=Data, Source={StaticResource LocalDataContenxt}}"/>
                                         </i:InvokeCommandAction.CommandParameter>
                                     </i:InvokeCommandAction>
                                 </i:EventTrigger>
@@ -53,6 +56,7 @@
                                 <materialDesign:PackIcon Kind="Account" Canvas.Left="-115" Canvas.Top="-9" Height="17" Width="17"/>
                                 <materialDesign:PackIcon Kind="Pencil" Canvas.Left="96" Canvas.Top="-9" Height="17" Width="17" />
                                 <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="180" 
+                                         IsReadOnly="True"
                                          Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}"/>
                             </Canvas>
                         </Button>
@@ -116,10 +120,10 @@
                             Width="120" Height="Auto"
 				            Margin="64,207,0,129">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="ProfileClick">
+                            <i:EventTrigger EventName="Click">
                                 <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                     <i:InvokeCommandAction.CommandParameter>
-                                        <local:ChangePassword DataContext="{Binding ElementName=_this, Path=DataContext}"/>
+                                        <local:ChangePassword DataContext="{Binding Path=Data, Source={StaticResource LocalDataContenxt}}"/>
                                     </i:InvokeCommandAction.CommandParameter>
                                 </i:InvokeCommandAction>
                             </i:EventTrigger>

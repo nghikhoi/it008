@@ -1,10 +1,8 @@
-﻿using UI.Command;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-
-namespace UI.Components
+namespace UI.Command
 {
     public class TitleBarDataContext
     {

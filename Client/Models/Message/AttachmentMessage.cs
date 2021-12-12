@@ -19,8 +19,7 @@ namespace UI.Models.Message
             FileName = ByteBufUtils.ReadUTF8(buffer);
         }
 
-        public override IByteBuffer EncodeToBuffer(IByteBuffer buffer)
-        {
+        public override IByteBuffer EncodeToBuffer(IByteBuffer buffer) {
             buffer.WriteInt(GetPreviewCode());
             ByteBufUtils.WriteUTF8(buffer, FileID);
             ByteBufUtils.WriteUTF8(buffer, FileName);

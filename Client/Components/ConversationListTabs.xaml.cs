@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace UI
+namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for ucListRecentMessage.xaml
