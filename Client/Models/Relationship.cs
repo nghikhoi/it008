@@ -1,7 +1,7 @@
 ﻿namespace UI.Models {
 	public enum Relationship {
 		
-		Friend
+		Friend, None
 		
 	}
 }

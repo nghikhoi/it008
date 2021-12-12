@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:UI"
         xmlns:uc ="clr-namespace:UI.Components"
         mc:Ignorable="d"
-         WindowStyle="None" Background="{x:Null}" 
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="{x:Null}" 
         AllowsTransparency="True" MinHeight="300" MinWidth="400" 
         Title="MediaGalleryWindow" Height="450" Width="800">
     <WindowChrome.WindowChrome>
@@ -16,48 +17,8 @@
         ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
     <!--<Border Style="{StaticResource OriginalBorder}" x:Name="WindowOutline" Background="{DynamicResource BackgroundResource}">-->
-        <Border Margin="1" CornerRadius="8" x:Name="Round" Background="{DynamicResource BackgroundResource}">
-            <Grid>
-                <Border x:Name="PlayerBackground" OpacityMask="#9F000000">
-                    <Border.Background>
-                        <ImageBrush Stretch="UniformToFill"/>
-                    </Border.Background>
-                </Border>
-                <DockPanel>
-                    <Grid DockPanel.Dock="Top">
-                        <Label x:Name="TitleBar"/>
-                        <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                Margin="5,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                                Height="35" Padding="10,0,5,0" 
-                                Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA2A2A2" IsTabStop="False">
-                            <StackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                            <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" Height="35" Width="20" VerticalContentAlignment="Center"/>
-                                <Label Content="Tải xuống" Foreground="#FFA2A2A2" Height="30" VerticalContentAlignment="Center" />
-                            </StackPanel>
-                        </Button>
-                    <uc:TitleBar></uc:TitleBar>
-                    </Grid>
-                <DockPanel Margin="10,0,10,10" DockPanel.Dock="Bottom">
-                    <ScrollViewer DockPanel.Dock="Bottom" x:Name="GalleryScroller"
-                        ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
-                        <StackPanel x:Name="Gallery" Orientation="Horizontal" MaxHeight="90" Height="90">
-                            <!--LoadGallery-->
-                            <!--<local:ImageMsg Width="100"></local:ImageMsg>-->
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Grid Margin="0,0,0,0">
-                        <ProgressBar x:Name="LoadingAhihi" IsIndeterminate="True" 
-                                Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
-                                Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6" 
-                                Height="100" Width="100" IsTabStop="False" />
-                        <Image x:Name="ImgFull" RenderOptions.BitmapScalingMode="HighQuality" Visibility="Hidden"/>
-                        <!--<local:PacPlayer x:Name="VideoFull" Visibility="Hidden" MaxHeight="650" />-->
-                        <local:SimpleMediaPlayer Margin="0 0 -10 0"></local:SimpleMediaPlayer>
-                    </Grid>
-                </DockPanel>
-            </DockPanel>
-            </Grid>
-        </Border>
+    <Border Margin="1" CornerRadius="8" x:Name="Round" Background="{DynamicResource BackgroundResource}">
+        <uc:MediaGallery/>
+    </Border>
     <!--</Border>-->
 </Window>

@@ -1,7 +1,7 @@
 ﻿using UI.Models.Message;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
+namespace UI.ViewModels {
 	public class StickerMessageViewModel : MessageViewModel {
 		public new StickerMessage Message {
 			get => (StickerMessage) base.Message;

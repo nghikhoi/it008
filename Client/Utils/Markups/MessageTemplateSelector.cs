@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using UI.Models;
 using UI.Models.Message;
-using UI.ViewModels.Messages;
+using UI.ViewModels;
 
 namespace UI.Utils.Markups {
 	public class MessageTemplateSelector : DataTemplateSelector {

@@ -1,4 +1,6 @@
-﻿namespace UI.Models {
+﻿using System.Collections.Generic;
+
+namespace UI.Models {
 	
 	public class MediaInfo {
 		
@@ -13,6 +15,18 @@
 			StreamURL = streamUrl;
 			FileName = fileName;
 			FileID = fileID;
+		}
+
+		public bool IsVideo() {
+			return IsVideoFileName(FileName);
+		}
+
+		private readonly static List<string> SupportedExtensions = new List<string>() {
+			".mp4", ".wmv" //TODO: Update more extensions
+		};
+
+		public static bool IsVideoFileName(string fileName) {
+			return SupportedExtensions.Contains(System.IO.Path.GetExtension(fileName).ToLower());
 		}
 		
 	}

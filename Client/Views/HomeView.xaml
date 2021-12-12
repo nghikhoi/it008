@@ -7,11 +7,12 @@
 	xmlns:local="clr-namespace:UI"
 	xmlns:vm="clr-namespace:UI.ViewModels"
 	xmlns:v="clr-namespace:UI.Views"
+    xmlns:markups="clr-namespace:UI.Utils.Markups"
 	xmlns:uc="clr-namespace:UI.Components"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
 	xmlns:command="clr-namespace:UI.Command"
-	mc:Ignorable="d"
+    mc:Ignorable="d"
 	MinHeight="300" MinWidth="500"
 	x:Name="_this"
 	d:DesignHeight="480" d:DesignWidth="815">
@@ -21,6 +22,9 @@
 			                       CommandParameter="{Binding ElementName=_this, Path=DataContext}"/>
 		</i:EventTrigger>
 	</i:Interaction.Triggers>
+    <UserControl.Resources>
+        <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}"/>
+    </UserControl.Resources>
 	<!--Main-->
 	<Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
 		<Grid>
@@ -36,20 +40,17 @@
                             BorderThickness="2"
                             BorderBrush="{DynamicResource MaterialDesignDivider}">
 					<materialDesign:DrawerHost.LeftDrawerContent>
-						<local:NotificationPage Grid.Row="1" x:Name="NotificaionPage" 
+						<uc:NotificationPage Grid.Row="1" x:Name="NotificaionPage" 
 						                        Width="220" MinWidth="200" MaxWidth="350"
-                                                DataContext="{Binding SelectedConversation}"
+                                                DataContext="{Binding NotificationPage}"
 						                        HorizontalAlignment="Left">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="ProfileClick">
 									<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
 										<i:InvokeCommandAction.CommandParameter>
-                                            <uc:ProfileForm DataContext="{Binding Profile}">
-												<i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="Loaded">
-                                                        <i:InvokeCommandAction Command="{Binding ProfileInitalizeCommand}"/>
-                                                    </i:EventTrigger>
-													<i:EventTrigger EventName="CancelClick">
+                                            <uc:ProfileForm DataContext="{Binding Path=Data, Source={StaticResource ProfileProxy}}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="CancelClick">
 														<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
 													</i:EventTrigger>
 												</i:Interaction.Triggers>
@@ -58,14 +59,14 @@
 									</i:InvokeCommandAction>
 								</i:EventTrigger>
 							</i:Interaction.Triggers>
-						</local:NotificationPage>
+						</uc:NotificationPage>
 					</materialDesign:DrawerHost.LeftDrawerContent>
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="220" MinWidth="200" MaxWidth="350"/>
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
-						<local:ConversationListTabs DataContext="{Binding ElementName=_this, Path=DataContext}" 
+						<uc:ConversationListTabs DataContext="{Binding ElementName=_this, Path=DataContext}" 
 						                            x:Name="MessageList" Grid.Column="0">
 							<i:Interaction.Triggers>
 								<i:EventTrigger EventName="AvatarClick">
@@ -73,8 +74,7 @@
 									                       CommandParameter="{x:Static Dock.Left}"/>
 								</i:EventTrigger>
 							</i:Interaction.Triggers>
-						</local:ConversationListTabs>
-                        
+						</uc:ConversationListTabs>
 						<!--Split-->
 						<GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" 
 	                                                  Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
@@ -86,7 +86,7 @@
 								                           BorderBrush="{DynamicResource MaterialDesignDivider}"
 								                           OpenMode="Standard">
 									<materialDesign:DrawerHost.RightDrawerContent>
-										<local:ConversationInfoSlideBar x:Name="ProfileDisplayer" Margin="0 0 0 0" DockPanel.Dock="Right"/>
+										<uc:ConversationInfoSlideBar x:Name="ProfileDisplayer" DataContext="{Binding SelectedConversation}" Margin="0 0 0 0" DockPanel.Dock="Right"/>
 									</materialDesign:DrawerHost.RightDrawerContent>
 									
 									<local:ChatPage DataContext="{Binding SelectedConversation}" Margin="0 0 0 10">

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
+using UI.Components;
 using UI.ViewModels;
 
 namespace UI
@@ -61,11 +64,16 @@ namespace UI
         }
 
         private void ItemSourceUpdateEvent(object sender, NotifyCollectionChangedEventArgs args) {
+            IList collection = (IList) sender;
+            if (collection.Count == 1) {
+                ChatScroll.ScrollToBottom();
+                return;
+            }
             int index = args.NewStartingIndex;
             if (index == 0) {
                 //Scroll to top
                 if (ChatScroll.VerticalOffset < 1) {
-                    ChatScroll.ScrollToTop();
+                    
                 }
             }
             else {

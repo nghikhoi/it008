@@ -1,7 +1,5 @@
 ﻿using System;
 using UI.ViewModels;
-using UI.ViewModels.Authentication;
-using UI.ViewModels.Messages;
 
 namespace UI.Services.Common {
 	public class ViewModelFactory : IViewModelFactory {

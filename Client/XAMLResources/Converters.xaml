@@ -4,4 +4,7 @@
                     xmlns:converters="clr-namespace:UI.Utils.Converters"
                     xmlns:uc="clr-namespace:UI.Components">
     <converters:DataTypeConverter x:Key="DataTypeConverter"/>
+    <converters:UriConverter x:Key="UriConverter"/>
+    <converters:BooleanVisibility x:Key="BooleanVisibility"/>
+    <converters:ThumbnailLoader x:Key="ThumbnailLoader"/>
 </ResourceDictionary>

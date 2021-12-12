@@ -11,7 +11,6 @@
         Background="{x:Null}"
         AllowsTransparency="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:vmAuth="clr-namespace:UI.ViewModels.Authentication"
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         x:Name="_this"

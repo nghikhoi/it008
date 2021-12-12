@@ -12,8 +12,6 @@ using UI.Network;
 using UI.Network.Protocol;
 using UI.Services.Common;
 using UI.ViewModels;
-using UI.ViewModels.Authentication;
-using UI.ViewModels.Messages;
 
 namespace UI.Services {
     public static class Services {

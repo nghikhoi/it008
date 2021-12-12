@@ -4,8 +4,8 @@ using UI.Models.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
-	public class VideoMessageViewModel : MessageViewModel {
+namespace UI.ViewModels {
+	public class VideoMessageViewModel : MessageViewModel, MediaViewModel {
 		public new VideoMessage Message {
 			get => (VideoMessage) base.Message;
 			set {

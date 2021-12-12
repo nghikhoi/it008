@@ -1,7 +1,7 @@
 ﻿using UI.Models.Message;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
+namespace UI.ViewModels {
 	public abstract class MessageViewModel : ViewModelBase {
 
 		public bool IsReceivedMessage {
@@ -13,7 +13,7 @@ namespace UI.ViewModels.Messages {
 			get => _message;
 			set {
 				_message = value;
-				OnPropertyChanged("Message");
+				OnPropertyChanged(nameof(Message));
 			}
 		}
 		
@@ -22,7 +22,7 @@ namespace UI.ViewModels.Messages {
 			get => _conversationId;
 			set {
 				_conversationId = value;
-				OnPropertyChanged("ConversationId");
+				OnPropertyChanged(nameof(ConversationId));
 			}
 		}
 

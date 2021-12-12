@@ -2,10 +2,9 @@
 using UI.Command;
 using UI.Models;
 using UI.Services;
-using UI.Services.Common;
 using UI.Services.Exceptions;
 
-namespace UI.ViewModels.Authentication {
+namespace UI.ViewModels {
 	public class LoginViewModel : ViewModelBase {
 
 		private string _username;

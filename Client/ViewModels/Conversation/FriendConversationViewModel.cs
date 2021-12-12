@@ -16,7 +16,7 @@ namespace UI.ViewModels {
 			get => _userId;
 			set {
 				_userId = value;
-				OnPropertyChanged("UserId");
+				OnPropertyChanged(nameof(UserId));
 			}
 		}
 		
@@ -25,14 +25,9 @@ namespace UI.ViewModels {
 			get => _relationship;
 			set {
 				_relationship = value;
-				OnPropertyChanged("Relationship");
+				OnPropertyChanged(nameof(Relationship));
 			}
 		}
-
-		private ObservableCollection<IMessage> _Messages;
-		public ObservableCollection<IMessage> Messages { get => _Messages; set => _Messages = value; }
-		
-		public string LastMessage { get; set; }
 
 		#endregion
 
@@ -51,9 +46,10 @@ namespace UI.ViewModels {
 
 		protected override void FirstSelectLoad(object parameter = null) {
 			if (ConversationId.Equals("~") && !string.IsNullOrEmpty(UserId)) {
-				SingleConversationFrUserID packet = new SingleConversationFrUserID();
-				packet.UserID = UserId;
-				DataAPI.getData<SingleConversationFrUserIDResult>(packet, result => {
+				SingleConversationFrUserID packet = new SingleConversationFrUserID {
+                    UserID = UserId
+                };
+                DataAPI.getData<SingleConversationFrUserIDResult>(packet, result => {
 					ConversationId = result.ConversationID;
 				});
 				return;

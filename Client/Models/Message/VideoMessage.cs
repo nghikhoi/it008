@@ -8,11 +8,8 @@ using DotNetty.Buffers;
 
 namespace UI.Models.Message
 {
-    public class VideoMessage : AbstractMessage
+    public class VideoMessage : MediaAbstractMessage
     {
-        public string FileID { get; set; }
-        public string FileName { get; set; }
-
         public override void DecodeFromBuffer(IByteBuffer buffer)
         {
             FileID = ByteBufUtils.ReadUTF8(buffer);

@@ -337,6 +337,7 @@
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Command\InitializeCommand.cs" />
+    <Compile Include="Command\MediaWindowCommand.cs" />
     <Compile Include="Command\ThemeSelectCommand.cs" />
     <Compile Include="Command\TitleBarCommand.cs" />
     <Compile Include="Command\UpdateCurrentViewModelCommand.cs" />
@@ -356,6 +357,9 @@
     <Compile Include="Components\ChatItem\ConversationItem.xaml.cs">
       <DependentUpon>ConversationItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ChatItem\FriendConversationItem.xaml.cs">
+      <DependentUpon>FriendConversationItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ChatItem\Sticker.xaml.cs" />
     <Compile Include="Components\ChatItem\TextBubble.xaml.cs">
       <DependentUpon>TextBubble.xaml</DependentUpon>
@@ -364,6 +368,9 @@
     <Compile Include="Components\ConversationListTabs.xaml.cs" />
     <Compile Include="Components\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ImageLoader.xaml.cs">
+      <DependentUpon>ImageLoader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
@@ -374,8 +381,11 @@
     <Compile Include="Components\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\mediaPlayer.xaml.cs">
-      <DependentUpon>mediaPlayer.xaml</DependentUpon>
+    <Compile Include="Components\MediaGallery.xaml.cs">
+      <DependentUpon>MediaGallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MediaLoader.xaml.cs">
+      <DependentUpon>MediaLoader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\Notifications\FriendRequestNoti.xaml.cs">
       <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
@@ -425,9 +435,10 @@
     <Compile Include="Components\TitleBar\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\VideoWindow.xaml.cs">
-      <DependentUpon>VideoWindow.xaml</DependentUpon>
+    <Compile Include="Components\VideoPlayer.xaml.cs">
+      <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message\MediaAbstractMessage.cs" />
     <Compile Include="Models\Relationship.cs" />
     <Compile Include="Network\PacketRespondeListener.cs" />
     <Compile Include="Network\RespondeManager.cs" />
@@ -446,9 +457,15 @@
     <Compile Include="Services\IUserProfileHolder.cs" />
     <Compile Include="Services\IViewModelFactory.cs" />
     <Compile Include="Services\Language.cs" />
+    <Compile Include="Utils\CompareOperationUtils.cs" />
+    <Compile Include="Utils\Converters\BooleanVisibility.cs" />
     <Compile Include="Utils\Converters\DataTypeConverter.cs" />
     <Compile Include="Utils\Converters\EnumConverter.cs" />
+    <Compile Include="Utils\Converters\ThumbnailLoader.cs" />
+    <Compile Include="Utils\Converters\UriConverter.cs" />
     <Compile Include="Utils\FastCodeUtils.cs" />
+    <Compile Include="Utils\LimitShowUtils.cs" />
+    <Compile Include="Utils\Markups\BindingProxy.cs" />
     <Compile Include="Utils\Markups\MessageTemplateSelector.cs" />
     <Compile Include="Utils\Markups\NotificationTemplateSelector.cs" />
     <Compile Include="Command\LoginCommand.cs" />
@@ -463,6 +480,7 @@
       <DependentUpon>MediaGalleryTabs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\PasswordBoxHelper.cs" />
+    <Compile Include="Utils\Triggers\ScrollChangeReachTrigger.cs" />
     <Compile Include="Utils\Triggers\KeyDownTrigger.cs" />
     <Compile Include="ViewModels\Authentication\AuthenticationViewModel.cs" />
     <Compile Include="ViewModels\Authentication\LoginViewModel.cs" />
@@ -609,6 +627,7 @@
     <Compile Include="Utils\ThreadUtil.cs" />
     <Compile Include="Utils\UserUtils.cs" />
     <Compile Include="ViewModels\Media\MediaGalleryViewModel.cs" />
+    <Compile Include="ViewModels\Media\MediaViewModel.cs" />
     <Compile Include="ViewModels\Messages\AttachmentMessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\ImageMessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\MessageViewModel.cs" />
@@ -649,6 +668,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\ChatItem\FriendConversationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ChatItem\Sticker.xaml" />
     <Page Include="Components\ChatItem\TextBubble.xaml">
       <SubType>Designer</SubType>
@@ -661,6 +684,10 @@
     </Page>
     <Page Include="Components\ConversationListTabs.xaml" />
     <Page Include="Components\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ImageLoader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -677,10 +704,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\mediaPlayer.xaml">
+    <Page Include="Components\MediaGallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\MediaLoader.xaml" />
     <Page Include="Components\Notifications\FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -743,7 +771,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\VideoWindow.xaml">
+    <Page Include="Components\VideoPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

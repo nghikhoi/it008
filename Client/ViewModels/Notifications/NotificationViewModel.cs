@@ -1,8 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using UI.Models.Message;
-using UI.Utils;
+﻿using UI.Utils;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public abstract class NotificationViewModel : ViewModelBase {
 
 		#region Properties

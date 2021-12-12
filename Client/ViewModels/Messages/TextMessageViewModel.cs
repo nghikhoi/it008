@@ -1,7 +1,7 @@
 ﻿using UI.Models.Message;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
+namespace UI.ViewModels {
 	public class TextMessageViewModel : MessageViewModel {
 		public new TextMessage Message {
 			get => (TextMessage) base.Message;
