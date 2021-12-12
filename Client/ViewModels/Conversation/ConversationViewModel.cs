@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -150,6 +151,8 @@ namespace UI.ViewModels {
 		public ICommand SendTextMessageCommand { get; private set; }
 		public ICommand LoadMoreCommand { get; private set; }
 		public ICommand LoadMoreMediaCommand { get; private set; }
+		public ICommand ChatpageSendImageCommand { get; private set; }
+		public ICommand ChatpageSendFileCommand { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
@@ -176,6 +179,86 @@ namespace UI.ViewModels {
 			LoadMoreCommand = new RelayCommand<object>(null, o => LoadMessages());
 			LoadMoreMediaCommand = new RelayCommand<object>(null, o => LoadMedias());
 			SelectAction += (vm) => FirstSelectCommand.Execute(null);
+			ChatpageSendImageCommand = new RelayCommand<object>(null, SelectImage);
+			ChatpageSendFileCommand = new RelayCommand<object>(null, SelectVideo);
+		}
+
+		private void SelectImage(object para=null) {
+			List<string> paths = new List<string>();
+			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+			dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+
+			// Display OpenFileDialog by calling ShowDialog method 
+			Nullable<bool> result = dlg.ShowDialog();
+
+
+			// Get the selected file name and display in a TextBox 
+			if (result == true)
+			{
+				// Open document 
+				string Selectedfilename = dlg.FileName;
+				paths.Add(Selectedfilename);
+				FileAPI.UploadMedia(this.ConversationId, paths, map => {
+					foreach(string name in map.Keys)
+                    {
+						string id = map[name];
+						ImageMessage img = new ImageMessage();
+						img.FileName = name;
+						img.FileID = id;
+						App.Current.Dispatcher.Invoke(()=> {
+							SendMessage(img);
+						});
+                    }
+				}
+				, error => { });
+			}
+		}
+		private void SelectVideo(object para = null)
+		{
+			List<string> paths = new List<string>();
+			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+			dlg.Filter = "Video files (*.mp4)|*.mp4";
+
+
+			// Display OpenFileDialog by calling ShowDialog method 
+			Nullable<bool> result = dlg.ShowDialog();
+
+
+			// Get the selected file name and display in a TextBox 
+			if (result == true)
+			{
+				// Open document 
+				string Selectedfilename = dlg.FileName;
+				paths.Add(Selectedfilename);
+				FileAPI.UploadMedia(this.ConversationId, paths, map => {
+					foreach (string name in map.Keys)
+					{
+						string id = map[name];
+						VideoMessage vid = new VideoMessage();
+						vid.FileName = name;
+						vid.FileID = id;
+						App.Current.Dispatcher.Invoke(() => {
+							SendMessage(vid);
+						});
+					}
+
+				}
+				, error => { });
+			}
+		}
+
+		private void SendMessage(AbstractMessage msg)
+        {
+			msg.SenderID = _appSession.SessionID;
+			AddMessage(msg);
+			SendMessage packet = new SendMessage();
+			packet.Message = msg;
+			packet.ConversationID = ConversationId;
+			_connection.Send(packet);
+
 		}
 
 		private void SelectMedia(MediaViewModel Parameter) {
