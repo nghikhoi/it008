@@ -8,7 +8,8 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:uc="clr-namespace:UI.Components"
              xmlns:remarks="clr-namespace:UI.Utils.Markups"
-             mc:Ignorable="d" Foreground="{DynamicResource ForegroundResource}"
+             mc:Ignorable="d" 
+             Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:triggers="clr-namespace:UI.Utils.Triggers"
              DataContextChanged="OnDataContextChange"
@@ -34,19 +35,12 @@
                 <!--Header-->
                 <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel" Margin="8 0 0 0">
                     <StackPanel DockPanel.Dock="Right">
-                        <!--<Button x:Name="InfoButton" Click="OnInfoButtonClick"
-                                Background="Transparent" BorderBrush="Transparent">
-                            <StackPanel>
-                                <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}"/>
-                            </StackPanel>
-                        </Button>-->
-                        <ToggleButton x:Name="ChatInfoMenuBtn"
+                        <ToggleButton x:Name="ChatInfoMenuBtn" Style="{StaticResource myToggleButton}"
                                       Background="Transparent" BorderBrush="Transparent"
                                       Width="40" Height="42"
-                                      Checked="OnChecked" Unchecked="OnUnchecked">
-                            <StackPanel>
-                                <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" Foreground="{DynamicResource ForegroundResource}"/>
-                            </StackPanel>
+                                      Checked="OnChecked" Unchecked="OnUnchecked" 
+                                      Cursor="Hand">
+                            <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24"/>
                         </ToggleButton>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
@@ -107,7 +101,9 @@
                             </i:Interaction.Triggers>
                         </TextBox>-->
                         <emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
-                                           BorderBrush="Transparent" Background="{DynamicResource InputColorResource}"
+                                           BorderBrush="Transparent" 
+                                           Background="{DynamicResource InputColorResource}"
+                                           Foreground="{DynamicResource ForegroundResource}"
                                            x:Name="ChatInput" Margin="14,6,14,4" ColonSyntax="True"
                                            Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                            VerticalContentAlignment="Center" MaxHeight="82">
@@ -130,7 +126,9 @@
                 <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}" 
                         Command="{Binding LoadMoreCommand}"
                         BorderBrush="{x:Null}" Foreground="#DD000000">
-                    <TextBlock Text="See more..." Style="{StaticResource TextBlockHover}"/>
+                    <TextBlock Text="See more..." 
+                               Style="{StaticResource TextBlockHover}" 
+                               Foreground="{DynamicResource ForegroundResource}"/>
                 </Button>
                 <StackPanel x:Name="MessageContainer">
                     <ItemsControl ItemsSource="{Binding Messages}"

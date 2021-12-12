@@ -9,6 +9,18 @@
              xmlns:utils="clr-namespace:UI.Utils"
              mc:Ignorable="d"
              d:DesignHeight="520" d:DesignWidth="350" Foreground="{DynamicResource ForegroundResource}">
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
+                                 From="0.3" To="1.0" Duration="0:0:0.5"
+                                 AutoReverse="False"/>
+                    <DoubleAnimation Storyboard.TargetProperty="Width" From="800" To="350" Duration="0:0:0.5" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Background="Transparent">
             <DockPanel>

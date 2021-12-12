@@ -74,6 +74,7 @@
 								</i:EventTrigger>
 							</i:Interaction.Triggers>
 						</local:ConversationListTabs>
+                        
 						<!--Split-->
 						<GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" 
 	                                                  Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
