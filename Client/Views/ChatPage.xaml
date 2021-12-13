@@ -8,6 +8,8 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:uc="clr-namespace:UI.Components"
              xmlns:remarks="clr-namespace:UI.Utils.Markups"
+             xmlns:convert="clr-namespace:UI.Utils.Converters"
+             xmlns:Status="clr-namespace:UI.Components"
              mc:Ignorable="d" 
              Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -22,6 +24,7 @@
     </i:Interaction.Triggers>
     <UserControl.Resources>
         <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"/>
+        <convert:BooleanVisibility x:Key="BooleanViCvrt"></convert:BooleanVisibility>
         <Style x:Key="ChatButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
             <Setter Property="Height" Value="32"/>
             <Setter Property="Width" Value="32"/>
@@ -45,7 +48,10 @@
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
                         <Label Grid.Row="0" Content="{Binding ConversationName}" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
-                        <StackPanel Grid.Row="1" x:Name="StatusContainer" Margin="0 -3 0 0" Height="15"></StackPanel>
+                        <Grid Grid.Row="1" x:Name="StatusContainer" Margin="0 -3 0 0" Height="15">
+                            <Status:OnlineStatus Visibility="{Binding IsOnline, Converter={StaticResource BooleanViCvrt}}"></Status:OnlineStatus>
+                            <Status:OfflineStatus Visibility="{Binding IsOffline, Converter={StaticResource BooleanViCvrt}}"></Status:OfflineStatus>
+                        </Grid>
                     </StackPanel>
                 </DockPanel>
 

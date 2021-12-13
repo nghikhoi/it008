@@ -98,6 +98,23 @@ namespace UI.ViewModels {
 			}
 		}
 
+		private bool _isOnline=true;
+		public bool IsOnline
+        {
+			get => _isOnline;
+            set
+            {
+				_isOnline = value;
+				OnPropertyChanged(nameof(IsOnline));
+            }
+        }
+
+	
+		public bool IsOffline
+        {
+			get => !_isOnline;
+        }
+
 		private ObservableCollection<MessageViewModel> _messages;
 		public ObservableCollection<MessageViewModel> Messages { get => _messages; set => _messages = value; }
 		private ObservableCollection<MessageViewModel> _medias;

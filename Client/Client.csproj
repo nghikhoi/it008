@@ -479,6 +479,7 @@
     <Compile Include="Components\MediaGalleryTabs.xaml.cs">
       <DependentUpon>MediaGalleryTabs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Markups\StatusTemplateSelector.cs" />
     <Compile Include="Utils\PasswordBoxHelper.cs" />
     <Compile Include="Utils\Triggers\ScrollChangeReachTrigger.cs" />
     <Compile Include="Utils\Triggers\KeyDownTrigger.cs" />
@@ -823,6 +824,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Components\ConversationInfoSlideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAMLResources\StatusTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
