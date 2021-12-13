@@ -4,6 +4,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:convert="clr-namespace:UI.Utils.Converters"
 	xmlns:local="clr-namespace:UI"
 	xmlns:vm="clr-namespace:UI.ViewModels"
 	xmlns:v="clr-namespace:UI.Views"
@@ -24,6 +25,7 @@
 	</i:Interaction.Triggers>
     <UserControl.Resources>
         <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}"/>
+        <convert:BooleanVisibility x:Key="VisibilityConverter"></convert:BooleanVisibility>
     </UserControl.Resources>
 	<!--Main-->
 	<Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
@@ -88,8 +90,8 @@
 									<materialDesign:DrawerHost.RightDrawerContent>
 										<uc:ConversationInfoSlideBar x:Name="ProfileDisplayer" DataContext="{Binding SelectedConversation}" Margin="0 0 0 0" DockPanel.Dock="Right"/>
 									</materialDesign:DrawerHost.RightDrawerContent>
-									
-									<local:ChatPage DataContext="{Binding SelectedConversation}" Margin="0 0 0 10">
+                                    <Grid>
+                                        <local:ChatPage DataContext="{Binding SelectedConversation}" Margin="0 0 0 10">
 										<i:Interaction.Triggers>
 											<i:EventTrigger EventName="InfoChecked">
 												<i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
@@ -101,7 +103,9 @@
 											</i:EventTrigger>
 										</i:Interaction.Triggers>
 									</local:ChatPage>
-								</materialDesign:DrawerHost>
+                                        <Image Source="{Binding themeBackground}" Visibility="{Binding SelectedConversation, Converter={StaticResource VisibilityConverter}}" Stretch="UniformToFill"></Image>
+                                    </Grid>
+                                </materialDesign:DrawerHost>
 							</DockPanel>
 						</Grid>
 					</Grid>

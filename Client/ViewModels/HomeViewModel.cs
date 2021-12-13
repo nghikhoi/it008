@@ -1,4 +1,5 @@
 ﻿using CNetwork.Sessions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -64,6 +65,16 @@ namespace UI.ViewModels {
             set {
                 _notificationPage = value;
                 OnPropertyChanged(nameof(NotificationPage));
+            }
+        }
+
+        private string _themeBackground = @"../../Resources/Images/avt.jpg";
+        public string themeBackground
+        {
+            get => _themeBackground;
+            set
+            {
+                _themeBackground = value;
             }
         }
 

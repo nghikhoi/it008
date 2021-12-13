@@ -119,7 +119,7 @@
                             </emoji:Picker>
                         </Border>
                     </Border>
-                    
+
                     <Button x:Name="SendButton" Margin="2, 4" Width="50" 
                             Height="34" Style="{StaticResource IconButton}" 
                             Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" 
@@ -159,11 +159,17 @@
                 </DockPanel>
             </DockPanel>
         </Border>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" 
+        <!--conversation background here-->
+        <!--<Image Margin="0,50,0,45" Source=""></Image>-->
+            <ScrollViewer VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
                       x:Name="ChatScroll"
                       Style="{StaticResource ScrollViewerTemplate}"
-                      Padding="0,0,0,10" Margin="10 50 0 45">
+                      Padding="0,0,0,10" Margin="10 50 0 45"
+                      >
+            <ScrollViewer.Background>
+                <ImageBrush ImageSource="{Binding ConversationBackground}"></ImageBrush>
+            </ScrollViewer.Background>
             <!--<i:Interaction.Triggers>
                 <triggers:ScrollChangeReachTrigger DoubleStepMode="True">
                     <i:InvokeCommandAction Command="{Binding LoadMoreCommand}"/>

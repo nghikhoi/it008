@@ -115,6 +115,16 @@ namespace UI.ViewModels {
 			get => !_isOnline;
         }
 
+		private string _conversationBackground = @"../../Resources/Images/avt.jpg";
+		public string ConversationBackground
+		{
+			get => _conversationBackground;
+			set
+			{
+				_conversationBackground = value;
+			}
+		}
+
 		private ObservableCollection<MessageViewModel> _messages;
 		public ObservableCollection<MessageViewModel> Messages { get => _messages; set => _messages = value; }
 		private ObservableCollection<MessageViewModel> _medias;
