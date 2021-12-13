@@ -737,6 +737,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\EmptyChatpage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ImageLoader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
