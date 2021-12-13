@@ -8,15 +8,16 @@
              x:Name="_this"
              d:DesignHeight="350" d:DesignWidth="640">
     <UserControl.Resources>
-        <local:MediaDisplayerSelector x:Key="DisplayerSelector"/>
+        <local:MediaDisplayerSelector x:Key="DisplayerSelector" />
     </UserControl.Resources>
     <Grid>
         <ProgressBar IsIndeterminate="True"
                      Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                     MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                      Value="{Binding ElementName=_this, Path=LoadingProgress}"
                      Visibility="{Binding ElementName=_this, Path=MediaLoaded, Converter={StaticResource BooleanVisibility}, ConverterParameter=True}"
-                     Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6" Height="100" Width="100" IsTabStop="False">
+                     Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6" Height="100"
+                     Width="100" IsTabStop="False">
             <!--<ProgressBar.Style>
                 <Style TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
                     <Style.Triggers>
@@ -27,24 +28,25 @@
                 </Style>
             </ProgressBar.Style>-->
         </ProgressBar>
-        <ContentControl Content="{Binding ElementName=_this, Path=DataContext}" 
+        <ContentControl Content="{Binding ElementName=_this, Path=DataContext}"
                         Visibility="{Binding ElementName=_this, Path=MediaLoaded, Converter={StaticResource BooleanVisibility}}"
                         ContentTemplateSelector="{StaticResource DisplayerSelector}">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=_this, Path=MediaLoaded}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>
             <ContentControl.Resources>
                 <DataTemplate x:Key="ImageMedia">
-                    <Image Source="{Binding ElementName=_this, Path=MediaSource}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <Image Source="{Binding ElementName=_this, Path=MediaSource}"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
                 </DataTemplate>
                 <DataTemplate x:Key="VideoMedia">
-                    <local:VideoPlayer Source="{Binding ElementName=_this, Path=MediaSource}" MaxHeight="650"/>
+                    <local:VideoPlayer Source="{Binding ElementName=_this, Path=MediaSource}" MaxHeight="650" />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

@@ -2,14 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Http;
-using ChatServer.MessageCore.Message;
 using ChatServer.Network.Packets;
-using ChatServer.Network.Packets.AfterLogin.DataPreparing;
-using ChatServer.Network.Packets.AfterLogin.Message;
-using ChatServer.Network.Packets.AfterLogin.Notification;
-using ChatServer.Network.Packets.AfterLogin.Search;
-using ChatServer.Network.Packets.AfterLogin.Setting;
-using ChatServer.Network.Packets.AfterLogin.Sticker;
 using ChatServer.Utils;
 using CNetwork;
 using CNetwork.Utils;
@@ -58,15 +51,20 @@ namespace ChatServer.Network.RestAPI.Controller
             if (session == null)
                 throw new UnauthorizedAccessException();
 
-            IByteBuffer buffer = PacketUtil.decode(requestData);
-            string result = null;
-            PacketMap.getResponde(requestId, session, buffer).Invoke(responde => {
-                IByteBuffer respondeBuffer = ByteBufferUtil.DefaultAllocator.Buffer();
-                responde.Encode(respondeBuffer);
-                result = PacketUtil.encode(respondeBuffer);
-            });
-
-            return result;
+            try {
+                IByteBuffer buffer = PacketUtil.decode(requestData);
+                string result = null;
+                PacketMap.getResponde(requestId, session, buffer).Invoke(responde => {
+                    IByteBuffer respondeBuffer = ByteBufferUtil.DefaultAllocator.Buffer();
+                    responde.Encode(respondeBuffer);
+                    result = PacketUtil.encode(respondeBuffer);
+                });
+                return result;
+            }
+            catch (Exception ex) {
+                SimpleChatServer.GetServer().Logger.Debug("Error on response request id " + requestId, ex);
+                throw;
+            }
         }
 
     }

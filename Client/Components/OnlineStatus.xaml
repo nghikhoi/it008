@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="UI.Components.OnlineStatus"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="10" d:DesignWidth="600">
-    <StackPanel Orientation="Horizontal" >
-        <Ellipse Height="10" Width="10" Fill="Green"/>
+    <StackPanel Orientation="Horizontal">
+        <Ellipse Height="10" Width="10" Fill="Green" />
         <TextBlock Text="   "></TextBlock>
         <TextBlock Text="{StaticResource Status.online }" FontSize="10" VerticalAlignment="Center"></TextBlock>
     </StackPanel>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
              Foreground="{DynamicResource ForegroundResource}"
              Width="30" Height="30"
@@ -17,16 +17,17 @@
                 <Popup x:Name="myPopup" Placement="Bottom" HorizontalOffset="90"
                        IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
                        PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                    <Border  BorderBrush="{StaticResource PrimaryHueDarkBrush}" Height="60" Width="100">
-                        <Grid Width="100" HorizontalAlignment="Center" Background="{StaticResource BackgroundVeryLightBrush}">
+                    <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" Height="60" Width="100">
+                        <Grid Width="100" HorizontalAlignment="Center"
+                              Background="{StaticResource BackgroundVeryLightBrush}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Row="0">
                                 <CheckBox
                                     x:Name="VietnameseButton"
-                                    Content="Tiếng Việt"  FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold">
+                                    Content="Tiếng Việt" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold">
                                 </CheckBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">

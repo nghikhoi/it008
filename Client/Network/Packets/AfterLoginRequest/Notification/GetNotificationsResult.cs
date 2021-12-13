@@ -4,20 +4,41 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.Models.Notification;
 
 namespace UI.Network.Packets.AfterLoginRequest.Notification
 {
     public class GetNotificationsResult : IPacket
     {
-        public List<string> Notifications = new List<string>();
+        public List<AbstractNotification> Notifications = new List<AbstractNotification>();
 
         public void Decode(IByteBuffer buffer)
         {
-            string noti = ByteBufUtils.ReadUTF8(buffer);
-            while (!noti.Equals("~"))
+            int count = buffer.ReadInt();
+            for (int i = 0; i < count; i++)
             {
+                NotificationType type = (NotificationType) buffer.ReadByte();
+                AbstractNotification noti;
+                switch (type)
+                {
+                    case NotificationType.FRIEND_REQUEST:
+                    {
+                        noti = new FriendRequestNotification();
+                        break;
+                    }
+                    case NotificationType.ACCEPT_FRIEND_RESPONDE:
+                    {
+                        noti = new AcceptFriendNotification();
+                        break;
+                    }
+                    case NotificationType.ANNOUNCEMENT:
+                    {
+                        continue;
+                    }
+                    default: continue;
+                }
+                noti.DecodeFromBuffer(buffer);
                 Notifications.Add(noti);
-                noti = ByteBufUtils.ReadUTF8(buffer);
             }
         }
 

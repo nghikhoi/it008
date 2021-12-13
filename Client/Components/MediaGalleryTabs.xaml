@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="UI.Components.MediaGalleryTabs"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" Background="{DynamicResource BackgroundResource}">
@@ -12,51 +12,57 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" DockPanel.Dock="Top" 
-                       FontSize="20" FontWeight="DemiBold" 
-                       Foreground="{StaticResource PrimaryHueDarkBrush}" 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center">
-                Thư viện
+
+        <TextBlock Grid.Row="0" DockPanel.Dock="Top"
+                   FontSize="20" FontWeight="DemiBold"
+                   Foreground="{StaticResource PrimaryHueDarkBrush}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            Thư viện
         </TextBlock>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="btnMediaTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryColor}" Content="Hình ảnh/Video" Margin="0,2" Padding="0" Click="btnMediaTab_Click"/>
-                <Button x:Name="btnFilesTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryColor}" Content="Tệp" Margin="0,2" Click="btnFilesTab_Click" />
+                <Button x:Name="btnMediaTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}"
+                        Foreground="{DynamicResource PrimaryColor}" Content="Hình ảnh/Video" Margin="0,2" Padding="0"
+                        Click="btnMediaTab_Click" />
+                <Button x:Name="btnFilesTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}"
+                        Foreground="{DynamicResource PrimaryColor}" Content="Tệp" Margin="0,2"
+                        Click="btnFilesTab_Click" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
-                <Border x:Name="MeidiaTabSelectMark" BorderThickness="8" Width="120" BorderBrush="{StaticResource PrimaryHueDarkBrush}" />
-                <Border x:Name="FilesRabSelectMark" BorderThickness="8" Width="120" BorderBrush="{StaticResource PrimaryHueDarkBrush}"/>
+                <Border x:Name="MeidiaTabSelectMark" BorderThickness="8" Width="120"
+                        BorderBrush="{StaticResource PrimaryHueDarkBrush}" />
+                <Border x:Name="FilesRabSelectMark" BorderThickness="8" Width="120"
+                        BorderBrush="{StaticResource PrimaryHueDarkBrush}" />
             </StackPanel>
         </StackPanel>
-        
+
         <!--load-->
         <Grid Grid.Row="2">
-        <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0" DockPanel.Dock="Bottom">
-            <!-- Media tab -->
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
-                    <DockPanel Margin="0,8,0,0">
-                        <ScrollViewer x:Name="MediaList" Margin="0" DockPanel.Dock="Top" >
-                            <!--load list media-->
-                        </ScrollViewer>
-                    </DockPanel>
-                </ScrollViewer>
-            </materialDesign:TransitionerSlide>
+            <materialDesign:Transitioner x:Name="transitioner" SelectedIndex="0" DockPanel.Dock="Bottom">
+                <!-- Media tab -->
+                <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+                        <DockPanel Margin="0,8,0,0">
+                            <ScrollViewer x:Name="MediaList" Margin="0" DockPanel.Dock="Top">
+                                <!--load list media-->
+                            </ScrollViewer>
+                        </DockPanel>
+                    </ScrollViewer>
+                </materialDesign:TransitionerSlide>
 
-            <!-- Files tab -->
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
-                    <DockPanel Margin="0,8,0,0">
-                        <!--<ScrollViewer x:Name="FilesList" Margin="0" DockPanel.Dock="Top" >
+                <!-- Files tab -->
+                <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
+                        <DockPanel Margin="0,8,0,0">
+                            <!--<ScrollViewer x:Name="FilesList" Margin="0" DockPanel.Dock="Top" >
                             --><!--load list files--><!--
                         </ScrollViewer>-->
-                    </DockPanel>
-                </ScrollViewer>
+                        </DockPanel>
+                    </ScrollViewer>
                 </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
+            </materialDesign:Transitioner>
         </Grid>
     </Grid>
 </UserControl>

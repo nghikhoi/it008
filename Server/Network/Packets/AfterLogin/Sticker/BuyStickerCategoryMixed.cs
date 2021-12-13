@@ -1,13 +1,9 @@
-﻿using CNetwork;
+﻿using ChatServer.Entity.Sticker;
+using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChatServer.Network.Packets.AfterLogin.Sticker
+namespace ChatServer.Network.Packets
 {
     public class BuyStickerCategoryMixed : IPacket
     {
@@ -29,7 +25,7 @@ namespace ChatServer.Network.Packets.AfterLogin.Sticker
         {
             ChatSession chatSession = session as ChatSession;
 
-            if (!MessageCore.Sticker.Sticker.LoadedCategories.ContainsKey(CateID)) return;
+            if (!Sticker.LoadedCategories.ContainsKey(CateID)) return;
             if (chatSession.Owner.BoughtStickerPacks.Contains(CateID)) return;
 
             chatSession.Owner.BoughtStickerPacks.Add(CateID);

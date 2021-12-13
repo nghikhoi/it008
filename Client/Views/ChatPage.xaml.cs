@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using UI.Components;
 using UI.ViewModels;
 
-namespace UI
+namespace UI.Views
 {
     /// <summary>
     /// Interaction logic for ChatPage.xaml
@@ -18,7 +17,7 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        
         // Create a custom routed event by first registering a RoutedEventID
         // This event uses the bubbling routing strategy
         public static readonly RoutedEvent InfoCheckedEvent = EventManager.RegisterRoutedEvent(
@@ -92,5 +91,6 @@ namespace UI
         private void OnUnloaded(object sender, RoutedEventArgs e) {
             UnregisterEvents(DataContext);
         }
+        
     }
 }

@@ -14,8 +14,8 @@
             <BeginStoryboard>
                 <Storyboard>
                     <DoubleAnimation Storyboard.TargetProperty="(Window.Opacity)"
-                                 From="0.3" To="1.0" Duration="0:0:0.5"
-                                 AutoReverse="False"/>
+                                     From="0.3" To="1.0" Duration="0:0:0.5"
+                                     AutoReverse="False" />
                     <DoubleAnimation Storyboard.TargetProperty="Width" From="800" To="350" Duration="0:0:0.5" />
                 </Storyboard>
             </BeginStoryboard>
@@ -24,58 +24,68 @@
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Background="Transparent">
             <DockPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 28 0 6">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"
+                            DockPanel.Dock="Top" Margin="0 28 0 6">
                     <TextBlock FontSize="20" Foreground="teal" Text="{DynamicResource WindowSignUp.HeadTitle}" />
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Height="4">
-                    <Border BorderThickness="8" Width="110" BorderBrush="#FFC5C5C5"/>
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top"
+                            Orientation="Horizontal" Height="4">
+                    <Border BorderThickness="8" Width="110" BorderBrush="#FFC5C5C5" />
                 </StackPanel>
             </DockPanel>
 
             <Grid>
                 <StackPanel Margin="50 94 50 0">
                     <DockPanel Margin="0 0 0 16" LastChildFill="False">
-                        <TextBox x:Name="FirstNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.FirstName}"
+                        <TextBox x:Name="FirstNameBox"
+                                 materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.FirstName}"
                                  Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="145"/>
-                        <TextBox x:Name="LastNameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.LastName}"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="145" />
+                        <TextBox x:Name="LastNameBox"
+                                 materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.LastName}"
                                  Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="90" DockPanel.Dock="Right" />
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="90"
+                                 DockPanel.Dock="Right" />
                     </DockPanel>
                     <DockPanel LastChildFill="False" Margin="0 0 0 16">
-                        <DatePicker x:Name="BirthdayPicker" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Birth}"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="145" />
+                        <DatePicker x:Name="BirthdayPicker"
+                                    materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Birth}"
+                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Width="145" />
 
                         <ComboBox x:Name="CbSex" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Gender}" DockPanel.Dock="Right" Width="90"
-                              ItemsSource="{Binding Source={converters:GenderEnumConverter {x:Type model:Gender}}}"
-                              DisplayMemberPath="Display" SelectedValuePath="Value"
-                              SelectedValue="{Binding Path=Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                  materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.Gender}"
+                                  DockPanel.Dock="Right" Width="90"
+                                  ItemsSource="{Binding Source={converters:GenderEnumConverter {x:Type model:Gender}}}"
+                                  DisplayMemberPath="Display" SelectedValuePath="Value"
+                                  SelectedValue="{Binding Path=Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </DockPanel>
-                    <TextBox x:Name="UsernameBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.UsernameBox}"
+                    <TextBox x:Name="UsernameBox"
+                             materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.UsernameBox}"
                              Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                             Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-                    <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.PasswordBox}"
+                    <PasswordBox x:Name="PasswordBox"
+                                 materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.PasswordBox}"
                                  utils:PasswordBoxHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                                 Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
-                    <PasswordBox x:Name="VerifyPasswordBox" materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.psswdverify}"
+                    <PasswordBox x:Name="VerifyPasswordBox"
+                                 materialDesign:HintAssist.Hint="{DynamicResource WindowSignUp.psswdverify}"
                                  utils:PasswordBoxHelper.Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                                 Margin="0 0 0 16" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
                     <DockPanel LastChildFill="False" Margin="0 50 0 0">
                         <Border Style="{StaticResource OriginalBorder}" DockPanel.Dock="Left">
                             <Button x:Name="backBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Width="100"
-                                Background="White"
-                                Command="{Binding OpenLoginCommand}"
-                                Foreground="{StaticResource MaterialDesignLightForeground}"
-                                HorizontalAlignment="Right">
+                                    Width="100"
+                                    Background="White"
+                                    Command="{Binding OpenLoginCommand}"
+                                    Foreground="{StaticResource MaterialDesignLightForeground}"
+                                    HorizontalAlignment="Right">
                                 <TextBlock Text="{DynamicResource WindowSignUp.ReturnButton}" />
                             </Button>
                         </Border>
-                        <Border Style="{StaticResource OriginalBorder}"  DockPanel.Dock="Right">
+                        <Border Style="{StaticResource OriginalBorder}" DockPanel.Dock="Right">
                             <Button x:Name="signUpBtn" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                     Width="100"
                                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
@@ -87,11 +97,12 @@
                 </StackPanel>
             </Grid>
 
-            <Image Source="/Resources/Images/logo.png" RenderTransformOrigin="0.5,0.5" Width="100" Height="100" Margin="255,-60,-5,429">
+            <Image Source="/Resources/Images/logo.png" RenderTransformOrigin="0.5,0.5" Width="100" Height="100"
+                   Margin="255,-60,-5,429">
                 <Image.RenderTransform>
                     <TransformGroup>
-                        <RotateTransform Angle="-180"/>
-                        <TranslateTransform/>
+                        <RotateTransform Angle="-180" />
+                        <TranslateTransform />
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>

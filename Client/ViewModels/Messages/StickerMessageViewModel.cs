@@ -8,6 +8,8 @@ namespace UI.ViewModels {
 			set => base.Message = value;
 		}
 
+        public Sticker Sticker => Message.Sticker;
+
 		public StickerMessageViewModel(IAppSession appSession) : base(appSession) {
 			
 		}

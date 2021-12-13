@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChatServer.Network.Packets.AfterLogin.DataPreparing;
-using ChatServer.Network.Packets.AfterLogin.Message;
-using ChatServer.Network.Packets.AfterLogin.Notification;
-using ChatServer.Network.Packets.AfterLogin.Search;
-using ChatServer.Network.Packets.AfterLogin.Setting;
-using ChatServer.Network.Packets.AfterLogin.Sticker;
+using ChatServer.Network.Packets;
 
 namespace ChatServer.Network.Protocol
 {

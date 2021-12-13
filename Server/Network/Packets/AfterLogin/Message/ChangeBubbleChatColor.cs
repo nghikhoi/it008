@@ -1,16 +1,12 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using ChatServer.Entity.Conversation;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.MessageCore;
-using ChatServer.MessageCore.Conversation;
 
-namespace ChatServer.Network.Packets.AfterLogin.Message
+namespace ChatServer.Network.Packets
 {
     public class ChangeBubbleChatColor : IPacket
     {

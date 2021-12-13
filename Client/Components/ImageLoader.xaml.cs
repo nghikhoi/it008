@@ -71,8 +71,6 @@ namespace UI.Components {
 			base.OnPropertyChanged(e);
 		}
 
-		private Thread _imageLoadingThread;
-
 		private void UpdateSource() {
 			MediaLoaded = false;
 			if (!FastCodeUtils.NotEmptyStrings(MediaInfo))

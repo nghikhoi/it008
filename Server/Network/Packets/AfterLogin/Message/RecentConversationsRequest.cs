@@ -1,14 +1,8 @@
 ﻿using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Org.BouncyCastle.Ocsp;
 
-namespace ChatServer.Network.Packets.AfterLogin.Message
+namespace ChatServer.Network.Packets
 {
     public class RecentConversationsRequest : AbstractRequestPacket
     {

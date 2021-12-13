@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ChatServer.Cache.Core;
 using ChatServer.IO.Entity;
 
-namespace ChatServer.Entity.Meta.Profile
+namespace ChatServer.Entity
 {
     public class ProfileCache
     {

@@ -1,4 +1,5 @@
-﻿using UI.Models.Message;
+﻿using System.Windows.Input;
+using UI.Models.Message;
 using UI.Services;
 
 namespace UI.ViewModels {
@@ -8,8 +9,14 @@ namespace UI.ViewModels {
 			set => base.Message = value;
 		}
 
-		public AttachmentMessageViewModel(IAppSession appSession) : base(appSession) {
+        public string FileName => Message.FileName;
+
+        public ICommand DownloadCommand;
+
+        public AttachmentMessageViewModel(IAppSession appSession) : base(appSession) {
 			
 		}
+
+
 	}
 }

@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="UI.ChatPage"
+﻿<UserControl x:Class="UI.Views.ChatPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UI"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:UI.Views"
              xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:uc="clr-namespace:UI.Components"
@@ -14,7 +14,9 @@
              Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:triggers="clr-namespace:UI.Utils.Triggers"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              DataContextChanged="OnDataContextChange"
+             x:Name="_this"
              Unloaded="OnUnloaded"
              d:DesignHeight="500" d:DesignWidth="600">
     <i:Interaction.Triggers>
@@ -26,9 +28,10 @@
         <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"/>
         <remarks:GroupBubbleTemplateSelector x:Key="GroupSelect"></remarks:GroupBubbleTemplateSelector>
         <convert:BooleanVisibility x:Key="BooleanViCvrt"></convert:BooleanVisibility>
+        <remarks:BindingProxy x:Key="StickerContainer" Data="{Binding StickerContainer, diag:PresentationTraceSources.TraceLevel=High}" />
         <Style x:Key="ChatButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Width" Value="32" />
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
@@ -37,14 +40,15 @@
         <Border Style="{StaticResource OriginalBorder}" Grid.RowSpan="2">
             <DockPanel>
                 <!--Header-->
-                <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel" Margin="8 0 0 0">
+                <DockPanel DockPanel.Dock="Top" Background="{StaticResource BackgroundOpacityBrush}" x:Name="panel"
+                           Margin="8 0 0 0">
                     <StackPanel DockPanel.Dock="Right">
                         <ToggleButton x:Name="ChatInfoMenuBtn" Style="{StaticResource myToggleButton}"
                                       Background="Transparent" BorderBrush="Transparent"
                                       Width="40" Height="42"
-                                      Checked="OnChecked" Unchecked="OnUnchecked" 
+                                      Checked="OnChecked" Unchecked="OnUnchecked"
                                       Cursor="Hand">
-                            <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24"/>
+                            <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" />
                         </ToggleButton>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
@@ -58,33 +62,34 @@
 
                 <!--Button Control-->
                 <DockPanel DockPanel.Dock="Bottom">
-                    <Border VerticalAlignment="Bottom" Margin="2, 4" >
-                        <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges" 
-                                                 PopupVerticalOffset="40" StaysOpen="True" 
-                                                 Margin="0,0,0,0" VerticalContentAlignment="Center" 
+                    <Border VerticalAlignment="Bottom" Margin="2, 4">
+                        <materialDesign:PopupBox Padding="0" PlacementMode="TopAndAlignLeftEdges"
+                                                 PopupVerticalOffset="40" StaysOpen="True"
+                                                 Margin="0,0,0,0" VerticalContentAlignment="Center"
                                                  IsTabStop="False" Width="32" Height="32">
                             <materialDesign:PopupBox.ToggleContent>
-                                <materialDesign:PackIcon Kind="Emoticon" Width="24" Height="24" 
-                                                         Foreground="{DynamicResource ForegroundResource}" 
-                                                         Margin="2"/>
+                                <materialDesign:PackIcon Kind="Emoticon" Width="24" Height="24"
+                                                         Foreground="{DynamicResource ForegroundResource}"
+                                                         Margin="2" />
                             </materialDesign:PopupBox.ToggleContent>
                             <StackPanel Width="380" Height="320">
-                                <uc:TabStickerContainer/>
+                                <uc:TabStickerContainer DataContext="{Binding Data, Source={StaticResource StickerContainer}}"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
                         <Button x:Name="AttachtmentButton" Padding="0" Margin="0"
-                                Style="{StaticResource ChatButton}" 
-                                Command="{Binding ChatpageSendFileCommand}" >
-                            <materialDesign:PackIcon Kind="Attachment" Width="24" Height="24" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                Style="{StaticResource ChatButton}"
+                                Command="{Binding ChatpageSendFileCommand}">
+                            <materialDesign:PackIcon Kind="Attachment" Width="24" Height="24"
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Button>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="ImageButton" Padding="0" Margin="0" 
-                                Style="{StaticResource ChatButton}" 
+                        <Button x:Name="ImageButton" Padding="0" Margin="0"
+                                Style="{StaticResource ChatButton}"
                                 Command="{Binding ChatpageSendImageCommand}">
-                            <materialDesign:PackIcon Kind="Image" Width="24" Height="24"/>
+                            <materialDesign:PackIcon Kind="Image" Width="24" Height="24" />
                         </Button>
                     </Border>
 
@@ -126,40 +131,43 @@
                             Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" 
                             HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" 
                             Command="{Binding SendTextMessageCommand}">
-                        <materialDesign:PackIcon Kind="Send"  Width="24" Height="Auto"/>
+                        <materialDesign:PackIcon Kind="Send" Width="24" Height="Auto" />
                     </Button>
                     <Border CornerRadius="16" Background="{DynamicResource InputColorResource}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
-                        <!--<TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" VerticalScrollBarVisibility="Auto" 
+                        <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 VerticalScrollBarVisibility="Auto"
                                  materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
-                                 x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap" 
-                                 Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
+                                 x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap"
+                                 CaretIndex="10"
+                                 Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch"
+                                 CaretBrush="#FF1E145F"
                                  Text="{Binding Texting, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 VerticalContentAlignment="Center" MaxHeight="82">
-                            <i:Interaction.Triggers>
-                                <triggers:KeyDownTrigger Key="Return">
-                                    <i:InvokeCommandAction Command="{Binding SendTextMessageCommand}" />
-                                </triggers:KeyDownTrigger>
-                            </i:Interaction.Triggers>
-                        </TextBox>-->
-                        <emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                                 VerticalContentAlignment="Center" MaxHeight="82" Width="401">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SendTextMessageCommand}" />
+                                <KeyBinding Gesture="Shift+Return" Command="{Binding EndLineTextCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <!--<emoji:RichTextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
                                            BorderBrush="Transparent" 
                                            Background="{DynamicResource InputColorResource}"
                                            Foreground="{DynamicResource ForegroundResource}"
+                                           materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
                                            x:Name="ChatInput" Margin="14,6,14,4" ColonSyntax="True"
                                            Text="{Binding Texting, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch" CaretBrush="#FF1E145F" 
                                            VerticalContentAlignment="Center" MaxHeight="82">
-                            <i:Interaction.Triggers>
-                                <triggers:KeyDownTrigger Key="Return">
-                                    <i:InvokeCommandAction Command="{Binding SendTextMessageCommand}"
-                                                           />
-                                </triggers:KeyDownTrigger>
-                            </i:Interaction.Triggers>
-                        </emoji:RichTextBox>
+                            <emoji:RichTextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SendTextMessageCommand}"/>
+                                <KeyBinding Gesture="Shift+Return" Command="{Binding EndLineTextCommand}"/>
+                            </emoji:RichTextBox.InputBindings>
+                        </emoji:RichTextBox>-->
                     </Border>
                 </DockPanel>
             </DockPanel>
         </Border>
+
+        <Grid>
         <!--conversation background here-->
         <!--<Image Margin="0,50,0,45" Source=""></Image>-->
             <ScrollViewer VerticalScrollBarVisibility="Visible" 
@@ -177,12 +185,12 @@
                 </triggers:ScrollChangeReachTrigger>
             </i:Interaction.Triggers>-->
             <StackPanel>
-                <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}" 
+                <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}"
                         Command="{Binding LoadMoreCommand}"
                         BorderBrush="{x:Null}" Foreground="#DD000000">
-                    <TextBlock Text="See more..." 
-                               Style="{StaticResource TextBlockHover}" 
-                               Foreground="{DynamicResource ForegroundResource}"/>
+                    <TextBlock Text="See more..."
+                               Style="{StaticResource TextBlockHover}"
+                               Foreground="{DynamicResource ForegroundResource}" />
                 </Button>
                 <StackPanel x:Name="MessageContainer">
                     <ItemsControl ItemsSource="{Binding GroupBubbles}"
@@ -190,5 +198,6 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

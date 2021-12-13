@@ -155,35 +155,6 @@ namespace UI.Components
         {
         }
         #endregion
-
-        private void TogglePopupButton_Checked(object sender, RoutedEventArgs e)
-        {
-            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
-            // chatWindow.view.ChatPage.Fade.Visibility = Visibility.Visible;
-        }
-
-        private void TogglePopupButton_UnChecked(object sender, RoutedEventArgs e)
-        {
-            // ChatWindow chatWindow = ModuleContainer.GetModule<ChatWindow>();
-            // chatWindow.view.ChatPage.Fade.Visibility = Visibility.Hidden;
-        }
-
-        private void NotificationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void InfOpenBtn_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void LogOutBtn_Click(object sender, RoutedEventArgs e) {
-        }
-
-        //private void newMessage_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NewConversationWindow newcon = new NewConversationWindow();
-        //    newcon.ShowDialog();
-        //}
     }
 
 }
