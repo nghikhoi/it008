@@ -153,6 +153,7 @@ namespace UI.ViewModels {
 		public ICommand LoadMoreMediaCommand { get; private set; }
 		public ICommand ChatpageSendImageCommand { get; private set; }
 		public ICommand ChatpageSendFileCommand { get; private set; }
+		public ICommand ChatpageSelectEmojiCommand { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
@@ -181,8 +182,15 @@ namespace UI.ViewModels {
 			SelectAction += (vm) => FirstSelectCommand.Execute(null);
 			ChatpageSendImageCommand = new RelayCommand<object>(null, SelectImage);
 			ChatpageSendFileCommand = new RelayCommand<object>(null, SelectVideo);
+			ChatpageSelectEmojiCommand = new RelayCommand<object>(null, SelectEmoji);
 		}
 
+	
+		private void SelectEmoji(object para)
+        {
+			Texting += para.ToString();
+			
+        }
 		private void SelectImage(object para=null) {
 			List<string> paths = new List<string>();
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
