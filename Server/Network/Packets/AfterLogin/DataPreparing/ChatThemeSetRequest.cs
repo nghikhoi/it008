@@ -1,16 +1,11 @@
-﻿using CNetwork;
+﻿using ChatServer.Entity;
+using ChatServer.Entity.EntityProperty;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.Entity.EntityProperty;
 
-namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
+namespace ChatServer.Network.Packets
 {
     public class ChatThemeSetRequest : IPacket
     {

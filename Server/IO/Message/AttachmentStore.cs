@@ -34,7 +34,6 @@ namespace ChatServer.IO.Message
             if (map == null) return null;
 
             return map.FileName;
-            
         }
 
 

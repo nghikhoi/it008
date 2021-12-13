@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChatServer.Entity.Meta.Profile;
+using ChatServer.Entity;
 using ChatServer.Utils;
 
 namespace ChatServer.Network.Packets

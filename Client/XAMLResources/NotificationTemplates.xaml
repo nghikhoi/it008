@@ -4,9 +4,9 @@
                     xmlns:local="clr-namespace:UI"
                     xmlns:uc="clr-namespace:UI.Components">
     <DataTemplate x:Key="AddFriendNotification">
-        <local:FriendRequestNoti SenderName="{Binding SenderName}"/>
+        <uc:FriendRequestNoti SenderName="{Binding SenderName}"/>
     </DataTemplate>
     <DataTemplate x:Key="FriendAccepectNotification">
-        <local:NotificationTagItem Content="{Binding Content}"/>
+        <uc:NotificationTagItem Content="{Binding Content}"/>
     </DataTemplate>
 </ResourceDictionary>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="UI.Components.TabStickerItemStore"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:UI.Components"
+             mc:Ignorable="d"
+             Width="380" Height="240" Background="{DynamicResource BackgroundResource}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="140"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+            <!--<ProgressBar x:Name="progressBarThumb" Width="80" Height="80"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="0"
+                                IsIndeterminate="True" 
+                                Foreground="Gray"/>-->
+            <local:ImageLoader MediaInfo="{Binding ThumbnailURL}" Width="220" Height="220" Margin="8" />
+        </Grid>
+
+        <StackPanel Grid.Column="1"  HorizontalAlignment="Right">
+            <Grid Width="128" Height="128" Margin="10">
+                <!--<ProgressBar x:Name="progressBar" Width="60" Height="60"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="0"
+                                IsIndeterminate="True" 
+                                Foreground="Gray"/>-->
+                <local:ImageLoader MediaInfo="{Binding IconURL}" Width="96" Height="96" />
+            </Grid>
+
+            <TextBlock x:Name="iconName" TextWrapping="Wrap"
+                       Text="{Binding Name}"
+                       TextAlignment="Center" FontWeight="Bold" Margin="5" />
+
+            <Button x:Name="btnDownIcon" Width="90" Height="28" Padding="0" HorizontalContentAlignment="Center">
+                Tải xuống
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

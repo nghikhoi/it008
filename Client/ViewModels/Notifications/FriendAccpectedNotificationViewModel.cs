@@ -1,29 +1,32 @@
-﻿using System.Collections.ObjectModel;
-using UI.Models.Message;
+﻿using UI.Lang;
+using UI.Models.Notification;
 using UI.Network;
-using UI.Utils;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public class FriendAccpectedNotificationViewModel : NotificationViewModel {
 
 		#region Properties
 
-		public string Content {
-			get => Info.Title;
-			set {
-				Info.Title = value;
-				OnPropertyChanged(nameof(Content));
-			}
-		}
-		
-		public string SenderName {
-			get => Info.Name;
-			set {
-				Info.Name = value;
-				OnPropertyChanged(nameof(SenderName));
-			}
-		}
-		
+        public new AcceptFriendNotification Info {
+            get => (AcceptFriendNotification) base.Info;
+            set {
+                base.Info = value;
+            }
+        }
+
+        public string SenderName {
+            get => Info.SenderName;
+            set {
+                Info.SenderName = value;
+                OnPropertyChanged(nameof(SenderName));
+            }
+        }
+
+        public string Content
+        {
+            get => SenderName + " đã chấp nhận lời mời kết bạn!";
+        }
+
 		#endregion
 
 		private readonly ChatConnection _connection;

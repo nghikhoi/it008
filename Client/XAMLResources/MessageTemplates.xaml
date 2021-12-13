@@ -12,7 +12,9 @@
         </Style.Triggers>
     </Style>
     <DataTemplate x:Key="TextMessage">
-        <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}"/>
+        <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}">
+            
+        </uc:TextBubble>
     </DataTemplate>
     <DataTemplate x:Key="ImageMessage">
         <uc:ThumbnailBubble MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>
@@ -22,9 +24,9 @@
     </DataTemplate>
     <!-->TODO<-->
     <DataTemplate x:Key="StickerMessage">
-        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+        <uc:StickerBubble DataContext="{Binding Sticker}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="AttachmentMessage">
-        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+        <uc:AttachmentBubble Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
 </ResourceDictionary>

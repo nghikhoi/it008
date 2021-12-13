@@ -1,14 +1,13 @@
-﻿using System.Collections.ObjectModel;
-using UI.Models.Message;
+﻿using UI.Models.Notification;
 using UI.Utils;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public abstract class NotificationViewModel : ViewModelBase {
 
 		#region Properties
 
-		private NotificationInfo _info;
-		public NotificationInfo Info {
+		private AbstractNotification _info;
+		public AbstractNotification Info {
 			get => _info;
 			set {
 				_info = value;

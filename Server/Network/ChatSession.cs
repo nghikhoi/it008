@@ -2,15 +2,12 @@
 using CNetwork.Protocols;
 using CNetwork.Sessions;
 using DotNetty.Transport.Channels;
-using ChatServer.Network.Packets.Login;
-using ChatServer.Network.Packets.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChatServer.Entity;
-using ChatServer.Entity.Meta.Profile;
 using ChatServer.Network.Protocol;
 
 namespace ChatServer.Network

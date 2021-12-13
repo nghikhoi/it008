@@ -1,19 +1,12 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using ChatServer.Entity.EntityProperty;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using ChatServer.IO.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.Entity.EntityProperty;
-using ChatServer.MessageCore.Message;
-using ChatServer.Network.Packets.AfterLogin.DataPreparing;
 
-namespace ChatServer.Network.Packets.AfterLogin.Setting
+namespace ChatServer.Network.Packets
 {
     public class UpdateSelfProfileRequest : AbstractRequestPacket
     {

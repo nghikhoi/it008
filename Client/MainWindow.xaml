@@ -11,9 +11,9 @@
         Background="{x:Null}"
         AllowsTransparency="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:vmAuth="clr-namespace:UI.ViewModels.Authentication"
         x:Name="_this"
         Height="480" Width="815"
+        ResizeMode="CanResizeWithGrip"
         MinHeight="{Binding ElementName=HomeView, Path=MinHeight}"
         MinWidth="{Binding ElementName=HomeView, Path=MinWidth}"
         Title="Chat" WindowStartupLocation="CenterScreen">

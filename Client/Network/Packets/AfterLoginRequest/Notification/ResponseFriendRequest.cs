@@ -10,7 +10,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Notification
     {
         public string TargetID { get; set; }
         public bool Accepted { get; set; }
-        public int NotiPosition { get; set; }
+        public Guid NotificationId { get; set; }
 
         public void Decode(IByteBuffer buffer)
         {
@@ -21,7 +21,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Notification
         {
             ByteBufUtils.WriteUTF8(byteBuf, TargetID);
             byteBuf.WriteBoolean(Accepted);
-            byteBuf.WriteInt(NotiPosition);
+            ByteBufUtils.WriteUTF8(byteBuf, NotificationId.ToString());
             return byteBuf;
         }
 

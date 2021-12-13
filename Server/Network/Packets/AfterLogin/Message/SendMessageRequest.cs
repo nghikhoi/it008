@@ -1,19 +1,13 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using ChatServer.Entity.Conversation;
+using ChatServer.Entity.Message;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using ChatServer.Entity;
-using ChatServer.IO.Message;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.MessageCore;
-using ChatServer.MessageCore.Conversation;
-using ChatServer.MessageCore.Message;
 
-namespace ChatServer.Network.Packets.AfterLogin.Message
+namespace ChatServer.Network.Packets
 {
     public class SendMessageRequest : IPacket
     {

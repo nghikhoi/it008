@@ -1,13 +1,10 @@
-﻿using CNetwork;
+﻿using System;
+using System.Collections.Generic;
+using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChatServer.Network.Packets.AfterLogin.Sticker
+namespace ChatServer.Network.Packets
 {
     public class GetBoughtStickerPacksResponse : IPacket
     {

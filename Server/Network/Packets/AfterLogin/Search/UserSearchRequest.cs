@@ -1,20 +1,18 @@
-﻿using CNetwork;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ChatServer.Entity;
+using ChatServer.Entity.Conversation;
+using ChatServer.Entity.EntityProperty;
+using ChatServer.Entity.Message;
+using ChatServer.IO.Entity;
+using ChatServer.IO.Message;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.Entity.EntityProperty;
-using ChatServer.IO.Entity;
-using ChatServer.IO.Message;
-using ChatServer.MessageCore.Conversation;
-using ChatServer.MessageCore.Message;
 
-namespace ChatServer.Network.Packets.AfterLogin.Search
+namespace ChatServer.Network.Packets
 {
     public class UserSearchRequest : AbstractRequestPacket
     {

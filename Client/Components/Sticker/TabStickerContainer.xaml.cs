@@ -22,18 +22,18 @@ namespace UI.Components
     /// </summary>
     public partial class TabStickerContainer : UserControl
     {
-        private Dictionary<int, TabStickerStore> cateStore;
+        private Dictionary<int, TabStickerItemStore> cateStore;
 
         private Dictionary<int, StickerCategory> cateStoreList;
 
-        private Dictionary<int, Sticker> recentStickerList;
+        private Dictionary<int, StickerBubble> recentStickerList;
 
         public TabStickerContainer()
         {
             InitializeComponent();
-            cateStore = new Dictionary<int, TabStickerStore>();
+            cateStore = new Dictionary<int, TabStickerItemStore>();
             cateStoreList = new Dictionary<int, StickerCategory>();
-            recentStickerList = new Dictionary<int, Sticker>(); 
+            recentStickerList = new Dictionary<int, StickerBubble>(); 
 
         }
         
@@ -68,7 +68,7 @@ namespace UI.Components
 
         public void AddCateIntoStore(StickerCategory cate)
         {
-            TabStickerStore store = new TabStickerStore(cate);
+            TabStickerItemStore store = new TabStickerItemStore(cate);
             store.Margin = new Thickness(5, 5, 5, 5);
             cateStore.Add(cate.ID, store);
             splStickerStore.Children.Add(store);

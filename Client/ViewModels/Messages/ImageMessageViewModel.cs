@@ -4,8 +4,8 @@ using UI.Models.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
-	public class ImageMessageViewModel : MessageViewModel {
+namespace UI.ViewModels {
+	public class ImageMessageViewModel : MessageViewModel, MediaViewModel {
 		public new ImageMessage Message {
 			get => (ImageMessage) base.Message;
 			set {

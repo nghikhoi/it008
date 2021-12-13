@@ -1,5 +1,4 @@
 ﻿using System;
-using ChatServer.MessageCore.Message;
 using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;

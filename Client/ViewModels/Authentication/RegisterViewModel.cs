@@ -1,12 +1,11 @@
-﻿using UI.Models;
-using System;
+﻿using System;
 using System.Windows.Input;
 using UI.Command;
+using UI.Models;
 using UI.Services;
-using UI.Services.Common;
 using UI.Services.Exceptions;
 
-namespace UI.ViewModels.Authentication {
+namespace UI.ViewModels {
 	public class RegisterViewModel : ViewModelBase {
 
 		private string _username;

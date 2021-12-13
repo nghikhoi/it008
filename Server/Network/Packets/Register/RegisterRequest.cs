@@ -1,19 +1,13 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using ChatServer.Entity.EntityProperty;
+using ChatServer.Utils;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using ChatServer.IO.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.Entity.EntityProperty;
-using ChatServer.Entity.Meta.Profile;
-using ChatServer.Utils;
 
-namespace ChatServer.Network.Packets.Register
+namespace ChatServer.Network.Packets
 {
     public class RegisterRequest : IPacket
     {

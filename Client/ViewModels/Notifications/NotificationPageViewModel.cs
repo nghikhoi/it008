@@ -1,13 +1,14 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using UI.Models.Message;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using CNetwork.Sessions;
+using UI.Models.Notification;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
 
-namespace UI.ViewModels.Notifications {
+namespace UI.ViewModels {
 	public class NotificationPageViewModel : InitializableViewModel {
 
 		#region Properties
@@ -28,43 +29,60 @@ namespace UI.ViewModels.Notifications {
 		private ChatConnection _connection;
 		private IViewModelFactory _viewModelFactory;
 
-		public NotificationPageViewModel(ChatConnection connection, IViewModelFactory viewModelFactory) {
+		public NotificationPageViewModel(ChatConnection connection, IViewModelFactory viewModelFactory, PacketRespondeListener listener) {
 			_connection = connection;
 			_viewModelFactory = viewModelFactory;
-		}
+
+			NewestNotifications = new ObservableCollection<NotificationViewModel>();
+			Notifications = new ObservableCollection<NotificationViewModel>();
+			
+            listener.ReceiveNotificationEvent += ReceiveNotification;
+			InitializeCommand.Execute(null);
+        }
 
 		protected override void Initialize(object parameter = null) {
 			loadNotifications();
 		}
+
+        protected void ReceiveNotification(ISession session, GetNotificationsResult result)
+        {
+			result.Notifications.ForEach(AddNotification);
+        }
 		
 		private void loadNotifications() {
 			DataAPI.getData<GetNotifications, GetNotificationsResult>(result => {
-				foreach (string notification in result.Notifications) {
-					NotificationInfo analyzed = NotificationDecoder.Analyze(notification);
-					AddNotification(analyzed);
+				foreach (AbstractNotification notification in result.Notifications) {
+					AddNotification(notification);
 				}
 			});
 		}
 
-		public void AddNotification(NotificationInfo info) {
-			string prefix = info.Prefix;
-			if (string.CompareOrdinal(prefix, NotificationPrefixes.AcceptedFriend) == 0) {
-				AddFriendAccepectedNotification(info);
-			} else if (string.CompareOrdinal(prefix, NotificationPrefixes.AddFriend) == 0) {
-				AddFriendNotification(info);
-			}
+		public void AddNotification(AbstractNotification info) {
+            switch (info.Type())
+            {
+                case NotificationType.ACCEPT_FRIEND_RESPONDE:
+                {
+					AddFriendAccepectedNotification(info);
+                    break;
+                }
+                case NotificationType.FRIEND_REQUEST:
+                {
+					AddFriendNotification(info);
+                    break;
+                }
+				default: return;
+            }
 		}
 
-		private void AddFriendNotification(NotificationInfo info) {
+		private void AddFriendNotification(AbstractNotification info) {
 			FriendRequestNotificationViewModel viewModel = _viewModelFactory.Create<FriendRequestNotificationViewModel>();
-			viewModel.Info = info;
-			viewModel.Position = NewestNotifications.Count;
+			viewModel.Info = (FriendRequestNotification) info;
 			NewestNotifications.Add(viewModel);
 		}
 
-		private void AddFriendAccepectedNotification(NotificationInfo info) {
+		private void AddFriendAccepectedNotification(AbstractNotification info) {
 			FriendAccpectedNotificationViewModel viewModel = _viewModelFactory.Create<FriendAccpectedNotificationViewModel>();
-			viewModel.Info = info;
+			viewModel.Info = (AcceptFriendNotification) info;
 			NewestNotifications.Add(viewModel);
 		}
 

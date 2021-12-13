@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using UI.Network.RestAPI;
 
-namespace UI.CustomControls
+namespace UI.Components
 {
     /// <summary>
     /// Interaction logic for AvatarDisplayer.xaml

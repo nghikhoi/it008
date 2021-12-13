@@ -1,19 +1,22 @@
-﻿
+﻿using CNetwork.Sessions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using CNetwork.Sessions;
+using UI.Command;
 using UI.Models;
 using UI.Models.Message;
+using UI.Models.Notification;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest;
 using UI.Network.Packets.AfterLoginRequest.Message;
+using UI.Network.Packets.AfterLoginRequest.Notification;
+using UI.Network.Packets.AfterLoginRequest.Search;
 using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.RestAPI;
 using UI.Services;
-using UI.ViewModels.Notifications;
-using UI.Command;
+using UI.Utils;
 
 namespace UI.ViewModels {
     public class HomeViewModel : InitializableViewModel {
@@ -49,12 +52,12 @@ namespace UI.ViewModels {
             }
         }
 
-        private ProfileViewModel _profile;
-        public ProfileViewModel Profile {
-            get => _profile;
+        private ProfileViewModel _userProfile;
+        public ProfileViewModel UserProfile {
+            get => _userProfile;
             set {
-                _profile = value;
-                OnPropertyChanged(nameof(Profile));
+                _userProfile = value;
+                OnPropertyChanged(nameof(UserProfile));
             }
         }
 
@@ -67,6 +70,25 @@ namespace UI.ViewModels {
             }
         }
 
+        private string _themeBackground = @"../../Resources/Images/avt.jpg";
+        public string themeBackground
+        {
+            get => _themeBackground;
+            set
+            {
+                _themeBackground = value;
+            }
+        }
+
+        private StickerContainerViewModel _stickerContainer;
+        public StickerContainerViewModel StickerContainer {
+            get => _stickerContainer;
+            set {
+                _stickerContainer = value;
+                OnPropertyChanged(nameof(StickerContainer));
+            }
+        }
+
         private readonly IViewModelFactory _viewModelFactory;
         private readonly IAuthenticator authenticator;
         private readonly IUserProfileHolder _userProfileHolder;
@@ -76,7 +98,7 @@ namespace UI.ViewModels {
 
         #region Command
 
-        public ICommand SearchCommand;
+        public ICommand SearchCommand { get; private set; }
         public ICommand ProfileInitalizeCommand { get; private set; }
 
         #endregion
@@ -90,12 +112,23 @@ namespace UI.ViewModels {
             
             _respondeListener = respondeListener;
             _respondeListener.ReceiveMessageEvent += ReceiveMessage;
+            _respondeListener.ReceiveNotificationEvent += ReceiveNotification;
+            _respondeListener.FinalizeAcceptedFriendEvent += session => App.Current.Dispatcher.Invoke(LoadFriends); //Update friend list
             this.authenticator = authenticator;
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
 
             InitializeCommand.Execute(null);
-            ProfileInitalizeCommand = new InitializeCommand(o => Profile = _viewModelFactory.Create<ProfileViewModel>());
+            SearchCommand = new RelayCommand<object>(null, o => SearchAction(SearchingString));
+            //ProfileInitalizeCommand = new InitializeCommand(o => UserProfile = _viewModelFactory.Create<ProfileViewModel>());
+            UserProfile = _viewModelFactory.Create<ProfileViewModel>();
+            NotificationPage = _viewModelFactory.Create<NotificationPageViewModel>();
+            StickerContainer = _viewModelFactory.Create<StickerContainerViewModel>();
+            StickerContainer.OnStickerClick += s =>
+            {
+                if (SelectedConversation != null)
+                    SelectedConversation.SendStickerMessage(s);
+            };
         }
 
         public override void Dispose() {
@@ -104,11 +137,18 @@ namespace UI.ViewModels {
         }
 
         private ConversationViewModel ListSearchFor(string conversationId) {
-            return Conversations.Where(vm => string.CompareOrdinal(vm.ConversationId, conversationId) == 0).First();
+            return Conversations.First(vm => string.CompareOrdinal(vm.ConversationId, conversationId) == 0);
         }
 
         protected void ReceiveMessage(ISession session, ReceiveMessage receiveMessage) {
             ReceiveMessage(receiveMessage.ConversationID, receiveMessage.Message);
+        }
+
+        protected void ReceiveNotification(ISession session, GetNotificationsResult result)
+        {
+            bool shouldRefreshFriends = result.Notifications.Any(noti => noti is AcceptFriendNotification);
+            if (shouldRefreshFriends)
+                App.Current.Dispatcher.Invoke(LoadFriends);
         }
 
         public void ReceiveMessage(string conversationId, AbstractMessage message) {
@@ -169,9 +209,10 @@ namespace UI.ViewModels {
                         viewModel.ConversationName = info.FirstName + " " + info.LastName;
                         viewModel.LastActive = info.LastActive;
                         viewModel.UserId = info.ID;
-                        viewModel.Relationship = Relationship.Friend;
+                        viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
                         viewModel.SelectAction += SelectConversation;
                         OriginFriendList.Add(viewModel);
+                        SearchAction();
                     });
                 });
             });
@@ -179,6 +220,8 @@ namespace UI.ViewModels {
 
         private void SelectConversation(ConversationViewModel viewModel) {
             this.SelectedConversation = viewModel;
+            if (viewModel != null)
+                this.SelectedConversation.StickerContainer = StickerContainer;
         }
         
         private void initSelfId() {
@@ -189,36 +232,49 @@ namespace UI.ViewModels {
         
         #region Search
         public void SearchRecentConversation(string s) {
-            /*List<UserShortInfo> searchlist = new List<UserShortInfo>();
-            Dictionary<string, ConversationCache> conversations = ChatModel.Instance.Conversations;
-            foreach (var con in conversations)
-            {
-                if (s.Contains(con.Value.ConversationName))
-                {
+            List<UserShortInfo> searchlist = new List<UserShortInfo>();
+            foreach (var con in Conversations) {
+                if (s.Contains(con.ConversationName)) {
                     UserShortInfo result = new UserShortInfo();
-                    result.ConversationID = con.Key;
-                    result.FirstName = con.Value.ConversationName;
-                    result.LastActive = con.Value.LastActiveTime;
+                    result.ConversationID = con.ConversationId;
+                    result.FirstName = con.ConversationName;
+                    result.LastActive = con.LastActive;
                     searchlist.Add(result);
                 }
             }
-            //TODO show recent*/
+            //TODO show recent
         }
-        public void SearchAction(string s)
+        public void SearchAction(string s = null)
         {
-            /*SearchUser packet = new SearchUser();
+            if (!FastCodeUtils.NotEmptyStrings(s))
+            {
+                SearchingFriendList.Clear();
+                foreach (var model in OriginFriendList)
+                {
+                    SearchingFriendList.Add(model);
+                }
+
+                return;
+            }
+            SearchUser packet = new SearchUser();
             packet.Email = s;
             DataAPI.getData<SearchUserResult>(packet, result => {
                 ShowSearchResult(result.Results);
-            });*/
+            });
         }
 
         public void ShowSearchResult(List<UserShortInfo> list) {
-            /*view.clear_friend_list();
-            foreach (var item in list)
-            {
-                addShortInfo(item);
-            }*/
+            SearchingFriendList.Clear();
+            foreach (var info in list) {
+                FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
+                viewModel.ConversationId = info.ConversationID;
+                viewModel.ConversationName = info.FirstName + " " + info.LastName;
+                viewModel.LastActive = info.LastActive;
+                viewModel.UserId = info.ID;
+                viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
+                viewModel.SelectAction += SelectConversation;
+                SearchingFriendList.Add(viewModel);
+            }
         }
 
         #endregion

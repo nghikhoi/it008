@@ -1,7 +1,8 @@
-﻿using UI.Models.Message;
+﻿using System.Windows.Media;
+using UI.Models.Message;
 using UI.Services;
 
-namespace UI.ViewModels.Messages {
+namespace UI.ViewModels {
 	public class TextMessageViewModel : MessageViewModel {
 		public new TextMessage Message {
 			get => (TextMessage) base.Message;
@@ -16,7 +17,7 @@ namespace UI.ViewModels.Messages {
 			}
 		}
 
-		public TextMessageViewModel(IAppSession appSession) : base(appSession) {
+        public TextMessageViewModel(IAppSession appSession) : base(appSession) {
 			
 		}
 	}

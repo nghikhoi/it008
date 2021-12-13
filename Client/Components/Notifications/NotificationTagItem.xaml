@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="UI.NotificationTagItem"
+﻿<UserControl x:Class="UI.Components.NotificationTagItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UI"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              x:Name="_this"
              d:DesignHeight="60" d:DesignWidth="200" MinHeight="60" MinWidth="200">
     <Grid>
@@ -12,47 +12,49 @@
 
             <Grid.ColumnDefinitions>
                 <!--Picture Profile-->
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="60" />
                 <!--Main Content-->
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120" />
                 <!--Checked Symbol-->
-                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
 
             <!--Picture Profile-->
             <Border Grid.Column="0" Padding="8" Grid.RowSpan="2">
                 <Border Background="Aqua"
-                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                        CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
                     <TextBlock Text="HC"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                Foreground="{DynamicResource MaterialDesignBodyLight}"
-                               FontSize="20"/>
+                               FontSize="20" />
                 </Border>
             </Border>
 
             <Border Grid.Column="1"
-                    Padding="0 0 8 0" Grid.ColumnSpan="2" Margin="0,0,10,0" Grid.RowSpan="2" >
+                    Padding="0 0 8 0" Grid.ColumnSpan="2" Margin="0,0,10,0" Grid.RowSpan="2">
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                     <DockPanel>
-                        <TextBlock x:Name="ContentBlock" Text="{Binding ElementName=_this, Path=Content}" Width="55" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name="ContentBlock" Text="{Binding ElementName=_this, Path=Content}" Width="55"
+                                   HorizontalAlignment="Left" />
                     </DockPanel>
                     <TextBlock Text="Khoảng 3 phút trước"
-                       TextWrapping="WrapWithOverflow"
-                       FontStyle="Italic" FontSize="8"
-                       FontWeight="ExtraLight"
-                       TextTrimming="CharacterEllipsis"
-                           x:Name="HappenTimeBlock"/>
+                               TextWrapping="WrapWithOverflow"
+                               FontStyle="Italic" FontSize="8"
+                               FontWeight="ExtraLight"
+                               TextTrimming="CharacterEllipsis"
+                               x:Name="HappenTimeBlock" />
                 </StackPanel>
             </Border>
             <Border Grid.Column="2" x:Name="NotificationDot"
-                    BorderThickness="1" CornerRadius="16" Background="{StaticResource WordGreenBrush}" BorderBrush="#FFE2E2E2"
-                    Width="10" Height="10" Margin="-20 0 0 0"/>
+                    BorderThickness="1" CornerRadius="16" Background="{StaticResource WordGreenBrush}"
+                    BorderBrush="#FFE2E2E2"
+                    Width="10" Height="10" Margin="-20 0 0 0" />
         </Grid>
         <Button Name="ClickMask" Click="ClickMask_Click"
-                Height="60" Width="200" 
+                Height="60" Width="200"
                 Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Transparent"/>
+                Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Transparent" />
     </Grid>
 </UserControl>

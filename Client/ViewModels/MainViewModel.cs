@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UI.Command;
 using UI.Services;
-using UI.ViewModels.Authentication;
 
 namespace UI.ViewModels {
     public class MainViewModel : ViewModelBase, IViewState {

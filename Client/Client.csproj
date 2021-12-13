@@ -327,6 +327,9 @@
       <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="XamlAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=20a987d8023d9690, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlAnimatedGif.2.0.2\lib\net45\XamlAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -337,6 +340,7 @@
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Command\InitializeCommand.cs" />
+    <Compile Include="Command\MediaWindowCommand.cs" />
     <Compile Include="Command\ThemeSelectCommand.cs" />
     <Compile Include="Command\TitleBarCommand.cs" />
     <Compile Include="Command\UpdateCurrentViewModelCommand.cs" />
@@ -350,13 +354,21 @@
       <DependentUpon>RegisterForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\AvatarDisplayer.xaml.cs" />
+    <Compile Include="Components\ChatItem\AttachmentBubble.xaml.cs">
+      <DependentUpon>AttachmentBubble.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ChatItem\AvatarSender.xaml.cs">
       <DependentUpon>AvatarSender.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ChatItem\ConversationItem.xaml.cs">
       <DependentUpon>ConversationItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\ChatItem\Sticker.xaml.cs" />
+    <Compile Include="Components\ChatItem\FriendConversationItem.xaml.cs">
+      <DependentUpon>FriendConversationItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ChatItem\StickerBubble.xaml.cs">
+      <DependentUpon>StickerBubble.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ChatItem\TextBubble.xaml.cs">
       <DependentUpon>TextBubble.xaml</DependentUpon>
     </Compile>
@@ -365,8 +377,13 @@
     <Compile Include="Components\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Components\EmptyChatpage.xaml.cs">
       <DependentUpon>EmptyChatpage.xaml</DependentUpon>
+=======
+    <Compile Include="Components\ImageLoader.xaml.cs">
+      <DependentUpon>ImageLoader.xaml</DependentUpon>
+>>>>>>> 50543afd9e09137252f69a29056a61a67c9bc53a
     </Compile>
     <Compile Include="Components\ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
@@ -377,8 +394,11 @@
     <Compile Include="Components\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\mediaPlayer.xaml.cs">
-      <DependentUpon>mediaPlayer.xaml</DependentUpon>
+    <Compile Include="Components\MediaGallery.xaml.cs">
+      <DependentUpon>MediaGallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MediaLoader.xaml.cs">
+      <DependentUpon>MediaLoader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\Notifications\FriendRequestNoti.xaml.cs">
       <DependentUpon>FriendRequestNoti.xaml</DependentUpon>
@@ -416,8 +436,8 @@
     <Compile Include="Components\Sticker\TabStickerContainer.xaml.cs">
       <DependentUpon>TabStickerContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\Sticker\TabStickerStore.xaml.cs">
-      <DependentUpon>TabStickerStore.xaml</DependentUpon>
+    <Compile Include="Components\Sticker\TabStickerItemStore.xaml.cs">
+      <DependentUpon>TabStickerItemStore.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ThemePanel.xaml.cs">
       <DependentUpon>ThemePanel.xaml</DependentUpon>
@@ -428,9 +448,16 @@
     <Compile Include="Components\TitleBar\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\VideoWindow.xaml.cs">
-      <DependentUpon>VideoWindow.xaml</DependentUpon>
+    <Compile Include="Components\VideoPlayer.xaml.cs">
+      <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Message\MediaAbstractMessage.cs" />
+    <Compile Include="Models\Notification\AbstractNotification.cs" />
+    <Compile Include="Models\Notification\AcceptFriendNotification.cs" />
+    <Compile Include="Models\Notification\CommunicateNotification.cs" />
+    <Compile Include="Models\Notification\FriendRequestNotification.cs" />
+    <Compile Include="Models\Notification\INotification.cs" />
+    <Compile Include="Models\Notification\NotificationType.cs" />
     <Compile Include="Models\Relationship.cs" />
     <Compile Include="Network\PacketRespondeListener.cs" />
     <Compile Include="Network\RespondeManager.cs" />
@@ -449,10 +476,18 @@
     <Compile Include="Services\IUserProfileHolder.cs" />
     <Compile Include="Services\IViewModelFactory.cs" />
     <Compile Include="Services\Language.cs" />
+    <Compile Include="Utils\CompareOperationUtils.cs" />
+    <Compile Include="Utils\Converters\BooleanVisibility.cs" />
     <Compile Include="Utils\Converters\DataTypeConverter.cs" />
     <Compile Include="Utils\Converters\EnumConverter.cs" />
+    <Compile Include="Utils\Converters\ThumbnailLoader.cs" />
+    <Compile Include="Utils\Converters\UriConverter.cs" />
     <Compile Include="Utils\FastCodeUtils.cs" />
+    <Compile Include="Utils\LimitShowUtils.cs" />
+    <Compile Include="Utils\Markups\BindingProxy.cs" />
     <Compile Include="Utils\Markups\MessageTemplateSelector.cs" />
+    <Compile Include="Utils\Markups\StickerContainerHeaderSelector.cs" />
+    <Compile Include="Utils\Markups\StickerContainerSelector.cs" />
     <Compile Include="Utils\Markups\NotificationTemplateSelector.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Components\EnumBindingSource.cs" />
@@ -465,7 +500,9 @@
     <Compile Include="Components\MediaGalleryTabs.xaml.cs">
       <DependentUpon>MediaGalleryTabs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Markups\StatusTemplateSelector.cs" />
     <Compile Include="Utils\PasswordBoxHelper.cs" />
+    <Compile Include="Utils\Triggers\ScrollChangeReachTrigger.cs" />
     <Compile Include="Utils\Triggers\KeyDownTrigger.cs" />
     <Compile Include="ViewModels\Authentication\AuthenticationViewModel.cs" />
     <Compile Include="ViewModels\Authentication\LoginViewModel.cs" />
@@ -612,6 +649,7 @@
     <Compile Include="Utils\ThreadUtil.cs" />
     <Compile Include="Utils\UserUtils.cs" />
     <Compile Include="ViewModels\Media\MediaGalleryViewModel.cs" />
+    <Compile Include="ViewModels\Media\MediaViewModel.cs" />
     <Compile Include="ViewModels\Messages\AttachmentMessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\ImageMessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\MessageViewModel.cs" />
@@ -623,6 +661,12 @@
     <Compile Include="ViewModels\Notifications\NotificationPageViewModel.cs" />
     <Compile Include="ViewModels\Notifications\NotificationViewModel.cs" />
     <Compile Include="ViewModels\Profile\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerStoreViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerItemStoreViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerRecentTabViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerOwnedTabViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerTabViewModel.cs" />
+    <Compile Include="ViewModels\Sticker\StickerContainerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Authentication.xaml.cs">
       <DependentUpon>Authentication.xaml</DependentUpon>
@@ -644,6 +688,10 @@
     <Page Include="Components\Authentication\LoginForm.xaml" />
     <Page Include="Components\Authentication\RegisterForm.xaml" />
     <Page Include="Components\AvatarDisplayer.xaml" />
+    <Page Include="Components\ChatItem\AttachmentBubble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ChatItem\AvatarSender.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -652,7 +700,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ChatItem\Sticker.xaml" />
+    <Page Include="Components\ChatItem\FriendConversationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChatItem\StickerBubble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ChatItem\TextBubble.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -667,7 +722,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Components\EmptyChatpage.xaml">
+=======
+    <Page Include="Components\ImageLoader.xaml">
+>>>>>>> 50543afd9e09137252f69a29056a61a67c9bc53a
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -684,10 +743,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\mediaPlayer.xaml">
+    <Page Include="Components\MediaGallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\MediaLoader.xaml" />
     <Page Include="Components\Notifications\FriendRequestNoti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -730,7 +790,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\Sticker\TabStickerStore.xaml">
+    <Page Include="Components\Sticker\TabStickerItemStore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -750,7 +810,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\VideoWindow.xaml">
+    <Page Include="Components\VideoPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -789,6 +849,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="XAMLResources\StickerContainerTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="XAMLResources\MessageTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -802,6 +866,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Components\ConversationInfoSlideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAMLResources\StatusTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -880,6 +948,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

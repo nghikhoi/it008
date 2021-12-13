@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChatServer.Entity.EntityProperty;
-using ChatServer.Entity.Meta.Profile;
+using ChatServer.Entity.Notification;
 using ChatServer.IO.Entity;
+using ChatServer.IO.Notification;
 using ChatServer.Network;
-using ChatServer.Network.Packets.AfterLogin.Notification;
+using ChatServer.Network.Packets;
 using ChatServer.Utils;
 
 namespace ChatServer.Entity
@@ -71,7 +72,7 @@ namespace ChatServer.Entity
         public bool Banned { get; set; } = false;
 
         [BsonElement("Notifications")]
-        public List<string> Notifications { get; set; } = new List<string>();
+        public HashStack<Guid> Notifications { get; set; } = new HashStack<Guid>();
 
         [BsonElement("ChatThemeSettings")]
         public ChatTheme ChatThemeSettings { get; set; } = new ChatTheme();
@@ -150,9 +151,23 @@ namespace ChatServer.Entity
                     ChatUserManager.LoadUser(pair.Key).Send(packet);
                 }
             }
-
+            
             this.Save();
             SimpleChatServer.GetServer().Logger.Info(String.Format("User {0} has logged out at {1}!", this.Email, this.LastLogoff.ToString()));
+        }
+
+        public void AddNotification(AbstractNotification notification)
+        {
+            if (notification == null)
+                return;
+            Notifications.Add(notification.Id);
+            new NotificationStore().Save(notification);
+            if (ChatUserManager.IsOnline(ID))
+            {
+                GetNotificationsResponse send = new GetNotificationsResponse();
+                send.Notifications.Add(notification);
+                Send(send);
+            }
         }
 
         public void Kick()

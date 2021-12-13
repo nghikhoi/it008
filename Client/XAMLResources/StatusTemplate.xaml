@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Status="clr-namespace:UI.Components">
+
+
+    <DataTemplate x:Key="OnlineStatus">
+        <Status:OnlineStatus></Status:OnlineStatus>
+    </DataTemplate>
+
+    <DataTemplate x:Key="OfflineStatus">
+        <Status:OfflineStatus></Status:OfflineStatus>
+    </DataTemplate>
+    
+</ResourceDictionary>

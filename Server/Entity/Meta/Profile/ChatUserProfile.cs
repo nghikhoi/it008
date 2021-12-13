@@ -1,12 +1,8 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ChatServer.Entity.EntityProperty;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace ChatServer.Entity.Meta.Profile
+namespace ChatServer.Entity
 {
     public class ChatUserProfile
     {

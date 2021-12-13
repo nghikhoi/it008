@@ -1,35 +1,35 @@
-﻿<UserControl x:Class="UI.NotificationPage"
+﻿<UserControl x:Class="UI.Components.NotificationPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              xmlns:local="clr-namespace:UI.Components"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <UserControl.Resources>
-        <markups:NotificationTemplateSelector x:Key="NotificationTemplateSelector"/>
+        <markups:NotificationTemplateSelector x:Key="NotificationTemplateSelector" />
     </UserControl.Resources>
 
     <!--TODO: List ActionNoti, Friend Request Noti-->
     <Grid x:Name="MainGrid" Background="{DynamicResource BackgroundResource}">
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="65"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="3"/>
-            <RowDefinition Height="320"/>
-        </Grid.RowDefinitions>
-        <!--Header-->
-        <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn"
-                BorderThickness="0"
-                Margin="0 0 0 0"
-                MinWidth="200"
-                Click="InfOpenBtn_OnClick"
-                Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="3" />
+                <RowDefinition Height="320" />
+            </Grid.RowDefinitions>
+            <!--Header-->
+            <Button Grid.Row="0" Height="Auto" x:Name="InfOpenBtn"
+                    BorderThickness="0"
+                    Margin="0 0 0 0"
+                    MinWidth="200"
+                    Click="InfOpenBtn_OnClick"
+                    Grid.ColumnSpan="2">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="20"/>
+                        <Setter Property="CornerRadius" Value="20" />
                     </Style>
                 </Button.Resources>
 
@@ -44,67 +44,68 @@
                 </Button.Template>
 
                 <Button.CommandParameter>
-                    <local:ProfileForm/>
+                    <local:ProfileForm />
                 </Button.CommandParameter>
             </Button>
 
-        <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
-                <TextBlock FontSize="15" 
-                       Foreground="{StaticResource PrimaryHueDarkBrush}" FontWeight="DemiBold" 
-                       HorizontalAlignment="Left" Margin="2,5,0,0" Width="75" 
-                       Text="{DynamicResource Notfication.label}" />
-        </DockPanel>
+            <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <TextBlock FontSize="15"
+                           Foreground="{StaticResource PrimaryHueDarkBrush}" FontWeight="DemiBold"
+                           HorizontalAlignment="Left" Margin="2,5,0,0" Width="75"
+                           Text="{DynamicResource Notfication.label}" />
+            </DockPanel>
 
-        <Line Grid.Row="2" X1="0" Y1="0" X2="1" Y2="0" 
-              Width="200" 
-              Stroke="LightGray" 
-              StrokeThickness="1" 
-              Stretch="Uniform" Grid.ColumnSpan="2"/>
+            <Line Grid.Row="2" X1="0" Y1="0" X2="1" Y2="0"
+                  Width="200"
+                  Stroke="LightGray"
+                  StrokeThickness="1"
+                  Stretch="Uniform" Grid.ColumnSpan="2" />
 
-        <!--Body-->
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="2">
-            <StackPanel>
-                <Expander Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                    HorizontalAlignment="Left"
-                    Header="{DynamicResource Notfication.latest}"
-                    FontWeight="ExtraLight"
-                    materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
-                    <StackPanel
-                        x:Name="NewestContainer"
-                        Orientation="Vertical"
-                        Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                        <ItemsControl ItemsSource="{Binding NewestNotifications}"
-                                      ItemTemplateSelector="{StaticResource NotificationTemplateSelector}"/>
-                    </StackPanel>
-                </Expander>
-                <Expander Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                    HorizontalAlignment="Left"
-                    Header="{DynamicResource Notfication.requests}"
-                    FontWeight="ExtraLight"
-                    materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
-                    <StackPanel
-                        x:Name="FriendRequestContainer"
-                        Orientation="Vertical"
-                        Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
-                        TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                        <ItemsControl ItemsSource="{Binding Notifications}"
-                                      ItemTemplateSelector="{StaticResource NotificationTemplateSelector}"/>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
-        </ScrollViewer>
+            <!--Body-->
+            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="2">
+                <StackPanel>
+                    <Expander Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                              HorizontalAlignment="Left"
+                              Header="{DynamicResource Notfication.latest}"
+                              FontWeight="ExtraLight"
+                              materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
+                        <StackPanel
+                            x:Name="NewestContainer"
+                            Orientation="Vertical"
+                            Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <ItemsControl ItemsSource="{Binding NewestNotifications}"
+                                          ItemTemplateSelector="{StaticResource NotificationTemplateSelector}" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                              HorizontalAlignment="Left"
+                              Header="{DynamicResource Notfication.requests}"
+                              FontWeight="ExtraLight"
+                              materialDesign:ExpanderAssist.HorizontalHeaderPadding="10,2,10,2">
+                        <StackPanel
+                            x:Name="FriendRequestContainer"
+                            Orientation="Vertical"
+                            Width="{Binding ElementName=MainGrid, Path=ActualWidth}"
+                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                            <ItemsControl ItemsSource="{Binding Notifications}"
+                                          ItemTemplateSelector="{StaticResource NotificationTemplateSelector}" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
         <!--End-->
         <DockPanel MaxHeight="32" MinHeight="32" VerticalAlignment="Bottom">
             <!--LogOut Button-->
-            <Button Name="LogOutBtn" 
+            <Button Name="LogOutBtn"
                     Click="LogOutBtn_OnClick"
                     HorizontalAlignment="Right"
-                    Width="24" Height="24" 
+                    Width="24" Height="24"
                     Background="{x:Null}" BorderBrush="Transparent"
                     Style="{StaticResource IconButton}" Panel.ZIndex="1">
-                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20" Width="20"/>
+                <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}" Kind="Logout" Height="20"
+                                         Width="20" />
             </Button>
         </DockPanel>
     </Grid>

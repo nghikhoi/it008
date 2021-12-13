@@ -1,14 +1,11 @@
-﻿using CNetwork;
+﻿using System;
+using System.Collections.Generic;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
+namespace ChatServer.Network.Packets
 {
     public class FriendsListResponse : IPacket
     {
