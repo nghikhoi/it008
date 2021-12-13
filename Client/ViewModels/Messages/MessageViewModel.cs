@@ -1,8 +1,12 @@
-﻿using UI.Models.Message;
+﻿using System.Windows.Media;
+using UI.Models.Message;
 using UI.Services;
 
 namespace UI.ViewModels {
-	public abstract class MessageViewModel : ViewModelBase {
+	public abstract class MessageViewModel : ViewModelBase
+    {
+
+        public static readonly Brush IsReceivedMessageColor = new SolidColorBrush(Color.FromRgb());
 
 		public bool IsReceivedMessage {
 			get => string.CompareOrdinal(Message.SenderID, _appSession.SessionID) != 0;
@@ -25,6 +29,15 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(ConversationId));
 			}
 		}
+
+        private Brush _bubbleColor = new SolidColorBrush(Color.FromArgb(255, 0, 128, 128));
+        public Brush BubbleColor {
+            get => _bubbleColor;
+            set {
+                _bubbleColor = value;
+                OnPropertyChanged(nameof(BubbleColor));
+            }
+        }
 
 		private readonly IAppSession _appSession;
 

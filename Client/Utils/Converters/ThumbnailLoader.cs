@@ -17,12 +17,12 @@ namespace UI.Utils.Converters {
     public class ThumbnailLoader : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             string url;
-            if (value is string) {
-                url = value as string;
-            } else if (value is MediaInfo) {
-                url = (value as MediaInfo).ThumbURL;
-            } else if (value is MediaViewModel) {
-                url = (value as MediaViewModel).MediaInfo.ThumbURL;
+            if (value is string s) {
+                url = s;
+            } else if (value is MediaInfo info) {
+                url = info.ThumbURL;
+            } else if (value is MediaViewModel model) {
+                url = model.MediaInfo.ThumbURL;
             } else
                 return Binding.DoNothing;
             ThumbnailProvider provider = new ThumbnailProvider();

@@ -1,18 +1,16 @@
-﻿using CNetwork;
+﻿using System;
+using System.Collections.Generic;
+using ChatServer.Entity.Notification;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChatServer.Network.Packets.AfterLogin.Notification
+namespace ChatServer.Network.Packets
 {
     public class GetNotificationsResponse : IPacket
     {
-        public List<string> Notifications { get; set; } = new List<string>();
+        public List<AbstractNotification> Notifications { get; set; } = new List<AbstractNotification>();
 
         public void Decode(IByteBuffer buffer)
         {
@@ -20,11 +18,12 @@ namespace ChatServer.Network.Packets.AfterLogin.Notification
 
         public IByteBuffer Encode(IByteBuffer byteBuf)
         {
+            byteBuf.WriteInt(Notifications.Count);
             foreach (var noti in Notifications)
             {
-                ByteBufUtils.WriteUTF8(byteBuf, noti);
+                byteBuf.WriteByte((int) noti.Type());
+                noti.EncodeToBuffer(byteBuf);
             }
-            ByteBufUtils.WriteUTF8(byteBuf, "~");
             return byteBuf;
         }
 

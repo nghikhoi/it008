@@ -7,9 +7,11 @@ using System.Windows.Input;
 using UI.Command;
 using UI.Models;
 using UI.Models.Message;
+using UI.Models.Notification;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest;
 using UI.Network.Packets.AfterLoginRequest.Message;
+using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.Packets.AfterLoginRequest.Search;
 using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.RestAPI;
@@ -78,6 +80,15 @@ namespace UI.ViewModels {
             }
         }
 
+        private StickerContainerViewModel _stickerContainer;
+        public StickerContainerViewModel StickerContainer {
+            get => _stickerContainer;
+            set {
+                _stickerContainer = value;
+                OnPropertyChanged(nameof(StickerContainer));
+            }
+        }
+
         private readonly IViewModelFactory _viewModelFactory;
         private readonly IAuthenticator authenticator;
         private readonly IUserProfileHolder _userProfileHolder;
@@ -101,6 +112,8 @@ namespace UI.ViewModels {
             
             _respondeListener = respondeListener;
             _respondeListener.ReceiveMessageEvent += ReceiveMessage;
+            _respondeListener.ReceiveNotificationEvent += ReceiveNotification;
+            _respondeListener.FinalizeAcceptedFriendEvent += session => App.Current.Dispatcher.Invoke(LoadFriends); //Update friend list
             this.authenticator = authenticator;
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
@@ -109,6 +122,13 @@ namespace UI.ViewModels {
             SearchCommand = new RelayCommand<object>(null, o => SearchAction(SearchingString));
             //ProfileInitalizeCommand = new InitializeCommand(o => UserProfile = _viewModelFactory.Create<ProfileViewModel>());
             UserProfile = _viewModelFactory.Create<ProfileViewModel>();
+            NotificationPage = _viewModelFactory.Create<NotificationPageViewModel>();
+            StickerContainer = _viewModelFactory.Create<StickerContainerViewModel>();
+            StickerContainer.OnStickerClick += s =>
+            {
+                if (SelectedConversation != null)
+                    SelectedConversation.SendStickerMessage(s);
+            };
         }
 
         public override void Dispose() {
@@ -122,6 +142,13 @@ namespace UI.ViewModels {
 
         protected void ReceiveMessage(ISession session, ReceiveMessage receiveMessage) {
             ReceiveMessage(receiveMessage.ConversationID, receiveMessage.Message);
+        }
+
+        protected void ReceiveNotification(ISession session, GetNotificationsResult result)
+        {
+            bool shouldRefreshFriends = result.Notifications.Any(noti => noti is AcceptFriendNotification);
+            if (shouldRefreshFriends)
+                App.Current.Dispatcher.Invoke(LoadFriends);
         }
 
         public void ReceiveMessage(string conversationId, AbstractMessage message) {
@@ -185,6 +212,7 @@ namespace UI.ViewModels {
                         viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
                         viewModel.SelectAction += SelectConversation;
                         OriginFriendList.Add(viewModel);
+                        SearchAction();
                     });
                 });
             });
@@ -192,6 +220,8 @@ namespace UI.ViewModels {
 
         private void SelectConversation(ConversationViewModel viewModel) {
             this.SelectedConversation = viewModel;
+            if (viewModel != null)
+                this.SelectedConversation.StickerContainer = StickerContainer;
         }
         
         private void initSelfId() {
@@ -214,7 +244,7 @@ namespace UI.ViewModels {
             }
             //TODO show recent
         }
-        public void SearchAction(string s)
+        public void SearchAction(string s = null)
         {
             if (!FastCodeUtils.NotEmptyStrings(s))
             {
@@ -223,6 +253,8 @@ namespace UI.ViewModels {
                 {
                     SearchingFriendList.Add(model);
                 }
+
+                return;
             }
             SearchUser packet = new SearchUser();
             packet.Email = s;

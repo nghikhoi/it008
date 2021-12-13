@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using ChatServer.MessageCore.Sticker;
+using ChatServer.Entity.Sticker;
 
 namespace ChatServer.Network.RestAPI.Controller
 {

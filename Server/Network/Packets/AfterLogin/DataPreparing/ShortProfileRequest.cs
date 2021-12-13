@@ -1,19 +1,16 @@
-﻿using CNetwork;
+﻿using System;
+using System.Linq;
+using ChatServer.Entity;
+using ChatServer.Entity.Conversation;
+using ChatServer.Entity.EntityProperty;
+using ChatServer.Entity.Message;
+using ChatServer.IO.Message;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.Entity.EntityProperty;
-using ChatServer.IO.Message;
-using ChatServer.MessageCore.Conversation;
-using ChatServer.MessageCore.Message;
 
-namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
+namespace ChatServer.Network.Packets
 {
     public class ShortProfileRequest : AbstractRequestPacket
     {

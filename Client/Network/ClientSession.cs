@@ -6,6 +6,7 @@ using DotNetty.Transport.Channels;
 using UI.Annotations;
 using UI.Network.Packets;
 using UI.Network.Packets.AfterLoginRequest.Message;
+using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.Packets.Login;
 using UI.Network.Packets.Register;
 using UI.Network.Protocol;
@@ -54,6 +55,10 @@ namespace UI.Network
                 _listener?.OnReconnectResponde(this, message as ReconnectResponse);
             } else if (message is ReceiveMessage) {
                 _listener?.OnReceiveMessage(this, message as ReceiveMessage);
+            } else if (message is GetNotificationsResult) {
+                _listener?.OnReceiveNotification(this, message as GetNotificationsResult);
+            } else if (message is FinalizeAcceptedFriendRequestReceive) {
+                _listener?.OnFinalizeAcceptedFriend(this);
             }
         }
 

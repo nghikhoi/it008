@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChatServer.Network.Packets;
-using ChatServer.Network.Packets.Login;
-using ChatServer.Network.Packets.Ping;
-using ChatServer.Network.Packets.Register;
 
 namespace ChatServer.Network.Protocol
 {

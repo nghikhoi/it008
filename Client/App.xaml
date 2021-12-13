@@ -18,6 +18,8 @@
                 <ResourceDictionary Source="XAMLResources/Colors.xaml"/>
                 <ResourceDictionary Source="XAMLResources/Scroll.xaml"/>
                 <ResourceDictionary Source="XAMLResources/MessageTemplates.xaml"/>
+                <ResourceDictionary Source="XAMLResources/NotificationTemplates.xaml"/>
+                <ResourceDictionary Source="XAMLResources/StickerContainerTemplates.xaml"/>
                 <ResourceDictionary Source="XAMLResources/Decorate.xaml"/>
                 <ResourceDictionary Source="XAMLResources/Converters.xaml"/>
                 <ResourceDictionary>

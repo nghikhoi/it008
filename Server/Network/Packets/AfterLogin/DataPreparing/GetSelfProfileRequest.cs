@@ -1,15 +1,10 @@
-﻿using CNetwork;
+﻿using ChatServer.Entity;
+using ChatServer.IO.Entity;
+using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
-using ChatServer.IO.Entity;
 
-namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
+namespace ChatServer.Network.Packets
 {
     public class GetSelfProfileRequest : AbstractRequestPacket
     {

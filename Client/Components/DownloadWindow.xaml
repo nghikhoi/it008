@@ -9,14 +9,14 @@
         Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize"
         Title="DownloadWindow" Height="480" Width="256">
     <Grid>
-        <Border x:Name="PopUp" Style="{StaticResource OriginalBorder}" 
+        <Border x:Name="PopUp" Style="{StaticResource OriginalBorder}"
                 Height="480" Width="256" Background="{DynamicResource BackgroundResource}"
                 HorizontalAlignment="Center" VerticalAlignment="Center">
             <DockPanel>
                 <DockPanel x:Name="TitleBar" DockPanel.Dock="Top">
                     <uc:NonResizeTitleBar DockPanel.Dock="Right"></uc:NonResizeTitleBar>
                     <TextBlock Foreground="LightSlateGray" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="14">
-                            Tải xuống
+                        Tải xuống
                     </TextBlock>
                 </DockPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

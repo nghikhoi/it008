@@ -1,8 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using UI.Command;
 using UI.Models;
 using UI.Models.Message;
 using UI.Network;
 using UI.Network.Packets.AfterLoginRequest.Message;
+using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.RestAPI;
 using UI.Services;
 
@@ -26,14 +29,19 @@ namespace UI.ViewModels {
 			set {
 				_relationship = value;
 				OnPropertyChanged(nameof(Relationship));
+				OnPropertyChanged(nameof(IsNotFriend));
 			}
 		}
+
+        public bool IsNotFriend {
+            get => Relationship != Relationship.Friend;
+        }
 
 		#endregion
 
 		#region Command
 
-
+		public ICommand SendRequestCommand { get; private set; }
 
 		#endregion
 
@@ -41,8 +49,17 @@ namespace UI.ViewModels {
 			base.Initialize(parameter);
 		}
 
-		public FriendConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) : base(chatConnection, appSession, factory) {
-		}
+		public FriendConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) : base(chatConnection, appSession, factory)
+        {
+            SendRequestCommand = new RelayCommand<object>(null, SendRequest);
+        }
+
+        protected void SendRequest(object param = null)
+        {
+            FriendRequest request = new FriendRequest();
+            request.TargetID = UserId;
+            _connection.Send(request);
+        }
 
 		protected override void FirstSelectLoad(object parameter = null) {
 			if (ConversationId.Equals("~") && !string.IsNullOrEmpty(UserId)) {

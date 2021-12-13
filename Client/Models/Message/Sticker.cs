@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,31 +12,22 @@ namespace UI.Models.Message
     {
         public static ConcurrentDictionary<int, Sticker> LoadedStickers { get; private set; } = new ConcurrentDictionary<int, Sticker>();
         public static ConcurrentDictionary<int, StickerCategory> LoadedCategories { get; set; } = new ConcurrentDictionary<int, StickerCategory>();
-
-        public delegate void LoadedHandler();
-
-        [JsonProperty("id")]
+        
         public int ID { get; set; }
-
-        [JsonProperty("cateId")]
+        
         public int CategoryID { get; set; }
-
-        [JsonProperty("uri")]
+        
         public string URI { get; set; }
-
-        [JsonProperty("stickerUrl")]
+        
         public string StickerURL { get; set; }
-
-        [JsonProperty("stickerSpriteUrl")]
+        
         public string SpriteURL { get; set; }
-
-        [JsonProperty("totalFrames")]
+        
         public int TotalFrames { get; set; }
-
-        [JsonProperty("duration")]
+        
         public int Duration { get; set; }
 
-        public static void Load(LoadedHandler loadedHandler)
+        public static void Load(Action loadedHandler)
         {
             new Task(() =>
             {
@@ -51,7 +43,7 @@ namespace UI.Models.Message
                     }
                 }
                 if (loadedHandler != null)
-                    Application.Current.Dispatcher.Invoke(() => loadedHandler());
+                    Application.Current.Dispatcher.Invoke(loadedHandler);
             }).Start();
         }
     }

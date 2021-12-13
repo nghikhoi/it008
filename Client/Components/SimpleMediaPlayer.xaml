@@ -1,55 +1,63 @@
 ﻿<UserControl x:Class="UI.Components.SimpleMediaPlayer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
-       
+             mc:Ignorable="d"
+
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
                 <!-- throw in some extra colour for our floating action button -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml"/>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.Named.Primary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border BorderThickness="2" BorderBrush="Black" Background="Gray" Margin="0 0 10 0"  >
+    <Border BorderThickness="2" BorderBrush="Black" Background="Gray" Margin="0 0 10 0">
         <Grid>
             <Grid>
                 <MediaElement
-            ScrubbingEnabled="True"
-            Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,0,0" Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened" >
+                    ScrubbingEnabled="True"
+                    Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,0,0"
+                    Loaded="Loaded_acitivity" MediaOpened="VideoControll_opened">
 
                 </MediaElement>
 
-                <ProgressBar x:Name="Loading" IsIndeterminate="True" 
-                                Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
-                                Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
-                                Height="100" Width="100" IsTabStop="False"
-                     Visibility="Hidden"   />
+                <ProgressBar x:Name="Loading" IsIndeterminate="True"
+                             Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                             Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
+                             Height="100" Width="100" IsTabStop="False"
+                             Visibility="Hidden" />
 
-                <Image x:Name="ThumbNail" Visibility="Hidden" Source="Images/DefaultThumbnail.jpg" Stretch="UniformToFill"
-                       Margin="0,0,0,0"></Image>
+                <Image x:Name="ThumbNail" Visibility="Hidden" Source="Images/DefaultThumbnail.jpg"
+                       Stretch="UniformToFill"
+                       Margin="0,0,0,0">
+                </Image>
             </Grid>
-
 
 
             <Button x:Name="on_screen_play_button"
                     Grid.Row="0"
                     Background="{x:Null}" BorderBrush="{x:Null}"
-                    
-                    Height="Auto" Margin="0,0,0,5" Click="on_screen_play_button_click" MouseEnter="Show_controller" MouseLeave="Hide_controller">
+
+                    Height="Auto" Margin="0,0,0,5" Click="on_screen_play_button_click" MouseEnter="Show_controller"
+                    MouseLeave="Hide_controller">
                 <Grid>
-                    <materialDesign:PackIcon 
-                         Height="50" Width="50" Name="Screen_Icon" Kind="Play"></materialDesign:PackIcon>
+                    <materialDesign:PackIcon
+                        Height="50" Width="50" Name="Screen_Icon" Kind="Play">
+                    </materialDesign:PackIcon>
 
                 </Grid>
             </Button>
@@ -64,11 +72,12 @@
 
             <DockPanel Grid.Row="1" VerticalAlignment="Bottom" Margin="0 0 0 16">
                 <Button Width="38" BorderThickness="0" Padding="0"
-                        Background="{x:Null}" 
+                        Background="{x:Null}"
                         Click="Play_on_controlbar">
                     <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
                                              HorizontalAlignment="Stretch"
-                                             VerticalAlignment="Stretch"></materialDesign:PackIcon>
+                                             VerticalAlignment="Stretch">
+                    </materialDesign:PackIcon>
                 </Button>
 
                 <materialDesign:PopupBox
@@ -83,23 +92,23 @@
                     <materialDesign:PopupBox.ToggleContent>
                         <materialDesign:PackIcon x:Name="VolumeIcon"
                                                  Kind="VolumeMedium"
-                                                 Foreground="White"/>
+                                                 Foreground="White" />
                     </materialDesign:PopupBox.ToggleContent>
                     <Slider Style="{StaticResource VideoSlider}"
-                        x:Name="Volume_seeker"
-                        Height="100" Width="20"
-                        Foreground="Black"
-                        Minimum="0"
-                        Maximum="100" 
-                        Background="{x:Null}"
-                        Orientation="Vertical"
-                        ValueChanged="Volume_change" />
+                            x:Name="Volume_seeker"
+                            Height="100" Width="20"
+                            Foreground="Black"
+                            Minimum="0"
+                            Maximum="100"
+                            Background="{x:Null}"
+                            Orientation="Vertical"
+                            ValueChanged="Volume_change" />
                 </materialDesign:PopupBox>
 
                 <Slider x:Name="SeekBar" Thumb.DragStarted="SeekBar_DragStarted" ValueChanged="On_Seek"
                         Background="Transparent" Foreground="LightGray"
                         Thumb.DragCompleted="SeekBar_DragCompleted"
-                        VerticalAlignment="Center" Margin="8 0 6 0"/>
+                        VerticalAlignment="Center" Margin="8 0 6 0" />
             </DockPanel>
         </Grid>
     </Border>

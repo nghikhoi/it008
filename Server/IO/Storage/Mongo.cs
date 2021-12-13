@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChatServer.Entity;
-using ChatServer.Entity.Meta.Profile;
 
 namespace ChatServer.IO.Storage
 {
@@ -25,6 +24,7 @@ namespace ChatServer.IO.Storage
         public static readonly string DatabaseName = "SimpleChat";
         public static readonly string UserCollectionName = "Users";
         public static readonly string RelationCollectionName = "Relations";
+        public static readonly string NotificationCollectionName = "Notifications";
         public static readonly string FileMapName = "FileMap";
 
         private Mongo()

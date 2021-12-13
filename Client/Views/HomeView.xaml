@@ -1,116 +1,121 @@
 ﻿<UserControl x:Class="UI.Views.HomeView"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:convert="clr-namespace:UI.Utils.Converters"
-	xmlns:local="clr-namespace:UI"
-	xmlns:vm="clr-namespace:UI.ViewModels"
-	xmlns:v="clr-namespace:UI.Views"
-    xmlns:markups="clr-namespace:UI.Utils.Markups"
-	xmlns:uc="clr-namespace:UI.Components"
-	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-	xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
-	xmlns:command="clr-namespace:UI.Command"
-    mc:Ignorable="d"
-	MinHeight="300" MinWidth="500"
-	x:Name="_this"
-	d:DesignHeight="480" d:DesignWidth="815">
-	<i:Interaction.Triggers>
-		<i:EventTrigger EventName="DataContextChanged">
-			<i:InvokeCommandAction Command="{x:Static command:StaticInitializeCommand.InitializeCommand}"
-			                       CommandParameter="{Binding ElementName=_this, Path=DataContext}"/>
-		</i:EventTrigger>
-	</i:Interaction.Triggers>
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:UI.Views"
+             xmlns:convert="clr-namespace:UI.Utils.Converters"
+             xmlns:markups="clr-namespace:UI.Utils.Markups"
+             xmlns:uc="clr-namespace:UI.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             xmlns:command="clr-namespace:UI.Command"
+             mc:Ignorable="d"
+             MinHeight="300" MinWidth="500"
+             x:Name="_this"
+             d:DesignHeight="480" d:DesignWidth="815">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="DataContextChanged">
+            <i:InvokeCommandAction Command="{x:Static command:StaticInitializeCommand.InitializeCommand}"
+                                   CommandParameter="{Binding ElementName=_this, Path=DataContext}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <UserControl.Resources>
         <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}"/>
         <convert:BooleanVisibility x:Key="VisibilityConverter"></convert:BooleanVisibility>
     </UserControl.Resources>
-	<!--Main-->
-	<Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
-		<Grid>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="28"></RowDefinition>
-				<RowDefinition Height="*"></RowDefinition>
-			</Grid.RowDefinitions>
-			<!--title bar-->
-			<!--<uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>-->
-			<uc:TitleBar Grid.Row="0" Margin="0 0 0 0"/>
-			<materialDesign:DialogHost Grid.Row="1">
-				<materialDesign:DrawerHost
-                            BorderThickness="2"
-                            BorderBrush="{DynamicResource MaterialDesignDivider}">
-					<materialDesign:DrawerHost.LeftDrawerContent>
-						<uc:NotificationPage Grid.Row="1" x:Name="NotificaionPage" 
-						                        Width="220" MinWidth="200" MaxWidth="350"
-                                                DataContext="{Binding NotificationPage}"
-						                        HorizontalAlignment="Left">
-							<i:Interaction.Triggers>
-								<i:EventTrigger EventName="ProfileClick">
-									<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-										<i:InvokeCommandAction.CommandParameter>
-                                            <uc:ProfileForm DataContext="{Binding Path=Data, Source={StaticResource ProfileProxy}}">
+    <!--Main-->
+    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--title bar-->
+            <!--<uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>-->
+            <uc:TitleBar Grid.Row="0" Margin="0 0 0 0" />
+            <materialDesign:DialogHost Grid.Row="1">
+                <materialDesign:DrawerHost
+                    BorderThickness="2"
+                    BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <materialDesign:DrawerHost.LeftDrawerContent>
+                        <uc:NotificationPage Grid.Row="1" x:Name="NotificaionPage"
+                                             Width="220" MinWidth="200" MaxWidth="350"
+                                             DataContext="{Binding NotificationPage}"
+                                             HorizontalAlignment="Left">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ProfileClick">
+                                    <i:InvokeCommandAction
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                        <i:InvokeCommandAction.CommandParameter>
+                                            <uc:ProfileForm
+                                                DataContext="{Binding Path=Data, Source={StaticResource ProfileProxy}}">
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="CancelClick">
-														<i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
-													</i:EventTrigger>
-												</i:Interaction.Triggers>
-											</uc:ProfileForm>
-										</i:InvokeCommandAction.CommandParameter>
-									</i:InvokeCommandAction>
-								</i:EventTrigger>
-							</i:Interaction.Triggers>
-						</uc:NotificationPage>
-					</materialDesign:DrawerHost.LeftDrawerContent>
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="220" MinWidth="200" MaxWidth="350"/>
-							<ColumnDefinition Width="*"/>
-						</Grid.ColumnDefinitions>
-						<uc:ConversationListTabs DataContext="{Binding ElementName=_this, Path=DataContext}" 
-						                            x:Name="MessageList" Grid.Column="0">
-							<i:Interaction.Triggers>
-								<i:EventTrigger EventName="AvatarClick">
-									<i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-									                       CommandParameter="{x:Static Dock.Left}"/>
-								</i:EventTrigger>
-							</i:Interaction.Triggers>
-						</uc:ConversationListTabs>
-						<!--Split-->
-						<GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" 
-	                                                  Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
-	                                                  Grid.Column="0"/>
-						<!--cuoc tro chuyen-->
-						<Grid Grid.Column="1">
-							<DockPanel>
-								<materialDesign:DrawerHost BorderThickness="2"
-								                           BorderBrush="{DynamicResource MaterialDesignDivider}"
-								                           OpenMode="Standard">
-									<materialDesign:DrawerHost.RightDrawerContent>
-										<uc:ConversationInfoSlideBar x:Name="ProfileDisplayer" DataContext="{Binding SelectedConversation}" Margin="0 0 0 0" DockPanel.Dock="Right"/>
-									</materialDesign:DrawerHost.RightDrawerContent>
+                                                        <i:InvokeCommandAction
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </uc:ProfileForm>
+                                        </i:InvokeCommandAction.CommandParameter>
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </uc:NotificationPage>
+                    </materialDesign:DrawerHost.LeftDrawerContent>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" MinWidth="200" MaxWidth="350" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <uc:ConversationListTabs DataContext="{Binding ElementName=_this, Path=DataContext}"
+                                                 x:Name="MessageList" Grid.Column="0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="AvatarClick">
+                                    <i:InvokeCommandAction
+                                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                        CommandParameter="{x:Static Dock.Left}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </uc:ConversationListTabs>
+                        <!--Split-->
+                        <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                      Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
+                                      Grid.Column="0" />
+                        <!--cuoc tro chuyen-->
+                        <Grid Grid.Column="1">
+                            <DockPanel>
+                                <materialDesign:DrawerHost BorderThickness="2"
+                                                           BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                                           OpenMode="Standard">
+                                    <materialDesign:DrawerHost.RightDrawerContent>
+                                        <uc:ConversationInfoSlideBar x:Name="ProfileDisplayer"
+                                                                     DataContext="{Binding SelectedConversation}"
+                                                                     Margin="0 0 0 0" DockPanel.Dock="Right" />
+                                    </materialDesign:DrawerHost.RightDrawerContent>
+
                                     <Grid>
                                         <local:ChatPage DataContext="{Binding SelectedConversation}" Margin="0 0 0 10">
-										<i:Interaction.Triggers>
-											<i:EventTrigger EventName="InfoChecked">
-												<i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-												                       CommandParameter="{x:Static Dock.Right}"/>
-											</i:EventTrigger>
-											<i:EventTrigger EventName="InfoUnchecked">
-												<i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-												                       CommandParameter="{x:Static Dock.Right}"/>
-											</i:EventTrigger>
-										</i:Interaction.Triggers>
-									</local:ChatPage>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="InfoChecked">
+                                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                                                           CommandParameter="{x:Static Dock.Right}"/>
+                                                </i:EventTrigger>
+                                                <i:EventTrigger EventName="InfoUnchecked">
+                                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                                                           CommandParameter="{x:Static Dock.Right}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </local:ChatPage>
                                         <Image Source="{Binding themeBackground}" Visibility="{Binding SelectedConversation, Converter={StaticResource VisibilityConverter}}" Stretch="UniformToFill"></Image>
                                     </Grid>
                                 </materialDesign:DrawerHost>
-							</DockPanel>
-						</Grid>
-					</Grid>
-				</materialDesign:DrawerHost>
-			</materialDesign:DialogHost>
-		</Grid>
-	</Border>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:DrawerHost>
+            </materialDesign:DialogHost>
+        </Grid>
+    </Border>
 </UserControl>

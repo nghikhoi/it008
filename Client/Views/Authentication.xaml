@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="UI.Views.Authentication"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:UI.Views"
              xmlns:uc="clr-namespace:UI.Components"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -16,11 +16,11 @@
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{x:Static command:TitleBarCommand.MouseMoveWindowCommand}"
-                                               CommandParameter="{Binding ElementName=_this}" />
+                                   CommandParameter="{Binding ElementName=_this}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Border x:Name="BorderLoginWindow" ClipToBounds="True"
-            Style="{StaticResource OriginalBorder}" 
+            Style="{StaticResource OriginalBorder}"
             Background="{DynamicResource BackgroundResource}">
         <Grid>
             <Grid.RowDefinitions>
@@ -30,21 +30,21 @@
 
             <!--Row 0-->
             <DockPanel Grid.Row="0">
-                <uc:NonResizeTitleBar DockPanel.Dock="Right"  Margin="0 -5 0 0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <uc:NonResizeTitleBar DockPanel.Dock="Right" Margin="0 -5 0 0" Grid.Row="0" Grid.ColumnSpan="2" />
                 <DockPanel DockPanel.Dock="Left">
-                    <uc:LanguageSelector DockPanel.Dock="Left"/>
-                    <uc:ThemeSelector DockPanel.Dock="Left"/>
+                    <uc:LanguageSelector DockPanel.Dock="Left" />
+                    <uc:ThemeSelector DockPanel.Dock="Left" />
                 </DockPanel>
             </DockPanel>
-            
+
             <DockPanel Grid.Row="1">
                 <ContentControl x:Name="ContentControl" Content="{Binding CurrentViewModel}">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-                            <uc:LoginForm/>
+                            <uc:LoginForm />
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vm:RegisterViewModel}">
-                            <uc:RegisterForm/>
+                            <uc:RegisterForm />
                         </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>

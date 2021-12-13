@@ -77,7 +77,7 @@
                     <materialDesign:PopupBox.ToggleContent>
                         <materialDesign:PackIcon x:Name="VolumeIcon"
                                                  Kind="VolumeMedium"
-                                                 Foreground="White"/>
+                                                 Foreground="White" />
                     </materialDesign:PopupBox.ToggleContent>
                     <Slider Style="{StaticResource VideoSlider}"
                             x:Name="Volume_seeker"

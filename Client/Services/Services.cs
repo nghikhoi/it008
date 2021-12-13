@@ -45,7 +45,15 @@ namespace UI.Services {
                 services.AddTransient<ImageMessageViewModel>();
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<ProfileViewModel>();
-                
+                services.AddTransient<NotificationPageViewModel>();
+                services.AddTransient<FriendRequestNotificationViewModel>();
+                services.AddTransient<FriendAccpectedNotificationViewModel>();
+                services.AddTransient<StickerContainerViewModel>();
+                services.AddTransient<StickerItemStoreViewModel>();
+                services.AddTransient<StickerRecentTabViewModel>();
+                services.AddTransient<StickerStoreViewModel>();
+                services.AddTransient<StickerOwnedTabViewModel>();
+
                 services.AddSingleton<AuthenticationViewModel>();
                 services.AddSingleton<ViewModelCreator<ConversationViewModel>>(s => s.GetRequiredService<ConversationViewModel>);
                 services.AddSingleton<ViewModelCreator<FriendConversationViewModel>>(s => s.GetRequiredService<FriendConversationViewModel>);
@@ -54,6 +62,14 @@ namespace UI.Services {
                 services.AddSingleton<ViewModelCreator<ImageMessageViewModel>>(s => s.GetRequiredService<ImageMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<ViewModelCreator<ProfileViewModel>>(s => s.GetRequiredService<ProfileViewModel>);
+                services.AddSingleton<ViewModelCreator<NotificationPageViewModel>>(s => s.GetRequiredService<NotificationPageViewModel>);
+                services.AddSingleton<ViewModelCreator<FriendRequestNotificationViewModel>>(s => s.GetRequiredService<FriendRequestNotificationViewModel>);
+                services.AddSingleton<ViewModelCreator<FriendAccpectedNotificationViewModel>>(s => s.GetRequiredService<FriendAccpectedNotificationViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerContainerViewModel>>(s => s.GetRequiredService<StickerContainerViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerItemStoreViewModel>>(s => s.GetRequiredService<StickerItemStoreViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerRecentTabViewModel>>(s => s.GetRequiredService<StickerRecentTabViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerStoreViewModel>>(s => s.GetRequiredService<StickerStoreViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerOwnedTabViewModel>>(s => s.GetRequiredService<StickerOwnedTabViewModel>);
                 services.AddSingleton<ViewModelCreator<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<ViewModelCreator<RegisterViewModel>>(s => () => CreateRegisterViewModel(s));
 

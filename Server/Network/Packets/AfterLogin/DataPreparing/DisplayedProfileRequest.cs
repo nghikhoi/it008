@@ -1,15 +1,11 @@
-﻿using CNetwork;
+﻿using System;
+using ChatServer.Entity;
+using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChatServer.Entity;
 
-namespace ChatServer.Network.Packets.AfterLogin.DataPreparing
+namespace ChatServer.Network.Packets
 {
     public class DisplayedProfileRequest : AbstractRequestPacket
     {

@@ -24,9 +24,9 @@
     </DataTemplate>
     <!-->TODO<-->
     <DataTemplate x:Key="StickerMessage">
-        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+        <uc:StickerBubble DataContext="{Binding Sticker}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="AttachmentMessage">
-        <uc:TextBubble Style="{StaticResource MessageAlign}"/>
+        <uc:AttachmentBubble Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using UI.Command;
@@ -98,6 +99,15 @@ namespace UI.ViewModels {
 			}
 		}
 
+        private StickerContainerViewModel _stickerContainer;
+        public StickerContainerViewModel StickerContainer {
+            get => _stickerContainer;
+            set {
+                _stickerContainer = value;
+                OnPropertyChanged(nameof(StickerContainer));
+            }
+        }
+
 		private bool _isOnline=true;
 		public bool IsOnline
         {
@@ -176,6 +186,7 @@ namespace UI.ViewModels {
 		public ICommand SelectCommand { get; private set; }
 		public ICommand SelectMediaCommand { get; private set; }
 		public ICommand SendTextMessageCommand { get; private set; }
+        public ICommand EndLineTextCommand { get; private set; }
 		public ICommand LoadMoreCommand { get; private set; }
 		public ICommand LoadMoreMediaCommand { get; private set; }
 		public ICommand ChatpageSendImageCommand { get; private set; }
@@ -185,9 +196,9 @@ namespace UI.ViewModels {
 
 		#endregion
 
-		private readonly IViewModelFactory _factory;
-		private readonly ChatConnection _connection;
-		private readonly IAppSession _appSession;
+		protected readonly IViewModelFactory _factory;
+        protected readonly ChatConnection _connection;
+        protected readonly IAppSession _appSession;
 		
 		public ConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) {
 			Messages = new ObservableCollection<MessageViewModel>();
@@ -204,6 +215,7 @@ namespace UI.ViewModels {
 			InitializeCommand.Execute(null);
 			FirstSelectCommand = new InitializeCommand(FirstSelectLoad);
 			SendTextMessageCommand = new RelayCommand<object>(null, o => SendTextMessage());
+            EndLineTextCommand = new RelayCommand<object>(null, o => Texting += (Environment.NewLine));
 			LoadMoreCommand = new RelayCommand<object>(null, o => LoadMessages());
 			LoadMoreMediaCommand = new RelayCommand<object>(null, o => LoadMedias());
 			SelectAction += (vm) => FirstSelectCommand.Execute(null);
@@ -300,6 +312,11 @@ namespace UI.ViewModels {
 			if (Parameter == null || !(Parameter is MediaViewModel))
 				return;
 			ShowingMedia = Parameter as MediaViewModel;
+        }
+
+        public void SendStickerMessage(Sticker sticker)
+        {
+
         }
 
 		private void SendTextMessage() {
