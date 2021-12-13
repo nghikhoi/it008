@@ -24,6 +24,7 @@
     </i:Interaction.Triggers>
     <UserControl.Resources>
         <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"/>
+        <remarks:GroupBubbleTemplateSelector x:Key="GroupSelect"></remarks:GroupBubbleTemplateSelector>
         <convert:BooleanVisibility x:Key="BooleanViCvrt"></convert:BooleanVisibility>
         <Style x:Key="ChatButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
             <Setter Property="Height" Value="32"/>
@@ -184,8 +185,8 @@
                                Foreground="{DynamicResource ForegroundResource}"/>
                 </Button>
                 <StackPanel x:Name="MessageContainer">
-                    <ItemsControl ItemsSource="{Binding Messages}"
-                                  ItemTemplateSelector="{StaticResource MessageTemplateSelector}"/>
+                    <ItemsControl ItemsSource="{Binding GroupBubbles}"
+                                  ItemTemplateSelector="{StaticResource GroupSelect}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

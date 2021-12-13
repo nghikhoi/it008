@@ -30,6 +30,7 @@
 
                 <!-- Default Language -->
                 <ResourceDictionary Source="/Resources/Lang/vi-VN.xaml"/>
+                <ResourceDictionary Source="/XAMLResources/GroupBubbleTemplateSelector.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

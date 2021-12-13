@@ -11,6 +11,7 @@ using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
+using UI.ViewModels.Messages;
 
 namespace UI.ViewModels {
 	public class ConversationViewModel : InitializableViewModel {
@@ -132,8 +133,10 @@ namespace UI.ViewModels {
 			get => _medias;
 			set => _medias = value;
 		}
+		private ObservableCollection<GroupBubbleViewModel> _groupbubbles;
+        public ObservableCollection<GroupBubbleViewModel> GroupBubbles { get => _groupbubbles; set => _groupbubbles = value; }
 
-		private static readonly int MAX_SHOW = 6;
+        private static readonly int MAX_SHOW = 6;
 		private ObservableCollection<MessageViewModel> _limitShowMedias;
 		public ObservableCollection<MessageViewModel> LimitShowMedias {
 			get => _limitShowMedias;
@@ -194,7 +197,7 @@ namespace UI.ViewModels {
 			Medias = new ObservableCollection<MessageViewModel>();
 			LimitShowMedias = new ObservableCollection<MessageViewModel>();
 			Medias.CollectionChanged += LimitShowUtils.CreateHandler(Medias, LimitShowMedias, 0, MAX_SHOW);
-			
+			GroupBubbles = new ObservableCollection<GroupBubbleViewModel>();
 			_factory = factory;
 			_connection = chatConnection;
 			_appSession = appSession;
@@ -463,14 +466,38 @@ namespace UI.ViewModels {
 				messageViewModel.Message = message;
 				//Prevent from async add when receive message
 				Application.Current.Dispatcher.Invoke(() => {
-					if (loadFromServer) {
-						Messages.Insert(0, messageViewModel);
-					} else {
-						Messages.Add(messageViewModel);
+				if (loadFromServer) {
+					Messages.Insert(0, messageViewModel);
+				} else {
+					Messages.Add(messageViewModel);
+						if (GroupBubbles.Count == 0)
+						{
+							GroupBubbles.Add(new GroupBubbleViewModel());
+							GroupBubbles[GroupBubbles.Count - 1].isRecieve = messageViewModel.IsReceivedMessage;
+							GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
+						}
+						else if (GroupBubbles.Count != 0)
+						{
+							if (GroupBubbles[GroupBubbles.Count - 1].isRecieve == messageViewModel.IsReceivedMessage)
+							{
+								GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
+							}
+							else
+							{
+								GroupBubbles.Add(new GroupBubbleViewModel());
+								GroupBubbles[GroupBubbles.Count - 1].isRecieve = messageViewModel.IsReceivedMessage;
+								GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
+							}
+						}
 					}
 					if (messageViewModel is MediaViewModel) {
-						Console.WriteLine("MessageVM: " + ((MediaViewModel) messageViewModel).MediaInfo.ThumbURL);
+						Console.WriteLine("MessageVM: " + ((MediaViewModel)messageViewModel).MediaInfo.ThumbURL);
 					}
+					//foreach (var mess in Messages)
+					//{
+
+					//	}
+					//}
 				});
 			}
 		}
