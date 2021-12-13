@@ -117,7 +117,9 @@
                 </DockPanel>
             </DockPanel>
         </Border>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" 
+
+        <Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Visible" 
                       HorizontalScrollBarVisibility="Auto"
                       x:Name="ChatScroll"
                       Style="{StaticResource ScrollViewerTemplate}"
@@ -136,5 +138,6 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

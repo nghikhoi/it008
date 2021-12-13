@@ -365,6 +365,9 @@
     <Compile Include="Components\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\EmptyChatpage.xaml.cs">
+      <DependentUpon>EmptyChatpage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ImageMsg.xaml.cs">
       <DependentUpon>ImageMsg.xaml</DependentUpon>
     </Compile>
@@ -661,6 +664,10 @@
     </Page>
     <Page Include="Components\ConversationListTabs.xaml" />
     <Page Include="Components\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\EmptyChatpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
