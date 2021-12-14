@@ -11,84 +11,17 @@
              mc:Ignorable="d"
              d:DesignWidth="300" MinWidth="40">
     <Grid>
-        <ToggleButton x:Name="TogglePopupButton" Width="24" Height="24"
-                      Opacity="0"
-                      Foreground="Gray"
-                      HorizontalAlignment="Left"
-                      Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                      ToolTip="MaterialDesignFloatingActionMiniLightButton">
-            <StackPanel>
-                <materialDesign:PackIcon Kind="Smiley" Height="24" Width="24" />
-                <Popup x:Name="myPopup" Placement="Bottom" HorizontalOffset="90"
-                       IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
-                       PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                    <Border BorderBrush="{x:Null}">
-                        <Grid HorizontalAlignment="Center" Background="{x:Null}">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel.Resources>
-                                    <Style x:Key="Emo" TargetType="RadioButton">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Opacity" Value="0.5" />
-                                            </Trigger>
-                                        </Style.Triggers>
-
-                                        <Setter Property="BorderThickness" Value="0" />
-
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="RadioButton">
-                                                    <Border
-                                                        Background="Transparent"
-                                                        CornerRadius="20">
-                                                        <Image
-                                                            Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"
-                                                            Stretch="Fill" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-
-                                    </Style>
-                                </StackPanel.Resources>
-
-                                <ItemsControl>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <RadioButton x:Name="Like" Content="../../Resources/IconPack/Like.png"
-                                                 Style="{StaticResource Emo}" Width="40" Height="40" />
-                                    <RadioButton x:Name="Heart" Content="../../Resources/IconPack/Heart.png"
-                                                 Style="{StaticResource Emo}" Width="40" Height="40" />
-                                    <RadioButton x:Name="Smile" Content="../../Resources/IconPack/Smile.png"
-                                                 Style="{StaticResource Emo}" Width="40" Height="40" />
-                                    <RadioButton x:Name="Sad" Content="../../Resources/IconPack/Sad.png"
-                                                 Style="{StaticResource Emo}" Width="40" Height="40" />
-                                    <RadioButton x:Name="Angry" Content="../../Resources/IconPack/Angry.png"
-                                                 Style="{StaticResource Emo}" Width="40" Height="40" />
-                                </ItemsControl>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Popup>
-            </StackPanel>
-        </ToggleButton>
         <Border CornerRadius="15" 
-                Background="{Binding BubbleColor}" 
-                Margin="25 0 12 6" MinWidth="40"
-                MaxWidth="300">
+                Background="{Binding BubbleColor}"
+                Margin="0 2 0 2"
+                MinWidth="40" MaxWidth="300">
             <emoji:TextBlock VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
                              Background="{x:Null}"
                              Grid.IsSharedSizeScope="True"
                              TextWrapping="Wrap"
                              Text="{Binding ElementName=_this, Path=ChatContent}" FontSize="18"
-                             Foreground="White" Margin="10" />
+                             Foreground="White" Margin="5"/>
         </Border>
-        <Ellipse x:Name="Emotion" Width="18" Height="18" VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                 Visibility="Visible">
-
-        </Ellipse>
     </Grid>
 </UserControl>

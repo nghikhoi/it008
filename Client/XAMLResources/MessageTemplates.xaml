@@ -12,9 +12,7 @@
         </Style.Triggers>
     </Style>
     <DataTemplate x:Key="TextMessage">
-        <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}">
-            
-        </uc:TextBubble>
+        <uc:TextBubble ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="ImageMessage">
         <uc:ThumbnailBubble MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>

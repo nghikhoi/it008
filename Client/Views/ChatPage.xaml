@@ -53,7 +53,7 @@
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
                         <Label Grid.Row="0" Content="{Binding ConversationName}" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
-                        <Grid Grid.Row="1" x:Name="StatusContainer" Margin="0 -3 0 0" Height="15">
+                        <Grid Grid.Row="1" x:Name="StatusContainer" Margin="5 -3 0 0" Height="15">
                             <Status:OnlineStatus Visibility="{Binding IsOnline, Converter={StaticResource BooleanViCvrt}}"></Status:OnlineStatus>
                             <Status:OfflineStatus Visibility="{Binding IsOffline, Converter={StaticResource BooleanViCvrt}}"></Status:OfflineStatus>
                         </Grid>

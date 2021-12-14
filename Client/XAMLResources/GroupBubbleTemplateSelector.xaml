@@ -2,22 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:uc="clr-namespace:UI.Components">
 
-    <Style x:Key="MessageAlign" TargetType="UserControl">
+    <Style x:Key="BubbleAlign" TargetType="UserControl">
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding isRecieve}" Value="True">
+            <DataTrigger Binding="{Binding IsReceive}" Value="True">
                 <Setter Property="HorizontalAlignment" Value="Left"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
     
     <DataTemplate x:Key="GroupBubbleSender">
-        <uc:GroupBubble Style="{StaticResource MessageAlign}"></uc:GroupBubble>
+        <uc:GroupBubble Style="{StaticResource BubbleAlign}"></uc:GroupBubble>
     </DataTemplate>
 
     <DataTemplate x:Key="GroupBubbleReciever">
-        <uc:GroupBubbleRcv Style="{StaticResource MessageAlign}"></uc:GroupBubbleRcv>
+        <uc:GroupBubbleRcv Style="{StaticResource BubbleAlign}"></uc:GroupBubbleRcv>
     </DataTemplate>
     
 </ResourceDictionary>

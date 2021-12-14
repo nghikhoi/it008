@@ -373,7 +373,7 @@
       <DependentUpon>TextBubble.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ChatItem\ThumbnailBubble.xaml.cs" />
-    <Compile Include="Components\ConversationListTabs.xaml.cs" />
+    <Compile Include="Views\ConversationListTabs.xaml.cs" />
     <Compile Include="Components\Download\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
@@ -383,9 +383,9 @@
     <Compile Include="Components\GroupBubbleRcv.xaml.cs">
       <DependentUpon>GroupBubbleRcv.xaml</DependentUpon>
     </Compile>
-	  <Compile Include="Components\EmptyChatpage.xaml.cs">
-		  <DependentUpon>EmptyChatpage.xaml</DependentUpon>
-	  </Compile>
+    <Compile Include="Components\EmptyChatpage.xaml.cs">
+      <DependentUpon>EmptyChatpage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ImageLoader.xaml.cs">
       <DependentUpon>ImageLoader.xaml</DependentUpon>
     </Compile>
@@ -623,7 +623,7 @@
     <Compile Include="Network\RestAPI\StickerAPI.cs" />
     <Compile Include="Network\RestAPI\StreamAPI.cs" />
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Components\ConversationInfoSlideBar.xaml.cs">
+    <Compile Include="Views\ConversationInfoSlideBar.xaml.cs">
       <DependentUpon>ConversationInfoSlideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
@@ -724,7 +724,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ConversationListTabs.xaml" />
+    <Page Include="Views\ConversationListTabs.xaml" />
     <Page Include="Components\Download\DownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -884,7 +884,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Components\ConversationInfoSlideBar.xaml">
+    <Page Include="Views\ConversationInfoSlideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

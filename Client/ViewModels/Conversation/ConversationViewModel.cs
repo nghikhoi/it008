@@ -481,40 +481,35 @@ namespace UI.ViewModels {
 				messageViewModel.ConversationId = ConversationId;
 				messageViewModel.Message = message;
 				//Prevent from async add when receive message
-				Application.Current.Dispatcher.Invoke(() => {
-				if (loadFromServer) {
-					Messages.Insert(0, messageViewModel);
-				} else {
-					Messages.Add(messageViewModel);
-						if (GroupBubbles.Count == 0)
-						{
-							GroupBubbles.Add(new GroupBubbleViewModel());
-							GroupBubbles[GroupBubbles.Count - 1].isRecieve = messageViewModel.IsReceivedMessage;
-							GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
-						}
-						else if (GroupBubbles.Count != 0)
-						{
-							if (GroupBubbles[GroupBubbles.Count - 1].isRecieve == messageViewModel.IsReceivedMessage)
-							{
-								GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
-							}
-							else
-							{
-								GroupBubbles.Add(new GroupBubbleViewModel());
-								GroupBubbles[GroupBubbles.Count - 1].isRecieve = messageViewModel.IsReceivedMessage;
-								GroupBubbles[GroupBubbles.Count - 1].Messages.Add(messageViewModel);
-							}
-						}
-					}
-					if (messageViewModel is MediaViewModel) {
-						Console.WriteLine("MessageVM: " + ((MediaViewModel)messageViewModel).MediaInfo.ThumbURL);
-					}
-					//foreach (var mess in Messages)
-					//{
+				Application.Current.Dispatcher.Invoke(() =>
+                {
+                    GroupBubbleViewModel groupBubbleView = null;
+                    if (loadFromServer) {
+                        Messages.Insert(0, messageViewModel);
+                        groupBubbleView = GroupBubbles.ElementAtOrDefault(0);
+                    } else {
+                        Messages.Add(messageViewModel);
+                        groupBubbleView = GroupBubbles.ElementAtOrDefault(GroupBubbles.Count - 1);
 
-					//	}
-					//}
-				});
+                    }
+
+                    bool createNew = false;
+                    if (groupBubbleView == null || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0)
+                    {
+                        groupBubbleView = new GroupBubbleViewModel();
+                        groupBubbleView.IsReceive = messageViewModel.IsReceivedMessage;
+                        groupBubbleView.SenderID = messageViewModel.Message.SenderID;
+                        createNew = true;
+                    }
+					groupBubbleView.Messages.Add(messageViewModel);
+                    if (createNew)
+                    {
+						if (loadFromServer)
+							GroupBubbles.Insert(0, groupBubbleView);
+						else
+							GroupBubbles.Add(groupBubbleView);
+                    }
+                });
 			}
 		}
 
