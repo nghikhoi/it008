@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d">
     <Grid Margin="10 50 10 45">
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Opacity="0.6">Thêm cuộc trò chuyện</TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Opacity="0.6" Text="{DynamicResource EmptyChat}"></TextBlock>
     </Grid>
 </UserControl>

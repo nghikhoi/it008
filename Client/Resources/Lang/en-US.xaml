@@ -78,7 +78,8 @@
 
     <!--conversation slide bar-->
     <sys:String x:Key="ConversationInf.Label">Conversation infomation</sys:String>
-    <sys:String x:Key="ConversationInf.Medias">Pictures / Videos / Files</sys:String>
+    <sys:String x:Key="ConversationInf.Medias">Pictures / Videos</sys:String>
+    <sys:String x:Key="ConversationInf.Files">Files</sys:String>
     <sys:String x:Key="ConversationInf.SeeAll">See all</sys:String>
     
     <!--Download label-->
@@ -88,4 +89,9 @@
     <sys:String x:Key="Gallery.lib">Library</sys:String>
     <sys:String x:Key="Gallery.media">Pictures / Videos</sys:String>
     <sys:String x:Key="Gallery.Files">Files</sys:String>
+
+    <sys:String x:Key="FriendRqst.func">Add friend</sys:String>
+    <sys:String x:Key="FriendRqst.inf">Profile</sys:String>
+
+    <sys:String x:Key="EmptyChat">Add Conversation</sys:String>
 </ResourceDictionary>

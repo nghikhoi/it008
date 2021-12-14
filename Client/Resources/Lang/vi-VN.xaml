@@ -78,7 +78,8 @@
 
     <!--conversation slide bar-->
     <sys:String x:Key="ConversationInf.Label">Thông tin cuộc trò chuyện</sys:String>
-    <sys:String x:Key="ConversationInf.Medias">Ảnh / Video / Tệp</sys:String>
+    <sys:String x:Key="ConversationInf.Medias">Ảnh / Video</sys:String>
+    <sys:String x:Key="ConversationInf.Files">Tệp</sys:String>
     <sys:String x:Key="ConversationInf.SeeAll">Xem tất cả</sys:String>
 
     <!--Download label-->
@@ -88,4 +89,9 @@
     <sys:String x:Key="Gallery.lib">Thư viện</sys:String>
     <sys:String x:Key="Gallery.media">Hình ảnh / Videos</sys:String>
     <sys:String x:Key="Gallery.Files">Tệp</sys:String>
+
+    <sys:String x:Key="FriendRqst.func">Add friend</sys:String>
+    <sys:String x:Key="FriendRqst.inf">Profile</sys:String>
+
+    <sys:String x:Key="EmptyChat">Thêm cuộc trò chuyện</sys:String>
 </ResourceDictionary>

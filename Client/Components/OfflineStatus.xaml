@@ -9,6 +9,6 @@
     <StackPanel Orientation="Horizontal">
         <Ellipse Height="10" Width="10" Fill="Red"></Ellipse>
         <TextBlock Text="   "></TextBlock>
-        <TextBlock Text="{StaticResource Status.offline }" FontSize="10" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="{DynamicResource Status.offline }" FontSize="10" VerticalAlignment="Center"></TextBlock>
     </StackPanel>
 </UserControl>

@@ -158,7 +158,7 @@
                                     <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
                                               Background="Transparent"
                                               HorizontalAlignment="Left"
-                                              Header="{DynamicResource ConversationInf.Medias}"
+                                              Header="{DynamicResource ConversationInf.Files}"
                                               Foreground="{DynamicResource ForegroundResource}"
                                               materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
                                         <StackPanel
