@@ -54,7 +54,7 @@
             </Button>
             <StackPanel Grid.Row="1"
                         VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar">
+                <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar" BorderThickness="0">
                     <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
                                              HorizontalAlignment="Stretch"
                                              VerticalAlignment="Stretch" />

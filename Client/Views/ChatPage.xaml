@@ -92,7 +92,8 @@
                             <materialDesign:PackIcon Kind="Image" Width="24" Height="24" />
                         </Button>
                     </Border>
-                    <Border VerticalAlignment="Bottom" Margin="2, 4">
+
+                    <Border VerticalAlignment="Bottom" Margin="2,8">
                         <Button x:Name="AttachmentButton" Padding="0" Margin="0"
                                 Style="{StaticResource ChatButton}"
                                 Command="{Binding SendFileCommand}">
@@ -101,6 +102,12 @@
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
                         <Border VerticalAlignment="Bottom" Margin="0" Height="24" Width="24">
+                            <!--<Border.Resources>
+                                <Style TargetType="ToggleButton" >
+                                    <Setter Property="Height" Value="24"></Setter>
+                                    <Setter Property="Width" Value="24"></Setter>
+                                </Style>
+                            </Border.Resources>-->
                             <uc:EmojiPicker x:Name="EmoPicker" Width="24" Height="24">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Picked">

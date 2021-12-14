@@ -37,7 +37,8 @@ namespace UI.Components {
         public IList<EmojiData.Group> EmojiGroups => EmojiData.AllGroups;
 
         // Backwards compatibility for when the backend was a TextBlock.
-        public double FontSize {
+        public double FontSize
+        {
             get => Image.Height * 0.75;
             set => Image.Height = value / 0.75;
         }
