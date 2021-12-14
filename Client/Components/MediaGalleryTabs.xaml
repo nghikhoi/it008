@@ -23,17 +23,17 @@
                    FontSize="20" FontWeight="DemiBold"
                    Foreground="{StaticResource PrimaryHueDarkBrush}"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center">
-            Thư viện
+                   VerticalAlignment="Center"
+                   Text="{DynamicResource Gallery.lib}">
         </TextBlock>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="btnMediaTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}"
-                        Foreground="{DynamicResource PrimaryColor}" Content="Hình ảnh/Video" Margin="0,2" Padding="0"
+                        Foreground="{DynamicResource PrimaryColor}" Content="{DynamicResource Gallery.media}" Margin="0,2" Padding="0"
                         Click="btnMediaTab_Click" />
                 <Button x:Name="btnFilesTab" Width="120" Background="{x:Null}" BorderBrush="{x:Null}"
-                        Foreground="{DynamicResource PrimaryColor}" Content="Tệp" Margin="0,2"
+                        Foreground="{DynamicResource PrimaryColor}" Content="{DynamicResource Gallery.Files}" Margin="0,2"
                         Click="btnFilesTab_Click" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="4">
