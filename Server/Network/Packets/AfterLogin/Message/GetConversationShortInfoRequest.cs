@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ChatServer.Entity.Conversation;
 using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
@@ -46,6 +47,8 @@ namespace ChatServer.Network.Packets
                     packet.ConversationName = packet.ConversationName.Replace(", ", "");
             }
 
+            Guid avatar = conversation.Members.FirstOrDefault(s => s.CompareTo(chatSession.Owner.ID) != 0);
+            packet.ConversationAvatar = avatar == null ? "~" : avatar.ToString();
             conversation.UpdateLastActive(chatSession);
             packet.LastActive = conversation.LastActive;
             return packet;

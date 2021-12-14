@@ -39,7 +39,7 @@
                 <Border Background="Aqua"
                         Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                         CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                    <components:AvatarDisplayer UserID="{Binding ConversationAvatar}" />
+                    <components:AvatarDisplayer UserID="{Binding UserId}" />
                 </Border>
             </Border>
 

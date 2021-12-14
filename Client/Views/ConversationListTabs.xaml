@@ -14,7 +14,7 @@
              d:DesignHeight="450" MinWidth="200" MaxWidth="350"
              x:Name="_this">
     <UserControl.Resources>
-        <markups:BindingProxy Data="{Binding SearchCommand}" x:Key="SearchCommand" />
+        <markups:BindingProxy Data="{Binding SearchCommand}" x:Key="SearchCommand"/>
     </UserControl.Resources>
     <Border CornerRadius="4"
             BorderThickness="2"

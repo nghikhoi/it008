@@ -9,6 +9,7 @@ namespace UI.ViewModels {
 		}
 
         public Sticker Sticker => Message.Sticker;
+        public string StickerURL => Sticker.StickerURL;
 
 		public StickerMessageViewModel(IAppSession appSession) : base(appSession) {
 			

@@ -21,7 +21,7 @@
         <uc:ThumbnailBubble Margin="0, 1, 0, 1" MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="StickerMessage">
-        <uc:StickerBubble Margin="0, 1, 0, 1" Height="96" Width="96" DataContext="{Binding Sticker}" Style="{StaticResource MessageAlign}"/>
+        <uc:StickerBubble Margin="0, 1, 0, 1" Height="96" Width="96" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="AttachmentMessage">
         <uc:AttachmentBubble Margin="0, 1, 0, 1" Style="{StaticResource MessageAlign}"/>

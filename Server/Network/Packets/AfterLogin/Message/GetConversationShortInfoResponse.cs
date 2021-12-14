@@ -10,6 +10,7 @@ namespace ChatServer.Network.Packets
     {
         public string ConversationID { get; set; }
         public string ConversationName { get; set; }
+        public string ConversationAvatar { get; set; }
         public long LastActive { get; set; }
 
         public void Decode(IByteBuffer buffer)
@@ -21,6 +22,7 @@ namespace ChatServer.Network.Packets
         {
             ByteBufUtils.WriteUTF8(byteBuf, ConversationID);
             ByteBufUtils.WriteUTF8(byteBuf, ConversationName);
+            ByteBufUtils.WriteUTF8(byteBuf, ConversationAvatar);
             byteBuf.WriteLong(LastActive);
             return byteBuf;
         }

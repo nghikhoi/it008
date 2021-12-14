@@ -545,8 +545,7 @@ namespace UI.ViewModels {
 					} else {
 						Messages.Add(messageViewModel);
 						groupBubbleView = GroupBubbles.ElementAtOrDefault(GroupBubbles.Count - 1);
-
-					}
+                    }
 
 					bool createNew = false;
 					if (groupBubbleView == null || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0) {
@@ -555,7 +554,15 @@ namespace UI.ViewModels {
 						groupBubbleView.SenderID = messageViewModel.Message.SenderID;
 						createNew = true;
 					}
-					groupBubbleView.Messages.Add(messageViewModel);
+
+                    if (loadFromServer)
+                    {
+                        groupBubbleView.Messages.Insert(0, messageViewModel);
+					}
+                    else
+                    {
+                        groupBubbleView.Messages.Add(messageViewModel);
+					}
 					if (createNew) {
 						if (loadFromServer)
 							GroupBubbles.Insert(0, groupBubbleView);
