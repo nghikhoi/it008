@@ -102,11 +102,8 @@
                                     <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
                                               Background="Transparent"
                                               HorizontalAlignment="Left"
-<<<<<<< HEAD:Client/Components/ConversationInfoSlideBar.xaml
                                               Header="{DynamicResource ConversationInf.Medias}"
-=======
-                                              Header="Ảnh / Video"
->>>>>>> 01eaef857f1d0f4378169beb5cc2f0a0d1c66895:Client/Views/ConversationInfoSlideBar.xaml
+
                                               Foreground="{DynamicResource ForegroundResource}"
                                               materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
                                         <StackPanel
