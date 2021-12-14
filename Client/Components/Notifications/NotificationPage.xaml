@@ -83,6 +83,8 @@
         <!--End-->
         <DockPanel MaxHeight="32" MinHeight="32" VerticalAlignment="Bottom">
             <!--LogOut Button-->
+            <local:LanguageSelector DockPanel.Dock="Left"/>
+            <local:ThemeSelector DockPanel.Dock="Left"/>
             <Button Name="LogOutBtn"
                     Click="LogOutBtn_OnClick"
                     HorizontalAlignment="Right"
