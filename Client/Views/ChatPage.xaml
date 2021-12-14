@@ -26,6 +26,7 @@
     </i:Interaction.Triggers>
     <UserControl.Resources>
         <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"/>
+        <remarks:GroupBubbleTemplateSelector x:Key="GroupSelect"></remarks:GroupBubbleTemplateSelector>
         <convert:BooleanVisibility x:Key="BooleanViCvrt"></convert:BooleanVisibility>
         <remarks:BindingProxy x:Key="StickerContainer" Data="{Binding StickerContainer, diag:PresentationTraceSources.TraceLevel=High}" />
         <Style x:Key="ChatButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
@@ -165,6 +166,8 @@
                 </DockPanel>
             </DockPanel>
         </Border>
+
+        <Grid>
         <!--conversation background here-->
         <!--<Image Margin="0,50,0,45" Source=""></Image>-->
             <ScrollViewer VerticalScrollBarVisibility="Visible" 
@@ -190,10 +193,11 @@
                                Foreground="{DynamicResource ForegroundResource}" />
                 </Button>
                 <StackPanel x:Name="MessageContainer">
-                    <ItemsControl ItemsSource="{Binding Messages}"
-                                  ItemTemplateSelector="{StaticResource MessageTemplateSelector}" />
+                    <ItemsControl ItemsSource="{Binding GroupBubbles}"
+                                  ItemTemplateSelector="{StaticResource GroupSelect}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

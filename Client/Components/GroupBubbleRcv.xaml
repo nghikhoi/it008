@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="UI.Components.GroupBubbleRcv"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.Components"
+             xmlns:remarks="clr-namespace:UI.Utils.Markups"
+             mc:Ignorable="d" 
+             d:DesignWidth="355" MinWidth="40" Height="auto">
+    <UserControl.Resources>
+        <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"></remarks:MessageTemplateSelector>
+    </UserControl.Resources>
+    <Border>
+        <Grid>
+            <local:AvatarDisplayer Height="50" Width="50" HorizontalAlignment="Left"
+                               VerticalAlignment="Top"></local:AvatarDisplayer>
+            <StackPanel Margin="55,0,0,0" Orientation="Vertical">
+                <ItemsControl ItemsSource="{Binding Messages}"
+                              ItemTemplateSelector="{StaticResource MessageTemplateSelector}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

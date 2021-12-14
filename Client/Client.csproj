@@ -377,6 +377,15 @@
     <Compile Include="Components\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\GroupBubble.xaml.cs">
+      <DependentUpon>GroupBubble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GroupBubbleRcv.xaml.cs">
+      <DependentUpon>GroupBubbleRcv.xaml</DependentUpon>
+    </Compile>
+	  <Compile Include="Components\EmptyChatpage.xaml.cs">
+		  <DependentUpon>EmptyChatpage.xaml</DependentUpon>
+	  </Compile>
     <Compile Include="Components\ImageLoader.xaml.cs">
       <DependentUpon>ImageLoader.xaml</DependentUpon>
     </Compile>
@@ -480,6 +489,7 @@
     <Compile Include="Utils\FastCodeUtils.cs" />
     <Compile Include="Utils\LimitShowUtils.cs" />
     <Compile Include="Utils\Markups\BindingProxy.cs" />
+    <Compile Include="Utils\Markups\GroupBubbleTemplateSelector.cs" />
     <Compile Include="Utils\Markups\MessageTemplateSelector.cs" />
     <Compile Include="Utils\Markups\StickerContainerHeaderSelector.cs" />
     <Compile Include="Utils\Markups\StickerContainerSelector.cs" />
@@ -646,6 +656,7 @@
     <Compile Include="ViewModels\Media\MediaGalleryViewModel.cs" />
     <Compile Include="ViewModels\Media\MediaViewModel.cs" />
     <Compile Include="ViewModels\Messages\AttachmentMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\GroupBubbleViewModel.cs" />
     <Compile Include="ViewModels\Messages\ImageMessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\MessageViewModel.cs" />
     <Compile Include="ViewModels\Messages\StickerMessageViewModel.cs" />
@@ -714,6 +725,18 @@
     </Page>
     <Page Include="Components\ConversationListTabs.xaml" />
     <Page Include="Components\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\GroupBubble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\GroupBubbleRcv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\EmptyChatpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -843,6 +866,10 @@
     <Page Include="XAMLResources\StickerContainerTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XAMLResources\GroupBubbleTemplateSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="XAMLResources\MessageTemplates.xaml">
       <SubType>Designer</SubType>

@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:uc="clr-namespace:UI.Components">
+
+    <Style x:Key="MessageAlign" TargetType="UserControl">
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding isRecieve}" Value="True">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
+    <DataTemplate x:Key="GroupBubbleSender">
+        <uc:GroupBubble Style="{StaticResource MessageAlign}"></uc:GroupBubble>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupBubbleReciever">
+        <uc:GroupBubbleRcv Style="{StaticResource MessageAlign}"></uc:GroupBubbleRcv>
+    </DataTemplate>
+    
+</ResourceDictionary>

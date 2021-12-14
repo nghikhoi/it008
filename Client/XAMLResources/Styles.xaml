@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:UI"
                     xmlns:properties="clr-namespace:UI.Properties">
 
-    <!--button-->
+    <!--button and togglebutton-->
     
     <Style TargetType="Button" x:Key="OriginalButton">
         <Setter Property="Background" Value="Transparent"/>
