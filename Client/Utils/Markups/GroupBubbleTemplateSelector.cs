@@ -15,13 +15,13 @@ namespace UI.Utils.Markups
 			if (element != null && item != null && item is GroupBubbleViewModel)
 			{
 				GroupBubbleViewModel gr = item as GroupBubbleViewModel;
-				bool type= gr.isRecieve;
+				bool type = gr.IsReceive;
 
 				switch (type)
 				{
-					case true:
-						return element.FindResource("GroupBubbleSender") as DataTemplate;
 					case false:
+						return element.FindResource("GroupBubbleSender") as DataTemplate;
+					case true:
 						return element.FindResource("GroupBubbleReciever") as DataTemplate;
 				}
 			}

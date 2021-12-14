@@ -57,7 +57,7 @@
 
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
-                                                <uc:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}"></uc:AvatarDisplayer>
+                                                <uc:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserId}"/>
                                                 <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
                                                 <!--     <Ellipse.Fill> -->
                                                 <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
@@ -73,10 +73,11 @@
                                         <StackPanel Height="40" Orientation="Horizontal">
                                             <materialDesign:PackIcon VerticalAlignment="Center" Kind="Pencil"
                                                                      Width="24" Height="24" Margin="0 0 10 0" />
-                                            <TextBlock x:Name="NameTxb" VerticalAlignment="Center">meow</TextBlock>
+                                            <TextBlock x:Name="NameTxb" VerticalAlignment="Center"
+                                                       Text="{Binding ConversationName}"/>
                                         </StackPanel>
                                     </TextBlock>
-                                    <TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
+                                    <!--<TextBlock Height="40" FontSize="16" Margin="12 0 0 0">
                                         <StackPanel Height="40" Orientation="Horizontal">
                                             <materialDesign:PackIcon VerticalAlignment="Center" Kind="Email" Width="24"
                                                                      Height="24" Margin="0 0 10 0" />
@@ -89,7 +90,7 @@
                                                                      Height="24" Margin="0 0 10 0" />
                                             <TextBlock x:Name="PhoneNumTxb" VerticalAlignment="Center">113</TextBlock>
                                         </StackPanel>
-                                    </TextBlock>
+                                    </TextBlock>-->
                                 </StackPanel>
 
                                 <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"
@@ -100,7 +101,7 @@
                                     <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
                                               Background="Transparent"
                                               HorizontalAlignment="Left"
-                                              Header="Ảnh / Video / Tệp"
+                                              Header="Ảnh / Video"
                                               Foreground="{DynamicResource ForegroundResource}"
                                               materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
                                         <StackPanel
@@ -156,7 +157,6 @@
                                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                             Foreground="{DynamicResource PrimaryColor}"
                                             HorizontalContentAlignment="Left">
-                                        blabla
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
