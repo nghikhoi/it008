@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.Components"
              xmlns:wpf="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              mc:Ignorable="d" 
              x:Name="StackPanel_INTERNAL"
@@ -65,9 +66,25 @@
 
     </StackPanel.Resources>
 
-    <ToggleButton x:Name="Button_INTERNAL"
+    <!--<ToggleButton x:Name="Button_INTERNAL"
                   IsHitTestVisible="{Binding IsOpen, ElementName=Popup_INTERNAL, Mode=OneWay, Converter={markups:BoolInverter}}">
         <Image x:Name="Image" wpf:Image.Source="{Binding ElementName=StackPanel_INTERNAL, Mode=OneWay, Path=Selection, UpdateSourceTrigger=PropertyChanged}"/>
+    </ToggleButton>-->
+    <ToggleButton
+  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+  ToolTip="MaterialDesignFlatPrimaryToggleButton"
+  IsChecked="False"
+        Height="24"
+        Width="24"
+        x:Name="Button_INTERNAL"
+                  IsHitTestVisible="{Binding IsOpen, ElementName=Popup_INTERNAL, Mode=OneWay, Converter={markups:BoolInverter}}">
+        <materialDesign:PackIcon
+    x:Name="Image"
+    Kind="Heart"
+    Height="21"
+    Width="21" 
+    Foreground="Black"/>
+
     </ToggleButton>
 
     <Popup IsOpen="{Binding IsChecked, ElementName=Button_INTERNAL, Mode=TwoWay}"
