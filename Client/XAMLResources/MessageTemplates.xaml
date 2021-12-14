@@ -22,9 +22,8 @@
     <DataTemplate x:Key="VideoMessage">
         <uc:ThumbnailBubble MediaInfo="{Binding MediaInfo}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
-    <!-->TODO<-->
     <DataTemplate x:Key="StickerMessage">
-        <uc:StickerBubble DataContext="{Binding Sticker}" Style="{StaticResource MessageAlign}"/>
+        <uc:StickerBubble Height="96" Width="96" DataContext="{Binding Sticker}" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
     <DataTemplate x:Key="AttachmentMessage">
         <uc:AttachmentBubble Style="{StaticResource MessageAlign}"/>

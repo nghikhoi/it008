@@ -7,6 +7,7 @@ using UI.Annotations;
 using UI.Network.Packets;
 using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.Packets.AfterLoginRequest.Notification;
+using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.Packets.Login;
 using UI.Network.Packets.Register;
 using UI.Network.Protocol;
@@ -59,6 +60,8 @@ namespace UI.Network
                 _listener?.OnReceiveNotification(this, message as GetNotificationsResult);
             } else if (message is FinalizeAcceptedFriendRequestReceive) {
                 _listener?.OnFinalizeAcceptedFriend(this);
+            } else if (message is BuyStickerCategoryResponse) {
+                _listener?.OnBuyStickerResponse(this, message as BuyStickerCategoryResponse);
             }
         }
 

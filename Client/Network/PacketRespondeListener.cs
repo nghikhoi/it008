@@ -3,6 +3,7 @@ using CNetwork.Sessions;
 using UI.Network.Packets;
 using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.Packets.AfterLoginRequest.Notification;
+using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.Packets.Login;
 using UI.Network.Packets.Register;
 
@@ -14,6 +15,7 @@ namespace UI.Network {
 	public delegate void ReceiveMessageHandler(ISession session, ReceiveMessage responde);
     public delegate void ReceiveNotificationHandler(ISession session, GetNotificationsResult responde);
     public delegate void FinalizeAcceptedFriendHandler(ISession session);
+    public delegate void BuyStickerResponseHandler(ISession session, BuyStickerCategoryResponse responde);
 
 	public class PacketRespondeListener {
 
@@ -40,6 +42,10 @@ namespace UI.Network {
         public event FinalizeAcceptedFriendHandler FinalizeAcceptedFriendEvent;
         internal void OnFinalizeAcceptedFriend(ISession session) {
 	        FinalizeAcceptedFriendEvent?.Invoke(session);
+        }
+        public event BuyStickerResponseHandler BuyStickerResponseEvent;
+        internal void OnBuyStickerResponse(ISession session, BuyStickerCategoryResponse responde) {
+            BuyStickerResponseEvent?.Invoke(session, responde);
         }
 
 	}

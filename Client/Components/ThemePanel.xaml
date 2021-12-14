@@ -57,26 +57,9 @@
                       Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32"
                       Background="OrangeRed" Checked="orangeRedTheme_Checked">
         </ToggleButton>
-        <!--<ToggleButton Grid.Column="2" Grid.Row="2" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="MediumPurple"></ToggleButton>
-        <ToggleButton Grid.Column="2" Grid.Row="3" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="MediumPurple"></ToggleButton>-->
-<<<<<<< HEAD
-        <ToggleButton x:Name="yellowTheme" Grid.Column="2" Grid.Row="4" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="Yellow" Checked="yellowTheme_Checked" ></ToggleButton>
-
-        
-=======
         <ToggleButton x:Name="yellowTheme" Grid.Column="2" Grid.Row="4"
                       Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32"
                       Background="Yellow" Checked="yellowTheme_Checked">
         </ToggleButton>
-
-        <!--<ToggleButton x:Name="sandyBrownTheme" Grid.Column="3" Grid.Row="0" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="SandyBrown" Checked="sandyBrownTheme_Checked"></ToggleButton>
-        <ToggleButton x:Name="indianRedTheme" Grid.Column="3" Grid.Row="1" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="IndianRed" Checked="indianRedTheme_Checked"></ToggleButton>
-        <ToggleButton Grid.Column="3" Grid.Row="2" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="MediumPurple"></ToggleButton>
-        <ToggleButton Grid.Column="3" Grid.Row="3" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="MediumPurple"></ToggleButton>-->
-        <!--<ToggleButton x:Name="darkLightTheme" Grid.Column="3" Grid.Row="4" Style="{StaticResource MaterialDesignActionLightToggleButton}" Width="32" Height="32" Background="White" Checked="darkLightTheme_Checked" Unchecked="darkLightTheme_Unchecked" >
-            <materialDesign:PackIcon Kind="ThemeLightDark" />
-        </ToggleButton>-->
-
->>>>>>> 50543afd9e09137252f69a29056a61a67c9bc53a
     </Grid>
 </UserControl>

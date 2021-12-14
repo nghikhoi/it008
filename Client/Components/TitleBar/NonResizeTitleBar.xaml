@@ -8,8 +8,7 @@
              xmlns:local="clr-namespace:UI.Components"
              xmlns:command="clr-namespace:UI.Command"
              mc:Ignorable="d"
-             x:Name="TitleBar" Foreground="{DynamicResource ForegroundResource}">
-
+             x:Name="TitleBar" Foreground="Transparent">
     <!--Q: Border Close_Btn-->
     <Grid>
         <i:Interaction.Triggers>
@@ -18,23 +17,25 @@
                                        CommandParameter="{Binding ElementName=TitleBar}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
-
         <Border Background="Transparent" Style="{StaticResource OriginalBorder}">
             <DockPanel HorizontalAlignment="Stretch" LastChildFill="false" VerticalAlignment="Top">
                 <Border CornerRadius="8" Width="30" Height="30" DockPanel.Dock="Right">
-                    <Button Style="{StaticResource TitlebarButton}"
+                    <Button Background="Transparent"
+                            BorderThickness="0"
+                            Padding="0"
                             x:Name="btnClose"
                             Command="{x:Static command:TitleBarCommand.CloseWindowCommand}"
-                            CommandParameter="{Binding ElementName=TitleBar}">
+                            CommandParameter="{Binding ElementName=TitleBar}" Height="Auto">
                         <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15"
                                                  Foreground="{DynamicResource ForegroundResource}" />
                     </Button>
                 </Border>
                 <Border Width="30" Height="30" Background="Transparent" DockPanel.Dock="Right">
-                    <Button Style="{StaticResource TitlebarButton}"
+                    <Button Background="Transparent"
+                            BorderThickness="0"
                             x:Name="btnMinimize" Padding="0"
                             Command="{x:Static command:TitleBarCommand.MinimizeWindowCommand}"
-                            CommandParameter="{Binding ElementName=TitleBar}">
+                            CommandParameter="{Binding ElementName=TitleBar}" Height="Auto">
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="15" Height="15"
                                                  Foreground="{DynamicResource ForegroundResource}" />
                     </Button>

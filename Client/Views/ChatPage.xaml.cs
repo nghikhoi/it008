@@ -91,6 +91,9 @@ namespace UI.Views
         private void OnUnloaded(object sender, RoutedEventArgs e) {
             UnregisterEvents(DataContext);
         }
-        
+
+        private void OfflineStatus_Loaded(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

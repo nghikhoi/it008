@@ -19,13 +19,18 @@ namespace UI.ViewModels {
             Stickers = new ObservableCollection<StickerViewModel>();
         }
 
+        private void Invoke(Sticker sticker)
+        {
+            OnStickerClick?.Invoke(sticker);
+        }
+
         public void AddSticker(Sticker sticker)
         {
             if (sticker == null)
                 return;
             StickerViewModel vm = new StickerViewModel();
             vm.Sticker = sticker;
-            vm.OnStickerClick += OnStickerClick;
+            vm.OnStickerClick += Invoke;
             Stickers.Add(vm);
         }
 
@@ -38,10 +43,13 @@ namespace UI.ViewModels {
             set {
                 _sticker = value;
                 OnPropertyChanged(nameof(Sticker));
+                OnPropertyChanged(nameof(StickerURL));
             }
         }
 
-        public string SpriteURL => Sticker.SpriteURL;
+        public string StickerURL {
+            get => Sticker.StickerURL;
+        }
         public event Action<Sticker> OnStickerClick;
         public ICommand RaiseClickCommand { get; set; }
 

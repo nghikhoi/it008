@@ -43,6 +43,8 @@ namespace UI.Services {
                 services.AddTransient<TextMessageViewModel>();
                 services.AddTransient<VideoMessageViewModel>();
                 services.AddTransient<ImageMessageViewModel>();
+                services.AddTransient<StickerMessageViewModel>();
+                services.AddTransient<AttachmentMessageViewModel>();
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<ProfileViewModel>();
                 services.AddTransient<NotificationPageViewModel>();
@@ -60,6 +62,8 @@ namespace UI.Services {
                 services.AddSingleton<ViewModelCreator<TextMessageViewModel>>(s => s.GetRequiredService<TextMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<VideoMessageViewModel>>(s => s.GetRequiredService<VideoMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<ImageMessageViewModel>>(s => s.GetRequiredService<ImageMessageViewModel>);
+                services.AddSingleton<ViewModelCreator<StickerMessageViewModel>>(s => s.GetRequiredService<StickerMessageViewModel>);
+                services.AddSingleton<ViewModelCreator<AttachmentMessageViewModel>>(s => s.GetRequiredService<AttachmentMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<ViewModelCreator<ProfileViewModel>>(s => s.GetRequiredService<ProfileViewModel>);
                 services.AddSingleton<ViewModelCreator<NotificationPageViewModel>>(s => s.GetRequiredService<NotificationPageViewModel>);

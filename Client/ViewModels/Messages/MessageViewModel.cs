@@ -6,7 +6,7 @@ namespace UI.ViewModels {
 	public abstract class MessageViewModel : ViewModelBase
     {
 
-        public static readonly Brush IsReceivedMessageColor = new SolidColorBrush(Color.FromRgb());
+        public static readonly Brush IsReceivedMessageColor = new SolidColorBrush(Color.FromArgb(255, 169, 169, 169));
 
 		public bool IsReceivedMessage {
 			get => string.CompareOrdinal(Message.SenderID, _appSession.SessionID) != 0;

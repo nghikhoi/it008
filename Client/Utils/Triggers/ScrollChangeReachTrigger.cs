@@ -66,7 +66,7 @@ namespace UI.Utils.Triggers {
 				default: return;
 			}
 			if (max > 0) {
-				int percent = (int) Math.Floor(current / max);
+				int percent = (int) (Math.Floor(current / max) * 100);
 				bool compareResult = CompareOperationUtils.Compare(percent, Value, Operation);
 				if (!compareResult)
 					return;

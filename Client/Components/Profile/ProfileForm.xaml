@@ -34,11 +34,11 @@
                                 Background="Transparent"
                                 Padding="0"
                                 Margin="0 50 0 10"
-                                Command="{Binding ClickImageCommand}">
+                                Command="{Binding ChangeImageCommand}">
                             <local:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserID}" />
                         </Button>
                         <Button Width="150"
-                                Command="{Binding ClickChangeImageCommand}"
+                                Command="{Binding ChangeImageCommand}"
                                 Visibility="{Binding Visibility}">
                             <TextBlock Text="{DynamicResource SettingWindow.changeavt}"></TextBlock>
                         </Button>
@@ -63,7 +63,7 @@
                                                          Width="17" />
                                 <TextBox Canvas.Left="-90" Canvas.Top="-14" Height="38" Width="180"
                                          IsReadOnly="True"
-                                         Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />
+                                         Text="{Binding FullName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Canvas>
                         </Button>
                         <TextBox Margin="10,30,10,0"

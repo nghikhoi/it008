@@ -176,14 +176,14 @@
                       Style="{StaticResource ScrollViewerTemplate}"
                       Padding="0,0,0,10" Margin="10 50 0 45"
                       >
-            <ScrollViewer.Background>
+            <!--<ScrollViewer.Background>
                 <ImageBrush ImageSource="{Binding ConversationBackground}"></ImageBrush>
-            </ScrollViewer.Background>
-            <!--<i:Interaction.Triggers>
-                <triggers:ScrollChangeReachTrigger DoubleStepMode="True">
+            </ScrollViewer.Background>-->
+            <i:Interaction.Triggers>
+                <triggers:ScrollChangeReachTrigger DoubleStepMode="True" Operation="LESS_THAN" Value="1">
                     <i:InvokeCommandAction Command="{Binding LoadMoreCommand}"/>
                 </triggers:ScrollChangeReachTrigger>
-            </i:Interaction.Triggers>-->
+            </i:Interaction.Triggers>
             <StackPanel>
                 <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}"
                         Command="{Binding LoadMoreCommand}"

@@ -11,7 +11,6 @@ namespace UI.Models
         public string Password { get; set; }
         public DateTime BirthDay { get; set; }
         public Gender Gender { get; set; } = Gender.Female;
-        public Guid user_id { get; private set; } = new Guid();
 
         public int CompareTo(UserProfile other) {
             if (ReferenceEquals(this, other)) return 0;
@@ -30,7 +29,7 @@ namespace UI.Models
             if (birthDayComparison != 0) return birthDayComparison;
             var genderComparison = Gender.CompareTo(other.Gender);
             if (genderComparison != 0) return genderComparison;
-            return user_id.CompareTo(other.user_id);
+            return 0;
         }
         
     }

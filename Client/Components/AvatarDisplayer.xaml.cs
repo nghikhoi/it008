@@ -33,57 +33,33 @@ namespace UI.Components
         {
             if (e.Property == UserIDProperty)
             {
-                LoadingMask.Visibility = Visibility.Visible;
-                if (String.IsNullOrEmpty(UserID))
-                {
-                    ProfileAPI.DownloadSelfAvatar((avaSource) =>
-                    {
-                        this.ImageAva.ImageSource = avaSource;
-                        LoadingMask.Visibility = Visibility.Hidden;
-                    }, (ex) => Console.WriteLine(ex));
-                }
-                else
-                {
-                    ProfileAPI.DownloadUserAvatar(UserID,(avaSource) =>
-                    {
-                        this.ImageAva.ImageSource = avaSource;
-                        LoadingMask.Visibility = Visibility.Hidden;
-                    }, (ex) => Console.WriteLine(ex));
-                }
+                Update();
             }
             base.OnPropertyChanged(e);
         }
 
-        public void UpdateAllInstance(ImageSource source, String userID = null)
-        {
-            List<AvatarDisplayer> filtered;
-            if (String.IsNullOrEmpty(userID)) {
-                filtered = avatarInstance.Where(p => String.IsNullOrEmpty(p.UserID)).ToList();
+        private void Update() {
+            LoadingMask.Visibility = Visibility.Visible;
+            if (String.IsNullOrEmpty(UserID)) {
+                ProfileAPI.DownloadSelfAvatar((avaSource) =>
+                {
+                    this.ImageAva.ImageSource = avaSource;
+                    LoadingMask.Visibility = Visibility.Hidden;
+                }, (ex) => Console.WriteLine(ex));
             } else {
-                filtered = avatarInstance.Where(p => p.UserID == userID).ToList();
-            }
-            foreach (AvatarDisplayer item in filtered)
-            {
-                item.ImageAva.ImageSource = source;
-                item.LoadingMask.Visibility = Visibility.Hidden;
+                ProfileAPI.DownloadUserAvatar(UserID, (avaSource) =>
+                {
+                    this.ImageAva.ImageSource = avaSource;
+                    LoadingMask.Visibility = Visibility.Hidden;
+                }, (ex) => Console.WriteLine(ex));
             }
         }
 
-        public void UpdateAllInstance(String userID = null) {
-            LoadingMask.Visibility = Visibility.Visible;
-            if (String.IsNullOrEmpty(userID)) {
-                ProfileAPI.DownloadSelfAvatar((avaSource) =>
-                {
-                    UpdateAllInstance(avaSource);
-                    LoadingMask.Visibility = Visibility.Hidden;
-                }, (ex) => Console.WriteLine(ex), true);
-            }
-            else {
-                ProfileAPI.DownloadUserAvatar(userID, (avaSource) =>
-                {
-                    UpdateAllInstance(avaSource, userID);
-                    LoadingMask.Visibility = Visibility.Hidden;
-                }, (ex) => Console.WriteLine(ex), true);
+        public static void UpdateAllInstance(String userID = null)
+        {
+            foreach (var avatarDisplayer in avatarInstance.Where(target => string.CompareOrdinal(target.UserID, userID) == 0))
+            {
+                avatarDisplayer.Update();
             }
         }
 

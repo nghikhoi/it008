@@ -11,6 +11,8 @@ namespace UI.Services.Common {
 		private readonly ViewModelCreator<TextMessageViewModel> _textMessageCreator;
 		private readonly ViewModelCreator<VideoMessageViewModel> _videoMessageCreator;
 		private readonly ViewModelCreator<ImageMessageViewModel> _imageMessageCreator;
+        private readonly ViewModelCreator<StickerMessageViewModel> _stickerMessageCreator;
+        private readonly ViewModelCreator<AttachmentMessageViewModel> _attachmentMessageCreator;
 		private readonly ViewModelCreator<HomeViewModel> _homeCreator;
 		private readonly ViewModelCreator<ProfileViewModel> _profileCreator;
         private readonly ViewModelCreator<NotificationPageViewModel> _notificationPageCreator;
@@ -22,7 +24,8 @@ namespace UI.Services.Common {
 		private readonly ViewModelCreator<StickerOwnedTabViewModel> _stickerOwnedTabCreator;
 		private readonly ViewModelCreator<StickerRecentTabViewModel> _stickerRecentTabCreator;
 
-        public ViewModelFactory(AuthenticationViewModel authenticationViewModel, ViewModelCreator<RegisterViewModel> registerCreator, ViewModelCreator<LoginViewModel> loginCreator, ViewModelCreator<ConversationViewModel> conversationCreator, ViewModelCreator<FriendConversationViewModel> friendConversationCreator, ViewModelCreator<TextMessageViewModel> textMessageCreator, ViewModelCreator<VideoMessageViewModel> videoMessageCreator, ViewModelCreator<ImageMessageViewModel> imageMessageCreator, ViewModelCreator<HomeViewModel> homeCreator, ViewModelCreator<ProfileViewModel> profileCreator, ViewModelCreator<NotificationPageViewModel> notificationPageCreator, ViewModelCreator<FriendRequestNotificationViewModel> friendRequestCreator, ViewModelCreator<FriendAccpectedNotificationViewModel> friendAcceptedCreator, ViewModelCreator<StickerContainerViewModel> stickerContainerCreator, ViewModelCreator<StickerItemStoreViewModel> stickerItemStoreCreator, ViewModelCreator<StickerStoreViewModel> stickerStoreCreator, ViewModelCreator<StickerOwnedTabViewModel> stickerOwnedTabCreator, ViewModelCreator<StickerRecentTabViewModel> stickerRecentTabCreator)
+
+        public ViewModelFactory(AuthenticationViewModel authenticationViewModel, ViewModelCreator<RegisterViewModel> registerCreator, ViewModelCreator<LoginViewModel> loginCreator, ViewModelCreator<ConversationViewModel> conversationCreator, ViewModelCreator<FriendConversationViewModel> friendConversationCreator, ViewModelCreator<TextMessageViewModel> textMessageCreator, ViewModelCreator<VideoMessageViewModel> videoMessageCreator, ViewModelCreator<ImageMessageViewModel> imageMessageCreator, ViewModelCreator<StickerMessageViewModel> stickerMessageCreator, ViewModelCreator<AttachmentMessageViewModel> attachmentMessageCreator, ViewModelCreator<HomeViewModel> homeCreator, ViewModelCreator<ProfileViewModel> profileCreator, ViewModelCreator<NotificationPageViewModel> notificationPageCreator, ViewModelCreator<FriendRequestNotificationViewModel> friendRequestCreator, ViewModelCreator<FriendAccpectedNotificationViewModel> friendAcceptedCreator, ViewModelCreator<StickerContainerViewModel> stickerContainerCreator, ViewModelCreator<StickerItemStoreViewModel> stickerItemStoreCreator, ViewModelCreator<StickerStoreViewModel> stickerStoreCreator, ViewModelCreator<StickerOwnedTabViewModel> stickerOwnedTabCreator, ViewModelCreator<StickerRecentTabViewModel> stickerRecentTabCreator)
         {
             _authenticationViewModel = authenticationViewModel;
             _registerCreator = registerCreator;
@@ -32,6 +35,8 @@ namespace UI.Services.Common {
             _textMessageCreator = textMessageCreator;
             _videoMessageCreator = videoMessageCreator;
             _imageMessageCreator = imageMessageCreator;
+            _stickerMessageCreator = stickerMessageCreator;
+            _attachmentMessageCreator = attachmentMessageCreator;
             _homeCreator = homeCreator;
             _profileCreator = profileCreator;
             _notificationPageCreator = notificationPageCreator;
@@ -64,6 +69,10 @@ namespace UI.Services.Common {
 				return (TViewModel) Convert.ChangeType(_videoMessageCreator.Invoke(), type);
 			if (type == typeof(ImageMessageViewModel))
 				return (TViewModel) Convert.ChangeType(_imageMessageCreator.Invoke(), type);
+            if (type == typeof(StickerMessageViewModel))
+                return (TViewModel) Convert.ChangeType(_stickerMessageCreator.Invoke(), type);
+            if (type == typeof(AttachmentMessageViewModel))
+                return (TViewModel) Convert.ChangeType(_attachmentMessageCreator.Invoke(), type);
 			if (type == typeof(ProfileViewModel))
 				return (TViewModel) Convert.ChangeType(_profileCreator.Invoke(), type);
 			if (type == typeof(NotificationPageViewModel))

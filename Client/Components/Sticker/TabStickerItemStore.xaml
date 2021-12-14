@@ -35,9 +35,17 @@
                        Text="{Binding Name}"
                        TextAlignment="Center" FontWeight="Bold" Margin="5" />
 
-            <Button x:Name="btnDownIcon" Width="90" Height="28" Padding="0" HorizontalContentAlignment="Center">
-                Tải xuống
-            </Button>
+            <Border Width="96" Height="28" Background="Teal" CornerRadius="6">
+                <Grid>
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center" FontSize="16"
+                               TextAlignment="Center" Text="Tải xuống"/>
+                    <Button Width="96" Height="28"
+                            IsEnabled="True"
+                            Command="{Binding BuyCommand}"
+                            HorizontalContentAlignment="Center"/>
+                </Grid>
+            </Border>
         </StackPanel>
 
     </Grid>

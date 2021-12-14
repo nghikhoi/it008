@@ -374,7 +374,7 @@
     </Compile>
     <Compile Include="Components\ChatItem\ThumbnailBubble.xaml.cs" />
     <Compile Include="Components\ConversationListTabs.xaml.cs" />
-    <Compile Include="Components\DownloadWindow.xaml.cs">
+    <Compile Include="Components\Download\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\GroupBubble.xaml.cs">
@@ -517,6 +517,7 @@
     <Compile Include="ViewModels\Conversation\ConversationListViewModel.cs" />
     <Compile Include="ViewModels\Conversation\ConversationViewModel.cs" />
     <Compile Include="ViewModels\Conversation\FriendConversationViewModel.cs" />
+    <Compile Include="ViewModels\EmptyViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InitializableViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -724,7 +725,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ConversationListTabs.xaml" />
-    <Page Include="Components\DownloadWindow.xaml">
+    <Page Include="Components\Download\DownloadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,8 +1,12 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using UI.Command;
+using UI.Components;
 using UI.Models;
+using UI.Models.Message;
+using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
 
@@ -10,6 +14,11 @@ namespace UI.ViewModels {
     public class ProfileViewModel : InitializableViewModel {
 
         #region Properties
+
+        public string UserID
+        {
+            get => _appSession.SessionID;
+        }
 
         private bool _CanUpdateProfile;
         public bool CanUpdateProfile {
@@ -27,10 +36,6 @@ namespace UI.ViewModels {
 
         public string FullName {
             get => FirstName + " " + LastName;
-            set {
-                updateConfirmOpacity();
-                OnPropertyChanged("FullName");
-            } 
         }
 
         public Gender Gender {
@@ -57,6 +62,7 @@ namespace UI.ViewModels {
                 Profile.FirstName = value;
                 updateConfirmOpacity();
                 OnPropertyChanged("FirstName");
+                OnPropertyChanged(nameof(FullName));
             }
         }
 
@@ -66,6 +72,7 @@ namespace UI.ViewModels {
                 Profile.LastName = value;
                 updateConfirmOpacity();
                 OnPropertyChanged("LastName");
+                OnPropertyChanged(nameof(FullName));
             }
         }
 
@@ -141,6 +148,7 @@ namespace UI.ViewModels {
 
         private UserProfile Profile = new UserProfile();
         private readonly IUserProfileHolder _userProfileHolder;
+        private readonly IAppSession _appSession;
 
         #endregion
 
@@ -150,16 +158,48 @@ namespace UI.ViewModels {
         public ICommand ChangeNameCancelCommand { get; private set; }
         public ICommand CleanChangePasswordCommand { get; private set; }
         public ICommand AcceptChangePasswordCommand { get; private set; }
+        public ICommand ChangeImageCommand { get; private set; }
         
         #endregion
 
-        public ProfileViewModel(IUserProfileHolder userProfileHolder) : base() {
+        public ProfileViewModel(IUserProfileHolder userProfileHolder, IAppSession appSession) : base() {
             _userProfileHolder = userProfileHolder;
+            _appSession = appSession;
             UpdateProfileCommand = new RelayCommand<object>(o => CanUpdateProfile,
                 o => _userProfileHolder.UpdateUserProfile(Profile));
             ChangeNameCancelCommand = new RelayCommand<object>(null, o => CancelChangeName());
             CleanChangePasswordCommand = new RelayCommand<object>(null, o => CleanChangePassword());
+            ChangeImageCommand = new RelayCommand<object>(null, o => ChangeAvatar());
             InitializeCommand.Execute(null);
+        }
+
+        private void ChangeAvatar()
+        {
+            List<string> paths = new List<string>();
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true) {
+                // Open document 
+                string Selectedfilename = dlg.FileName;
+                paths.Add(Selectedfilename);
+                ProfileAPI.AvatarUpload(paths[0], () =>
+                {
+                    App.Current.Dispatcher.Invoke(() => {
+                        AvatarDisplayer.UpdateAllInstance(UserID);
+                    });
+                }, error =>
+                {
+
+                });
+            }
         }
 
         protected override void Initialize(object parameter = null) {
@@ -192,7 +232,6 @@ namespace UI.ViewModels {
             LastName = _userProfileHolder.UserProfile.LastName;
             BirthDay = _userProfileHolder.UserProfile.BirthDay;
             Gender = _userProfileHolder.UserProfile.Gender;
-            FullName = " "; //Call to update
         }
 
     }

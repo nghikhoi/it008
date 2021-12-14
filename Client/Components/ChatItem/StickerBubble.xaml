@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="130" d:DesignWidth="130">
     <Grid>
-        <Image gif:AnimationBehavior.SourceUri="{Binding SpriteURL}" 
+        <Image gif:AnimationBehavior.SourceUri="{Binding StickerURL}" 
                gif:AnimationBehavior.RepeatBehavior="0:0:6" />
     </Grid>
 </UserControl>

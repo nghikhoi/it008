@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
+             xmlns:viewModels="clr-namespace:UI.ViewModels"
              Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
@@ -26,6 +27,9 @@
                     <SolidColorBrush x:Key="InputColorResource" Color="LightGray"/>
                     <SolidColorBrush x:Key="BorderColorResource" Color="Teal"/>
                     <SolidColorBrush x:Key="PrimaryColor" Color="Teal"/>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <viewModels:EmptyViewModel x:Key="EmptyViewModel"/>
                 </ResourceDictionary>
 
                 <!-- Default Language -->

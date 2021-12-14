@@ -319,20 +319,16 @@ namespace UI.ViewModels {
 
         public void SendStickerMessage(Sticker sticker)
         {
-
-        }
+            StickerMessage msg = new StickerMessage();
+            msg.Sticker = sticker;
+            SendMessage(msg);
+		}
 
 		private void SendTextMessage() {
 			TextMessage textMessage = new TextMessage();
 			textMessage.Message = Texting;
 			Texting = "";
-			textMessage.SenderID = _appSession.SessionID;
-			AddMessage(textMessage);
-
-			SendMessage packet = new SendMessage();
-			packet.Message = textMessage;
-			packet.ConversationID = ConversationId;
-			_connection.Send(packet);
+			SendMessage(textMessage);
 		}
 		
 		public void ReceiveMessage(AbstractMessage message) {
@@ -461,9 +457,12 @@ namespace UI.ViewModels {
 					messageViewModel = _factory.Create<ImageMessageViewModel>();
 					break;
 				}
-				case BubbleType.Sticker: {
-					
-					break;
+				case BubbleType.Sticker:
+                {
+                    messageViewModel = _factory.Create<StickerMessageViewModel>();
+					StickerMessage tmp = message as StickerMessage;
+                    tmp.Sticker = Sticker.LoadedStickers[tmp.Sticker.ID];
+                    break;
 				}
 				case BubbleType.Text: {
 					messageViewModel = _factory.Create<TextMessageViewModel>();

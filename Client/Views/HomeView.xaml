@@ -11,6 +11,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
              xmlns:command="clr-namespace:UI.Command"
+             xmlns:vm="clr-namespace:UI.ViewModels"
              mc:Ignorable="d"
              MinHeight="300" MinWidth="500"
              x:Name="_this"
@@ -23,7 +24,7 @@
     </i:Interaction.Triggers>
     <UserControl.Resources>
         <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}"/>
-        <convert:BooleanVisibility x:Key="VisibilityConverter"></convert:BooleanVisibility>
+        <convert:BooleanVisibility x:Key="VisibilityConverter"/>
     </UserControl.Resources>
     <!--Main-->
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
@@ -64,6 +65,7 @@
                             </i:Interaction.Triggers>
                         </uc:NotificationPage>
                     </materialDesign:DrawerHost.LeftDrawerContent>
+                    
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="220" MinWidth="200" MaxWidth="350" />
@@ -95,21 +97,27 @@
                                                                      Margin="0 0 0 0" DockPanel.Dock="Right" />
                                     </materialDesign:DrawerHost.RightDrawerContent>
 
-                                    <Grid>
-                                        <local:ChatPage DataContext="{Binding SelectedConversation}" Margin="0 0 0 10">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="InfoChecked">
-                                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                                                                           CommandParameter="{x:Static Dock.Right}"/>
-                                                </i:EventTrigger>
-                                                <i:EventTrigger EventName="InfoUnchecked">
-                                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                                                           CommandParameter="{x:Static Dock.Right}"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </local:ChatPage>
-                                        <Image Source="{Binding themeBackground}" Visibility="{Binding SelectedConversation, Converter={StaticResource VisibilityConverter}}" Stretch="UniformToFill"></Image>
-                                    </Grid>
+                                    <ContentControl Content="{Binding SelectedConversation, TargetNullValue={StaticResource EmptyViewModel}}">
+                                        <ContentControl.Resources>
+                                            <DataTemplate DataType="{x:Type vm:EmptyViewModel}">
+                                                <uc:EmptyChatpage/>
+                                            </DataTemplate>
+                                            <DataTemplate DataType="{x:Type vm:ConversationViewModel}">
+                                                <local:ChatPage Margin="0 0 0 10">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="InfoChecked">
+                                                            <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                                                CommandParameter="{x:Static Dock.Right}"/>
+                                                        </i:EventTrigger>
+                                                        <i:EventTrigger EventName="InfoUnchecked">
+                                                            <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                                                CommandParameter="{x:Static Dock.Right}"/>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </local:ChatPage>
+                                            </DataTemplate>
+                                        </ContentControl.Resources>
+                                    </ContentControl>
                                 </materialDesign:DrawerHost>
                             </DockPanel>
                         </Grid>

@@ -23,6 +23,11 @@ namespace UI.ViewModels {
 
         #region Properties
 
+        public string UserID
+        {
+            get => authenticator.CurrentSession.SessionID;
+        }
+
         private ObservableCollection<ConversationViewModel> _conversations;
         public ObservableCollection<ConversationViewModel> Conversations { get => _conversations; set => _conversations = value; }
         private string _searchingString;

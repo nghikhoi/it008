@@ -13,6 +13,11 @@ namespace UI.ViewModels {
 
 		#region Properties
 
+        public string UserID
+        {
+            get => _appSession.SessionID;
+        }
+
 		private ObservableCollection<NotificationViewModel> _newestNotifications;
 		public ObservableCollection<NotificationViewModel> NewestNotifications { get => _newestNotifications; set => _newestNotifications = value; }
 		private ObservableCollection<NotificationViewModel> _notifications;
@@ -28,10 +33,12 @@ namespace UI.ViewModels {
 
 		private ChatConnection _connection;
 		private IViewModelFactory _viewModelFactory;
+        private IAppSession _appSession;
 
-		public NotificationPageViewModel(ChatConnection connection, IViewModelFactory viewModelFactory, PacketRespondeListener listener) {
+		public NotificationPageViewModel(ChatConnection connection, IAppSession appSession, IViewModelFactory viewModelFactory, PacketRespondeListener listener) {
 			_connection = connection;
 			_viewModelFactory = viewModelFactory;
+            _appSession = appSession;
 
 			NewestNotifications = new ObservableCollection<NotificationViewModel>();
 			Notifications = new ObservableCollection<NotificationViewModel>();
