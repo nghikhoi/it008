@@ -13,9 +13,9 @@
              xmlns:command="clr-namespace:UI.Command"
              xmlns:vm="clr-namespace:UI.ViewModels"
              mc:Ignorable="d"
-             MinHeight="300" MinWidth="500"
+             MinHeight="540" MinWidth="960"
              x:Name="_this"
-             d:DesignHeight="480" d:DesignWidth="815">
+             d:DesignHeight="540" d:DesignWidth="960">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="DataContextChanged">
             <i:InvokeCommandAction Command="{x:Static command:StaticInitializeCommand.InitializeCommand}"
@@ -103,7 +103,7 @@
                                                 <uc:EmptyChatpage/>
                                             </DataTemplate>
                                             <DataTemplate DataType="{x:Type vm:ConversationViewModel}">
-                                                <local:ChatPage Margin="0 0 0 10">
+                                                <local:ChatPage Margin="0 0 0 0">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="InfoChecked">
                                                             <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"

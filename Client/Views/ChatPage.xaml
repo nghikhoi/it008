@@ -92,37 +92,23 @@
                             <materialDesign:PackIcon Kind="Image" Width="24" Height="24" />
                         </Button>
                     </Border>
-
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <!--<ToggleButton x:Name="TogglePopupButton" Width="24" Height="24"
-                      Opacity="0"
-                      Foreground="Black"
-                      HorizontalAlignment="Left"
-                      Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-                      ToolTip="MaterialDesignFloatingActionMiniLightButton"
-                      >
-                            <StackPanel>
-                            <materialDesign:PackIcon Kind="EmojiCat" Width="24" Height="24"/>
-                                <Popup x:Name="myPopup" Placement="Bottom" HorizontalOffset="90"
-                                               IsOpen="{Binding IsChecked, ElementName=TogglePopupButton}" StaysOpen="False"
-                                               PopupAnimation="Fade" PlacementTarget="{Binding ElementName=TogglePopupButton}">
-                                    <emoji:Picker></emoji:Picker>
-                                </Popup>
-                            </StackPanel>
-                        </ToggleButton>-->
-                        <Border VerticalAlignment="Bottom" Margin="0">
-                            <Border.Resources>
-                                <Style TargetType="ToggleButton" BasedOn="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
-                                </Style>
-                            </Border.Resources>
-                            <emoji:Picker x:Name="EmoPicker">
+                        <Button x:Name="AttachmentButton" Padding="0" Margin="0"
+                                Style="{StaticResource ChatButton}"
+                                Command="{Binding SendFileCommand}">
+                            <materialDesign:PackIcon Kind="AttachFile"  Width="24" Height="24" />
+                        </Button>
+                    </Border>
+                    <Border VerticalAlignment="Bottom" Margin="2, 4">
+                        <Border VerticalAlignment="Bottom" Margin="0" Height="24" Width="24">
+                            <uc:EmojiPicker x:Name="EmoPicker" Width="24" Height="24">
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
+                                    <i:EventTrigger EventName="Picked">
                                         <i:InvokeCommandAction Command="{Binding ChatpageSelectEmojiCommand}"
-                                                               CommandParameter="{Binding ElementName=EmoPicker, Path=Selection}"></i:InvokeCommandAction>
+                                                               CommandParameter="{Binding ElementName=EmoPicker, Path=Selection}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                            </emoji:Picker>
+                            </uc:EmojiPicker>
                         </Border>
                     </Border>
 
@@ -137,12 +123,12 @@
                         <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                  VerticalScrollBarVisibility="Auto"
                                  materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
-                                 x:Name="ChatInput" Margin="10,0,25,0" TextWrapping="Wrap"
+                                 x:Name="ChatInput" Margin="10,0,10,0" TextWrapping="Wrap"
                                  CaretIndex="10"
                                  Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch"
                                  CaretBrush="#FF1E145F"
                                  Text="{Binding Texting, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 VerticalContentAlignment="Center" MaxHeight="82" Width="401">
+                                 VerticalContentAlignment="Center">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SendTextMessageCommand}" />
                                 <KeyBinding Gesture="Shift+Return" Command="{Binding EndLineTextCommand}" />
@@ -174,8 +160,7 @@
                       HorizontalScrollBarVisibility="Auto"
                       x:Name="ChatScroll"
                       Style="{StaticResource ScrollViewerTemplate}"
-                      Padding="0,0,0,10" Margin="10 50 0 45"
-                      >
+                      Padding="0,0,0,10" Margin="5 50 0 45">
             <!--<ScrollViewer.Background>
                 <ImageBrush ImageSource="{Binding ConversationBackground}"></ImageBrush>
             </ScrollViewer.Background>-->

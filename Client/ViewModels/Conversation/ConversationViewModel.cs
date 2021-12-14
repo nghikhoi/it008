@@ -100,38 +100,33 @@ namespace UI.ViewModels {
 			}
 		}
 
-        private StickerContainerViewModel _stickerContainer;
-        public StickerContainerViewModel StickerContainer {
-            get => _stickerContainer;
-            set {
-                _stickerContainer = value;
-                OnPropertyChanged(nameof(StickerContainer));
-            }
-        }
+		private StickerContainerViewModel _stickerContainer;
+		public StickerContainerViewModel StickerContainer {
+			get => _stickerContainer;
+			set {
+				_stickerContainer = value;
+				OnPropertyChanged(nameof(StickerContainer));
+			}
+		}
 
-		private bool _isOnline=true;
-		public bool IsOnline
-        {
+		private bool _isOnline = true;
+		public bool IsOnline {
 			get => _isOnline;
-            set
-            {
+			set {
 				_isOnline = value;
 				OnPropertyChanged(nameof(IsOnline));
-            }
-        }
+				OnPropertyChanged(nameof(IsOffline));
+			}
+		}
 
-	
-		public bool IsOffline
-        {
+		public bool IsOffline {
 			get => !_isOnline;
-        }
+		}
 
 		private string _conversationBackground = @"../../Resources/Images/avt.jpg";
-		public string ConversationBackground
-		{
+		public string ConversationBackground {
 			get => _conversationBackground;
-			set
-			{
+			set {
 				_conversationBackground = value;
 			}
 		}
@@ -144,13 +139,23 @@ namespace UI.ViewModels {
 			set => _medias = value;
 		}
 		private ObservableCollection<GroupBubbleViewModel> _groupbubbles;
-        public ObservableCollection<GroupBubbleViewModel> GroupBubbles { get => _groupbubbles; set => _groupbubbles = value; }
+		public ObservableCollection<GroupBubbleViewModel> GroupBubbles { get => _groupbubbles; set => _groupbubbles = value; }
 
-        private static readonly int MAX_SHOW = 6;
+		private static readonly int MAX_SHOW = 6;
 		private ObservableCollection<MessageViewModel> _limitShowMedias;
 		public ObservableCollection<MessageViewModel> LimitShowMedias {
 			get => _limitShowMedias;
 			set => _limitShowMedias = value;
+		}
+		private ObservableCollection<MessageViewModel> _attachments;
+		public ObservableCollection<MessageViewModel> Attachments {
+			get => _attachments;
+			set => _attachments = value;
+		}
+		private ObservableCollection<MessageViewModel> _limitAttachments;
+		public ObservableCollection<MessageViewModel> LimitAttachments {
+			get => _limitAttachments;
+			set => _limitAttachments = value;
 		}
 
 		private string _lastMessage;
@@ -178,7 +183,7 @@ namespace UI.ViewModels {
 			set {
 				_showingMedia = value;
 				OnPropertyChanged(nameof(ShowingMedia));
-            }
+			}
 		}
 
 		#endregion
@@ -189,51 +194,55 @@ namespace UI.ViewModels {
 		public ICommand SelectCommand { get; private set; }
 		public ICommand SelectMediaCommand { get; private set; }
 		public ICommand SendTextMessageCommand { get; private set; }
-        public ICommand EndLineTextCommand { get; private set; }
+		public ICommand EndLineTextCommand { get; private set; }
 		public ICommand LoadMoreCommand { get; private set; }
 		public ICommand LoadMoreMediaCommand { get; private set; }
 		public ICommand ChatpageSendImageCommand { get; private set; }
 		public ICommand ChatpageSendFileCommand { get; private set; }
+		public ICommand SendFileCommand { get; private set; }
 		public ICommand ChatpageSelectEmojiCommand { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
 
 		protected readonly IViewModelFactory _factory;
-        protected readonly ChatConnection _connection;
-        protected readonly IAppSession _appSession;
-		
+		protected readonly ChatConnection _connection;
+		protected readonly IAppSession _appSession;
+
 		public ConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) {
 			Messages = new ObservableCollection<MessageViewModel>();
 			Medias = new ObservableCollection<MessageViewModel>();
 			LimitShowMedias = new ObservableCollection<MessageViewModel>();
 			Medias.CollectionChanged += LimitShowUtils.CreateHandler(Medias, LimitShowMedias, 0, MAX_SHOW);
+			Attachments = new ObservableCollection<MessageViewModel>();
+			LimitAttachments = new ObservableCollection<MessageViewModel>();
+			Attachments.CollectionChanged += LimitShowUtils.CreateHandler(Attachments, LimitAttachments, 0, MAX_SHOW);
 			GroupBubbles = new ObservableCollection<GroupBubbleViewModel>();
 			_factory = factory;
 			_connection = chatConnection;
 			_appSession = appSession;
-			
+
 			SelectCommand = new RelayCommand<object>(null, o => SelectAction?.Invoke(this));
 			SelectMediaCommand = new RelayCommand<MediaViewModel>(null, SelectMedia);
 			InitializeCommand.Execute(null);
 			FirstSelectCommand = new InitializeCommand(FirstSelectLoad);
 			SendTextMessageCommand = new RelayCommand<object>(null, o => SendTextMessage());
-            EndLineTextCommand = new RelayCommand<object>(null, o => Texting += (Environment.NewLine));
+			EndLineTextCommand = new RelayCommand<object>(null, o => Texting += (Environment.NewLine));
 			LoadMoreCommand = new RelayCommand<object>(null, o => LoadMessages());
 			LoadMoreMediaCommand = new RelayCommand<object>(null, o => LoadMedias());
 			SelectAction += (vm) => FirstSelectCommand.Execute(null);
 			ChatpageSendImageCommand = new RelayCommand<object>(null, SelectImage);
 			ChatpageSendFileCommand = new RelayCommand<object>(null, SelectVideo);
+			SendFileCommand = new RelayCommand<object>(null, SelectFile);
 			ChatpageSelectEmojiCommand = new RelayCommand<object>(null, SelectEmoji);
 		}
 
-	
-		private void SelectEmoji(object para)
-        {
+
+		private void SelectEmoji(object para) {
 			Texting += para.ToString();
-			
-        }
-		private void SelectImage(object para=null) {
+
+		}
+		private void SelectImage(object para = null) {
 			List<string> paths = new List<string>();
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -245,28 +254,25 @@ namespace UI.ViewModels {
 
 
 			// Get the selected file name and display in a TextBox 
-			if (result == true)
-			{
+			if (result == true) {
 				// Open document 
 				string Selectedfilename = dlg.FileName;
 				paths.Add(Selectedfilename);
 				FileAPI.UploadMedia(this.ConversationId, paths, map => {
-					foreach(string name in map.Keys)
-                    {
+					foreach (string name in map.Keys) {
 						string id = map[name];
 						ImageMessage img = new ImageMessage();
 						img.FileName = name;
 						img.FileID = id;
-						App.Current.Dispatcher.Invoke(()=> {
+						App.Current.Dispatcher.Invoke(() => {
 							SendMessage(img);
 						});
-                    }
+					}
 				}
 				, error => { });
 			}
 		}
-		private void SelectVideo(object para = null)
-		{
+		private void SelectVideo(object para = null) {
 			List<string> paths = new List<string>();
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -278,14 +284,12 @@ namespace UI.ViewModels {
 
 
 			// Get the selected file name and display in a TextBox 
-			if (result == true)
-			{
+			if (result == true) {
 				// Open document 
 				string Selectedfilename = dlg.FileName;
 				paths.Add(Selectedfilename);
 				FileAPI.UploadMedia(this.ConversationId, paths, map => {
-					foreach (string name in map.Keys)
-					{
+					foreach (string name in map.Keys) {
 						string id = map[name];
 						VideoMessage vid = new VideoMessage();
 						vid.FileName = name;
@@ -300,28 +304,79 @@ namespace UI.ViewModels {
 			}
 		}
 
-		private void SendMessage(AbstractMessage msg)
-        {
+		private void SelectFile(object para = null) {
+			List<string> paths = new List<string>();
+			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+			dlg.Filter = "All Files (*.*)|*.*";
+
+
+			// Display OpenFileDialog by calling ShowDialog method 
+			Nullable<bool> result = dlg.ShowDialog();
+
+
+			// Get the selected file name and display in a TextBox 
+			if (result == true) {
+				// Open document 
+				string Selectedfilename = dlg.FileName;
+				paths.Add(Selectedfilename);
+				FileAPI.UploadAttachment(this.ConversationId, paths, map => {
+					foreach (string name in map.Keys) {
+						string id = map[name];
+						AttachmentMessage vid = new AttachmentMessage();
+						vid.FileName = name;
+						vid.FileID = id;
+						App.Current.Dispatcher.Invoke(() => {
+							SendMessage(vid);
+						});
+					}
+
+				}
+					, error => { });
+			}
+		}
+		private void SendMessage(AbstractMessage msg) {
 			msg.SenderID = _appSession.SessionID;
 			AddMessage(msg);
+			if (msg is MediaAbstractMessage) {
+				AddMedia(msg);
+			}
 			SendMessage packet = new SendMessage();
 			packet.Message = msg;
 			packet.ConversationID = ConversationId;
 			_connection.Send(packet);
+		}
 
+		protected void AddAttachment(AttachmentMessage message, bool loadFromServer = false) {
+			MessageViewModel messageViewModel = _factory.Create<AttachmentMessageViewModel>();
+
+			if (messageViewModel != null) {
+				messageViewModel.ConversationId = ConversationId;
+				messageViewModel.Message = message;
+				//Prevent from async add when receive message
+				Application.Current.Dispatcher.Invoke(() => {
+					if (loadFromServer) {
+						Attachments.Add(messageViewModel);
+					} else {
+						Attachments.Insert(0, messageViewModel);
+					}
+					if (messageViewModel is MediaViewModel) {
+						Console.WriteLine("MediaVM: " + ((MediaViewModel) messageViewModel).MediaInfo.ThumbURL);
+					}
+				});
+			}
 		}
 
 		private void SelectMedia(MediaViewModel Parameter) {
 			if (Parameter == null || !(Parameter is MediaViewModel))
 				return;
 			ShowingMedia = Parameter as MediaViewModel;
-        }
+		}
 
-        public void SendStickerMessage(Sticker sticker)
-        {
-            StickerMessage msg = new StickerMessage();
-            msg.Sticker = sticker;
-            SendMessage(msg);
+		public void SendStickerMessage(Sticker sticker) {
+			StickerMessage msg = new StickerMessage();
+			msg.Sticker = sticker;
+			SendMessage(msg);
 		}
 
 		private void SendTextMessage() {
@@ -330,7 +385,7 @@ namespace UI.ViewModels {
 			Texting = "";
 			SendMessage(textMessage);
 		}
-		
+
 		public void ReceiveMessage(AbstractMessage message) {
 			AddMessage(message);
 			if (message is MediaAbstractMessage) {
@@ -380,8 +435,7 @@ namespace UI.ViewModels {
 					MediaAbstractMessage message = null;
 					if (MediaInfo.IsVideoFileName(fileName)) {
 						message = new VideoMessage();
-					}
-					else {
+					} else {
 						message = new ImageMessage();
 					}
 					message.FileName = fileName;
@@ -390,18 +444,18 @@ namespace UI.ViewModels {
 				}
 			});
 		}
-		
+
 		protected void AddMedia(AbstractMessage message, bool loadFromServer = false) {
 			MessageViewModel messageViewModel = null;
 			switch ((BubbleType) message.GetPreviewCode()) {
 				case BubbleType.Image: {
-					messageViewModel = _factory.Create<ImageMessageViewModel>();
-					break;
-				}
+						messageViewModel = _factory.Create<ImageMessageViewModel>();
+						break;
+					}
 				case BubbleType.Video: {
-					messageViewModel = _factory.Create<VideoMessageViewModel>();
-					break;
-				}
+						messageViewModel = _factory.Create<VideoMessageViewModel>();
+						break;
+					}
 			}
 
 			if (messageViewModel != null) {
@@ -419,7 +473,7 @@ namespace UI.ViewModels {
 					}
 					if (messageViewModel is MediaViewModel) {
 						Console.WriteLine("MediaVM: " + ((MediaViewModel) messageViewModel).MediaInfo.ThumbURL);
-					}					
+					}
 				});
 			}
 		}
@@ -431,7 +485,7 @@ namespace UI.ViewModels {
 		public void LoadMessages(bool loadConversation = false, int quantity = 10) {
 			if (LastMessId < 0)
 				return;
-				
+
 			GetMessageFromConversation msgPacket = new GetMessageFromConversation();
 			msgPacket.ConversationID = ConversationId;
 			msgPacket.MessagePosition = LastMessId;
@@ -450,73 +504,72 @@ namespace UI.ViewModels {
 			MessageViewModel messageViewModel = null;
 			switch ((BubbleType) message.GetPreviewCode()) {
 				case BubbleType.Attachment: {
-					
-					break;
-				}
+						messageViewModel = _factory.Create<AttachmentMessageViewModel>();
+						break;
+					}
 				case BubbleType.Image: {
-					messageViewModel = _factory.Create<ImageMessageViewModel>();
-					break;
-				}
-				case BubbleType.Sticker:
-                {
-                    messageViewModel = _factory.Create<StickerMessageViewModel>();
-					StickerMessage tmp = message as StickerMessage;
-                    tmp.Sticker = Sticker.LoadedStickers[tmp.Sticker.ID];
-                    break;
-				}
+						messageViewModel = _factory.Create<ImageMessageViewModel>();
+						break;
+					}
+				case BubbleType.Sticker: {
+						messageViewModel = _factory.Create<StickerMessageViewModel>();
+						StickerMessage tmp = message as StickerMessage;
+						tmp.Sticker = Sticker.LoadedStickers[tmp.Sticker.ID];
+						break;
+					}
 				case BubbleType.Text: {
-					messageViewModel = _factory.Create<TextMessageViewModel>();
-					break;
-				}
+						messageViewModel = _factory.Create<TextMessageViewModel>();
+						break;
+					}
 				case BubbleType.Video: {
-					messageViewModel = _factory.Create<VideoMessageViewModel>();
-					break;
-				}
+						messageViewModel = _factory.Create<VideoMessageViewModel>();
+						break;
+					}
 			}
 
 			if (messageViewModel != null) {
 				if (message is MediaAbstractMessage) {
 					Console.WriteLine("Message: " + ((MediaAbstractMessage) message).FileID);
-                }
+				}
+				if (message is AttachmentMessage attachment) {
+					AddAttachment(attachment, loadFromServer);
+				}
 				messageViewModel.ConversationId = ConversationId;
 				messageViewModel.Message = message;
 				//Prevent from async add when receive message
-				Application.Current.Dispatcher.Invoke(() =>
-                {
-                    GroupBubbleViewModel groupBubbleView = null;
-                    if (loadFromServer) {
-                        Messages.Insert(0, messageViewModel);
-                        groupBubbleView = GroupBubbles.ElementAtOrDefault(0);
-                    } else {
-                        Messages.Add(messageViewModel);
-                        groupBubbleView = GroupBubbles.ElementAtOrDefault(GroupBubbles.Count - 1);
+				Application.Current.Dispatcher.Invoke(() => {
+					GroupBubbleViewModel groupBubbleView = null;
+					if (loadFromServer) {
+						Messages.Insert(0, messageViewModel);
+						groupBubbleView = GroupBubbles.ElementAtOrDefault(0);
+					} else {
+						Messages.Add(messageViewModel);
+						groupBubbleView = GroupBubbles.ElementAtOrDefault(GroupBubbles.Count - 1);
 
-                    }
+					}
 
-                    bool createNew = false;
-                    if (groupBubbleView == null || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0)
-                    {
-                        groupBubbleView = new GroupBubbleViewModel();
-                        groupBubbleView.IsReceive = messageViewModel.IsReceivedMessage;
-                        groupBubbleView.SenderID = messageViewModel.Message.SenderID;
-                        createNew = true;
-                    }
+					bool createNew = false;
+					if (groupBubbleView == null || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0) {
+						groupBubbleView = new GroupBubbleViewModel();
+						groupBubbleView.IsReceive = messageViewModel.IsReceivedMessage;
+						groupBubbleView.SenderID = messageViewModel.Message.SenderID;
+						createNew = true;
+					}
 					groupBubbleView.Messages.Add(messageViewModel);
-                    if (createNew)
-                    {
+					if (createNew) {
 						if (loadFromServer)
 							GroupBubbles.Insert(0, groupBubbleView);
 						else
 							GroupBubbles.Add(groupBubbleView);
-                    }
-                });
+					}
+				});
 			}
 		}
 
 		#endregion
 
 		protected override void Initialize(object parameter = null) {
-			
+
 		}
 
 	}
