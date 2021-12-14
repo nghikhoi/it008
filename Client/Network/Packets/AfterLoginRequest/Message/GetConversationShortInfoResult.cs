@@ -10,12 +10,14 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
     {
         public string ConversationID { get; set; }
         public string ConversationName { get; set; }
+        public string ConversationAvatar { get; set; }
         public long LastActive { get; set; }
 
         public void Decode(IByteBuffer buffer)
         {
             ConversationID = ByteBufUtils.ReadUTF8(buffer);
             ConversationName = ByteBufUtils.ReadUTF8(buffer);
+            ConversationAvatar = ByteBufUtils.ReadUTF8(buffer);
             LastActive = buffer.ReadLong();
         }
 

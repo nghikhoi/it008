@@ -25,7 +25,11 @@ namespace UI.ViewModels {
 
         public string UserID
         {
-            get => authenticator.CurrentSession.SessionID;
+            get => _appSession.SessionID;
+            set
+            {
+                OnPropertyChanged(nameof(UserID));
+            }
         }
 
         private ObservableCollection<ConversationViewModel> _conversations;
@@ -98,6 +102,7 @@ namespace UI.ViewModels {
         private readonly IAuthenticator authenticator;
         private readonly IUserProfileHolder _userProfileHolder;
         private readonly PacketRespondeListener _respondeListener;
+        private readonly IAppSession _appSession;
 
         #endregion
 
@@ -108,13 +113,14 @@ namespace UI.ViewModels {
 
         #endregion
 
-        public HomeViewModel(PacketRespondeListener respondeListener, IViewModelFactory viewModelFactory, IAuthenticator authenticator, IUserProfileHolder userProfileHolder) : base() {
+        public HomeViewModel(PacketRespondeListener respondeListener, IAppSession appSession, IViewModelFactory viewModelFactory, IAuthenticator authenticator, IUserProfileHolder userProfileHolder) : base() {
             _conversations = new ObservableCollection<ConversationViewModel>();
             _searchingConversations = new ObservableCollection<FriendConversationViewModel>();
             _friendList = new ObservableCollection<FriendConversationViewModel>();
             _originFriendList = new ObservableCollection<FriendConversationViewModel>();
             _notifications = new ObservableCollection<NotificationViewModel>();
-            
+            _appSession = appSession;
+
             _respondeListener = respondeListener;
             _respondeListener.ReceiveMessageEvent += ReceiveMessage;
             _respondeListener.ReceiveNotificationEvent += ReceiveNotification;
@@ -192,6 +198,7 @@ namespace UI.ViewModels {
                         viewModel.ConversationId = infoResult.ConversationID;
                         viewModel.ConversationName = infoResult.ConversationName;
                         viewModel.LastActive = infoResult.LastActive;
+                        viewModel.ConversationAvatar = infoResult.ConversationAvatar;
                         viewModel.SelectAction += SelectConversation;
                         Conversations.Add(viewModel);
                     });
