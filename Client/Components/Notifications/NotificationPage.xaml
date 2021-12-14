@@ -36,7 +36,7 @@
             <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                 <TextBlock FontSize="15"
                            Foreground="{StaticResource PrimaryHueDarkBrush}" FontWeight="DemiBold"
-                           HorizontalAlignment="Left" Margin="2,5,0,0" Width="75"
+                           HorizontalAlignment="Left" Margin="2,5,0,0.4" Width="109"
                            Text="{DynamicResource Notfication.label}" />
             </DockPanel>
 

@@ -83,4 +83,9 @@
     
     <!--Download label-->
     <sys:String x:Key="DownloadLabel">Download</sys:String>
+    
+    <!--medai gallery tab-->
+    <sys:String x:Key="Gallery.lib">Library</sys:String>
+    <sys:String x:Key="Gallery.media">Pictures / Videos</sys:String>
+    <sys:String x:Key="Gallery.Files">Files</sys:String>
 </ResourceDictionary>
