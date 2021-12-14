@@ -188,7 +188,7 @@
                 <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}"
                         Command="{Binding LoadMoreCommand}"
                         BorderBrush="{x:Null}" Foreground="#DD000000">
-                    <TextBlock Text="See more..."
+                    <TextBlock Text="{DynamicResource ChatPage.Seemore}"
                                Style="{StaticResource TextBlockHover}"
                                Foreground="{DynamicResource ForegroundResource}" />
                 </Button>

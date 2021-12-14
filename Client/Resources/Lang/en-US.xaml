@@ -45,6 +45,7 @@
     <!--Chat page-->
     <sys:String x:Key="ChatPage.ChatInputInstruct">Input message here...</sys:String>
     <sys:String x:Key="ChatPage.Status">Online</sys:String>
+    <sys:String x:Key="ChatPage.Seemore">See more...</sys:String>
 
     <!--ucListRecentMessage-->
     <sys:String x:Key="RecentMessage.Info">Profile</sys:String>
@@ -68,4 +69,18 @@
     <sys:String x:Key="Notfication.label">Notification</sys:String>
     <sys:String x:Key="Notfication.latest">Latest</sys:String>
     <sys:String x:Key="Notfication.requests">Friend requests</sys:String>
+    
+    <!--conversation list-->
+    <sys:String x:Key="Conversation.Recent">Recent</sys:String>
+    <sys:String x:Key="Conversation.Friends">Friends</sys:String>
+
+    <sys:String x:Key="Hint.Search">Searching...</sys:String>
+
+    <!--conversation slide bar-->
+    <sys:String x:Key="ConversationInf.Label">Conversation infomation</sys:String>
+    <sys:String x:Key="ConversationInf.Medias">Pictures / Videos / Files</sys:String>
+    <sys:String x:Key="ConversationInf.SeeAll">See all</sys:String>
+    
+    <!--Download label-->
+    <sys:String x:Key="DownloadLabel">Download</sys:String>
 </ResourceDictionary>

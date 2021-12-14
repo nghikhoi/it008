@@ -4,7 +4,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI"
              xmlns:viewModels="clr-namespace:UI.ViewModels"
-             Startup="Application_Startup">
+             Startup="Application_Startup"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,6 +33,9 @@
                     <viewModels:EmptyViewModel x:Key="EmptyViewModel"/>
                 </ResourceDictionary>
 
+                <ResourceDictionary>
+                    <sys:String x:Key="AppName">Monsuta</sys:String>
+                </ResourceDictionary>
                 <!-- Default Language -->
                 <ResourceDictionary Source="/Resources/Lang/vi-VN.xaml"/>
                 <ResourceDictionary Source="/XAMLResources/GroupBubbleTemplateSelector.xaml"></ResourceDictionary>

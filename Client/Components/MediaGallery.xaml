@@ -30,7 +30,7 @@
                         <StackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <materialDesign:PackIcon Kind="ArrowDownBoldCircleOutline" Height="35" Width="20"
                                                      VerticalContentAlignment="Center" />
-                            <Label Content="Tải xuống" Foreground="#FFA2A2A2" Height="30"
+                            <Label Content="{DynamicResource DownloadLabel}" Foreground="#FFA2A2A2" Height="30"
                                    VerticalContentAlignment="Center" />
                         </StackPanel>
                     </Button>
