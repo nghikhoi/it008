@@ -36,8 +36,9 @@
                         <Border Background="{DynamicResource BackgroundOpacityBrush}">
                             <TextBlock FontSize="16" FontWeight="DemiBold"
                                        Foreground="{DynamicResource PrimaryColor}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center">
-                                Thông tin cuộc trò chuyện
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Text="{DynamicResource ConversationInf.Label}">
+                                
                             </TextBlock>
                         </Border>
 
@@ -101,7 +102,8 @@
                                     <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
                                               Background="Transparent"
                                               HorizontalAlignment="Left"
-                                              Header="Ảnh / Video"
+                                              Header="{DynamicResource ConversationInf.Medias}"
+
                                               Foreground="{DynamicResource ForegroundResource}"
                                               materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
                                         <StackPanel
@@ -143,7 +145,7 @@
                                                     x:Name="BtnMediaGallery"
                                                     Height="30"
                                                     Foreground="{DynamicResource ForegroundResource}"
-                                                    Content="Xem tất cả" />
+                                                    Content="{DynamicResource ConversationInf.SeeAll}" />
                                         </StackPanel>
                                     </Expander>
                                     <!--<Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">

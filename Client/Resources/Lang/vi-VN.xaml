@@ -45,7 +45,8 @@
     <!--Chat page-->
     <sys:String x:Key="ChatPage.ChatInputInstruct">Nhập tin nhắn...</sys:String>
     <sys:String x:Key="ChatPage.Status">Đang hoạt động</sys:String>
-    
+    <sys:String x:Key="ChatPage.Seemore">Xem thêm...</sys:String>
+
     <!--ucListRecentMessage-->
     <sys:String x:Key="RecentMessage.Info">Thông tin</sys:String>
     <sys:String x:Key="RecentMessage.Logout">Đăng xuất</sys:String>
@@ -68,4 +69,18 @@
     <sys:String x:Key="Notfication.label">Thông báo</sys:String>
     <sys:String x:Key="Notfication.latest">Mới nhất</sys:String>
     <sys:String x:Key="Notfication.requests">Thông báo</sys:String>
+
+    <!--conversation list-->
+    <sys:String x:Key="Conversation.Recent">Gần đây</sys:String>
+    <sys:String x:Key="Conversation.Friends">Bạn bè</sys:String>
+
+    <sys:String x:Key="Hint.Search">Tìm kiếm...</sys:String>
+
+    <!--conversation slide bar-->
+    <sys:String x:Key="ConversationInf.Label">Thông tin cuộc trò chuyện</sys:String>
+    <sys:String x:Key="ConversationInf.Medias">Ảnh / Video / Tệp</sys:String>
+    <sys:String x:Key="ConversationInf.SeeAll">Xm tất cả</sys:String>
+
+    <!--Download label-->
+    <sys:String x:Key="DownloadLabel">Tải xuống</sys:String>
 </ResourceDictionary>
