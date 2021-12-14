@@ -373,6 +373,10 @@
       <DependentUpon>TextBubble.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ChatItem\ThumbnailBubble.xaml.cs" />
+    <Compile Include="Components\EmojiPicker.xaml.cs">
+      <DependentUpon>EmojiPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Markups\BoolInverter.cs" />
     <Compile Include="Views\ConversationListTabs.xaml.cs" />
     <Compile Include="Components\Download\DownloadWindow.xaml.cs">
       <DependentUpon>DownloadWindow.xaml</DependentUpon>
@@ -721,6 +725,10 @@
     </Page>
     <Page Include="Components\ChatItem\ThumbnailBubble.xaml" />
     <Page Include="Components\ContactCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\EmojiPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
