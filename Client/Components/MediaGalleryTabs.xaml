@@ -5,7 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:UI.Components"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:command="clr-namespace:UI.Command"
+             xmlns:markups="clr-namespace:UI.Utils.Markups"
              mc:Ignorable="d" Background="{DynamicResource BackgroundResource}">
+    <UserControl.Resources>
+        <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -46,7 +52,36 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                         <DockPanel Margin="0,8,0,0">
                             <ScrollViewer x:Name="MediaList" Margin="0" DockPanel.Dock="Top">
-                                <!--load list media-->
+                                <ItemsControl ItemsSource="{Binding LimitShowMedias}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Margin="3 0 0 0" Width="240" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Viewbox Width="78" Height="78">
+                                                <Grid>
+                                                    <local:ImageLoader DataContext="{Binding MediaInfo}"
+                                                                    MediaInfo="{Binding ThumbURL}" />
+                                                    <Button Background="Transparent"
+                                                                        BorderBrush="Transparent"
+                                                                        Command="{Binding Path=Data, Source={StaticResource SelectMediaCommand}}"
+                                                                        CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Self}}"
+                                                                        Width="Auto" Height="Auto">
+                                                        <b:Interaction.Triggers>
+                                                            <b:EventTrigger EventName="Click">
+                                                                <b:InvokeCommandAction
+                                                                                Command="{x:Static command:MediaWindowCommand.OpenMediaWindowCommand}"
+                                                                                CommandParameter="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type local:ConversationInfoSlideBar}}}" />
+                                                            </b:EventTrigger>
+                                                        </b:Interaction.Triggers>
+                                                    </Button>
+                                                </Grid>
+                                            </Viewbox>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </ScrollViewer>
                         </DockPanel>
                     </ScrollViewer>
@@ -56,9 +91,29 @@
                 <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect None}">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0">
                         <DockPanel Margin="0,8,0,0">
-                            <!--<ScrollViewer x:Name="FilesList" Margin="0" DockPanel.Dock="Top" >
-                            --><!--load list files--><!--
-                        </ScrollViewer>-->
+                            <ScrollViewer Margin="0" DockPanel.Dock="Top">
+                                <ItemsControl ItemsSource="{Binding LimitAttachments}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Margin="3 0 0 0" Width="240"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Background="{x:Null}"
+                                                           Grid.IsSharedSizeScope="True"
+                                                           TextWrapping="Wrap"
+                                                           Text="{Binding FileName}" FontSize="18"
+                                                           Foreground="#FF0645AD" Margin="10" TextDecorations="Underline" />
+                                                <Button Background="Transparent" Foreground="Transparent" BorderBrush="Transparent"
+                                                        Command="{Binding DownloadCommand}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
                         </DockPanel>
                     </ScrollViewer>
                 </materialDesign:TransitionerSlide>

@@ -13,11 +13,11 @@
     </Style>
     
     <DataTemplate x:Key="GroupBubbleSender">
-        <uc:GroupBubble Style="{StaticResource BubbleAlign}"></uc:GroupBubble>
+        <uc:GroupBubble Margin="0, 1, 0, 1" Style="{StaticResource BubbleAlign}"></uc:GroupBubble>
     </DataTemplate>
 
     <DataTemplate x:Key="GroupBubbleReciever">
-        <uc:GroupBubbleRcv Style="{StaticResource BubbleAlign}"></uc:GroupBubbleRcv>
+        <uc:GroupBubbleRcv Margin="0, 1, 0, 1" Style="{StaticResource BubbleAlign}"></uc:GroupBubbleRcv>
     </DataTemplate>
     
 </ResourceDictionary>

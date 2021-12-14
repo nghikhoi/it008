@@ -214,6 +214,7 @@ namespace UI.ViewModels {
                         viewModel.ConversationName = info.FirstName + " " + info.LastName;
                         viewModel.LastActive = info.LastActive;
                         viewModel.UserId = info.ID;
+                        viewModel.FullName = info.FirstName + " " + info.LastName;
                         viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
                         viewModel.SelectAction += SelectConversation;
                         OriginFriendList.Add(viewModel);

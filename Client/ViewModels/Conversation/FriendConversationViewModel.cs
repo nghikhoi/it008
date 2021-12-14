@@ -22,7 +22,16 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(UserId));
 			}
 		}
-		
+
+        private string _fullName;
+        public string FullName {
+            get => _fullName;
+            set {
+                _fullName = value;
+                OnPropertyChanged(nameof(FullName));
+            }
+        }
+
 		private Relationship _relationship;
 		public Relationship Relationship {
 			get => _relationship;
