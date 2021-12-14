@@ -342,6 +342,7 @@
     <Compile Include="Command\InitializeCommand.cs" />
     <Compile Include="Command\MediaWindowCommand.cs" />
     <Compile Include="Command\ThemeSelectCommand.cs" />
+    <Compile Include="Command\LanguageCommand.cs" />
     <Compile Include="Command\TitleBarCommand.cs" />
     <Compile Include="Command\UpdateCurrentViewModelCommand.cs" />
     <Compile Include="Components\AnnouncementDialog.xaml.cs">
@@ -379,6 +380,7 @@
     <Compile Include="Components\UserInformationDisplayer.xaml.cs">
       <DependentUpon>UserInformationDisplayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Markups\Comparator.cs" />
     <Compile Include="Utils\Markups\BoolInverter.cs" />
     <Compile Include="Views\ConversationListTabs.xaml.cs" />
     <Compile Include="Components\Download\DownloadWindow.xaml.cs">

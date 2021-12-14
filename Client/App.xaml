@@ -5,7 +5,8 @@
              xmlns:local="clr-namespace:UI"
              xmlns:viewModels="clr-namespace:UI.ViewModels"
              Startup="Application_Startup"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:lang="clr-namespace:UI.Lang">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -31,6 +32,7 @@
                 </ResourceDictionary>
                 <ResourceDictionary>
                     <viewModels:EmptyViewModel x:Key="EmptyViewModel"/>
+                    <lang:LanguageViewModel x:Key="LanguageViewModel"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary>
