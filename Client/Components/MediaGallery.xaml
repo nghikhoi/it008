@@ -7,8 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              xmlns:message="clr-namespace:UI.ViewModels"
-             mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand" />
     </UserControl.Resources>
@@ -35,7 +34,7 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <DockPanel Margin="10,0,10,10" DockPanel.Dock="Bottom">
+                <DockPanel DockPanel.Dock="Bottom">
                     <ScrollViewer DockPanel.Dock="Bottom" x:Name="GalleryScroller"
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Hidden">

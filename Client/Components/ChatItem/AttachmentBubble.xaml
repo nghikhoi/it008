@@ -12,7 +12,7 @@
                        Grid.IsSharedSizeScope="True"
                        TextWrapping="Wrap"
                        Text="{Binding FileName}" FontSize="18"
-                       Foreground="#FF0645AD" Margin="10" TextDecorations="Underline" />
+                       Foreground="#FF0645AD" Margin="15" TextDecorations="Underline" />
             <Button Background="Transparent" Foreground="Transparent" BorderBrush="Transparent"
                     Command="{Binding DownloadCommand}" />
         </Grid>
