@@ -376,6 +376,9 @@
     <Compile Include="Components\EmojiPicker.xaml.cs">
       <DependentUpon>EmojiPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\UserInformationDisplayer.xaml.cs">
+      <DependentUpon>UserInformationDisplayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Markups\BoolInverter.cs" />
     <Compile Include="Views\ConversationListTabs.xaml.cs" />
     <Compile Include="Components\Download\DownloadWindow.xaml.cs">
@@ -731,6 +734,10 @@
     <Page Include="Components\EmojiPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\UserInformationDisplayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ConversationListTabs.xaml" />
     <Page Include="Components\Download\DownloadWindow.xaml">

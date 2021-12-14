@@ -11,10 +11,6 @@
              d:DesignHeight="200" d:DesignWidth="250">
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="201*" />
-                <ColumnDefinition Width="41*" />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>

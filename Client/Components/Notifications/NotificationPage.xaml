@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              xmlns:local="clr-namespace:UI.Components"
+             Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <UserControl.Resources>

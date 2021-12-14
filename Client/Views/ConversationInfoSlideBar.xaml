@@ -144,6 +144,7 @@
                                             <Button Style="{StaticResource MaterialDesignFlatButton}"
                                                     x:Name="BtnMediaGallery"
                                                     Height="30"
+                                                    Click="BtnMediaGallery_Click_1"
                                                     Foreground="{DynamicResource ForegroundResource}"
                                                     Content="{DynamicResource ConversationInf.SeeAll}" />
                                         </StackPanel>
@@ -153,6 +154,50 @@
                                     </Button>-->
                                 </StackPanel>
 
+                                <StackPanel x:Name="attachment">
+                                    <Expander Width="{Binding ElementName=panel, Path=ActualWidth}" IsExpanded="True"
+                                              Background="Transparent"
+                                              HorizontalAlignment="Left"
+                                              Header="{DynamicResource ConversationInf.Medias}"
+                                              Foreground="{DynamicResource ForegroundResource}"
+                                              materialDesign:ExpanderAssist.HorizontalHeaderPadding="12,4,4,4">
+                                        <StackPanel
+                                            Orientation="Vertical"
+                                            Width="{Binding ElementName=panel, Path=ActualWidth}"
+                                            TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                            <ItemsControl ItemsSource="{Binding LimitAttachments}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Margin="3 0 0 0" Width="240"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <TextBlock VerticalAlignment="Center"
+                                                                       Background="{x:Null}"
+                                                                       Grid.IsSharedSizeScope="True"
+                                                                       TextWrapping="Wrap"
+                                                                       Text="{Binding FileName}" FontSize="18"
+                                                                       Foreground="#FF0645AD" Margin="10" TextDecorations="Underline" />
+                                                            <Button Background="Transparent" Foreground="Transparent" BorderBrush="Transparent"
+                                                                    Command="{Binding DownloadCommand}" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                    x:Name="b"
+                                                    Height="30"
+                                                    Click="BtnMediaGallery_Click_1"
+                                                    Foreground="{DynamicResource ForegroundResource}"
+                                                    Content="{DynamicResource ConversationInf.SeeAll}" />
+                                        </StackPanel>
+                                    </Expander>
+                                    <!--<Button x:Name="BtnMediaGallery" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryColor}" HorizontalContentAlignment="Left">
+                                        Ảnh / Video / Tệp
+                                    </Button>-->
+                                </StackPanel>
                                 <Border Height="2" Background="{StaticResource BackgroundOpacityBrush}"></Border>
 
                                 <StackPanel>
@@ -183,11 +228,12 @@
                                 HorizontalAlignment="Left"
                                 Margin="12 10 0 0"
                                 BorderBrush="{x:Null}"
+                                Click="btnBack_Click_1"
                                 Style="{StaticResource IconButton}"
                                 Width="24" Height="24" Padding="0" Panel.ZIndex="2">
                             <materialDesign:PackIcon Kind="ArrowLeftThick" Width="24" Height="24" />
                         </Button>
-                        <uc:MediaGalleryTabs />
+                        <uc:MediaGalleryTabs/>
                     </Grid>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
