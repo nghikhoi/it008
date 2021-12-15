@@ -53,7 +53,7 @@ namespace UI.ViewModels {
 
         protected void ReceiveNotification(ISession session, GetNotificationsResult result)
         {
-			result.Notifications.ForEach(AddNotification);
+			App.Current.Dispatcher.Invoke(() => result.Notifications.ForEach(AddNotification));
         }
 		
 		private void loadNotifications() {
@@ -84,6 +84,7 @@ namespace UI.ViewModels {
 		private void AddFriendNotification(AbstractNotification info) {
 			FriendRequestNotificationViewModel viewModel = _viewModelFactory.Create<FriendRequestNotificationViewModel>();
 			viewModel.Info = (FriendRequestNotification) info;
+            viewModel.OnResponse += result => NewestNotifications.Remove(viewModel);
 			NewestNotifications.Add(viewModel);
 		}
 

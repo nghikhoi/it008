@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UI.Components.ConversationListTabs"
+﻿<UserControl x:Class="UI.Views.ConversationListTabs"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,7 +14,8 @@
              d:DesignHeight="450" MinWidth="200" MaxWidth="350"
              x:Name="_this">
     <UserControl.Resources>
-        <markups:BindingProxy Data="{Binding SearchCommand}" x:Key="SearchCommand"/>
+        <markups:BindingProxy Data="{Binding SearchCommand}" x:Key="SearchCommand" />
+        <markups:BindingProxy Data="{Binding UserID, diag:PresentationTraceSources.TraceLevel=High}" x:Key="UID" />
     </UserControl.Resources>
     <Border CornerRadius="4"
             BorderThickness="2"
@@ -23,25 +24,32 @@
             Padding="4">
         <Grid Margin="-3" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="48"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Width="{Binding ElementName=_this, Path=ActualWidth}">
                 <!--Popup settings-->
 
-                <Button x:Name="TogglePopupButton" Margin="8 0 0 0" Width="24" Height="24" HorizontalAlignment="Left"
-                        Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
-                        ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0"
-                        Click="OnAvatarClick">
-                    <!--binding avt-->
-                    <StackPanel>
-                        <components:AvatarDisplayer UserID="{Binding UserID}" Height="24"/>
-                    </StackPanel>
-                </Button>
+                <Grid Margin="8 0 0 0" Width="24" Height="24" HorizontalAlignment="Left">
+                    <materialDesign:Badged Badge="10">
+                        <Grid>
+                            <components:AvatarDisplayer
+                                UserID="{Binding Data, Source={StaticResource UID}, diag:PresentationTraceSources.TraceLevel=High}"
+                                Height="24" />
+                            <Button Width="24" Height="24"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
+                                    Background="Transparent"
+                                    Foreground="Transparent"
+                                    BorderBrush="Transparent"
+                                    ToolTip="MaterialDesignFloatingActionMiniLightButton" Padding="0"
+                                    Click="OnAvatarClick" />
+                        </Grid>
+                    </materialDesign:Badged>
+                </Grid>
 
                 <!--App Name-->
-                <TextBlock FontSize="15" Foreground="{DynamicResource PrimaryColor}"
+                <TextBlock FontSize="18" Foreground="{DynamicResource PrimaryColor}"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            FontFamily="Segoe Ui Bold" Text="{StaticResource AppName}">
                 </TextBlock>
@@ -49,7 +57,7 @@
                 <!--New Message Button-->
                 <Button x:Name="newMessage" DockPanel.Dock="Right" Padding="0" Background="{x:Null}"
                         BorderBrush="{x:Null}"
-                        Width="24" Height="24" HorizontalAlignment="Right"
+                        Width="32" Height="32" HorizontalAlignment="Right"
                         Margin="0,0,10,6" VerticalAlignment="Bottom">
                     <materialDesign:PackIcon HorizontalAlignment="Right" Kind="MessagePlus"
                                              Width="24" Height="24" Cursor="Hand"
@@ -135,7 +143,7 @@
                                     Height="32" Margin="4 0 4 0">
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Foreground="{StaticResource PrimaryHueDarkBrush}"
-                                                             Kind="AccountSearch" Margin="4 0 0 0"
+                                                             Kind="AccountSearch" Margin="10 0 0 0"
                                                              VerticalAlignment="Center" />
                                     <TextBox BorderThickness="0"
                                              materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -144,7 +152,7 @@
                                              RenderTransformOrigin="0.5,0.5"
                                              Text="{Binding SearchingString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              Margin="10,0,10,0" FontSize="12"
-                                             VerticalContentAlignment="Center" Width="140">
+                                             VerticalContentAlignment="Center" Width="285">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="TextChanged">
                                                 <i:InvokeCommandAction Command="{Binding SearchCommand}" />
@@ -155,7 +163,7 @@
                             </Border>
 
                             <ScrollViewer Margin="0, 10, 0, 0" DockPanel.Dock="Top">
-                                <StackPanel x:Name="listFriend">
+                                <StackPanel>
                                     <ItemsControl ItemsSource="{Binding SearchingFriendList}">
                                         <ItemsControl.Resources>
                                             <DataTemplate DataType="{x:Type vm:FriendConversationViewModel}">

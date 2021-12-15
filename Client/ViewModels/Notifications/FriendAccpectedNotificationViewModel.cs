@@ -1,5 +1,4 @@
-﻿using UI.Lang;
-using UI.Models.Notification;
+﻿using UI.Models.Notification;
 using UI.Network;
 
 namespace UI.ViewModels {

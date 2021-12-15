@@ -1,53 +1,14 @@
-﻿using System.Collections;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace UI.Components
+namespace UI.Views
 {
     /// <summary>
     /// Interaction logic for ucListRecentMessage.xaml
     /// </summary>
     public partial class ConversationListTabs : UserControl {
         private Border[] tabMarks = new Border[2];
-        public string UserID {
-            get;
-            set;
-        }
-        
-        public Button AvatarButton {
-            get => this.TogglePopupButton;
-            set {
-                this.TogglePopupButton = value;
-                SetValue(AvatarButtonProperty, value);
-            }
-        }
-        public static readonly DependencyProperty AvatarButtonProperty = DependencyProperty.Register(nameof(AvatarButton), typeof (IEnumerable), typeof (ConversationListTabs), new FrameworkPropertyMetadata((object) null));
-        public static readonly DependencyProperty ConversationListProperty = DependencyProperty.Register(nameof (ConversationList), typeof (IEnumerable), typeof (ConversationListTabs), new FrameworkPropertyMetadata((object) null));
-        public IEnumerable ConversationList
-        {
-            get => (IEnumerable) GetValue(ConversationListProperty);
-            set
-            {
-                if (value == null)
-                    this.ClearValue(ConversationListProperty);
-                else
-                    this.SetValue(ConversationListProperty, value);
-            }
-        }
-        
-        public static readonly DependencyProperty SearchingListProperty = DependencyProperty.Register(nameof (SearchingList), typeof (IEnumerable), typeof (ConversationListTabs), new FrameworkPropertyMetadata((object) null));
-        public IEnumerable SearchingList
-        {
-            get => (IEnumerable) GetValue(SearchingListProperty);
-            set
-            {
-                if (value == null)
-                    this.ClearValue(SearchingListProperty);
-                else
-                    this.SetValue(SearchingListProperty, value);
-            }
-        }
-        
+
         public static readonly RoutedEvent AvatarCheckedEvent = EventManager.RegisterRoutedEvent("AvatarCheckedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ConversationListTabs));
         public static readonly RoutedEvent AvatarUncheckedEvent = EventManager.RegisterRoutedEvent("AvatarUncheckedEvent", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ConversationListTabs));
         
@@ -123,36 +84,6 @@ namespace UI.Components
         {
             transitioner.SelectedIndex = 1;
             selectTab(1);
-        }
-
-
-        public void update_friend_list(object ob)
-        {
-            if(ob is ConversationItem)
-            {
-                this.listFriend.Children.Add(ob as ConversationItem);
-            }
-        }
-
-        public void update_recent_conversation(object ob)
-        {
-            if (ob is ConversationItem)
-            {
-                // this.RecentTab.Container.Children.Add(ob as ChatListItemControl);
-            }
-        }
-
-        public void clear_friend_list()
-        {
-            this.listFriend.Children.Clear();
-        }
-
-        public void clear_recent_conversation()
-        {
-            // this.RecentTab.Container.Children.Clear();
-        }
-        private void SearchAction(object sender, TextChangedEventArgs e)
-        {
         }
         #endregion
     }

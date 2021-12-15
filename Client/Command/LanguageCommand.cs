@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using UI.Lang;
+using UI.Services;
 
 namespace UI.Command
 {

@@ -336,7 +336,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AuthenticationWindow.xaml.cs">
+    <Compile Include="Views\Windows\AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Command\InitializeCommand.cs" />
@@ -374,12 +374,17 @@
       <DependentUpon>TextBubble.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ChatItem\ThumbnailBubble.xaml.cs" />
+    <Compile Include="Components\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\EmojiPicker.xaml.cs">
       <DependentUpon>EmojiPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\UserInformationDisplayer.xaml.cs">
       <DependentUpon>UserInformationDisplayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Exceptions\AlreadyExistsUserException.cs" />
+    <Compile Include="Utils\Converters\ColorBrushConverter.cs" />
     <Compile Include="Utils\Markups\Comparator.cs" />
     <Compile Include="Utils\Markups\BoolInverter.cs" />
     <Compile Include="Views\ConversationListTabs.xaml.cs" />
@@ -530,10 +535,10 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InitializableViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MediaGalleryWindow.xaml.cs">
+    <Compile Include="Views\Windows\MediaGalleryWindow.xaml.cs">
       <DependentUpon>MediaGalleryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
@@ -693,7 +698,7 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AuthenticationWindow.xaml">
+    <Page Include="Views\Windows\AuthenticationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -729,6 +734,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ChatItem\ThumbnailBubble.xaml" />
+    <Page Include="Components\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ContactCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -846,11 +855,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MediaGalleryWindow.xaml">
+    <Page Include="Views\Windows\MediaGalleryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

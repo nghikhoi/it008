@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Markup;
-using UI.Lang;
 using UI.Models;
 
 namespace UI.Utils.Converters {

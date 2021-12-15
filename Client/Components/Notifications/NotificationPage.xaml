@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
 
             <Grid VerticalAlignment="Center">
-                <local:AvatarDisplayer Height="64" Width="64" UserID="{Binding UserID}"/>
+                <local:AvatarDisplayer Height="64" Width="64" UserID="{Binding UserID}" />
                 <Button x:Name="InfOpenBtn"
                         BorderThickness="0"
                         Height="64" Width="64"
@@ -83,8 +83,8 @@
         <!--End-->
         <DockPanel MaxHeight="32" MinHeight="32" VerticalAlignment="Bottom">
             <!--LogOut Button-->
-            <local:LanguageSelector DockPanel.Dock="Left"/>
-            <local:ThemeSelector DockPanel.Dock="Left"/>
+            <local:LanguageSelector DockPanel.Dock="Left" />
+            <local:ThemeSelector DockPanel.Dock="Left" />
             <Button Name="LogOutBtn"
                     Click="LogOutBtn_OnClick"
                     HorizontalAlignment="Right"

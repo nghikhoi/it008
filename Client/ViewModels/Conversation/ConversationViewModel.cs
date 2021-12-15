@@ -12,7 +12,6 @@ using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
-using UI.ViewModels.Messages;
 
 namespace UI.ViewModels {
 	public class ConversationViewModel : InitializableViewModel {
@@ -109,7 +108,7 @@ namespace UI.ViewModels {
 			}
 		}
 
-		private bool _isOnline = true;
+		private bool _isOnline = false;
 		public bool IsOnline {
 			get => _isOnline;
 			set {
@@ -379,7 +378,10 @@ namespace UI.ViewModels {
 			SendMessage(msg);
 		}
 
-		private void SendTextMessage() {
+		private void SendTextMessage()
+        {
+            if (!FastCodeUtils.NotEmptyStrings(Texting))
+                return;
 			TextMessage textMessage = new TextMessage();
 			textMessage.Message = Texting;
 			Texting = "";
@@ -413,7 +415,7 @@ namespace UI.ViewModels {
 				//
 				// view.cleanChatPage();
 				LoadMessages(true);
-				LoadMedias(true, MAX_SHOW);
+				LoadMedias(true, 20);
 			});
 		}
 

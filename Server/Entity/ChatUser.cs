@@ -162,6 +162,7 @@ namespace ChatServer.Entity
                 return;
             Notifications.Add(notification.Id);
             new NotificationStore().Save(notification);
+            Save();
             if (ChatUserManager.IsOnline(ID))
             {
                 GetNotificationsResponse send = new GetNotificationsResponse();

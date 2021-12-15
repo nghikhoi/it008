@@ -7,6 +7,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              xmlns:message="clr-namespace:UI.ViewModels"
+             MinHeight="540" MinWidth="960"
+             d:DesignHeight="540" d:DesignWidth="960"
              mc:Ignorable="d">
     <UserControl.Resources>
         <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand" />
@@ -34,11 +36,12 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <DockPanel DockPanel.Dock="Bottom">
+                <DockPanel DockPanel.Dock="Bottom" Margin="10">
                     <ScrollViewer DockPanel.Dock="Bottom" x:Name="GalleryScroller"
+                                  Margin="0 10 0 0"
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                        <ItemsControl ItemsSource="{Binding LimitShowMedias}">
+                        <ItemsControl ItemsSource="{Binding Medias}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel x:Name="Gallery" Orientation="Horizontal" MaxHeight="90" Height="90">
@@ -64,12 +67,12 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
-                    <Grid Margin="0,0,0,0">
-                        <ProgressBar x:Name="LoadingAhihi" IsIndeterminate="True"
+                    <Grid Margin="0 0 0 0">
+                        <!--<ProgressBar x:Name="LoadingAhihi" IsIndeterminate="True"
                                      Style="{StaticResource MaterialDesignCircularProgressBar}"
                                      MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                      Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
-                                     Height="100" Width="100" IsTabStop="False" />
+                                     Height="100" Width="100" IsTabStop="False" />-->
                         <ContentControl Content="{Binding ShowingMedia}">
                             <ContentControl.Resources>
                                 <DataTemplate DataType="{x:Type message:VideoMessageViewModel}">

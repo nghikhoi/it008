@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              d:DesignWidth="300" MinWidth="40">
     <Grid>
-        <Border CornerRadius="15" 
+        <Border CornerRadius="15"
                 Background="{Binding BubbleColor}"
                 MinWidth="40" MaxWidth="300">
             <emoji:TextBlock VerticalAlignment="Center"
@@ -20,7 +20,7 @@
                              Grid.IsSharedSizeScope="True"
                              TextWrapping="Wrap"
                              Text="{Binding ElementName=_this, Path=ChatContent}" FontSize="18"
-                             Foreground="White" Margin="10, 5, 10, 5"/>
+                             Foreground="White" Margin="10, 5, 10, 5" />
         </Border>
     </Grid>
 </UserControl>

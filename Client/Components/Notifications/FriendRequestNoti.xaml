@@ -10,24 +10,24 @@
     <Border Background="Transparent">
         <Grid>
             <DockPanel>
-                <DockPanel Margin="4,4,0,0">
-                    <TextBlock x:Name="FriendName" Text="{Binding ElementName=_this, Path=SenderName}"
-                               FontFamily="Segoe UI Semibold" Margin="8,4,0,0" DockPanel.Dock="Top" />
-                    <TextBlock x:Name="Noti" Text="sent you a friend request." FontFamily="Segoe UI Semilight"
-                               FontSize="8" Margin="8,0,0,0" DockPanel.Dock="Bottom" />
-                </DockPanel>
+                <TextBlock x:Name="FriendName" Text="{Binding ElementName=_this, Path=SenderName}"
+                           FontFamily="Segoe UI Semibold" Margin="8,4,0,0" DockPanel.Dock="Top" />
+                <TextBlock x:Name="Noti" Text="sent you a friend request." FontFamily="Segoe UI"
+                           FontSize="10" Margin="8,0,0,0" DockPanel.Dock="Bottom" />
             </DockPanel>
-            <!--Chua co y tuong design button-->
-            <DockPanel VerticalAlignment="Bottom" Height="64" Margin="0">
+
+            <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="0">
                 <Button x:Name="RemoveBtn" Content="Remove" FontSize="6"
-                        HorizontalAlignment="Right" Width="15" Height="15"
-                        DockPanel.Dock="Right" Margin="16,24,16,14"
-                        Background="{StaticResource BackgroundVeryLightBrush}" BorderBrush="{x:Null}"
+                        HorizontalAlignment="Right" Width="16" Height="16"
+                        DockPanel.Dock="Right" Margin="16,0,16,10"
+                        Background="{StaticResource BackgroundVeryLightBrush}" BorderBrush="Transparent"
                         Foreground="{StaticResource PrimaryHueDarkBrush}"
                         Command="{Binding RespondeCommand}" />
                 <Button x:Name="BtnAccept" Content="Accept"
-                        HorizontalAlignment="Right" Width="15" Height="15"
-                        DockPanel.Dock="Right" Foreground="White" FontSize="16" Margin="1,24,0,14"
+                        HorizontalAlignment="Right" Width="16" Height="16"
+                        DockPanel.Dock="Right" Foreground="White"
+                        BorderBrush="Transparent"
+                        FontSize="16" Margin="0,0,0,10"
                         Command="{Binding RespondeCommand}"
                         CommandParameter="True" />
             </DockPanel>

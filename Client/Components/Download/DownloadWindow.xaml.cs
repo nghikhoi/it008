@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace UI.Components
+namespace UI.Components.Download
 {
     /// <summary>
     /// Interaction logic for DownloadWindow.xaml

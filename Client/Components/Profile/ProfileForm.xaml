@@ -36,12 +36,11 @@
                         </Button>
                         <Button Width="150"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                Command="{Binding ChangeImageCommand}"
-                                Visibility="{Binding Visibility}">
+                                Command="{Binding ChangeImageCommand}">
                             <TextBlock Text="{DynamicResource SettingWindow.changeavt}"></TextBlock>
                         </Button>
                         <!--change name btn-->
-                        <Button x:Name="ChangeNameBtn" 
+                        <Button x:Name="ChangeNameBtn"
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                 HorizontalAlignment="Stretch" Margin="10,40,0,0">
                             <i:Interaction.Triggers>
@@ -123,7 +122,6 @@
                     <Button Grid.Row="1" x:Name="ChangePassWord_btn"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Content="{DynamicResource WindowChangePss.Title}"
-                            Command="{Binding ChangePassword}"
                             HorizontalAlignment="Left"
                             Width="120" Height="Auto"
                             Margin="64,207,0,129">

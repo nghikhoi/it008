@@ -36,9 +36,10 @@ namespace ChatServer.Network.Packets
                 string command = "sample mkfriend " + chatSession.Owner.Email + " " + new ChatUserStore().Load(TargetID).Email;
                 Command.CommandManager.Instance.ExecuteCommand(ConsoleSender.Instance, command);
 
+                chatSession.Send(new FinalizeAcceptedFriendRequest());
                 ChatUser user;
                 if (ChatUserManager.OnlineUsers.TryGetValue(TargetID, out user)) {
-                    chatSession.Send(new FinalizeAcceptedFriendRequest());
+                    
                 }
 
                 // string encNoti = "acfriend:" + chatSession.Owner.ID + ":" +

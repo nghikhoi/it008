@@ -12,6 +12,7 @@ using UI.Network;
 using UI.Network.Protocol;
 using UI.Services.Common;
 using UI.ViewModels;
+using UI.Views;
 
 namespace UI.Services {
     public static class Services {

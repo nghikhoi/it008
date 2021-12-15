@@ -31,6 +31,7 @@ namespace UI.ViewModels {
 		#endregion
 
 		private readonly ChatConnection _connection;
+        public event Action<bool> OnResponse;
 
 		public FriendRequestNotificationViewModel(ChatConnection connection) {
 			_connection = connection;
@@ -45,6 +46,7 @@ namespace UI.ViewModels {
             response.TargetID = Info.SenderUser.ToString();
             response.NotificationId = Info.Id;
             _connection.Send(response);
+            OnResponse?.Invoke(accepted);
         }
 
     }

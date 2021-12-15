@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using UI.ViewModels;
+using UI.Views;
 
 namespace UI.Command {
     public static class MediaWindowCommand {
@@ -46,6 +47,7 @@ namespace UI.Command {
                 MediaGalleryWindow.Show();
             }
             MediaGalleryWindow.DataContext = Parameter;
+            MediaGalleryWindow.Focus();
         }
 
         private static void CloseMediaWindowCommandHandle(object sender, ExecutedRoutedEventArgs args) {

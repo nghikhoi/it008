@@ -8,7 +8,7 @@ using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 using UI.Network.Packets;
-using UI.Network.Pipeline;
+using UI.Network.Pipiline;
 using UI.Network.Protocol;
 using UI.Services;
 

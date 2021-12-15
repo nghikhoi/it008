@@ -62,6 +62,10 @@ namespace UI.Network
                 _listener?.OnFinalizeAcceptedFriend(this);
             } else if (message is BuyStickerCategoryResponse) {
                 _listener?.OnBuyStickerResponse(this, message as BuyStickerCategoryResponse);
+            } else if (message is UserOnlineReceive userOnlineReceive) {
+                _listener?.OnUserOnlineResponse(this, userOnlineReceive);
+            } else if (message is UserOfflineReceive userOfflineReceive) {
+                _listener?.OnUserOfflineResponse(this, userOfflineReceive);
             }
         }
 

@@ -3,9 +3,9 @@ using System.Windows;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UI.Lang;
 using UI.Services;
 using UI.Services.Common;
+using UI.Views;
 
 namespace UI
 {

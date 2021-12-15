@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
-using UI.Properties;
 using UI.ViewModels;
 
-namespace UI.Lang {
+namespace UI.Services {
 	
 	public class Language {
 		

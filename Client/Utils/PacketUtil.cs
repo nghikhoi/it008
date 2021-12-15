@@ -1,7 +1,6 @@
 ﻿using DotNetty.Buffers;
-using UI.Utils;
 
-namespace ChatServer.Utils {
+namespace UI.Utils {
 
 	public class PacketUtil {
 		

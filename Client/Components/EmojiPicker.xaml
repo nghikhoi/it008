@@ -1,18 +1,18 @@
 ﻿<StackPanel x:Class="UI.Components.EmojiPicker"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:UI.Components"
-             xmlns:wpf="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:local="clr-namespace:UI.Components"
+            xmlns:wpf="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:markups="clr-namespace:UI.Utils.Markups"
-             mc:Ignorable="d" 
-             x:Name="StackPanel_INTERNAL"
-             d:DesignHeight="450" d:DesignWidth="800">
+            xmlns:markups="clr-namespace:UI.Utils.Markups"
+            mc:Ignorable="d"
+            x:Name="StackPanel_INTERNAL"
+            d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel.Resources>
 
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
         <ControlTemplate x:Key="VariationPopupTemplate" TargetType="ContentControl">
             <ListView Name="VariationListView" ItemsSource="{Binding VariationList}"
@@ -23,14 +23,14 @@
                 <!-- 6 columns -->
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel/>
+                        <WrapPanel />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0"/>
-                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="BorderThickness" Value="0" />
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -38,7 +38,7 @@
                         <Button Background="Transparent" BorderBrush="Transparent"
                                 Margin="0" Click="OnEmojiPicked"
                                 Width="40" Height="40" ToolTip="{Binding Path=Name}">
-                            <Image Height="24" wpf:Image.Source="{Binding Path=Text}"/>
+                            <Image Height="24" wpf:Image.Source="{Binding Path=Text}" />
                         </Button>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -47,18 +47,18 @@
 
         <DataTemplate x:Key="CellTemplate">
             <Button Width="40" Height="40" Margin="0" Padding="2"
-                          x:Name="VariationButton" Background="Transparent" BorderBrush="Transparent"
-                          Click="OnEmojiPicked" Focusable="False" ToolTip="{Binding Path=Name}"
-                          IsHitTestVisible="{Binding ElementName=VariationPopup, Path=IsOpen, Mode=OneWay, Converter={markups:BoolInverter}}">
+                    x:Name="VariationButton" Background="Transparent" BorderBrush="Transparent"
+                    Click="OnEmojiPicked" Focusable="False" ToolTip="{Binding Path=Name}"
+                    IsHitTestVisible="{Binding ElementName=VariationPopup, Path=IsOpen, Mode=OneWay, Converter={markups:BoolInverter}}">
                 <Grid>
                     <Image Height="24" Margin="4" wpf:Image.Source="{Binding Path=Text}"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                           VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <Polygon Visibility="{Binding HasVariations, Converter={StaticResource BoolToVis}}"
                              Width="6" Height="6" VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                             Stretch="Fill" Points="0,1 1,1 1,0" Fill="Black"/>
+                             Stretch="Fill" Points="0,1 1,1 1,0" Fill="Black" />
                     <Popup x:Name="VariationPopup" StaysOpen="False" AllowsTransparency="True" Margin="0"
                            IsOpen="{Binding IsChecked, ElementName=VariationButton, Mode=TwoWay}">
-                        <ContentControl Template="{StaticResource ResourceKey=VariationPopupTemplate}"/>
+                        <ContentControl Template="{StaticResource ResourceKey=VariationPopupTemplate}" />
                     </Popup>
                 </Grid>
             </Button>
@@ -71,19 +71,19 @@
         <Image x:Name="Image" wpf:Image.Source="{Binding ElementName=StackPanel_INTERNAL, Mode=OneWay, Path=Selection, UpdateSourceTrigger=PropertyChanged}"/>
     </ToggleButton>-->
     <ToggleButton
-  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-  ToolTip="MaterialDesignFlatPrimaryToggleButton"
-  IsChecked="False"
+        Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+        ToolTip="MaterialDesignFlatPrimaryToggleButton"
+        IsChecked="False"
         Height="24"
         Width="24"
         x:Name="Button_INTERNAL"
-                  IsHitTestVisible="{Binding IsOpen, ElementName=Popup_INTERNAL, Mode=OneWay, Converter={markups:BoolInverter}}">
+        IsHitTestVisible="{Binding IsOpen, ElementName=Popup_INTERNAL, Mode=OneWay, Converter={markups:BoolInverter}}">
         <materialDesign:PackIcon
-    x:Name="Image"
-    Kind="Heart"
-    Height="21"
-    Width="21" 
-    Foreground="Black"/>
+            x:Name="Image"
+            Kind="Emoji"
+            Height="21"
+            Width="21"
+            Foreground="Black" />
 
     </ToggleButton>
 
@@ -97,7 +97,7 @@
                     <Grid>
                         <Image Height="24" wpf:Image.Source="{Binding Icon}">
                             <Image.ToolTip>
-                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Name}" />
                             </Image.ToolTip>
                         </Image>
                         <!--<TextBlock Text="{Binding Name}"/>-->
@@ -107,7 +107,7 @@
             <TabControl.ContentTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Margin="4" Text="{Binding Name}" FontStyle="Italic"/>
+                        <TextBlock Margin="4" Text="{Binding Name}" FontStyle="Italic" />
                         <ListView Name="EmojiListView" ItemsSource="{Binding EmojiChunkList}"
                                   BorderThickness="0"
                                   MaxHeight="320" Height="Auto" Padding="0" Margin="1"
@@ -118,20 +118,20 @@
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel wpf:Behaviors.SmoothScrolling="True"/>
+                                    <VirtualizingStackPanel wpf:Behaviors.SmoothScrolling="True" />
                                 </ItemsPanelTemplate>
                             </ListView.ItemsPanel>
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="{x:Type ListViewItem}">
                                     <!-- Get rid of the ugly padding and margin in default ListViewItem -->
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="0" />
+                                    <Setter Property="BorderThickness" Value="0" />
                                     <!-- Remove the mouse over highlight -->
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                                <ContentPresenter/>
+                                                <ContentPresenter />
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -144,7 +144,7 @@
                                                   ItemTemplate="{StaticResource ResourceKey=CellTemplate}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
+                                                <StackPanel Orientation="Horizontal" />
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                     </ItemsControl>

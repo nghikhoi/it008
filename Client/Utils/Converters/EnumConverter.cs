@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Markup;
-using UI.Lang;
 using UI.Models;
+using UI.Services;
 
 namespace UI.Utils.Converters {
 	public class GenderEnumConverter : MarkupExtension {

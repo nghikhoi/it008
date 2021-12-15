@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using ChatServer.Utils;
 using CNetwork;
 using DotNetty.Buffers;
 using Newtonsoft.Json;
@@ -13,6 +12,7 @@ using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.Packets.AfterLoginRequest.Profile;
 using UI.Network.Packets.AfterLoginRequest.Search;
 using UI.Network.Packets.AfterLoginRequest.Sticker;
+using UI.Utils;
 
 namespace UI.Network.RestAPI {
 

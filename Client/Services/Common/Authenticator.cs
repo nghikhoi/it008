@@ -35,11 +35,8 @@ namespace UI.Services.Common {
 				//TODO
 				switch (code) {
 					case 404:
-						//msgs = new [] { "Invalid username or password", "Check your info and try again" };
-						break;
 					case 401:
-						//msgs = new [] { "Invalid username or password", "Check your info and try again" };
-						break;
+                        throw new AlreadyExistsUserException(request.Email);
 					case 403:
 						//msgs = new [] { "Your account got banned", "Please contact the admin to get more information" };
 						break;

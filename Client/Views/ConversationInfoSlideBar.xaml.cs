@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace UI.Components
+namespace UI.Views
 {
     /// <summary>
     /// Interaction logic for ucInfoConversationSlideBar.xaml

@@ -23,22 +23,28 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <UserControl.Resources>
-        <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}"/>
-        <convert:BooleanVisibility x:Key="VisibilityConverter"/>
+        <markups:BindingProxy x:Key="ProfileProxy" Data="{Binding UserProfile}" />
+        <convert:BooleanVisibility x:Key="VisibilityConverter" />
     </UserControl.Resources>
     <!--Main-->
-    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}" AllowDrop="True">
+    <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}"
+            ClipToBounds="True"
+            AllowDrop="True">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="28"></RowDefinition>
+                <RowDefinition Height="26"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <!--title bar-->
-            <!--<uc:ucTitleBar Loaded="ucTitleBar_Loaded" Grid.Row="0" Margin="0 -5 0 0"/>-->
-            <uc:TitleBar Grid.Row="0" Margin="0 0 0 0" />
-            <materialDesign:DialogHost Grid.Row="1">
+            <Border Style="{StaticResource OriginalBorder}" Background="LightGray">
+                <Grid>
+                    <Border Margin="0 10 0 0" Background="LightGray" />
+                    <uc:TitleBar Margin="0 0 0 0" />
+                </Grid>
+            </Border>
+            <materialDesign:DialogHost Grid.Row="1"
+                                       SnackbarMessageQueue="{Binding ElementName=HomeSnackbar, Path=MessageQueue}">
                 <materialDesign:DrawerHost
-                    BorderThickness="2"
+                    BorderThickness="0"
                     BorderBrush="{DynamicResource MaterialDesignDivider}">
                     <materialDesign:DrawerHost.LeftDrawerContent>
                         <uc:NotificationPage Grid.Row="1" x:Name="NotificaionPage"
@@ -65,14 +71,17 @@
                             </i:Interaction.Triggers>
                         </uc:NotificationPage>
                     </materialDesign:DrawerHost.LeftDrawerContent>
-                    
+
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="253*" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="220" MinWidth="200" MaxWidth="350" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <uc:ConversationListTabs DataContext="{Binding ElementName=_this, Path=DataContext}"
-                                                 x:Name="MessageList" Grid.Column="0">
+                        <local:ConversationListTabs x:Name="MessageList" Grid.Column="0" Grid.RowSpan="2">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="AvatarClick">
                                     <i:InvokeCommandAction
@@ -80,38 +89,40 @@
                                         CommandParameter="{x:Static Dock.Left}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </uc:ConversationListTabs>
+                        </local:ConversationListTabs>
                         <!--Split-->
                         <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch"
                                       Width="2" Height="{Binding ElementName=MessageList, Path=ActualHeight}"
-                                      Grid.Column="0" />
+                                      Grid.Column="0" Grid.RowSpan="2" />
                         <!--cuoc tro chuyen-->
-                        <Grid Grid.Column="1">
+                        <Grid Grid.Column="1" Grid.RowSpan="2">
                             <DockPanel>
-                                <materialDesign:DrawerHost BorderThickness="2"
-                                                           BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                <materialDesign:DrawerHost BorderBrush="{DynamicResource MaterialDesignDivider}"
                                                            OpenMode="Standard">
                                     <materialDesign:DrawerHost.RightDrawerContent>
-                                        <uc:ConversationInfoSlideBar x:Name="ProfileDisplayer"
+                                        <local:ConversationInfoSlideBar x:Name="ProfileDisplayer"
                                                                      DataContext="{Binding SelectedConversation}"
                                                                      Margin="0 0 0 0" DockPanel.Dock="Right" />
                                     </materialDesign:DrawerHost.RightDrawerContent>
 
-                                    <ContentControl Content="{Binding SelectedConversation, TargetNullValue={StaticResource EmptyViewModel}}">
+                                    <ContentControl
+                                        Content="{Binding SelectedConversation, TargetNullValue={StaticResource EmptyViewModel}}">
                                         <ContentControl.Resources>
                                             <DataTemplate DataType="{x:Type vm:EmptyViewModel}">
-                                                <uc:EmptyChatpage/>
+                                                <uc:EmptyChatpage />
                                             </DataTemplate>
                                             <DataTemplate DataType="{x:Type vm:ConversationViewModel}">
                                                 <local:ChatPage Margin="0 0 0 0">
                                                     <i:Interaction.Triggers>
                                                         <i:EventTrigger EventName="InfoChecked">
-                                                            <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                                                                CommandParameter="{x:Static Dock.Right}"/>
+                                                            <i:InvokeCommandAction
+                                                                Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                                                CommandParameter="{x:Static Dock.Right}" />
                                                         </i:EventTrigger>
                                                         <i:EventTrigger EventName="InfoUnchecked">
-                                                            <i:InvokeCommandAction Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                                                CommandParameter="{x:Static Dock.Right}"/>
+                                                            <i:InvokeCommandAction
+                                                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                                                CommandParameter="{x:Static Dock.Right}" />
                                                         </i:EventTrigger>
                                                     </i:Interaction.Triggers>
                                                 </local:ChatPage>
@@ -121,6 +132,9 @@
                                 </materialDesign:DrawerHost>
                             </DockPanel>
                         </Grid>
+                        <materialDesign:Snackbar Grid.Row="0" Grid.RowSpan="2"
+                                                 Grid.Column="0" Grid.ColumnSpan="2"
+                                                 x:Name="HomeSnackbar" MessageQueue="{Binding SnackbarQueue}" />
                     </Grid>
                 </materialDesign:DrawerHost>
             </materialDesign:DialogHost>

@@ -10,11 +10,6 @@
              xmlns:markups="clr-namespace:UI.Utils.Markups"
              mc:Ignorable="d"
              d:DesignHeight="60" d:DesignWidth="300">
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding InitializeCommand}" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <UserControl.Resources>
         <markups:BindingProxy Data="{Binding IsNotFriend}" x:Key="IsNotFriend" />
         <markups:BindingProxy Data="{Binding SendRequestCommand}" x:Key="SendRequestCommand" />
@@ -51,7 +46,7 @@
                                FontStyle="Italic"
                                Foreground="{StaticResource LightBrush}"
                                TextTrimming="CharacterEllipsis"
-                               x:Name="SubtitleBlock"/>
+                               x:Name="SubtitleBlock" />
                 </StackPanel>
             </Border>
 
@@ -60,17 +55,17 @@
                     <materialDesign:PopupBox>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Button
                                 IsEnabled="{Binding Data, Source={StaticResource IsNotFriend}}"
                                 Command="{Binding Data, Source={StaticResource SendRequestCommand}}"
-                                Grid.Row="0" Content="{DynamicResource FriendRqst.func}"/>
+                                Grid.Row="0" Content="{DynamicResource FriendRqst.func}" />
                             <Button Grid.Row="1" Content="{DynamicResource FriendRqst.inf}"
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                 <Button.CommandParameter>
-                                    <components:UserInformationDisplayer/>
+                                    <components:UserInformationDisplayer />
                                 </Button.CommandParameter>
                             </Button>
                         </Grid>
@@ -78,7 +73,7 @@
                 </StackPanel>
             </DockPanel>
             <Button Grid.Column="0" Grid.ColumnSpan="3" x:Name="ClickMaskButton" Background="Transparent"
-                    BorderBrush="{x:Null}" Height="Auto" Click="ClickMaskButton_OnClick" />
+                    BorderBrush="Transparent" Height="Auto" Click="ClickMaskButton_OnClick" />
         </Grid>
     </Grid>
 </UserControl>

@@ -1,8 +1,11 @@
 ﻿using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using UI.Command;
+using UI.Components;
 using UI.Models;
 using UI.Services;
 using UI.Services.Exceptions;
+using UI.Utils;
 
 namespace UI.ViewModels {
 	public class LoginViewModel : ViewModelBase {
@@ -43,15 +46,19 @@ namespace UI.ViewModels {
 
 		public async void Login() {
 			try {
+                if (!FastCodeUtils.NotEmptyStrings(Username, Password)) {
+                    await DialogHost.Show(new AnnouncementDialog("Cần nhập tài khoản và mật khẩu"));
+                    return;
+                }
 				if (!App.IS_LOCAL_DEBUG)
 					await _authenticator.Login(new LoginInfo(Username, Password));
 				_loginSuccessNavigator.Navigate();
 			}
 			catch (UserNotFoundException e) {
-
+                await DialogHost.Show(new AnnouncementDialog("Tài khoản không tồn tại"));
 			}
 			catch (InvalidPasswordException e) {
-				
+                await DialogHost.Show(new AnnouncementDialog("Sai mật khẩu"));
 			}
 		}
 

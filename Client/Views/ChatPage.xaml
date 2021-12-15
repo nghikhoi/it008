@@ -10,7 +10,7 @@
              xmlns:remarks="clr-namespace:UI.Utils.Markups"
              xmlns:convert="clr-namespace:UI.Utils.Converters"
              xmlns:Status="clr-namespace:UI.Components"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              Foreground="{DynamicResource ForegroundResource}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:triggers="clr-namespace:UI.Utils.Triggers"
@@ -25,15 +25,16 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <UserControl.Resources>
-        <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"/>
+        <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector" />
         <remarks:GroupBubbleTemplateSelector x:Key="GroupSelect"></remarks:GroupBubbleTemplateSelector>
         <convert:BooleanVisibility x:Key="BooleanViCvrt"></convert:BooleanVisibility>
-        <remarks:BindingProxy x:Key="StickerContainer" Data="{Binding StickerContainer, diag:PresentationTraceSources.TraceLevel=High}" />
+        <remarks:BindingProxy x:Key="StickerContainer"
+                              Data="{Binding StickerContainer, diag:PresentationTraceSources.TraceLevel=High}" />
         <Style x:Key="ChatButton" TargetType="Button" BasedOn="{StaticResource IconButton}">
             <Setter Property="Height" Value="32" />
             <Setter Property="Width" Value="32" />
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -52,10 +53,16 @@
                         </ToggleButton>
                     </StackPanel>
                     <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
-                        <Label Grid.Row="0" Content="{Binding ConversationName}" FontWeight="Bold" FontSize="15" Margin="0 -6 0 0"></Label>
+                        <Label Grid.Row="0" Content="{Binding ConversationName}" FontWeight="Bold" FontSize="15"
+                               Margin="0 5 0 0">
+                        </Label>
                         <Grid Grid.Row="1" x:Name="StatusContainer" Margin="5 -3 0 0" Height="15">
-                            <Status:OnlineStatus Visibility="{Binding IsOnline, Converter={StaticResource BooleanViCvrt}}"></Status:OnlineStatus>
-                            <Status:OfflineStatus Visibility="{Binding IsOffline, Converter={StaticResource BooleanViCvrt}}"></Status:OfflineStatus>
+                            <Status:OnlineStatus
+                                Visibility="{Binding IsOnline, Converter={StaticResource BooleanViCvrt}}">
+                            </Status:OnlineStatus>
+                            <Status:OfflineStatus
+                                Visibility="{Binding IsOffline, Converter={StaticResource BooleanViCvrt}}">
+                            </Status:OfflineStatus>
                         </Grid>
                     </StackPanel>
                 </DockPanel>
@@ -68,20 +75,21 @@
                                                  Margin="0,0,0,0" VerticalContentAlignment="Center"
                                                  IsTabStop="False" Width="32" Height="32">
                             <materialDesign:PopupBox.ToggleContent>
-                                <materialDesign:PackIcon Kind="Emoticon" Width="24" Height="24"
+                                <materialDesign:PackIcon Kind="Sticker" Width="24" Height="24"
                                                          Foreground="{DynamicResource ForegroundResource}"
                                                          Margin="2" />
                             </materialDesign:PopupBox.ToggleContent>
                             <StackPanel Width="380" Height="320">
-                                <uc:TabStickerContainer DataContext="{Binding Data, Source={StaticResource StickerContainer}}"/>
+                                <uc:TabStickerContainer
+                                    DataContext="{Binding Data, Source={StaticResource StickerContainer}}" />
                             </StackPanel>
                         </materialDesign:PopupBox>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 4">
-                        <Button x:Name="AttachtmentButton" Padding="0" Margin="0"
+                        <Button x:Name="VideoButton" Padding="0" Margin="0"
                                 Style="{StaticResource ChatButton}"
                                 Command="{Binding ChatpageSendFileCommand}">
-                            <materialDesign:PackIcon Kind="Attachment" Width="24" Height="24"
+                            <materialDesign:PackIcon Kind="Vhs" Width="24" Height="24"
                                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </Button>
                     </Border>
@@ -97,7 +105,7 @@
                         <Button x:Name="AttachmentButton" Padding="0" Margin="0"
                                 Style="{StaticResource ChatButton}"
                                 Command="{Binding SendFileCommand}">
-                            <materialDesign:PackIcon Kind="AttachFile"  Width="24" Height="24" />
+                            <materialDesign:PackIcon Kind="AttachFile" Width="24" Height="24" />
                         </Button>
                     </Border>
                     <Border VerticalAlignment="Bottom" Margin="2, 8">
@@ -112,21 +120,22 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Picked">
                                         <i:InvokeCommandAction Command="{Binding ChatpageSelectEmojiCommand}"
-                                                               CommandParameter="{Binding ElementName=EmoPicker, Path=Selection}"/>
+                                                               CommandParameter="{Binding ElementName=EmoPicker, Path=Selection}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </uc:EmojiPicker>
                         </Border>
                     </Border>
 
-                    <Button x:Name="SendButton" Margin="2, 4" Width="50" 
-                            Height="34" Style="{StaticResource IconButton}" 
-                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0" 
+                    <Button x:Name="SendButton" Margin="2, 4" Width="50"
+                            Height="34" Style="{StaticResource IconButton}"
+                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0"
                             Command="{Binding SendTextMessageCommand}">
                         <materialDesign:PackIcon Kind="Send" Width="24" Height="Auto" />
                     </Button>
-                    <Border CornerRadius="16" Background="{DynamicResource InputColorResource}" Margin="10,4,0,5" MinHeight="32" VerticalAlignment="Bottom">
+                    <Border CornerRadius="16" Background="{DynamicResource InputColorResource}" Margin="10,4,0,5"
+                            MinHeight="32" VerticalAlignment="Bottom">
                         <TextBox BorderThickness="0" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                  VerticalScrollBarVisibility="Auto"
                                  materialDesign:HintAssist.Hint="{DynamicResource ChatPage.ChatInputInstruct}"
@@ -161,35 +170,35 @@
         </Border>
 
         <Grid>
-        <!--conversation background here-->
-        <!--<Image Margin="0,50,0,45" Source=""></Image>-->
-            <ScrollViewer VerticalScrollBarVisibility="Visible" 
-                      HorizontalScrollBarVisibility="Auto"
-                      x:Name="ChatScroll"
-                      Style="{StaticResource ScrollViewerTemplate}"
-                      Padding="0,0,0,10" Margin="5 50 0 45">
-            <!--<ScrollViewer.Background>
+            <!--conversation background here-->
+            <!--<Image Margin="0,50,0,45" Source=""></Image>-->
+            <ScrollViewer VerticalScrollBarVisibility="Visible"
+                          HorizontalScrollBarVisibility="Auto"
+                          x:Name="ChatScroll"
+                          Style="{StaticResource ScrollViewerTemplate}"
+                          Padding="0,0,0,10" Margin="5 50 0 45">
+                <!--<ScrollViewer.Background>
                 <ImageBrush ImageSource="{Binding ConversationBackground}"></ImageBrush>
             </ScrollViewer.Background>-->
-            <!--<i:Interaction.Triggers>
+                <!--<i:Interaction.Triggers>
                 <triggers:ScrollChangeReachTrigger DoubleStepMode="True" Operation="LESS_THAN" Value="1">
                     <i:InvokeCommandAction Command="{Binding LoadMoreCommand}"/>
                 </triggers:ScrollChangeReachTrigger>
             </i:Interaction.Triggers>-->
-            <StackPanel>
-                <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}"
-                        Command="{Binding LoadMoreCommand}"
-                        BorderBrush="{x:Null}" Foreground="#DD000000">
-                    <TextBlock Text="{DynamicResource ChatPage.Seemore}"
-                               Style="{StaticResource TextBlockHover}"
-                               Foreground="{DynamicResource ForegroundResource}" />
-                </Button>
-                <StackPanel x:Name="MessageContainer">
-                    <ItemsControl ItemsSource="{Binding GroupBubbles}"
-                                  ItemTemplateSelector="{StaticResource GroupSelect}"/>
+                <StackPanel>
+                    <Button x:Name="MoreMessageButton" Width="128" Height="32" Background="{x:Null}"
+                            Command="{Binding LoadMoreCommand}"
+                            BorderBrush="{x:Null}" Foreground="#DD000000">
+                        <TextBlock Text="{DynamicResource ChatPage.Seemore}"
+                                   Style="{StaticResource TextBlockHover}"
+                                   Foreground="{DynamicResource ForegroundResource}" />
+                    </Button>
+                    <StackPanel x:Name="MessageContainer">
+                        <ItemsControl ItemsSource="{Binding GroupBubbles}"
+                                      ItemTemplateSelector="{StaticResource GroupSelect}" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

@@ -15,7 +15,9 @@ namespace UI.Network {
 	public delegate void ReceiveMessageHandler(ISession session, ReceiveMessage responde);
     public delegate void ReceiveNotificationHandler(ISession session, GetNotificationsResult responde);
     public delegate void FinalizeAcceptedFriendHandler(ISession session);
-    public delegate void BuyStickerResponseHandler(ISession session, BuyStickerCategoryResponse responde);
+    public delegate void UserOnlineHandler(ISession session, UserOnlineReceive response);
+    public delegate void UserOfflineHandler(ISession session, UserOfflineReceive response);
+	public delegate void BuyStickerResponseHandler(ISession session, BuyStickerCategoryResponse responde);
 
 	public class PacketRespondeListener {
 
@@ -46,6 +48,14 @@ namespace UI.Network {
         public event BuyStickerResponseHandler BuyStickerResponseEvent;
         internal void OnBuyStickerResponse(ISession session, BuyStickerCategoryResponse responde) {
             BuyStickerResponseEvent?.Invoke(session, responde);
+        }
+        public event UserOnlineHandler UserOnlineEvent;
+        internal void OnUserOnlineResponse(ISession session, UserOnlineReceive responde) {
+            UserOnlineEvent?.Invoke(session, responde);
+        }
+        public event UserOfflineHandler UserOfflineEvent;
+        internal void OnUserOfflineResponse(ISession session, UserOfflineReceive responde) {
+            UserOfflineEvent?.Invoke(session, responde);
         }
 
 	}

@@ -58,10 +58,19 @@ namespace UI.ViewModels {
 			base.Initialize(parameter);
 		}
 
-		public FriendConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) : base(chatConnection, appSession, factory)
+		public FriendConversationViewModel(ChatConnection chatConnection, PacketRespondeListener listener, IAppSession appSession, IViewModelFactory factory) : base(chatConnection, appSession, factory)
         {
             SendRequestCommand = new RelayCommand<object>(null, SendRequest);
-        }
+            listener.UserOfflineEvent += (session, response) =>
+            {
+                if (response.UserID.Equals(UserId)) 
+                    App.Current.Dispatcher.Invoke(() => IsOnline = false);
+            };
+            listener.UserOnlineEvent += (session, response) => {
+                if (response.UserID.Equals(UserId))
+                    App.Current.Dispatcher.Invoke(() => IsOnline = true);
+            };
+		}
 
         protected void SendRequest(object param = null)
         {

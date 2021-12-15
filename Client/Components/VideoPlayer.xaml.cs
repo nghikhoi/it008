@@ -38,9 +38,14 @@ namespace UI.Components {
 			base.OnPropertyChanged(e);
 		}
 
-		public void SetSource(Uri uri) {
+		public void SetSource(Uri uri)
+        {
+            if (uri == null)
+            {
+                VideoControl.Stop();
+                return;
+            }
 			var tl = new MediaTimeline(uri);
-			VideoControl.Source = uri;
 			VideoControl.Clock = tl.CreateClock(true) as MediaClock;
 		}
 		

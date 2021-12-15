@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using UI.Models;
 using UI.Models.Message;
 using UI.ViewModels;
-using UI.ViewModels.Messages;
 
 namespace UI.Utils.Markups
 {

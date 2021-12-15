@@ -1,27 +1,29 @@
 ﻿<UserControl x:Class="UI.Components.AvatarDisplayer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              d:DesignHeight="120" d:DesignWidth="120" Unloaded="OnUnload" Loaded="OnLoaded">
     <Grid>
-        <Border x:Name="AvaBackground" CornerRadius="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" 
+        <Border x:Name="AvaBackground" CornerRadius="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
                 Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
             <Border x:Name="AvaBorder"
-                            CornerRadius="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" 
-                            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
-                            BorderThickness="1"
-                            BorderBrush="White">
+                    CornerRadius="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                    Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                    BorderThickness="1"
+                    BorderBrush="White">
                 <Border.Background>
-                    <ImageBrush x:Name="ImageAva" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <ImageBrush x:Name="ImageAva" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Border.Background>
             </Border>
         </Border>
         <ProgressBar x:Name="LoadingMask" Value="0" Foreground="#FFB6B6B6"
                      Style="{StaticResource MaterialDesignCircularProgressBar}"
-                     IsIndeterminate="True" Height="Auto" Margin="5" Width="Auto" Background="{x:Null}" BorderBrush="{x:Null}" />
-        <Button x:Name="ClickTrigger" Style="{StaticResource MaterialDesignFloatingActionLightButton}" 
-                Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnClick" MinHeight="30" MinWidth="30" Height="Auto" Width="Auto"/>
+                     IsIndeterminate="True" Height="Auto" Margin="5" Width="Auto" Background="{x:Null}"
+                     BorderBrush="{x:Null}" />
+        <Button x:Name="ClickTrigger" Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnClick" MinHeight="30" MinWidth="30"
+                Height="Auto" Width="Auto" />
     </Grid>
 </UserControl>

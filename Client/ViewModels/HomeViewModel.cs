@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using UI.Command;
 using UI.Models;
 using UI.Models.Message;
@@ -98,6 +99,17 @@ namespace UI.ViewModels {
             }
         }
 
+        private SnackbarMessageQueue _snackbarQueue;
+        public SnackbarMessageQueue SnackbarQueue
+        {
+            get => _snackbarQueue;
+            set
+            {
+                _snackbarQueue = value;
+                OnPropertyChanged(nameof(SnackbarQueue));
+            }
+        }
+
         private readonly IViewModelFactory _viewModelFactory;
         private readonly IAuthenticator authenticator;
         private readonly IUserProfileHolder _userProfileHolder;
@@ -121,10 +133,16 @@ namespace UI.ViewModels {
             _notifications = new ObservableCollection<NotificationViewModel>();
             _appSession = appSession;
 
+            SnackbarQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
+
             _respondeListener = respondeListener;
             _respondeListener.ReceiveMessageEvent += ReceiveMessage;
             _respondeListener.ReceiveNotificationEvent += ReceiveNotification;
-            _respondeListener.FinalizeAcceptedFriendEvent += session => App.Current.Dispatcher.Invoke(LoadFriends); //Update friend list
+            _respondeListener.FinalizeAcceptedFriendEvent += session => App.Current.Dispatcher.Invoke(() =>
+            {
+                SendSnackbar("Chấp nhận lời mời kết bạn thành công!");
+                LoadFriends();
+            }); //Update friend list
             this.authenticator = authenticator;
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
@@ -155,11 +173,29 @@ namespace UI.ViewModels {
             ReceiveMessage(receiveMessage.ConversationID, receiveMessage.Message);
         }
 
+        public void SendSnackbar(params string[] msgs)
+        {
+            SnackbarQueue.Enqueue(string.Join("\n", msgs));
+        }
+
         protected void ReceiveNotification(ISession session, GetNotificationsResult result)
         {
+            Queue<string[]> snackbars = new Queue<string[]>(); 
+
             bool shouldRefreshFriends = result.Notifications.Any(noti => noti is AcceptFriendNotification);
+            foreach (AbstractNotification n in result.Notifications) {
+                if (n is AcceptFriendNotification accept)
+                {
+                    shouldRefreshFriends = true;
+                    snackbars.Enqueue(new string[] { $"Bạn và {accept.SenderName} đã trở thành bạn bè!" });
+                }
+            }
             if (shouldRefreshFriends)
-                App.Current.Dispatcher.Invoke(LoadFriends);
+                App.Current.Dispatcher.Invoke(() => {
+                    while (snackbars.Count > 0)
+                        SendSnackbar(snackbars.Dequeue());
+                    LoadFriends();
+                });
         }
 
         public void ReceiveMessage(string conversationId, AbstractMessage message) {
@@ -208,7 +244,7 @@ namespace UI.ViewModels {
 
         private void LoadFriends() {
             GetFriendIDs request = new GetFriendIDs();
-            request.FriendOfID = authenticator.CurrentSession.SessionID;
+            request.FriendOfID = _appSession.SessionID;
             DataAPI.getData<GetFriendIDsResult>(request, friendsResult => {
                 OriginFriendList.Clear();
                 friendsResult.ids.ForEach(id => {
@@ -233,6 +269,7 @@ namespace UI.ViewModels {
 
         private void SelectConversation(ConversationViewModel viewModel) {
             this.SelectedConversation = viewModel;
+            SendSnackbar("Change conversation");
             if (viewModel != null)
                 this.SelectedConversation.StickerContainer = StickerContainer;
         }
@@ -282,6 +319,7 @@ namespace UI.ViewModels {
                 FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
                 viewModel.ConversationId = info.ConversationID;
                 viewModel.ConversationName = info.FirstName + " " + info.LastName;
+                viewModel.FullName = info.FirstName + " " + info.LastName;
                 viewModel.LastActive = info.LastActive;
                 viewModel.UserId = info.ID;
                 viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;

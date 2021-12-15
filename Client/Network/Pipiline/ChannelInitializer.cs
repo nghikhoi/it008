@@ -4,7 +4,7 @@ using DotNetty.Handlers.Timeout;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 
-namespace UI.Network.Pipeline
+namespace UI.Network.Pipiline
 {
     class ChannelInitializer : BasicChannelInitializer
     {

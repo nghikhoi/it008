@@ -10,8 +10,8 @@
              mc:Ignorable="d" Background="WhiteSmoke"
              Width="380" Height="320">
     <UserControl.Resources>
-        <markups:StickerContainerHeaderSelector x:Key="StickerContainerHeaderSelector"/>
-        <markups:StickerContainerSelector x:Key="StickerContainerSelector"/>
+        <markups:StickerContainerHeaderSelector x:Key="StickerContainerHeaderSelector" />
+        <markups:StickerContainerSelector x:Key="StickerContainerSelector" />
     </UserControl.Resources>
     <Grid>
         <TabControl x:Name="tabCrlSticker" Padding="0" SelectedIndex="1"
@@ -23,12 +23,12 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition/>
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
                             <TabPanel x:Name="headerPanel"
                                       KeyboardNavigation.TabIndex="1"
-                                      IsItemsHost="true"/>
+                                      IsItemsHost="true" />
                         </ScrollViewer>
                         <ContentPresenter x:Name="selectedContentHost" Grid.Row="1"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"

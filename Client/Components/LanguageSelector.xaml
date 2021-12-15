@@ -33,12 +33,12 @@
                                     <CheckBox
                                         x:Name="VietnameseButton"
                                         IsChecked="{Binding CurrentLanguage, Converter={markups:Comparator}, ConverterParameter=vi-VN}"
-                                        Content="Tiếng Việt" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"/>
+                                        Content="Tiếng Việt" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold" />
                                     <Button Command="{x:Static command:LanguageCommand.ChangeLanguageCommand}"
                                             CommandParameter="vi-VN"
                                             Foreground="Transparent"
                                             BorderBrush="Transparent"
-                                            Background="Transparent"/>
+                                            Background="Transparent" />
                                 </Grid>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -46,12 +46,12 @@
                                     <CheckBox
                                         x:Name="EnglishButton"
                                         IsChecked="{Binding CurrentLanguage, Converter={markups:Comparator}, ConverterParameter=en-US}"
-                                        Content="English" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold"/>
+                                        Content="English" FontFamily="Segoe ui" FontSize="13" FontWeight="SemiBold" />
                                     <Button Command="{x:Static command:LanguageCommand.ChangeLanguageCommand}"
                                             CommandParameter="en-US"
                                             Foreground="Transparent"
                                             BorderBrush="Transparent"
-                                            Background="Transparent"/>
+                                            Background="Transparent" />
                                 </Grid>
                             </StackPanel>
                         </Grid>

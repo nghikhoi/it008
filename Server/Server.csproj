@@ -123,6 +123,7 @@
     <Compile Include="Network\ChatServer.cs" />
     <Compile Include="Network\ChatSession.cs" />
     <Compile Include="Network\ChatSocketServer.cs" />
+    <Compile Include="Network\INetworkData.cs" />
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\ChatThemeGetRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\DisplayedProfileRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\DisplayedProfileResponse.cs" />
@@ -132,6 +133,9 @@
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\GetSelfProfileResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\ChatThemeSetRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\ChangeBubbleChatColor.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingRequest.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingResponse.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\SetConversationSettingRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\UpdateSelfProfileRequest.cs" />
@@ -204,6 +208,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerSettings.cs" />
+    <Compile Include="Utils\BitArrayUtils.cs" />
+    <Compile Include="Utils\BoolBitMap.cs" />
     <Compile Include="Utils\HashStack.cs" />
     <Compile Include="Utils\HashUtils.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />

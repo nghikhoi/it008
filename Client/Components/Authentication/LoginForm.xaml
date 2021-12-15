@@ -20,7 +20,9 @@
             <DockPanel Grid.ColumnSpan="3">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"
                             DockPanel.Dock="Top" Margin="0 40 0 6">
-                    <TextBlock x:Name="txtAppName" FontSize="20" Foreground="{StaticResource PrimaryColor}" Text="{StaticResource AppName}"></TextBlock>
+                    <TextBlock x:Name="txtAppName" FontSize="20" Foreground="{StaticResource PrimaryColor}"
+                               Text="{StaticResource AppName}">
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Top"
                             Orientation="Horizontal" Height="4">

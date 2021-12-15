@@ -9,8 +9,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="140" />
         </Grid.ColumnDefinitions>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
             <!--<ProgressBar x:Name="progressBarThumb" Width="80" Height="80"
@@ -21,7 +21,7 @@
             <local:ImageLoader MediaInfo="{Binding ThumbnailURL}" Width="220" Height="220" Margin="8" />
         </Grid>
 
-        <StackPanel Grid.Column="1"  HorizontalAlignment="Right">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Right">
             <Grid Width="128" Height="128" Margin="10">
                 <!--<ProgressBar x:Name="progressBar" Width="60" Height="60"
                                 Style="{StaticResource MaterialDesignCircularProgressBar}"
@@ -39,11 +39,11 @@
                 <Grid>
                     <TextBlock VerticalAlignment="Center"
                                HorizontalAlignment="Center" FontSize="16"
-                               TextAlignment="Center" Text="Tải xuống"/>
+                               TextAlignment="Center" Text="Tải xuống" />
                     <Button Width="96" Height="28"
                             IsEnabled="True"
                             Command="{Binding BuyCommand}"
-                            HorizontalContentAlignment="Center"/>
+                            HorizontalContentAlignment="Center" />
                 </Grid>
             </Border>
         </StackPanel>

@@ -12,9 +12,9 @@ namespace UI.Utils.Markups {
         public override object ProvideValue(IServiceProvider serviceProvider) => this;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => value is bool b ? !b : value;
+            => value == null ? false : value is bool b ? !b : value;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => value is bool b ? !b : value;
+            => value == null ? false : value is bool b ? !b : value;
     }
 }

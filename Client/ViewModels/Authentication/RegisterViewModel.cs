@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using UI.Command;
+using UI.Components;
 using UI.Models;
 using UI.Services;
 using UI.Services.Exceptions;
+using UI.Utils;
 
 namespace UI.ViewModels {
 	public class RegisterViewModel : ViewModelBase {
@@ -86,15 +89,18 @@ namespace UI.ViewModels {
 
 		public async void Register() {
 			try {
+                if (!FastCodeUtils.NotEmptyStrings(Username, Password, FirstName, LastName, RepeatPassword)
+                    || DayOfBirth == null) {
+                    await DialogHost.Show(new AnnouncementDialog("Chưa điền đầy đủ thông tin"));
+                    return;
+                }
 				RegisterInfo info = new RegisterInfo(FirstName, LastName, Username, Password, DayOfBirth, Gender);
 				await _authenticator.Register(info);
+                var res = await DialogHost.Show(new AnnouncementDialog("Đăng kí thành công!"));
 				OpenLoginCommand.Execute(null);
 			}
-			catch (UserNotFoundException e) {
-
-			}
-			catch (InvalidPasswordException e) {
-				
+			catch (AlreadyExistsUserException e) {
+                await DialogHost.Show(new AnnouncementDialog("Tài khoản đã tồn tại"));
 			}
 		}
 		

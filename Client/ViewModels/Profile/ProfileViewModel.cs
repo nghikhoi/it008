@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using UI.Command;
 using UI.Components;
 using UI.Models;
 using UI.Models.Message;
+using UI.Network.Packets.AfterLoginRequest.Profile;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
@@ -169,6 +171,7 @@ namespace UI.ViewModels {
                 o => _userProfileHolder.UpdateUserProfile(Profile));
             ChangeNameCancelCommand = new RelayCommand<object>(null, o => CancelChangeName());
             CleanChangePasswordCommand = new RelayCommand<object>(null, o => CleanChangePassword());
+            AcceptChangePasswordCommand = new RelayCommand<object>(null, o => ChangePassword());
             ChangeImageCommand = new RelayCommand<object>(null, o => ChangeAvatar());
             InitializeCommand.Execute(null);
         }
@@ -205,6 +208,24 @@ namespace UI.ViewModels {
         protected override void Initialize(object parameter = null) {
             _userProfileHolder.LoadProfile();
             CloneProfile();
+        }
+
+        private void ChangePassword()
+        {
+            ModifyPassword request = new ModifyPassword();
+            request.OldPassword = Password;
+            request.NewPassword = NewPassword;
+            CleanChangePassword();
+            bool res = false;
+            DataAPI.getData<ModifyPasswordResult>(request, result =>
+            {
+                res = result.Result;
+            });
+            if (res) {
+                DialogHost.Show(new AnnouncementDialog("Đổi mật khẩu thành công"));
+            } else {
+                DialogHost.Show(new AnnouncementDialog("Đổi mật khẩu thất bại"));
+            }
         }
 
         private void CancelChangeName() {
