@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using UI.Command;
 using UI.Models;
 using UI.Models.Message;
@@ -184,7 +186,6 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(ShowingMedia));
 			}
 		}
-
 		#endregion
 
 		#region Command
