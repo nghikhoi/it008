@@ -12,6 +12,7 @@ namespace UI.Models.Message
     public class TextMessage : AbstractMessage
     {
         private string _message = String.Empty;
+        public bool isEmoji = false;
 
         public TextMessage() {
         }

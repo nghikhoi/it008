@@ -56,6 +56,17 @@ namespace UI.ViewModels {
         public Color Color => Conversation.Color;
 		public Color SelectingColor { get; set; }
 
+		private string _mainEmoji = "❤️";
+		public string MainEmoji
+        {
+			get => _mainEmoji;
+            set
+            {
+				_mainEmoji = value;
+				OnPropertyChanged(nameof(MainEmoji));
+            }
+        }
+
         public string ConversationId => Conversation.ID.ToString();
 		
 		public string ConversationName {
@@ -212,6 +223,7 @@ namespace UI.ViewModels {
 		public ICommand ChatpageSelectEmojiCommand { get; private set; }
         public ICommand UpdateColorCommand { get; private set; }
         public ICommand StartChangeNameCommand { get; private set; }
+		public ICommand SendEmojiCommand { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
@@ -249,7 +261,7 @@ namespace UI.ViewModels {
 			ChatpageSelectEmojiCommand = new RelayCommand<object>(null, SelectEmoji);
             UpdateColorCommand = new RelayCommand<object>(null, o => _model.UpdateColor(Conversation.ID, SelectingColor));
             StartChangeNameCommand = new RelayCommand<object>(null, o => StartChangeName());
-
+			SendEmojiCommand = new RelayCommand<object>(null, SendEmoji);
         }
 
         private void StartChangeName()
@@ -275,7 +287,15 @@ namespace UI.ViewModels {
             {
                 foreach (var msg in Messages)
                 {
-                    msg.BubbleColor = new SolidColorBrush(Color);
+					if (msg is TextMessageViewModel)
+					{
+						if ((msg as TextMessageViewModel).Message.isEmoji)
+						{
+							msg.BubbleColor = null;
+							continue;
+						}
+					}
+					msg.BubbleColor = new SolidColorBrush(Color);
                 }
             });
         }
@@ -390,6 +410,14 @@ namespace UI.ViewModels {
             Texting = "";
         }
 
+		private void SendEmoji(object o = null)
+		{
+			if (!FastCodeUtils.NotEmptyStrings(MainEmoji))
+				return;
+			messagePackage.AddEmoji(MainEmoji);
+			PackageMessage();
+		}
+
 		protected virtual void FirstSelectLoad(object parameter = null) {
 			_model.LoadConversation(Conversation.ID);
 		}
@@ -460,6 +488,12 @@ namespace UI.ViewModels {
 					}
 				case BubbleType.Text: {
 						messageViewModel = _factory.Create<TextMessageViewModel>();
+						break;
+					}
+				case BubbleType.Emoji:
+					{
+						messageViewModel = _factory.Create<TextMessageViewModel>();
+						(messageViewModel as TextMessageViewModel).Message.isEmoji = true;
 						break;
 					}
 				case BubbleType.Video: {

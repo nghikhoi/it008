@@ -38,7 +38,8 @@ namespace UI.Models {
 		Image = 2,
 		Sticker = 3, 
 		Text = 4,
-		Video = 5
+		Video = 5,
+		Emoji = 6
 	}
 
 	public class BubbleTypeParser

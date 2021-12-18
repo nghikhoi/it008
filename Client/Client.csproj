@@ -345,6 +345,9 @@
     <Compile Include="Components\ChangeNicknameItem.xaml.cs">
       <DependentUpon>ChangeNicknameItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Emoji.xaml.cs">
+      <DependentUpon>Emoji.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\IModelContext.cs" />
     <Compile Include="Models\IModelFactory.cs" />
     <Compile Include="Models\Impl\ModelContext.cs" />
@@ -721,6 +724,10 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\ChangeNicknames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Emoji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

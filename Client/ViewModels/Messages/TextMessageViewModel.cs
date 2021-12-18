@@ -5,7 +5,7 @@ using UI.Services;
 namespace UI.ViewModels {
 	public class TextMessageViewModel : MessageViewModel {
 		public new TextMessage Message {
-			get => (TextMessage) base.Message;
+			get => (TextMessage)base.Message;
 			set => base.Message = value;
 		}
 
@@ -16,9 +16,8 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(Text));
 			}
 		}
-
-        public TextMessageViewModel(IAppSession appSession) : base(appSession) {
-			
-		}
+		public TextMessageViewModel(IAppSession appSession) : base(appSession) {
+			 
+	}
 	}
 }

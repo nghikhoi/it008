@@ -26,6 +26,10 @@ namespace UI.Utils.Markups {
 					case BubbleType.Text: {
 						return element.FindResource("TextMessage") as DataTemplate;
 					}
+					case BubbleType.Emoji:
+						{
+							return element.FindResource("Emoji") as DataTemplate;
+						}
 					case BubbleType.Video: {
 						return element.FindResource("VideoMessage") as DataTemplate;
 					}

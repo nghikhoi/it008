@@ -26,4 +26,7 @@
     <DataTemplate x:Key="AttachmentMessage">
         <uc:AttachmentBubble Margin="0, 1, 0, 1" Style="{StaticResource MessageAlign}"/>
     </DataTemplate>
+    <DataTemplate x:Key="Emoji">
+        <uc:Emoji Margin="0, 1, 0, 1" ChatContent="{Binding Text}" Style="{StaticResource MessageAlign}" Background="{x:Null}"/>
+    </DataTemplate>
 </ResourceDictionary>

@@ -127,6 +127,16 @@
                         </Border>
                     </Border>
 
+                    <Button x:Name="EmojiButton" Margin="2, 4" Width="50"
+                            Height="34" Style="{StaticResource IconButton}"
+                            Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center" DockPanel.Dock="Right" Padding="0"
+                            Command="{Binding SendEmojiCommand}">
+                        <emoji:TextBlock Text="{Binding MainEmoji}" FontSize="25"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"></emoji:TextBlock>
+                    </Button>
+
                     <Button x:Name="SendButton" Margin="2, 4" Width="50"
                             Height="34" Style="{StaticResource IconButton}"
                             Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom"
