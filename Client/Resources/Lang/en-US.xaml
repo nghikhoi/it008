@@ -94,4 +94,19 @@
     <sys:String x:Key="FriendRqst.inf">Profile</sys:String>
 
     <sys:String x:Key="EmptyChat">Add Conversation</sys:String>
+
+    <!--login dialog-->
+    <sys:String x:Key="Announce.NeedAcc">Need to input username and password</sys:String>
+    <sys:String x:Key="Announce.WrongAcc">Invalid account</sys:String>
+    <sys:String x:Key="Announce.WrongPass">Wrong password</sys:String>
+
+    <!--register-->
+    <sys:String x:Key="Regist.NeedInfo">Need to input all required information</sys:String>
+    <sys:String x:Key="Regist.Success">Successfully registered</sys:String>
+    <sys:String x:Key="Regist.Exist">Account already existed</sys:String>
+
+    <!--change password-->
+    <sys:String x:Key="changepass.success">Successfully changed password</sys:String>
+    <sys:String x:Key="changepass.Fail">Change password failed</sys:String>
+    
 </ResourceDictionary>

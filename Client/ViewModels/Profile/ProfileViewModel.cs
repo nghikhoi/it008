@@ -220,9 +220,9 @@ namespace UI.ViewModels {
                 res = result.Result;
             });
             if (res) {
-                DialogHost.Show(new AnnouncementDialog("Đổi mật khẩu thành công"));
+                DialogHost.Show(new AnnouncementDialog(Language.getText("changepass.success")));
             } else {
-                DialogHost.Show(new AnnouncementDialog("Đổi mật khẩu thất bại"));
+                DialogHost.Show(new AnnouncementDialog(Language.getText("changepass.Fail")));
             }
         }
 

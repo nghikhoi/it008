@@ -91,16 +91,16 @@ namespace UI.ViewModels {
 			try {
                 if (!FastCodeUtils.NotEmptyStrings(Username, Password, FirstName, LastName, RepeatPassword)
                     || DayOfBirth == null) {
-                    await DialogHost.Show(new AnnouncementDialog("Chưa điền đầy đủ thông tin"));
+                    await DialogHost.Show(new AnnouncementDialog(Language.getText("Regist.NeedInfo")));
                     return;
                 }
 				RegisterInfo info = new RegisterInfo(FirstName, LastName, Username, Password, DayOfBirth, Gender);
 				await _authenticator.Register(info);
-                var res = await DialogHost.Show(new AnnouncementDialog("Đăng kí thành công!"));
+                var res = await DialogHost.Show(new AnnouncementDialog(Language.getText("Regist.Success")));
 				OpenLoginCommand.Execute(null);
 			}
 			catch (AlreadyExistsUserException e) {
-                await DialogHost.Show(new AnnouncementDialog("Tài khoản đã tồn tại"));
+                await DialogHost.Show(new AnnouncementDialog(Language.getText("Regist.Exist")));
 			}
 		}
 		

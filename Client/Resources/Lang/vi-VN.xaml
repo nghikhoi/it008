@@ -94,4 +94,18 @@
     <sys:String x:Key="FriendRqst.inf">Profile</sys:String>
 
     <sys:String x:Key="EmptyChat">Thêm cuộc trò chuyện</sys:String>
+    
+    <!--login dialog-->
+    <sys:String x:Key="Announce.NeedAcc">Cần nhập tài khoản và mật khẩu</sys:String>
+    <sys:String x:Key="Announce.WrongAcc">"Tài khoản không tồn tại</sys:String>
+    <sys:String x:Key="Announce.WrongPass">"Sai mật khẩu</sys:String>
+    
+    <!--register-->
+    <sys:String x:Key="Regist.NeedInfo">Cần nhập đầy đủ thông tin</sys:String>
+    <sys:String x:Key="Regist.Success">Đăng ký thành công</sys:String>
+    <sys:String x:Key="Regist.Exist">Tài khoản đã tồn tại</sys:String>
+    
+    <!--change password-->
+    <sys:String x:Key="changepass.success">Đổi mật khẩu thành công</sys:String>
+    <sys:String x:Key="changepass.Fail">Đổi mật khẩu thất bại</sys:String>
 </ResourceDictionary>

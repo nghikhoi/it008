@@ -47,7 +47,7 @@ namespace UI.ViewModels {
 		public async void Login() {
 			try {
                 if (!FastCodeUtils.NotEmptyStrings(Username, Password)) {
-                    await DialogHost.Show(new AnnouncementDialog("Cần nhập tài khoản và mật khẩu"));
+                    await DialogHost.Show(new AnnouncementDialog(Language.getText("Announce.NeedAcc")));
                     return;
                 }
 				if (!App.IS_LOCAL_DEBUG)
@@ -55,10 +55,10 @@ namespace UI.ViewModels {
 				_loginSuccessNavigator.Navigate();
 			}
 			catch (UserNotFoundException e) {
-                await DialogHost.Show(new AnnouncementDialog("Tài khoản không tồn tại"));
+                await DialogHost.Show(new AnnouncementDialog(Language.getText("Announce.WrongAcc")));
 			}
 			catch (InvalidPasswordException e) {
-                await DialogHost.Show(new AnnouncementDialog("Sai mật khẩu"));
+                await DialogHost.Show(new AnnouncementDialog(Language.getText("Announce.WrongPass")));
 			}
 		}
 
