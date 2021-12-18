@@ -8,21 +8,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid Background="teal">
-        
+
         <ProgressBar
                      x:Name="ProcessBar"
                      Margin="0,65"
                      Foreground="AliceBlue"
                      Height="5"
-                     Value="{Binding DownloadProcess}"></ProgressBar>
+                     Value="{Binding DownloadProcess}">
+        </ProgressBar>
 
         <TextBlock x:Name="Progress"
+                   Foreground="White"
                    Height="20" Width="40"
                    Margin="31,75,29,5"
                    Text="{Binding DownloadProgress}">
         </TextBlock>
         
         <TextBlock x:Name="FileName" 
+                   Foreground="White"
                    Width="80"
                    Margin="10,10,10,50"
                    TextWrapping="WrapWithOverflow"
