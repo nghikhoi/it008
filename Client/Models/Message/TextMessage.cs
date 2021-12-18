@@ -49,6 +49,7 @@ namespace UI.Models.Message
 
         public override int GetPreviewCode()
         {
+            if (isEmoji) return 6;
             return 4;
         }
     }

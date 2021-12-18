@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:UI.Components"
              xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
              mc:Ignorable="d" 
+             x:Name="_this"
              d:DesignHeight="30" d:DesignWidth="30">
     <Grid>
         <Border CornerRadius="15"
@@ -16,7 +17,7 @@
                              Background="{x:Null}"
                              Grid.IsSharedSizeScope="True"
                              TextWrapping="Wrap"
-                             Text="{Binding ElementName=_this, Path=ChatContent}" FontSize="18"
+                             Text="{Binding ElementName=_this, Path=EmoContent}" FontSize="18"
                              Foreground="White" Margin="10, 5, 10, 5" />
         </Border>
     </Grid>

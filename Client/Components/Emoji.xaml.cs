@@ -21,13 +21,13 @@ namespace UI.Components
     public partial class Emoji : UserControl
 
     {
-        public static readonly DependencyProperty ChatContentProperty = DependencyProperty.Register(nameof(ChatContent), typeof(string)
-            , typeof(TextBubble), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty EmoContentProperty = DependencyProperty.Register(nameof(EmoContent), typeof(string)
+            , typeof(Emoji), new FrameworkPropertyMetadata(null));
 
-        public string ChatContent
+        public string EmoContent
         {
-            get => GetValue(ChatContentProperty) as string;
-            set => SetValue(ChatContentProperty, value);
+            get => GetValue(EmoContentProperty) as string;
+            set => SetValue(EmoContentProperty, value);
         }
         public static object Wpf { get; internal set; }
 

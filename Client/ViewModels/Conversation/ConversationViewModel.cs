@@ -287,14 +287,6 @@ namespace UI.ViewModels {
             {
                 foreach (var msg in Messages)
                 {
-					if (msg is TextMessageViewModel)
-					{
-						if ((msg as TextMessageViewModel).Message.isEmoji)
-						{
-							msg.BubbleColor = null;
-							continue;
-						}
-					}
 					msg.BubbleColor = new SolidColorBrush(Color);
                 }
             });
@@ -493,7 +485,6 @@ namespace UI.ViewModels {
 				case BubbleType.Emoji:
 					{
 						messageViewModel = _factory.Create<TextMessageViewModel>();
-						(messageViewModel as TextMessageViewModel).Message.isEmoji = true;
 						break;
 					}
 				case BubbleType.Video: {
