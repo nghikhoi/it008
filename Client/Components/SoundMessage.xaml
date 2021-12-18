@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="UI.Components.SoundMessage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:UI.Components"
+             mc:Ignorable="d" 
+             d:DesignWidth="300" MinWidth="40">
+    <Grid>
+        <Border CornerRadius="15"
+                Background="{Binding BubbleColor}"
+                MinWidth="40" MaxWidth="300">
+            <Grid>
+                <MediaElement
+                    ScrubbingEnabled="True"
+                    Stretch="Uniform"
+                    Name="VideoControl" LoadedBehavior="Manual" UnloadedBehavior="Stop" Margin="0,0,0,0"
+                    MediaOpened="VideoControll_opened"
+                    Visibility="Hidden"/>
+                <Slider x:Name="SeekBar"
+                        Thumb.DragStarted="SeekBar_DragStarted" Thumb.DragCompleted="SeekBar_DragCompleted"
+                        HorizontalAlignment="Right" Height="27" Width="250"
+                        Background="Transparent" Foreground="LightGray"
+                        materialDesign:SliderAssist.OnlyShowFocusVisualWhileDragging="True"
+                        ValueChanged="On_Seek" />
+            <Button Width="50" Background="{x:Null}" Click="Play_on_controlbar" BorderThickness="0"
+                    HorizontalAlignment="Left">
+                <materialDesign:PackIcon x:Name="control_icon" Kind="Play"
+                                             HorizontalAlignment="Stretch"
+                                             VerticalAlignment="Stretch" />
+            </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

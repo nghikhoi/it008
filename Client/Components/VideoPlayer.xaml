@@ -40,7 +40,7 @@
                              Margin="10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFB6B6B6"
                              Height="100" Width="100" IsTabStop="False"
                              Visibility="Hidden" />
-                <Image x:Name="ThumbNail" Visibility="Hidden" Source="Resources/Images/DefaultThumbnail.jpg"
+                <Image x:Name="ThumbNail" Visibility="Hidden" 
                        Stretch="UniformToFill" />
             </Grid>
             <Button x:Name="on_screen_play_button"

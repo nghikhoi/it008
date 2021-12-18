@@ -326,7 +326,7 @@ namespace UI.ViewModels {
 			List<string> paths = new List<string>();
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
-			dlg.Filter = "Video files (*.mp4)|*.mp4";
+			dlg.Filter = "Video files (*.mp4)|*.mp4|Sounds files|*.mp3";
 
 
 			// Display OpenFileDialog by calling ShowDialog method 

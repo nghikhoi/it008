@@ -345,6 +345,9 @@
     <Compile Include="Components\Emoji.xaml.cs">
       <DependentUpon>Emoji.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\SoundMessage.xaml.cs">
+      <DependentUpon>SoundMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\IModelContext.cs" />
     <Compile Include="Models\IModelFactory.cs" />
     <Compile Include="Models\Impl\ModelContext.cs" />
@@ -733,6 +736,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ChangeNicknameItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SoundMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
