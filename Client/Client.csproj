@@ -342,6 +342,9 @@
     <Compile Include="Components\ChangeNicknameItem.xaml.cs">
       <DependentUpon>ChangeNicknameItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\DownloadItem.xaml.cs">
+      <DependentUpon>DownloadItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\Emoji.xaml.cs">
       <DependentUpon>Emoji.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,7 @@
     <Compile Include="ViewModels\Conversation\GroupAvatarViewModel.cs" />
     <Compile Include="ViewModels\Conversation\NicknameViewModel.cs" />
     <Compile Include="ViewModels\Conversation\SingleAvatarViewModel.cs" />
+    <Compile Include="ViewModels\DownloadViewmodel.cs" />
     <Compile Include="Views\Windows\AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
@@ -724,6 +728,10 @@
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\ChangeNicknames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\DownloadItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

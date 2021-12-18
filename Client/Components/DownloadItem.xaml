@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="UI.Components.DownloadItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Grid Background="teal">
+        
+        <ProgressBar
+                     x:Name="ProcessBar"
+                     Margin="0,65"
+                     Foreground="AliceBlue"
+                     Height="5"
+                     Value="{Binding DownloadProcess}"></ProgressBar>
+
+        <TextBlock x:Name="Progress"
+                   Height="20" Width="40"
+                   Margin="31,75,29,5"
+                   Text="{Binding DownloadProgress}">
+        </TextBlock>
+        
+        <TextBlock x:Name="FileName" 
+                   Width="80"
+                   Margin="10,10,10,50"
+                   TextWrapping="WrapWithOverflow"
+                   Text="{Binding FileName}"/>
+    </Grid>
+</UserControl>
