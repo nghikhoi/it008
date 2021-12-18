@@ -30,6 +30,7 @@ namespace UI
             return Host.CreateDefaultBuilder(args)
                 .AddNetwork()
                 .AddStores()
+                .AddModels()
                 .AddViewModels()
                 .AddViews();
         }

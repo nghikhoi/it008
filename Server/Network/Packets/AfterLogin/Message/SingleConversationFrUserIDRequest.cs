@@ -61,8 +61,7 @@ namespace ChatServer.Network.Packets
                 store.Save(new SingleConversation()
                 {
                     ID = resultID,
-                    Members = new HashSet<Guid>() { chatSession.Owner.ID, targetUser.ID },
-                    ConversationName = "~"
+                    Members = new HashSet<Guid>() { chatSession.Owner.ID, targetUser.ID }
                 });
 
                 chatSession.Owner.Save();

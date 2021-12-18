@@ -26,9 +26,6 @@ namespace ChatServer.Entity.Conversation
         [BsonId]
         public Guid ID { get; set; }
 
-        [BsonElement("ConversationName")]
-        public string ConversationName { get; set; }
-
         [BsonElement("LastActive")]
         public long LastActive { get; set; }
 
@@ -46,6 +43,8 @@ namespace ChatServer.Entity.Conversation
 
         [BsonElement("AttachmentID")]
         public List<Guid> AttachmentID { get; set; } = new List<Guid>();
+
+        public Dictionary<Guid, string> Nicknames { get; set; } = new Dictionary<Guid, string>();
 
         [BsonIgnore]
         public LRUCache<Guid, IMessage> LoadedMessages { get; set; } = new LRUCache<Guid, IMessage>(100, 10);
@@ -109,7 +108,7 @@ namespace ChatServer.Entity.Conversation
                 }
 
                 ChatUser user = new ChatUserStore().Load(member);
-                LastActive = Math.Min(LastActive, (long)Math.Ceiling((DateTime.UtcNow - user.LastLogoff).TotalMinutes));
+                LastActive = Math.Min(LastActive, (long) Math.Ceiling((DateTime.UtcNow - user.LastLogoff).TotalMinutes));
             }
         }
 

@@ -52,9 +52,9 @@
                             <materialDesign:PackIcon Kind="DotsVertical" Width="24" Height="24" />
                         </ToggleButton>
                     </StackPanel>
-                    <StackPanel Margin="0 5 0 0" Orientation="Vertical" Height="40">
+                    <StackPanel Margin="0 3 0 0" Orientation="Vertical" Height="40">
                         <Label Grid.Row="0" Content="{Binding ConversationName}" FontWeight="Bold" FontSize="15"
-                               Margin="0 5 0 0">
+                               Margin="0 -1 0 0">
                         </Label>
                         <Grid Grid.Row="1" x:Name="StatusContainer" Margin="5 -3 0 0" Height="15">
                             <Status:OnlineStatus

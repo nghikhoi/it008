@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Interop;
 using UI.Command;
 using UI.Models;
 using UI.Models.Message;
@@ -20,13 +19,30 @@ namespace UI.ViewModels {
 
 		#region Properties
 
-		private string _conversationName;
+        private AbstractConversation _conversation;
+        public AbstractConversation Conversation
+        {
+            get => _conversation;
+            set
+            {
+                _conversation = value;
+                _conversation.MediaAddEvent += (msg, i) => AddMedia(msg);
+                _conversation.MessageAddEvent += (msg, i) => AddMessage(msg);
+                OnPropertyChanged(nameof(Conversation)
+                    , nameof(ConversationName), nameof(ConversationAvatar), nameof(ConversationId));
+            }
+        }
+
+        public string ConversationId => Conversation.ID.ToString();
+		
 		public string ConversationName {
-			get => _conversationName;
-			set {
-				_conversationName = value;
-				OnPropertyChanged(nameof(ConversationName));
-			}
+			get
+            {
+                if (Conversation == null) return null;
+                if (Conversation.Members.Count > 2 || FastCodeUtils.NotEmptyStrings(Conversation.Name))
+                    return Conversation.Name;
+                return Conversation.Nicknames.First(pair => string.CompareOrdinal(pair.Key.ToString(), _appSession.SessionID) != 0).Value;
+            }
 		}
 
 		private string _conversationAvatar;
@@ -35,51 +51,6 @@ namespace UI.ViewModels {
 			set {
 				_conversationAvatar = value;
 				OnPropertyChanged("ConversationAvatar");
-			}
-		}
-
-		private string _conversationId = "~";
-		public string ConversationId {
-			get => _conversationId;
-			set {
-				_conversationId = value;
-				OnPropertyChanged(nameof(ConversationId));
-			}
-		}
-
-		private int _lastMessId;
-		public int LastMessId {
-			get => _lastMessId;
-			set {
-				_lastMessId = value;
-				OnPropertyChanged(nameof(LastMessId));
-			}
-		}
-
-		private int _lastMediaId;
-		public int LastMediaId {
-			get => _lastMediaId;
-			set {
-				_lastMediaId = value;
-				OnPropertyChanged(nameof(LastMediaId));
-			}
-		}
-
-		private int _lastMediaIdBackup;
-		public int LastMediaIdBackup {
-			get => _lastMediaIdBackup;
-			set {
-				_lastMediaIdBackup = value;
-				OnPropertyChanged(nameof(LastMediaIdBackup));
-			}
-		}
-
-		private int _lastAttachmentId;
-		public int LastAttachmentId {
-			get => _lastAttachmentId;
-			set {
-				_lastAttachmentId = value;
-				OnPropertyChanged(nameof(LastAttachmentId));
 			}
 		}
 
@@ -186,6 +157,7 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(ShowingMedia));
 			}
 		}
+
 		#endregion
 
 		#region Command
@@ -208,24 +180,25 @@ namespace UI.ViewModels {
 		protected readonly IViewModelFactory _factory;
 		protected readonly ChatConnection _connection;
 		protected readonly IAppSession _appSession;
+        protected readonly IModelContext _model;
 
-		public ConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory) {
+		public ConversationViewModel(ChatConnection chatConnection, IAppSession appSession, IViewModelFactory factory, IModelContext model) {
 			Messages = new ObservableCollection<MessageViewModel>();
 			Medias = new ObservableCollection<MessageViewModel>();
 			LimitShowMedias = new ObservableCollection<MessageViewModel>();
-			Medias.CollectionChanged += LimitShowUtils.CreateHandler(Medias, LimitShowMedias, 0, MAX_SHOW);
+			Medias.CollectionChanged += ObserveUtils.CreateLimitObserve(Medias, LimitShowMedias, 0, MAX_SHOW);
 			Attachments = new ObservableCollection<MessageViewModel>();
 			LimitAttachments = new ObservableCollection<MessageViewModel>();
-			Attachments.CollectionChanged += LimitShowUtils.CreateHandler(Attachments, LimitAttachments, 0, MAX_SHOW);
+			Attachments.CollectionChanged += ObserveUtils.CreateLimitObserve(Attachments, LimitAttachments, 0, MAX_SHOW);
 			GroupBubbles = new ObservableCollection<GroupBubbleViewModel>();
 			_factory = factory;
 			_connection = chatConnection;
 			_appSession = appSession;
+            _model = model;
 
 			SelectCommand = new RelayCommand<object>(null, o => SelectAction?.Invoke(this));
 			SelectMediaCommand = new RelayCommand<MediaViewModel>(null, SelectMedia);
-			InitializeCommand.Execute(null);
-			FirstSelectCommand = new InitializeCommand(FirstSelectLoad);
+            FirstSelectCommand = new InitializeCommand(FirstSelectLoad);
 			SendTextMessageCommand = new RelayCommand<object>(null, o => SendTextMessage());
 			EndLineTextCommand = new RelayCommand<object>(null, o => Texting += (Environment.NewLine));
 			LoadMoreCommand = new RelayCommand<object>(null, o => LoadMessages());
@@ -397,55 +370,13 @@ namespace UI.ViewModels {
 		}
 
 		protected virtual void FirstSelectLoad(object parameter = null) {
-			ConversationFromID request = new ConversationFromID();
-			request.ConversationID = ConversationId;
-			DataAPI.getData<ConversationFromIDResult>(request, result => {
-				LastMessId = result.LastMessID;
-
-				if (!FirstSelectCommand.IsExecuted()) {
-					LastMediaId = result.LastMediaID;
-					LastMediaIdBackup = result.LastMediaID;
-				}
-
-				LastAttachmentId = result.LastAttachmentID;
-				//ConversationName = result.ConversationName;
-				//conversation.Members = result.Members.ToList();
-
-				//conversation.Color = ColorUtils.IntToColor(result.BubbleColor);
-				//TODO update chat container color
-				//
-				// view.cleanChatPage();
-				LoadMessages(true);
-				LoadMedias(true, 20);
-			});
+			_model.LoadConversation(Conversation.ID);
 		}
 
 		#region Media
 
-		public void LoadMedias(bool loadConversation = false, int quantity = 5) {
-			if (LastMessId < 0)
-				return;
-			GetMediaFromConversation msgPacket = new GetMediaFromConversation();
-			msgPacket.ConversationID = ConversationId;
-			msgPacket.MediaPosition = LastMediaId;
-			msgPacket.Quantity = quantity;
-			LastMediaId -= quantity;
-			DataAPI.getData<GetMediaFromConversationResult>(msgPacket, result => {
-				for (var i = 0; i < result.Positions.Count; i++) {
-					int position = result.Positions[i];
-					string fileName = result.FileNames[i];
-					string fileId = result.FileIDs[i];
-					MediaAbstractMessage message = null;
-					if (MediaInfo.IsVideoFileName(fileName)) {
-						message = new VideoMessage();
-					} else {
-						message = new ImageMessage();
-					}
-					message.FileName = fileName;
-					message.FileID = fileId;
-					AddMedia(message, true);
-				}
-			});
+		public void LoadMedias(int quantity = 5) {
+			_model.LoadMedias(Conversation.ID, quantity);
 		}
 
 		protected void AddMedia(AbstractMessage message, bool loadFromServer = false) {
@@ -486,21 +417,7 @@ namespace UI.ViewModels {
 		#region Message
 
 		public void LoadMessages(bool loadConversation = false, int quantity = 10) {
-			if (LastMessId < 0)
-				return;
-
-			GetMessageFromConversation msgPacket = new GetMessageFromConversation();
-			msgPacket.ConversationID = ConversationId;
-			msgPacket.MessagePosition = LastMessId;
-			msgPacket.Quantity = quantity;
-			msgPacket.LoadConversation = loadConversation;
-			LastMessId -= quantity;
-			DataAPI.getData<GetMessageFromConversationResult>(msgPacket, result => {
-				for (int i = 0; i < result.SenderID.Count; ++i) {
-					result.Content[i].SenderID = result.SenderID[i];
-					AddMessage(result.Content[i], true);
-				}
-			});
+			_model.LoadMessages(Conversation.ID, quantity);
 		}
 
 		protected void AddMessage(AbstractMessage message, bool loadFromServer = false) {

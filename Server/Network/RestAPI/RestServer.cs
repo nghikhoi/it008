@@ -16,7 +16,7 @@ namespace ChatServer.Network.RestAPI
         {
             try
             {
-                _webapp = WebApp.Start<Startup>(String.Format("http://{0}:{1}", ip, port));
+                _webapp = WebApp.Start<Startup>($"http://{ip}:{port}");
                 SimpleChatServer.GetServer().Logger.Info("Bind success. REST Server is listening on " + ip + ":" + port);
                 latch.Signal();
             } catch (Exception e)

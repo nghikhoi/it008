@@ -115,6 +115,7 @@ namespace UI.ViewModels {
         private readonly IUserProfileHolder _userProfileHolder;
         private readonly PacketRespondeListener _respondeListener;
         private readonly IAppSession _appSession;
+        private readonly IModelContext _model;
 
         #endregion
 
@@ -125,7 +126,7 @@ namespace UI.ViewModels {
 
         #endregion
 
-        public HomeViewModel(PacketRespondeListener respondeListener, IAppSession appSession, IViewModelFactory viewModelFactory, IAuthenticator authenticator, IUserProfileHolder userProfileHolder) : base() {
+        public HomeViewModel(PacketRespondeListener respondeListener, IAppSession appSession, IModelContext model, IViewModelFactory viewModelFactory, IAuthenticator authenticator, IUserProfileHolder userProfileHolder) : base() {
             _conversations = new ObservableCollection<ConversationViewModel>();
             _searchingConversations = new ObservableCollection<FriendConversationViewModel>();
             _friendList = new ObservableCollection<FriendConversationViewModel>();
@@ -146,6 +147,7 @@ namespace UI.ViewModels {
             this.authenticator = authenticator;
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
+            this._model = model;
 
             InitializeCommand.Execute(null);
             SearchCommand = new RelayCommand<object>(null, o => SearchAction(SearchingString));
@@ -202,7 +204,10 @@ namespace UI.ViewModels {
             ConversationViewModel conversation = ListSearchFor(conversationId);
             if (conversation == null)
                 return;
-            conversation.ReceiveMessage(message);
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                conversation.ReceiveMessage(message);
+            });
         }
 
         protected override void Initialize(object parameter = null) {
@@ -224,26 +229,28 @@ namespace UI.ViewModels {
         }
 
         private void LoadRecentConversation() { 
-             DataAPI.getData<RecentConversations, RecentConversationsResult>(recentResult => {
-                Conversations.Clear();
-                recentResult.Conversations.Keys.ToList().ForEach(key => {
-                    GetConversationShortInfo packet = new GetConversationShortInfo();
-                    packet.ConversationID = key;
-                    DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult => {
-                        ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
-                        viewModel.ConversationId = infoResult.ConversationID;
-                        viewModel.ConversationName = infoResult.ConversationName;
-                        viewModel.LastActive = infoResult.LastActive;
-                        viewModel.ConversationAvatar = infoResult.ConversationAvatar;
-                        viewModel.SelectAction += SelectConversation;
-                        Conversations.Add(viewModel);
-                    });
-                });
+             _model.GetRecentConversations(true).ForEach(id =>
+             {
+                 AbstractConversation conversation = _model.GetConversation(id);
+                 ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
+                 viewModel.Conversation = conversation;
+                 Conversations.Add(viewModel);
              });
         }
 
         private void LoadFriends() {
-            GetFriendIDs request = new GetFriendIDs();
+            _model.GetFriendList(true).ForEach(info =>
+            {
+                FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
+                viewModel.ConversationName = info.FirstName + " " + info.LastName;
+                viewModel.FullName = info.FirstName + " " + info.LastName;
+                viewModel.LastActive = info.LastActive;
+                viewModel.UserId = info.ID;
+                viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
+                viewModel.SelectAction += SelectConversation;
+                OriginFriendList.Add(viewModel);
+            });
+            /*GetFriendIDs request = new GetFriendIDs();
             request.FriendOfID = _appSession.SessionID;
             DataAPI.getData<GetFriendIDsResult>(request, friendsResult => {
                 OriginFriendList.Clear();
@@ -264,12 +271,11 @@ namespace UI.ViewModels {
                         SearchAction();
                     });
                 });
-            });
+            });*/
         }
 
         private void SelectConversation(ConversationViewModel viewModel) {
             this.SelectedConversation = viewModel;
-            SendSnackbar("Change conversation");
             if (viewModel != null)
                 this.SelectedConversation.StickerContainer = StickerContainer;
         }
@@ -306,18 +312,13 @@ namespace UI.ViewModels {
 
                 return;
             }
-            SearchUser packet = new SearchUser();
-            packet.Email = s;
-            DataAPI.getData<SearchUserResult>(packet, result => {
-                ShowSearchResult(result.Results);
-            });
+            ShowSearchResult(_model.Search(s));
         }
 
         public void ShowSearchResult(List<UserShortInfo> list) {
             SearchingFriendList.Clear();
             foreach (var info in list) {
                 FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
-                viewModel.ConversationId = info.ConversationID;
                 viewModel.ConversationName = info.FirstName + " " + info.LastName;
                 viewModel.FullName = info.FirstName + " " + info.LastName;
                 viewModel.LastActive = info.LastActive;

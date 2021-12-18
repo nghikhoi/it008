@@ -7,7 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using log4net.Config;
+using Microsoft.Extensions.Logging;
 using UI.Command;
+using UI.Models;
+using UI.Models.Impl;
+using UI.Models.Message;
 using UI.Network;
 using UI.Network.Protocol;
 using UI.Services.Common;
@@ -16,6 +21,14 @@ using UI.Views;
 
 namespace UI.Services {
     public static class Services {
+
+        public static IHostBuilder AddLogging(this IHostBuilder host)
+        {
+            host.ConfigureLogging(builder => {
+                builder.AddLog4Net("log4net.config");
+            });
+            return host;
+        }
 
         public static IHostBuilder AddStores(this IHostBuilder host) {
             host.ConfigureServices(services => {
@@ -26,13 +39,27 @@ namespace UI.Services {
         }
 
         public static IHostBuilder AddNetwork(this IHostBuilder host) {
-            host.ConfigureServices(services => {
+            host.ConfigureServices(services =>
+            {
                 services.AddSingleton<RespondeManager>();
                 services.AddSingleton<PacketRespondeListener>();
                 services.AddSingleton<ProtocolProvider>();
                 services.AddSingleton<ChatConnection>();
                 services.AddSingleton<IAuthenticator, Authenticator>();
                 services.AddSingleton<IUserProfileHolder, UserProfileHolder>();
+            });
+            return host;
+        }
+
+        public static IHostBuilder AddModels(this IHostBuilder host) {
+            host.ConfigureServices(services =>
+            {
+                services.AddTransient<AbstractConversation>();
+
+                services.AddSingleton<ModelCreator<AbstractConversation>>(s => s.GetRequiredService<AbstractConversation>);
+
+                services.AddSingleton<IModelFactory, ModelFactory>();
+                services.AddSingleton<IModelContext, ModelContext>();
             });
             return host;
         }

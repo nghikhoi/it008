@@ -178,6 +178,9 @@
     <Reference Include="Microsoft.Extensions.Logging.EventSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.EventSource.6.0.0\lib\net461\Microsoft.Extensions.Logging.EventSource.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5d1104efbd0e675d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Log4Net.AspNetCore.6.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
@@ -336,6 +339,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\IModelContext.cs" />
+    <Compile Include="Models\IModelFactory.cs" />
+    <Compile Include="Models\Impl\ModelContext.cs" />
+    <Compile Include="Models\Impl\ModelFactory.cs" />
     <Compile Include="Components\GroupAvtDisplayer.xaml.cs">
       <DependentUpon>GroupAvtDisplayer.xaml</DependentUpon>
     </Compile>
@@ -505,6 +512,7 @@
     <Compile Include="Utils\Converters\UriConverter.cs" />
     <Compile Include="Utils\FastCodeUtils.cs" />
     <Compile Include="Utils\LimitShowUtils.cs" />
+    <Compile Include="Utils\ObserveUtils.cs" />
     <Compile Include="Utils\Markups\BindingProxy.cs" />
     <Compile Include="Utils\Markups\GroupBubbleTemplateSelector.cs" />
     <Compile Include="Utils\Markups\MessageTemplateSelector.cs" />
@@ -949,6 +957,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Command\CommandDiagram.cd" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

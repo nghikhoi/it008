@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using UI.Command;
 using UI.Models;
@@ -22,6 +23,10 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(UserId));
 			}
 		}
+
+        public string ConversationName {
+            get => Conversation.Name;
+        }
 
         private string _fullName;
         public string FullName {
@@ -58,7 +63,7 @@ namespace UI.ViewModels {
 			base.Initialize(parameter);
 		}
 
-		public FriendConversationViewModel(ChatConnection chatConnection, PacketRespondeListener listener, IAppSession appSession, IViewModelFactory factory) : base(chatConnection, appSession, factory)
+		public FriendConversationViewModel(ChatConnection chatConnection, PacketRespondeListener listener, IAppSession appSession, IViewModelFactory factory, IModelContext model) : base(chatConnection, appSession, factory, model)
         {
             SendRequestCommand = new RelayCommand<object>(null, SendRequest);
             listener.UserOfflineEvent += (session, response) =>
@@ -79,16 +84,9 @@ namespace UI.ViewModels {
             _connection.Send(request);
         }
 
-		protected override void FirstSelectLoad(object parameter = null) {
-			if (ConversationId.Equals("~") && !string.IsNullOrEmpty(UserId)) {
-				SingleConversationFrUserID packet = new SingleConversationFrUserID {
-                    UserID = UserId
-                };
-                DataAPI.getData<SingleConversationFrUserIDResult>(packet, result => {
-					ConversationId = result.ConversationID;
-				});
-				return;
-			}
+		protected override void FirstSelectLoad(object parameter = null)
+        {
+            Conversation = _model.GetConversationFromUserId(Guid.Parse(UserId));
 			base.FirstSelectLoad();
 		}
 
