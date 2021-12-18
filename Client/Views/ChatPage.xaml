@@ -144,7 +144,7 @@
                                  Cursor="IBeam" FontSize="14" HorizontalContentAlignment="Stretch"
                                  CaretBrush="#FF1E145F"
                                  Text="{Binding Texting, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 VerticalContentAlignment="Center">
+                                 VerticalContentAlignment="Center" TextChanged="TextInputChanged">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SendTextMessageCommand}" />
                                 <KeyBinding Gesture="Shift+Return" Command="{Binding EndLineTextCommand}" />

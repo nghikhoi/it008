@@ -95,5 +95,40 @@ namespace UI.Views
         private void OfflineStatus_Loaded(object sender, RoutedEventArgs e) {
 
         }
+
+        private void TextInputChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ChatInput.Text.Contains(":)"))
+            {
+                emoReplacement(":)", "🙂");
+            }
+
+            if (ChatInput.Text.Contains(":("))
+            {
+                emoReplacement(":(", "🙁");
+            }
+
+            if (ChatInput.Text.Contains("<3"))
+            {
+                emoReplacement("<3", "❤️");
+            }
+            if (ChatInput.Text.Contains("-_-"))
+            {
+                emoReplacement("-_-", "😑");
+            }
+
+        }
+
+        private void emoReplacement(string target, string alter)
+        {
+            Emoji.Wpf.EmojiData.Emoji emoji = new Emoji.Wpf.EmojiData.Emoji();
+            if (ChatInput.Text.Contains(target))
+            {
+                emoji.Text = alter;
+                if (emoji != null)
+                    ChatInput.Text = ChatInput.Text.Replace(target, emoji.Text);
+            }
+            ChatInput.Select(ChatInput.Text.Length, 0);
+        }
     }
 }
