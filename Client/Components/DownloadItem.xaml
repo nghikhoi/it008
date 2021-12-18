@@ -6,7 +6,11 @@
              xmlns:local="clr-namespace:UI.Components"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             xmlns:convert="clr-namespace:UI.Utils.Converters"
              d:DesignHeight="100" d:DesignWidth="100">
+    <UserControl.Resources>
+        <convert:ProgressConverter x:Key="ProgressConvert"></convert:ProgressConverter>
+    </UserControl.Resources>
     <Grid Background="teal">
 
         <ProgressBar
@@ -21,7 +25,7 @@
                    Foreground="White"
                    Height="20" Width="40"
                    Margin="31,75,29,5"
-                   Text="{Binding DownloadProgress}">
+                   Text="{Binding DownloadProgress, Converter={StaticResource ProgressConvert}}">
         </TextBlock>
         
         <TextBlock x:Name="FileName" 
