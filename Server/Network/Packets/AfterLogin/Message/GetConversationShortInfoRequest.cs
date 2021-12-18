@@ -20,16 +20,18 @@ namespace ChatServer.Network.Packets
         }
 
         public override IPacket createResponde(ISession session) {
-            GetConversationShortInfoResponse packet = new GetConversationShortInfoResponse();
-
-            packet.ConversationID = ConversationID.ToString();
-
             ChatSession chatSession = session as ChatSession;
             AbstractConversation conversation = new ConversationStore().Load(ConversationID);
 
+            GetConversationShortInfoResponse packet = new GetConversationShortInfoResponse {
+                ConversationID = ConversationID.ToString(),
+                Nicknames = conversation.Nicknames,
+                Members = conversation.Members.Select(id => id.ToString()).ToHashSet()
+            };
+
             int cnt = 0;
             packet.ConversationName = "";
-            if (string.IsNullOrEmpty(conversation.ConversationName) || conversation.ConversationName.Equals("~"))
+            /*if (string.IsNullOrEmpty(conversation.ConversationName) || conversation.ConversationName.Equals("~"))
             {
                 foreach (var member in conversation.Members)
                 {
@@ -45,7 +47,18 @@ namespace ChatServer.Network.Packets
                     packet.ConversationName += "and " + (conversation.Members.Count - 3) + "others...";
                 else
                     packet.ConversationName = packet.ConversationName.Replace(", ", "");
+            }*/
+            string OnlineUser = "~";
+            foreach (var member in conversation.Members)
+            {
+                if (!member.Equals(chatSession.Owner.ID) && ChatUserManager.IsOnline(member))
+                {
+                    OnlineUser = member.ToString();
+                    break;
+                }
             }
+
+            packet.OnlinerUser = OnlineUser;
 
             Guid avatar = conversation.Members.FirstOrDefault(s => s.CompareTo(chatSession.Owner.ID) != 0);
             packet.ConversationAvatar = avatar == null ? "~" : avatar.ToString();

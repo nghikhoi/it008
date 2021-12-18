@@ -13,7 +13,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         public string ConversationName { get; set; }
         public int StatusCode { get; set; }
         public long LastActive { get; set; }
-        public HashSet<string> Members { get; set; } = new HashSet<string>();
         public int LastMessID { get; set; }
         public int LastMediaID { get; set; }
         public int LastAttachmentID { get; set; }
@@ -27,14 +26,6 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             ConversationName = ByteBufUtils.ReadUTF8(buffer);
             StatusCode = buffer.ReadInt();
             LastActive = buffer.ReadLong();
-
-            // Get the number of members in this conversation
-            string temp = ByteBufUtils.ReadUTF8(buffer);
-            while (temp != "~")
-            {
-                Members.Add(temp);
-                temp = ByteBufUtils.ReadUTF8(buffer);
-            }
 
             LastMessID = buffer.ReadInt();
             LastMediaID = buffer.ReadInt();

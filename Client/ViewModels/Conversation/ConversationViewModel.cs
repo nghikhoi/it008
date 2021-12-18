@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using UI.Command;
 using UI.Models;
 using UI.Models.Message;
@@ -13,6 +14,7 @@ using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
+using UI.ViewModels.Conversation;
 
 namespace UI.ViewModels {
 	public class ConversationViewModel : InitializableViewModel {
@@ -26,12 +28,33 @@ namespace UI.ViewModels {
             set
             {
                 _conversation = value;
-                _conversation.MediaAddEvent += (msg, i) => AddMedia(msg);
-                _conversation.MessageAddEvent += (msg, i) => AddMessage(msg);
-                OnPropertyChanged(nameof(Conversation)
-                    , nameof(ConversationName), nameof(ConversationAvatar), nameof(ConversationId));
+				Messages.Clear();
+                IsOnline = _conversation.IsOnline;
+				_conversation.Messages.ForEach(msg => AddMessage(msg));
+				Medias.Clear();
+				_conversation.Medias.ForEach(msg => AddMedia(msg));
+                _conversation.MediaAddEvent += (msg, loadFromServer) => App.Current.Dispatcher.Invoke(() => AddMedia(msg, loadFromServer));
+                _conversation.MessageAddEvent += (msg, loadFromServer) => App.Current.Dispatcher.Invoke(() => AddMessage(msg, loadFromServer));
+                messagePackage = new MessagePackage(_model, Conversation.ID, Guid.Parse(_appSession.SessionID));
+                _conversation.PropertyChanged += (sender, args) =>
+                {
+                    if (args.PropertyName == nameof(Conversation.Color))
+                    {
+						UpdateColor(Color);
+                    }
+
+                    if (args.PropertyName == nameof(Conversation.IsOnline))
+                    {
+                        IsOnline = _conversation.IsOnline;
+                    }
+                };
+
+                OnPropertyChanged(nameof(Conversation), nameof(ConversationName), nameof(ConversationAvatar), nameof(ConversationId));
             }
         }
+
+        public Color Color => Conversation.Color;
+		public Color SelectingColor { get; set; }
 
         public string ConversationId => Conversation.ID.ToString();
 		
@@ -44,24 +67,33 @@ namespace UI.ViewModels {
                 return Conversation.Nicknames.First(pair => string.CompareOrdinal(pair.Key.ToString(), _appSession.SessionID) != 0).Value;
             }
 		}
+		
+		public object ConversationAvatar {
+            get
+            {
+                if (FastCodeUtils.NotEmptyStrings(Conversation.Avatar))
+                    return new SingleAvatarViewModel()
+                    {
+                        AvatarId = Conversation.Avatar
+                    };
+                if (Conversation.Members.Count > 2)
+                {
+                    GroupAvatarViewModel avatar = new GroupAvatarViewModel();
+                    Guid[] ids = Conversation.Members.Where(id => string.CompareOrdinal(id.ToString(), _appSession.SessionID) != 0)
+                        .Take(2).ToArray();
+                    avatar.UserOne = ids[0].ToString();
+                    avatar.UserTwo = ids[1].ToString();
+                }
 
-		private string _conversationAvatar;
-		public string ConversationAvatar {
-			get => _conversationAvatar;
-			set {
-				_conversationAvatar = value;
-				OnPropertyChanged("ConversationAvatar");
-			}
+                return new SingleAvatarViewModel()
+                {
+                    AvatarId = Conversation.Members
+                        .First(id => string.CompareOrdinal(id.ToString(), _appSession.SessionID) != 0).ToString()
+                };
+            }
 		}
 
-		private long _lastActive;
-		public long LastActive {
-			get => _lastActive;
-			set {
-				_lastActive = value;
-				OnPropertyChanged("LastActive");
-			}
-		}
+        public long LastActive => Conversation.LastActive;
 
 		private bool _isLoadMoreEnable;
 		public bool IsLoadMoreEnable {
@@ -130,7 +162,10 @@ namespace UI.ViewModels {
 			set => _limitAttachments = value;
 		}
 
-		private string _lastMessage;
+        public ObservableCollection<NicknameViewModel> Nicknames { get; } =
+            new ObservableCollection<NicknameViewModel>();
+
+        private string _lastMessage;
 
 		public string LastMessage {
 			get => _lastMessage;
@@ -158,6 +193,8 @@ namespace UI.ViewModels {
 			}
 		}
 
+        private MessagePackage messagePackage;
+
 		#endregion
 
 		#region Command
@@ -173,6 +210,8 @@ namespace UI.ViewModels {
 		public ICommand ChatpageSendFileCommand { get; private set; }
 		public ICommand SendFileCommand { get; private set; }
 		public ICommand ChatpageSelectEmojiCommand { get; private set; }
+        public ICommand UpdateColorCommand { get; private set; }
+        public ICommand StartChangeNameCommand { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
@@ -208,13 +247,50 @@ namespace UI.ViewModels {
 			ChatpageSendFileCommand = new RelayCommand<object>(null, SelectVideo);
 			SendFileCommand = new RelayCommand<object>(null, SelectFile);
 			ChatpageSelectEmojiCommand = new RelayCommand<object>(null, SelectEmoji);
-		}
+            UpdateColorCommand = new RelayCommand<object>(null, o => _model.UpdateColor(Conversation.ID, SelectingColor));
+            StartChangeNameCommand = new RelayCommand<object>(null, o => StartChangeName());
+
+        }
+
+        private void StartChangeName()
+        {
+            Nicknames.Clear();
+            foreach (var pair in Conversation.Nicknames)
+            {
+                NicknameViewModel vm = new NicknameViewModel()
+                {
+                    UserId = pair.Key.ToString(),
+                    OriginNickname = pair.Value,
+                    Nickname = pair.Value,
+                    ConversationViewModel = this
+                };
+				Nicknames.Add(vm);
+            }
+        }
+
+
+		private void UpdateColor(Color color)
+        {
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                foreach (var msg in Messages)
+                {
+                    msg.BubbleColor = new SolidColorBrush(Color);
+                }
+            });
+        }
 
 
 		private void SelectEmoji(object para) {
 			Texting += para.ToString();
 
 		}
+
+        private void PackageMessage()
+        {
+            messagePackage = messagePackage.Send();
+        }
+
 		private void SelectImage(object para = null) {
 			List<string> paths = new List<string>();
 			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -230,20 +306,9 @@ namespace UI.ViewModels {
 			if (result == true) {
 				// Open document 
 				string Selectedfilename = dlg.FileName;
-				paths.Add(Selectedfilename);
-				FileAPI.UploadMedia(this.ConversationId, paths, map => {
-					foreach (string name in map.Keys) {
-						string id = map[name];
-						ImageMessage img = new ImageMessage();
-						img.FileName = name;
-						img.FileID = id;
-						App.Current.Dispatcher.Invoke(() => {
-							SendMessage(img);
-						});
-					}
-				}
-				, error => { });
-			}
+                messagePackage.AddImage(Selectedfilename);
+				PackageMessage();
+            }
 		}
 		private void SelectVideo(object para = null) {
 			List<string> paths = new List<string>();
@@ -260,20 +325,8 @@ namespace UI.ViewModels {
 			if (result == true) {
 				// Open document 
 				string Selectedfilename = dlg.FileName;
-				paths.Add(Selectedfilename);
-				FileAPI.UploadMedia(this.ConversationId, paths, map => {
-					foreach (string name in map.Keys) {
-						string id = map[name];
-						VideoMessage vid = new VideoMessage();
-						vid.FileName = name;
-						vid.FileID = id;
-						App.Current.Dispatcher.Invoke(() => {
-							SendMessage(vid);
-						});
-					}
-
-				}
-				, error => { });
+                messagePackage.AddVideo(Selectedfilename);
+                PackageMessage();
 			}
 		}
 
@@ -292,32 +345,9 @@ namespace UI.ViewModels {
 			if (result == true) {
 				// Open document 
 				string Selectedfilename = dlg.FileName;
-				paths.Add(Selectedfilename);
-				FileAPI.UploadAttachment(this.ConversationId, paths, map => {
-					foreach (string name in map.Keys) {
-						string id = map[name];
-						AttachmentMessage vid = new AttachmentMessage();
-						vid.FileName = name;
-						vid.FileID = id;
-						App.Current.Dispatcher.Invoke(() => {
-							SendMessage(vid);
-						});
-					}
-
-				}
-					, error => { });
+                messagePackage.AddAttachment(Selectedfilename);
+                PackageMessage();
 			}
-		}
-		private void SendMessage(AbstractMessage msg) {
-			msg.SenderID = _appSession.SessionID;
-			AddMessage(msg);
-			if (msg is MediaAbstractMessage) {
-				AddMedia(msg);
-			}
-			SendMessage packet = new SendMessage();
-			packet.Message = msg;
-			packet.ConversationID = ConversationId;
-			_connection.Send(packet);
 		}
 
 		protected void AddAttachment(AttachmentMessage message, bool loadFromServer = false) {
@@ -347,27 +377,18 @@ namespace UI.ViewModels {
 		}
 
 		public void SendStickerMessage(Sticker sticker) {
-			StickerMessage msg = new StickerMessage();
-			msg.Sticker = sticker;
-			SendMessage(msg);
+            messagePackage.AddSticker(sticker.ID);
+            PackageMessage();
 		}
 
 		private void SendTextMessage()
         {
             if (!FastCodeUtils.NotEmptyStrings(Texting))
                 return;
-			TextMessage textMessage = new TextMessage();
-			textMessage.Message = Texting;
-			Texting = "";
-			SendMessage(textMessage);
-		}
-
-		public void ReceiveMessage(AbstractMessage message) {
-			AddMessage(message);
-			if (message is MediaAbstractMessage) {
-				AddMedia(message);
-			}
-		}
+            messagePackage.AddTextMessage(Texting);
+            PackageMessage();
+            Texting = "";
+        }
 
 		protected virtual void FirstSelectLoad(object parameter = null) {
 			_model.LoadConversation(Conversation.ID);
@@ -456,6 +477,7 @@ namespace UI.ViewModels {
 				}
 				messageViewModel.ConversationId = ConversationId;
 				messageViewModel.Message = message;
+                messageViewModel.BubbleColor = new SolidColorBrush(Color);
 				//Prevent from async add when receive message
 				Application.Current.Dispatcher.Invoke(() => {
 					GroupBubbleViewModel groupBubbleView = null;

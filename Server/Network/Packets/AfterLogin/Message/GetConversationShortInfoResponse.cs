@@ -14,6 +14,8 @@ namespace ChatServer.Network.Packets
         public string ConversationAvatar { get; set; }
         public long LastActive { get; set; }
         public Dictionary<Guid, string> Nicknames { get; set; }
+        public HashSet<string> Members { get; set; } = new HashSet<string>();
+        public string OnlinerUser { get; set; } = "~";
 
         public void Decode(IByteBuffer buffer)
         {
@@ -26,6 +28,7 @@ namespace ChatServer.Network.Packets
             ByteBufUtils.WriteUTF8(byteBuf, ConversationName);
             ByteBufUtils.WriteUTF8(byteBuf, ConversationAvatar);
             byteBuf.WriteLong(LastActive);
+            ByteBufUtils.WriteUTF8(byteBuf, OnlinerUser);
             byteBuf.WriteInt(Nicknames.Count);
             foreach (var keyValuePair in Nicknames)
             {
@@ -34,6 +37,9 @@ namespace ChatServer.Network.Packets
                 ByteBufUtils.WriteUTF8(byteBuf, id.ToString());
                 ByteBufUtils.WriteUTF8(byteBuf, nickname);
             }
+            foreach (var member in Members)
+                ByteBufUtils.WriteUTF8(byteBuf, member);
+            ByteBufUtils.WriteUTF8(byteBuf, "~");
             return byteBuf;
         }
 

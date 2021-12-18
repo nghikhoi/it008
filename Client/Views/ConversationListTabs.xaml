@@ -32,7 +32,7 @@
                 <!--Popup settings-->
 
                 <Grid Margin="8 0 0 0" Width="24" Height="24" HorizontalAlignment="Left">
-                    <materialDesign:Badged Badge="10">
+                    <materialDesign:Badged Badge="{Binding NotificationCount}">
                         <Grid>
                             <components:AvatarDisplayer
                                 UserID="{Binding Data, Source={StaticResource UID}, diag:PresentationTraceSources.TraceLevel=High}"

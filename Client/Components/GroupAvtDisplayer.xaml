@@ -8,11 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="120" d:DesignWidth="120">
     <Grid>
-        <Components:AvatarDisplayer Height="80" Width="80" HorizontalAlignment="Right" VerticalAlignment="Top"></Components:AvatarDisplayer>
-        <Components:AvatarDisplayer Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Bottom"></Components:AvatarDisplayer>
+        <Components:AvatarDisplayer Height="80" Width="80" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Components:AvatarDisplayer Height="80" Width="80" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <Ellipse Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Ellipse.Fill>
-                <SolidColorBrush Color="Green"></SolidColorBrush>
+                <SolidColorBrush Color="Green"/>
             </Ellipse.Fill>
         </Ellipse>
     </Grid>

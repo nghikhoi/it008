@@ -40,7 +40,7 @@
 
             <Border Grid.Column="2" Padding="0 0 8 0">
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <TextBlock x:Name="TitleBlock" Text="{Binding ConversationName}" />
+                    <TextBlock x:Name="TitleBlock" Text="{Binding FullName}" />
                     <TextBlock Text="{Binding Subtitle}"
                                TextWrapping="WrapWithOverflow"
                                FontStyle="Italic"

@@ -23,7 +23,7 @@ namespace UI.ViewModels {
 		private ObservableCollection<NotificationViewModel> _notifications;
 		public ObservableCollection<NotificationViewModel> Notifications { get => _notifications; set => _notifications = value; }
 
-		#endregion
+        #endregion
 
 		#region Command
 

@@ -27,6 +27,9 @@ namespace UI.Network.Protocol
             Inbound(0x02, new SingleConversationFrUserIDResult());
             Outbound(0x02, new SingleConversationFrUserID());
 
+            Inbound(0x25, new GroupConversationAddedResponse());
+            Outbound(0x25, new GroupConversationCreateRequest());
+
             Inbound(0x16, new GetMessageFromConversationResult());
             Outbound(0x16, new GetMessageFromConversation());
 

@@ -7,6 +7,7 @@ using ChatServer.IO.Message;
 using ChatServer.Network;
 using ChatServer.Network.Packets;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Options;
 
 namespace ChatServer.Entity.Conversation
 {
@@ -30,7 +31,7 @@ namespace ChatServer.Entity.Conversation
         public long LastActive { get; set; }
 
         [BsonElement("Color")]
-        public int Color { get; set; } = -12500671;
+        public int Color { get; set; } = -16744320;
 
         [BsonElement("Members")]
         public HashSet<Guid> Members { get; set; } = new HashSet<Guid>();
@@ -43,7 +44,7 @@ namespace ChatServer.Entity.Conversation
 
         [BsonElement("AttachmentID")]
         public List<Guid> AttachmentID { get; set; } = new List<Guid>();
-
+        [BsonElement(nameof(Nicknames)), BsonDictionaryOptions(DictionaryRepresentation.ArrayOfDocuments)]
         public Dictionary<Guid, string> Nicknames { get; set; } = new Dictionary<Guid, string>();
 
         [BsonIgnore]

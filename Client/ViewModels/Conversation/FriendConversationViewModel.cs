@@ -9,6 +9,7 @@ using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.Packets.AfterLoginRequest.Notification;
 using UI.Network.RestAPI;
 using UI.Services;
+using UI.Utils;
 
 namespace UI.ViewModels {
 	public class FriendConversationViewModel : ConversationViewModel {
@@ -24,13 +25,9 @@ namespace UI.ViewModels {
 			}
 		}
 
-        public string ConversationName {
-            get => Conversation.Name;
-        }
-
         private string _fullName;
         public string FullName {
-            get => _fullName;
+            get => FastCodeUtils.NotEmptyStrings(ConversationName) ? ConversationName : _fullName;
             set {
                 _fullName = value;
                 OnPropertyChanged(nameof(FullName));
@@ -66,15 +63,6 @@ namespace UI.ViewModels {
 		public FriendConversationViewModel(ChatConnection chatConnection, PacketRespondeListener listener, IAppSession appSession, IViewModelFactory factory, IModelContext model) : base(chatConnection, appSession, factory, model)
         {
             SendRequestCommand = new RelayCommand<object>(null, SendRequest);
-            listener.UserOfflineEvent += (session, response) =>
-            {
-                if (response.UserID.Equals(UserId)) 
-                    App.Current.Dispatcher.Invoke(() => IsOnline = false);
-            };
-            listener.UserOnlineEvent += (session, response) => {
-                if (response.UserID.Equals(UserId))
-                    App.Current.Dispatcher.Invoke(() => IsOnline = true);
-            };
 		}
 
         protected void SendRequest(object param = null)

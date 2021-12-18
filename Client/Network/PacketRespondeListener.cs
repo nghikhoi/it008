@@ -18,7 +18,7 @@ namespace UI.Network {
     public delegate void UserOnlineHandler(ISession session, UserOnlineReceive response);
     public delegate void UserOfflineHandler(ISession session, UserOfflineReceive response);
 	public delegate void BuyStickerResponseHandler(ISession session, BuyStickerCategoryResponse responde);
-
+    public delegate void BubbleChatColorResponseHandler(ISession session, BubbleChatColorSetRequest responde);
 	public class PacketRespondeListener {
 
 		public event LoginRespondeHandler LoginRespondeEvent;
@@ -57,6 +57,10 @@ namespace UI.Network {
         internal void OnUserOfflineResponse(ISession session, UserOfflineReceive responde) {
             UserOfflineEvent?.Invoke(session, responde);
         }
+        public event BubbleChatColorResponseHandler BubbleChatColorEvent;
+        internal void OnBubbleChatColorResponse(ISession session, BubbleChatColorSetRequest responde) {
+            BubbleChatColorEvent?.Invoke(session, responde);
+        }
 
-	}
+    }
 }

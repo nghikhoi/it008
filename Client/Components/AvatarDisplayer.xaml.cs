@@ -40,7 +40,7 @@ namespace UI.Components
 
         private void Update() {
             LoadingMask.Visibility = Visibility.Visible;
-            if (String.IsNullOrEmpty(UserID)) {
+            if (string.IsNullOrEmpty(UserID)) {
                 ProfileAPI.DownloadSelfAvatar((avaSource) =>
                 {
                     this.ImageAva.ImageSource = avaSource;
@@ -57,7 +57,7 @@ namespace UI.Components
 
         public static void UpdateAllInstance(String userID = null)
         {
-            foreach (var avatarDisplayer in avatarInstance.Where(target => string.CompareOrdinal(target.UserID, userID) == 0))
+            foreach (var avatarDisplayer in avatarInstance)//.Where(target => string.CompareOrdinal(target.UserID, userID) == 0))
             {
                 avatarDisplayer.Update();
             }
@@ -87,7 +87,7 @@ namespace UI.Components
                 this.LoadingMask.Visibility = Visibility.Hidden;
             } else
             {
-                this.UserID = this.UserID;
+                //
             }
             if (!avatarInstance.Contains(this))
                 avatarInstance.Add(this);

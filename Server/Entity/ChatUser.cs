@@ -31,6 +31,8 @@ namespace ChatServer.Entity
         [BsonElement("LastName")]
         public String LastName { get; set; }
 
+        [BsonIgnore] public string FullName => FirstName + " " + LastName;
+
         [BsonElement("Town")]
         public String Town { get; set; } = "Default";
 

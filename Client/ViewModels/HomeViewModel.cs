@@ -71,6 +71,20 @@ namespace UI.ViewModels {
             }
         }
 
+        private int _notificationCount;
+        public int NotificationCount
+        {
+            get => _notificationCount;
+            set
+            {
+                _notificationCount = value;
+                OnPropertyChanged(nameof(NotificationCount));
+                OnPropertyChanged(nameof(DisplayBadget));
+            }
+        }
+
+        public bool DisplayBadget => NotificationCount > 0;
+
         private NotificationPageViewModel _notificationPage;
         public NotificationPageViewModel NotificationPage {
             get => _notificationPage;
@@ -137,7 +151,6 @@ namespace UI.ViewModels {
             SnackbarQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
             _respondeListener = respondeListener;
-            _respondeListener.ReceiveMessageEvent += ReceiveMessage;
             _respondeListener.ReceiveNotificationEvent += ReceiveNotification;
             _respondeListener.FinalizeAcceptedFriendEvent += session => App.Current.Dispatcher.Invoke(() =>
             {
@@ -163,17 +176,13 @@ namespace UI.ViewModels {
         }
 
         public override void Dispose() {
-            _respondeListener.ReceiveMessageEvent -= ReceiveMessage;
             base.Dispose();
         }
 
         private ConversationViewModel ListSearchFor(string conversationId) {
             return Conversations.First(vm => string.CompareOrdinal(vm.ConversationId, conversationId) == 0);
         }
-
-        protected void ReceiveMessage(ISession session, ReceiveMessage receiveMessage) {
-            ReceiveMessage(receiveMessage.ConversationID, receiveMessage.Message);
-        }
+        
 
         public void SendSnackbar(params string[] msgs)
         {
@@ -200,16 +209,6 @@ namespace UI.ViewModels {
                 });
         }
 
-        public void ReceiveMessage(string conversationId, AbstractMessage message) {
-            ConversationViewModel conversation = ListSearchFor(conversationId);
-            if (conversation == null)
-                return;
-            App.Current.Dispatcher.Invoke(() =>
-            {
-                conversation.ReceiveMessage(message);
-            });
-        }
-
         protected override void Initialize(object parameter = null) {
             InitData();
         }
@@ -234,6 +233,7 @@ namespace UI.ViewModels {
                  AbstractConversation conversation = _model.GetConversation(id);
                  ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
                  viewModel.Conversation = conversation;
+                 viewModel.SelectAction += SelectConversation;
                  Conversations.Add(viewModel);
              });
         }
@@ -242,14 +242,13 @@ namespace UI.ViewModels {
             _model.GetFriendList(true).ForEach(info =>
             {
                 FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
-                viewModel.ConversationName = info.FirstName + " " + info.LastName;
                 viewModel.FullName = info.FirstName + " " + info.LastName;
-                viewModel.LastActive = info.LastActive;
                 viewModel.UserId = info.ID;
                 viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
                 viewModel.SelectAction += SelectConversation;
                 OriginFriendList.Add(viewModel);
             });
+            SearchAction();
             /*GetFriendIDs request = new GetFriendIDs();
             request.FriendOfID = _appSession.SessionID;
             DataAPI.getData<GetFriendIDsResult>(request, friendsResult => {
@@ -319,9 +318,7 @@ namespace UI.ViewModels {
             SearchingFriendList.Clear();
             foreach (var info in list) {
                 FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
-                viewModel.ConversationName = info.FirstName + " " + info.LastName;
                 viewModel.FullName = info.FirstName + " " + info.LastName;
-                viewModel.LastActive = info.LastActive;
                 viewModel.UserId = info.ID;
                 viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
                 viewModel.SelectAction += SelectConversation;

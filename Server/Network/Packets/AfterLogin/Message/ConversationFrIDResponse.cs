@@ -13,7 +13,6 @@ namespace ChatServer.Network.Packets
         public string ConversationName { get; set; }
         public int StatusCode { get; set; }
         public long LastActive { get; set; }
-        public HashSet<string> Members { get; set; } = new HashSet<string>();
         public int LastMessID { get; set; }
         public int LastMediaID { get; set; }
         public int LastAttachmentID { get; set; }
@@ -32,10 +31,6 @@ namespace ChatServer.Network.Packets
             ByteBufUtils.WriteUTF8(byteBuf, ConversationName); 
             byteBuf.WriteInt(StatusCode);
             byteBuf.WriteLong(LastActive);
-
-            foreach (var member in Members)
-                ByteBufUtils.WriteUTF8(byteBuf, member);
-            ByteBufUtils.WriteUTF8(byteBuf, "~");
 
             byteBuf.WriteInt(LastMessID);
             byteBuf.WriteInt(LastMediaID);

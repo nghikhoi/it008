@@ -135,7 +135,9 @@
     <Compile Include="Network\Packets\AfterLogin\Message\ChangeBubbleChatColor.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingResponse.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationAddedResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\SetConversationSettingRequest.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationCreateRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\UpdateSelfProfileRequest.cs" />
@@ -210,10 +212,12 @@
     <Compile Include="ServerSettings.cs" />
     <Compile Include="Utils\BitArrayUtils.cs" />
     <Compile Include="Utils\BoolBitMap.cs" />
+    <Compile Include="Utils\FastCodeUtils.cs" />
     <Compile Include="Utils\HashStack.cs" />
     <Compile Include="Utils\HashUtils.cs" />
     <Compile Include="Utils\NotificationUtils.cs" />
     <Compile Include="Utils\PacketUtil.cs" />
+    <Compile Include="Utils\PacketUtils.cs" />
     <Compile Include="Utils\ThreadUtils\CountdownLatch.cs" />
   </ItemGroup>
   <ItemGroup>

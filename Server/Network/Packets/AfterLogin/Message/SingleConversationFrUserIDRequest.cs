@@ -61,16 +61,23 @@ namespace ChatServer.Network.Packets
                 store.Save(new SingleConversation()
                 {
                     ID = resultID,
-                    Members = new HashSet<Guid>() { chatSession.Owner.ID, targetUser.ID }
+                    Members = new HashSet<Guid>() { chatSession.Owner.ID, targetUser.ID },
+                    Nicknames = new Dictionary<Guid, string>()
+                    {
+                        { chatSession.Owner.ID, chatSession.Owner.FullName },
+                        { targetUser.ID, targetUser.FullName  }
+                    }
                 });
 
                 chatSession.Owner.Save();
                 targetUser.Save();
             }
 
-            SingleConversationFrUserIDResponse response = new SingleConversationFrUserIDResponse();
-            response.UserID = TargetID;
-            response.ResponseID = resultID;
+            SingleConversationFrUserIDResponse response = new SingleConversationFrUserIDResponse
+            {
+                UserID = TargetID,
+                ResponseID = resultID
+            };
             return response;
         }
     }

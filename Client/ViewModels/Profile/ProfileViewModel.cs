@@ -193,13 +193,11 @@ namespace UI.ViewModels {
                 // Open document 
                 string Selectedfilename = dlg.FileName;
                 paths.Add(Selectedfilename);
-                ProfileAPI.AvatarUpload(paths[0], () =>
-                {
+                ProfileAPI.AvatarUpload(paths[0], () => {
                     App.Current.Dispatcher.Invoke(() => {
                         AvatarDisplayer.UpdateAllInstance(UserID);
                     });
-                }, error =>
-                {
+                }, error => {
 
                 });
             }

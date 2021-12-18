@@ -339,6 +339,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\ChangeNicknames.xaml.cs">
+      <DependentUpon>ChangeNicknames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ChangeNicknameItem.xaml.cs">
+      <DependentUpon>ChangeNicknameItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\IModelContext.cs" />
     <Compile Include="Models\IModelFactory.cs" />
     <Compile Include="Models\Impl\ModelContext.cs" />
@@ -346,6 +352,12 @@
     <Compile Include="Components\GroupAvtDisplayer.xaml.cs">
       <DependentUpon>GroupAvtDisplayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessagePackage.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationAddedResponse.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationCreateRequest.cs" />
+    <Compile Include="ViewModels\Conversation\GroupAvatarViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\NicknameViewModel.cs" />
+    <Compile Include="ViewModels\Conversation\SingleAvatarViewModel.cs" />
     <Compile Include="Views\Windows\AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
@@ -511,7 +523,6 @@
     <Compile Include="Utils\Converters\ThumbnailLoader.cs" />
     <Compile Include="Utils\Converters\UriConverter.cs" />
     <Compile Include="Utils\FastCodeUtils.cs" />
-    <Compile Include="Utils\LimitShowUtils.cs" />
     <Compile Include="Utils\ObserveUtils.cs" />
     <Compile Include="Utils\Markups\BindingProxy.cs" />
     <Compile Include="Utils\Markups\GroupBubbleTemplateSelector.cs" />
@@ -709,7 +720,15 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\ChangeNicknames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\GroupAvtDisplayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChangeNicknameItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

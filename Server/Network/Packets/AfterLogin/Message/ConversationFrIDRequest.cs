@@ -40,12 +40,7 @@ namespace ChatServer.Network.Packets
                 if (conversationStore is SingleConversation)
                     packet.ConversationName = "~";
                 else
-                    packet.ConversationName = conversationStore.ConversationName;
-
-                foreach (var member in conversationStore.Members)
-                {
-                    packet.Members.Add(member.ToString());
-                }
+                    packet.ConversationName = (conversationStore as GroupConversation)?.ConversationName;
 
                 packet.LastMessID = conversationStore.MessagesID.Count - 1;
                 packet.LastMediaID = conversationStore.MediaID.Count - 1;
