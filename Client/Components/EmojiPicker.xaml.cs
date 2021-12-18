@@ -58,9 +58,9 @@ namespace UI.Components {
         }
 
         private void OnSelectionChanged(string s) {
-            ////var is_disabled = string.IsNullOrEmpty(s);
-            ////Image.SetValue(Emoji.Wpf.Image, is_disabled ? "???" : s);
-            //Image.Opacity = is_disabled ? 0.3 : 1.0;
+            var is_disabled = string.IsNullOrEmpty(s);
+            Image.SetValue(Emoji.Wpf.Image.SourceProperty, is_disabled ? "???" : s);
+            Image.Opacity = is_disabled ? 0.3 : 1.0;
             SelectionChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Selection)));
         }
 

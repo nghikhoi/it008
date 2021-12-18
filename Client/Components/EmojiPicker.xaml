@@ -46,7 +46,7 @@
         </ControlTemplate>
 
         <DataTemplate x:Key="CellTemplate">
-            <Button Width="40" Height="40" Margin="0" Padding="2"
+            <ToggleButton Width="40" Height="40" Margin="0" Padding="2"
                     x:Name="VariationButton" Background="Transparent" BorderBrush="Transparent"
                     Click="OnEmojiPicked" Focusable="False" ToolTip="{Binding Path=Name}"
                     IsHitTestVisible="{Binding ElementName=VariationPopup, Path=IsOpen, Mode=OneWay, Converter={markups:BoolInverter}}">
@@ -61,7 +61,7 @@
                         <ContentControl Template="{StaticResource ResourceKey=VariationPopupTemplate}" />
                     </Popup>
                 </Grid>
-            </Button>
+            </ToggleButton>
         </DataTemplate>
 
     </StackPanel.Resources>

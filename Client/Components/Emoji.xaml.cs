@@ -18,20 +18,19 @@ namespace UI.Components
     /// <summary>
     /// Interaction logic for Emoji.xaml
     /// </summary>
-    public partial class Emoji : UserControl
+    public partial class EmojiMessage : UserControl
 
     {
         public static readonly DependencyProperty EmoContentProperty = DependencyProperty.Register(nameof(EmoContent), typeof(string)
-            , typeof(Emoji), new FrameworkPropertyMetadata(null));
+            , typeof(EmojiMessage), new FrameworkPropertyMetadata(null));
 
         public string EmoContent
         {
             get => GetValue(EmoContentProperty) as string;
             set => SetValue(EmoContentProperty, value);
         }
-        public static object Wpf { get; internal set; }
 
-        public Emoji()
+        public EmojiMessage()
         {
             InitializeComponent();
         }
