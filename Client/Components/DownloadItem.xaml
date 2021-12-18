@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <convert:ProgressConverter x:Key="ProgressConvert"></convert:ProgressConverter>
     </UserControl.Resources>
+    <Border CornerRadius="15">
     <Grid Background="teal">
 
         <ProgressBar
@@ -35,4 +36,5 @@
                    TextWrapping="WrapWithOverflow"
                    Text="{Binding FileName}"/>
     </Grid>
+    </Border>
 </UserControl>

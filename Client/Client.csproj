@@ -348,6 +348,12 @@
     <Compile Include="Components\Emoji.xaml.cs">
       <DependentUpon>Emoji.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\FriendItemToAddGroup.xaml.cs">
+      <DependentUpon>FriendItemToAddGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GroupChatMemberAdd.xaml.cs">
+      <DependentUpon>GroupChatMemberAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\SoundMessage.xaml.cs">
       <DependentUpon>SoundMessage.xaml</DependentUpon>
     </Compile>
@@ -740,11 +746,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\FriendItemToAddGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\GroupAvtDisplayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ChangeNicknameItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\GroupChatMemberAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

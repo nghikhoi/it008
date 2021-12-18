@@ -108,4 +108,8 @@
     <!--change password-->
     <sys:String x:Key="changepass.success">Đổi mật khẩu thành công</sys:String>
     <sys:String x:Key="changepass.Fail">Đổi mật khẩu thất bại</sys:String>
+    
+    <!--Group chat-->
+    <sys:String x:Key="Group.AddMem">Thêm thành viên</sys:String>
+    <sys:String x:Key="Group.Added">Đã thêm vào cuộc trò chuyện</sys:String>
 </ResourceDictionary>
