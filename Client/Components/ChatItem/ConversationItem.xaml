@@ -29,21 +29,17 @@
             <Border Background="{StaticResource PrimaryColor}" Width="5"></Border>
 
             <!--Picture Profile-->
-            <Border Grid.Column="1" Padding="8">
-                <Border Background="Aqua"
-                        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                        CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                    <ContentControl Content="{Binding ConversationAvatar}">
-                        <ContentControl.Resources>
-                            <DataTemplate DataType="{x:Type vm:SingleAvatarViewModel}">
-                                <components:AvatarDisplayer UserID="{Binding AvatarId}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vm:GroupAvatarViewModel}">
-                                <components:GroupAvtDisplayer/>
-                            </DataTemplate>
-                        </ContentControl.Resources>
-                    </ContentControl>
-                </Border>
+            <Border Grid.Column="1">
+                <ContentControl Content="{Binding ConversationAvatar}" Height="60" Width="60">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vm:SingleAvatarViewModel}">
+                            <components:AvatarDisplayer UserID="{Binding AvatarId}"/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:GroupAvatarViewModel}">
+                            <components:GroupAvtDisplayer/>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
             </Border>
 
             <Border Grid.Column="2" Padding="0 0 8 0">

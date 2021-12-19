@@ -6,16 +6,16 @@
              xmlns:Components="clr-namespace:UI.Components"
              xmlns:local="clr-namespace:UI.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="120">
-    <Grid>
-        <Components:AvatarDisplayer Height="80" Width="80" UserID="{Binding UserOne}"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
-        <Components:AvatarDisplayer Height="80" Width="80" UserID="{Binding UserTwo}"
-                                    HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-        <Ellipse Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+             d:DesignHeight="50" d:DesignWidth="50">
+    <Canvas>
+        <Components:AvatarDisplayer Height="35" Width="35" UserID="{Binding UserOne}" Canvas.Left="14"
+                                    />
+        <Components:AvatarDisplayer Height="35" Width="35" UserID="{Binding UserTwo}" Canvas.Top="14"
+                                    />
+        <Ellipse Height="5" Width="5" Canvas.Left="44" Canvas.Top="45" >
             <Ellipse.Fill>
                 <SolidColorBrush Color="Green"/>
             </Ellipse.Fill>
         </Ellipse>
-    </Grid>
+    </Canvas>
 </UserControl>
