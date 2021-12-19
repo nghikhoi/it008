@@ -49,8 +49,16 @@ namespace ChatServer.Network.Protocol
             Inbound(0x19, new BuzzRequest());
             Outbound(0x19, new BuzzResponse());
 
+            Outbound(0x49, new GetConversationShortInfoNotify());
+
             Inbound(0x50, new ChangeBubbleChatColor());
             Outbound(0x50, new ChangeBubbleChatColor());
+
+            Inbound(0x51, new SetAvatarRequest());
+            Outbound(0x51, new SetAvatarResponse());
+
+            Inbound(0x52, new SetNicknamesRequest());
+            Outbound(0x52, new SetNicknamesResponse());
 
             // Notifications
             Outbound(0x07, new UserOnline());

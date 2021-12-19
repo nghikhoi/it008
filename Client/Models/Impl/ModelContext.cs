@@ -69,6 +69,22 @@ namespace UI.Models.Impl {
                 RecentConversations.Add(response.GroupId);
                 NewConversationEvent?.Invoke(response.GroupId);
             };
+            _packetListener.SetNicknamesResponseEvent += (session, response) =>
+            {
+                AbstractConversation conversation = GetConversation(response.ConversationID);
+                foreach (var pair in response.Nicknames)
+                {
+                    conversation.UpdateNickname(pair.Key, pair.Value);
+                }
+            };
+            _packetListener.SetAvatarResponseEvent += (session, response) => {
+                AbstractConversation conversation = GetConversation(response.ConversationID);
+                conversation.Avatar = response.FileId;
+            };
+            _packetListener.ConversationShortInfoNotifyEvent += (session, notify) =>
+            {
+                UpdateShortInfo(notify.ConversationId);
+            };
         }
 
         public event Action<Guid> NewConversationEvent;
@@ -108,27 +124,32 @@ namespace UI.Models.Impl {
                 if (ConversationsCacheMap.ContainsKey(id)) {
                     return ConversationsCacheMap[id];
                 }
-                GetConversationShortInfo packet = new GetConversationShortInfo();
-                packet.ConversationID = id.ToString();
-                DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult =>
-                {
-                    AbstractConversation model = _factory.Create<AbstractConversation>();
-                    model.ID = id;
-                    model.Name = infoResult.ConversationName;
-                    model.LastActive = infoResult.LastActive;
-                    model.Nicknames = infoResult.Nicknames;
-                    model.Members.Clear();
-                    if (infoResult.OnlineUser != "~")
-                        model.UpdateStatus(Guid.Parse(infoResult.OnlineUser), true);
-                    foreach (var resultMember in infoResult.Members) {
-                        model.Members.Add(Guid.Parse(resultMember));
-                    }
-                    ConversationsCacheMap[id] = model;
-                    LoadMessages(model, 1);
-                });
+                UpdateShortInfo(id);
             }
 
             return ConversationsCacheMap[id];
+        }
+
+        private void UpdateShortInfo(Guid id)
+        {
+            GetConversationShortInfo packet = new GetConversationShortInfo();
+            packet.ConversationID = id.ToString();
+            DataAPI.getData<GetConversationShortInfoResult>(packet, infoResult =>
+            {
+                AbstractConversation model = infoResult.IsGroup ? _factory.Create<GroupConversation>() : _factory.Create<AbstractConversation>();
+                model.ID = id;
+                model.Name = infoResult.ConversationName;
+                model.LastActive = infoResult.LastActive;
+                model.Nicknames = infoResult.Nicknames;
+                model.Members.Clear();
+                if (infoResult.OnlineUser != "~")
+                    model.UpdateStatus(Guid.Parse(infoResult.OnlineUser), true);
+                foreach (var resultMember in infoResult.Members) {
+                    model.Members.Add(Guid.Parse(resultMember));
+                }
+                ConversationsCacheMap[id] = model;
+                LoadMessages(model, 1);
+            });
         }
 
         public void LoadConversation(Guid id)

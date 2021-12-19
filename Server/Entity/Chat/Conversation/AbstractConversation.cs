@@ -6,6 +6,7 @@ using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
 using ChatServer.Network;
 using ChatServer.Network.Packets;
+using CNetwork;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 
@@ -50,7 +51,18 @@ namespace ChatServer.Entity.Conversation
         [BsonIgnore]
         public LRUCache<Guid, IMessage> LoadedMessages { get; set; } = new LRUCache<Guid, IMessage>(100, 10);
 
-        public void SendMessage(AbstractMessage message, ChatSession chatSession)
+        public void SendIfOnline(IPacket packet)
+        {
+            foreach (var member in Members)
+            {
+                if (ChatUserManager.IsOnline(member))
+                {
+                    ChatUserManager.OnlineUsers[member].Send(packet);
+                }
+            }
+        }
+
+        public void SendMessage(AbstractMessage message, ChatSession chatSession, bool IgnoreSelf = true)
         {
             ChatUser user;
             Guid messageID = Guid.NewGuid();
@@ -87,7 +99,10 @@ namespace ChatServer.Entity.Conversation
                     packet.ConversationID = this.ID.ToString();
                     packet.Message = message;
                     packet.SenderID = chatSession.Owner.ID.ToString();
-                    user.Send(packet, chatSession); //Add message packet here
+                    if (!IgnoreSelf)
+                        user.Send(packet);
+                    else
+                        user.Send(packet, chatSession);
 
                     user.Conversations.TryRemove(ID, out long lact);
                     user.Conversations.TryAdd(ID, LastActive);

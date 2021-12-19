@@ -50,7 +50,19 @@ namespace UI.Models.Message
         public HashSet<Guid> Members { get; set; } = new HashSet<Guid>();
         public List<AbstractMessage> Messages { get; set; } = new List<AbstractMessage>();
         public List<MediaAbstractMessage> Medias { get; set; } = new List<MediaAbstractMessage>();
-        public Dictionary<Guid, string> Nicknames { get; set; } = new Dictionary<Guid, string>();
+
+        private Dictionary<Guid, string> _nicknames = new Dictionary<Guid, string>();
+
+        public Dictionary<Guid, string> Nicknames
+        {
+            get => _nicknames;
+            set
+            {
+                _nicknames = value;
+                OnPropertyChanged(nameof(Nicknames));
+            }
+        } 
+
         public int LastMessID { get; set; }
         public int LastMediaID { get; set; }
         public int LastMediaIDBackup { get; set; }

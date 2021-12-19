@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using UI.Models.Message;
+﻿using UI.Models.Message;
 using UI.Services;
 
-namespace UI.ViewModels.Messages
+namespace UI.ViewModels
 {
-    class AnnouncementViewModel : MessageViewModel
+    public class AnnouncementViewModel : MessageViewModel
     {
 
-		public new TextMessage Message
+		public new AnnouncementMessage Message
 		{
-			get => (TextMessage)base.Message;
+			get => (AnnouncementMessage) base.Message;
 			set => base.Message = value;
 		}
 
-		public string Text
-		{
-			get => Message.Message;
-			set
-			{
-				Message.Message = value;
-				OnPropertyChanged(nameof(Text));
-			}
-		}
+		public string Text { get; set; }
+
 		public AnnouncementViewModel(IAppSession appSession) : base(appSession)
 		{
 
 		}
+
+        public void InitText(ConversationViewModel conversation)
+        {
+            switch (Message.Type)
+            {
+                case AnnouncementType.CHANGE_NICKNAME:
+                {
+                    Text = Message.Value;
+                    return;
+                }
+            }
+        }
 	}
 }

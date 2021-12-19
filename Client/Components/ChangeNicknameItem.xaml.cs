@@ -37,6 +37,7 @@ namespace UI.Components {
             {
                 Mask.Visibility = Visibility.Hidden;
                 Root.Visibility = Visibility.Visible;
+                ButtonMask.Visibility = Visibility.Hidden;
             }
         }
     }

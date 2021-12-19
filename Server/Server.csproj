@@ -79,6 +79,7 @@
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="Entity\AbstractEntity.cs" />
     <Compile Include="Entity\Builder\ChatUserBuilder.cs" />
+    <Compile Include="Entity\Chat\Message\AnnouncementMessage.cs" />
     <Compile Include="Entity\EntityProperty\ChatTheme.cs" />
     <Compile Include="Entity\EntityProperty\Gender.cs" />
     <Compile Include="Entity\ChatUser.cs" />
@@ -133,8 +134,13 @@
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\GetSelfProfileResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\DataPreparing\ChatThemeSetRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\ChangeBubbleChatColor.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\Conversation\SetAvatarRequest.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\Conversation\SetNicknamesRequest.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\Conversation\SetAvatarResponse.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\Conversation\SetNicknamesResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingResponse.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GetConversationShortInfoNotify.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationAddedResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\SetConversationSettingRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationAddRequest.cs" />

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Web.UI.WebControls;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using UI.Command;
@@ -17,6 +18,7 @@ using UI.Network.Packets.AfterLoginRequest.Search;
 using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.RestAPI;
 using UI.Services;
+using UI.Services.Common;
 using UI.Utils;
 using UI.ViewModels.Search;
 
@@ -125,11 +127,11 @@ namespace UI.ViewModels {
             }
         }
 
-        private object _dialogViewModel;
-        public object DialogViewModel {
-            get => _dialogViewModel;
+        private HomeDialogState dialogState;
+        public ViewModelBase DialogViewModel {
+            get => dialogState.CurrentViewModel;
             set {
-                _dialogViewModel = value;
+                dialogState.CurrentViewModel = value;
                 OnPropertyChanged(nameof(DialogViewModel));
             }
         }
@@ -151,13 +153,16 @@ namespace UI.ViewModels {
 
         #endregion
 
-        public HomeViewModel(PacketRespondeListener respondeListener, IAppSession appSession, IModelContext model, IViewModelFactory viewModelFactory, IAuthenticator authenticator, IUserProfileHolder userProfileHolder) : base() {
+        public HomeViewModel(PacketRespondeListener respondeListener, IAppSession appSession, IModelContext model, IViewModelFactory viewModelFactory
+            , IAuthenticator authenticator, IUserProfileHolder userProfileHolder, HomeDialogState dialogState) : base() {
             _conversations = new ObservableCollection<ConversationViewModel>();
             _searchingConversations = new ObservableCollection<FriendConversationViewModel>();
             _friendList = new ObservableCollection<FriendConversationViewModel>();
             _originFriendList = new ObservableCollection<FriendConversationViewModel>();
             _notifications = new ObservableCollection<NotificationViewModel>();
             _appSession = appSession;
+            this.dialogState = dialogState;
+            this.dialogState.StateChanged += () => OnPropertyChanged(nameof(DialogViewModel));
 
             SnackbarQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
@@ -168,6 +173,8 @@ namespace UI.ViewModels {
                 SendSnackbar("Chấp nhận lời mời kết bạn thành công!");
                 LoadFriends();
             }); //Update friend list
+            _respondeListener.ReceiveMessageEvent += (session, responde) =>
+                App.Current.Dispatcher.Invoke(() => ReceiveMessage(responde));
             this.authenticator = authenticator;
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
@@ -200,8 +207,7 @@ namespace UI.ViewModels {
         {
             GroupConversationCreateRequest request = new GroupConversationCreateRequest()
             {
-                Members = infos.Select(info => Guid.Parse(info.ID)).ToList(),
-                GroupName = "Test"
+                Members = infos.Select(info => Guid.Parse(info.ID)).ToList()
             };
             request.Members.Add(Guid.Parse(_appSession.SessionID));
             
@@ -211,7 +217,24 @@ namespace UI.ViewModels {
         private ConversationViewModel ListSearchFor(string conversationId) {
             return Conversations.First(vm => string.CompareOrdinal(vm.ConversationId, conversationId) == 0);
         }
-        
+
+        private void MoveToTop(string conversationId)
+        {
+            for (var i = 0; i < Conversations.Count; i++) {
+                ConversationViewModel conversation = Conversations[i];
+                if (string.CompareOrdinal(conversationId, conversation.ConversationId) == 0) {
+                    Conversations.RemoveAt(i);
+                    Conversations.Insert(0, conversation);
+                    return;
+                }
+            }
+        }
+
+        public void ReceiveMessage(ReceiveMessage msg)
+        {
+            MoveToTop(msg.ConversationID);
+        }
+
 
         public void SendSnackbar(params string[] msgs)
         {
@@ -246,10 +269,6 @@ namespace UI.ViewModels {
             if (App.IS_LOCAL_DEBUG)
                 return;
             initSelfId();
-            /*Task.WaitAll(DataAPI.getData<GetSelfProfile, GetSelfProfileResult>(),
-                DataAPI.getData<GetBoughtStickerPacksRequest, GetBoughtStickerPacksResponse>(),
-                loadRecentConversation(),
-                loadFriends());*/
             _userProfileHolder.LoadProfile();
             DataAPI.getData<GetBoughtStickerPacksRequest, GetBoughtStickerPacksResponse>();
             LoadRecentConversation();
@@ -264,9 +283,11 @@ namespace UI.ViewModels {
         private void NewConversationAdded(Guid id)
         {
             AbstractConversation conversation = _model.GetConversation(id);
-            ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
+            ConversationViewModel viewModel = conversation is GroupConversation ? _viewModelFactory.Create<GroupConversationViewModel>()
+                : _viewModelFactory.Create<ConversationViewModel>();
             viewModel.Conversation = conversation;
             viewModel.SelectAction += SelectConversation;
+            viewModel.SendMessageAction += vm => MoveToTop(vm.ConversationId);
             Conversations.Add(viewModel);
         }
 
@@ -281,28 +302,6 @@ namespace UI.ViewModels {
                 OriginFriendList.Add(viewModel);
             });
             SearchAction();
-            /*GetFriendIDs request = new GetFriendIDs();
-            request.FriendOfID = _appSession.SessionID;
-            DataAPI.getData<GetFriendIDsResult>(request, friendsResult => {
-                OriginFriendList.Clear();
-                friendsResult.ids.ForEach(id => {
-                    GetShortInfo packet = new GetShortInfo();
-                    packet.ID = id;
-                    DataAPI.getData<GetShortInfoResult>(packet, result => {
-                        UserShortInfo info = result.info;
-                        FriendConversationViewModel viewModel = _viewModelFactory.Create<FriendConversationViewModel>();
-                        viewModel.ConversationId = info.ConversationID;
-                        viewModel.ConversationName = info.FirstName + " " + info.LastName;
-                        viewModel.LastActive = info.LastActive;
-                        viewModel.UserId = info.ID;
-                        viewModel.FullName = info.FirstName + " " + info.LastName;
-                        viewModel.Relationship = info.Relationship == 2 ? Relationship.Friend : Relationship.None;
-                        viewModel.SelectAction += SelectConversation;
-                        OriginFriendList.Add(viewModel);
-                        SearchAction();
-                    });
-                });
-            });*/
         }
 
         private void SelectConversation(ConversationViewModel viewModel) {

@@ -25,14 +25,14 @@ namespace ChatServer.Network.Packets {
 		public Action<Action<IPacket>> createRespondeAction(ISession session) {
 			return action =>
             {
-                IPacket response = createResponde(session);
+                IPacket response = createResponde((ChatSession) session);
                 if (response == null)
                     throw new NullReferenceException("Response packet null.");
-                action.Invoke(createResponde(session));
+                action.Invoke(response);
             };
 		}
 
-		public abstract IPacket createResponde(ISession session);
+		public abstract IPacket createResponde(ChatSession session);
 
 	}
 	

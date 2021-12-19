@@ -14,7 +14,7 @@ namespace ChatServer.Network.Packets
 
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
 
             FriendsListResponse response = new FriendsListResponse();

@@ -20,7 +20,8 @@ namespace UI.Network {
 	public delegate void BuyStickerResponseHandler(ISession session, BuyStickerCategoryResponse responde);
     public delegate void BubbleChatColorResponseHandler(ISession session, BubbleChatColorSetRequest responde);
     public delegate void GroupAddResponseHandler(ISession session, GroupConversationAddedResponse response);
-	public class PacketRespondeListener {
+
+    public class PacketRespondeListener {
 
 		public event LoginRespondeHandler LoginRespondeEvent;
 		internal void OnLoginResponde(ISession session, LoginResult responde) {
@@ -66,6 +67,17 @@ namespace UI.Network {
         internal void OnGroupAddResponseResponse(ISession session, GroupConversationAddedResponse responde) {
             GroupAddResponseEvent?.Invoke(session, responde);
         }
-
+        public event Action<ISession, SetAvatarResponse> SetAvatarResponseEvent;
+        internal void OnSetAvatarResponse(ISession session, SetAvatarResponse responde) {
+            SetAvatarResponseEvent?.Invoke(session, responde);
+        }
+        public event Action<ISession, SetNicknamesResponse> SetNicknamesResponseEvent;
+        internal void OnSetNicknamesResponse(ISession session, SetNicknamesResponse responde) {
+            SetNicknamesResponseEvent?.Invoke(session, responde);
+        }
+        public event Action<ISession, GetConversationShortInfoNotify> ConversationShortInfoNotifyEvent;
+        internal void OnConversationShortInfoNotify(ISession session, GetConversationShortInfoNotify responde) {
+            ConversationShortInfoNotifyEvent?.Invoke(session, responde);
+        }
     }
 }

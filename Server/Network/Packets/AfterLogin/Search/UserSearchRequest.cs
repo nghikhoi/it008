@@ -23,7 +23,7 @@ namespace ChatServer.Network.Packets
             Email = ByteBufUtils.ReadUTF8(buffer).ToLower();
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
                      ChatSession chatSession = session as ChatSession;
 
             UserSearchResponse response = new UserSearchResponse();

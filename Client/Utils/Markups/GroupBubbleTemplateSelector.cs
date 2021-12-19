@@ -14,6 +14,10 @@ namespace UI.Utils.Markups
 			if (element != null && item != null && item is GroupBubbleViewModel)
 			{
 				GroupBubbleViewModel gr = item as GroupBubbleViewModel;
+                if (gr.IsAnnouce)
+                {
+                    return element.FindResource("GroupBubbleCenter") as DataTemplate;
+				}
 				bool type = gr.IsReceive;
 
 				switch (type)

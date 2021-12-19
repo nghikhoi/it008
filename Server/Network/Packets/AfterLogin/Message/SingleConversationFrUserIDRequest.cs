@@ -27,7 +27,7 @@ namespace ChatServer.Network.Packets
             }
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             if (TargetID.Equals(Guid.Empty)) return null;
 
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);

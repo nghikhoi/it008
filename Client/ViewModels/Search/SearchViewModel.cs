@@ -29,6 +29,8 @@ namespace UI.ViewModels.Search {
         
         private readonly IModelContext _model;
 
+        public HashSet<Guid> Blacklist { get; set; } = new HashSet<Guid>();
+
         #endregion
 
         public event Action<List<UserShortInfo>> AcceptEvent;
@@ -75,6 +77,7 @@ namespace UI.ViewModels.Search {
             SearchList.Clear();
             foreach (var info in list) {
                 if (SelectedList.Any(model => model.Info.ID == info.ID)) continue;
+                if (Blacklist.Any(id => id.ToString() == info.ID)) continue;
                 SearchItemViewModel m = new SearchItemViewModel()
                 {
                     Info = info

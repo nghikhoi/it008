@@ -13,9 +13,11 @@
              Foreground="{DynamicResource ForegroundResource}"
              xmlns:uc="clr-namespace:UI.Components"
              xmlns:views="clr-namespace:UI.Views"
+             xmlns:converters="clr-namespace:UI.Utils.Converters"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand" />
+        <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand"/>
+        <markups:BindingProxy x:Key="Dialog" Data="{Binding DialogViewModel}"/>
     </UserControl.Resources>
     <Border Style="{StaticResource OriginalBorder}" Background="{DynamicResource BackgroundResource}">
         <Grid>
@@ -124,6 +126,29 @@
                                                         <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                                             <i:InvokeCommandAction.CommandParameter>
                                                                 <uc:ChangeNicknames></uc:ChangeNicknames>
+                                                            </i:InvokeCommandAction.CommandParameter>
+                                                        </i:InvokeCommandAction>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Button>
+                                        </Grid>
+                                    </TextBlock>
+                                    <TextBlock Visibility="{Binding IsGroup, Converter={converters:BooleanCollapsed}}" Height="40" FontSize="16" Margin="12 0 0 0">
+                                        <Grid>
+                                            <StackPanel Height="40" Orientation="Horizontal">
+                                                <materialDesign:PackIcon VerticalAlignment="Center" Kind="People"
+                                                                         Width="24"
+                                                                         Height="24" Margin="0 0 10 0" />
+                                                <TextBlock VerticalAlignment="Center"
+                                                           Text="Thêm thành viên" />
+                                            </StackPanel>
+                                            <Button Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="0,4" Width="130">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <i:InvokeCommandAction Command="{Binding OpenAddGroupDialog}"/>
+                                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                                            <i:InvokeCommandAction.CommandParameter>
+                                                                <uc:SearchPopup DataContext="{Binding Data, Source={StaticResource Dialog}}"/>
                                                             </i:InvokeCommandAction.CommandParameter>
                                                         </i:InvokeCommandAction>
                                                     </i:EventTrigger>

@@ -20,7 +20,7 @@ namespace ChatServer.Network.Packets
             ConversationID = Guid.Parse(ByteBufUtils.ReadUTF8(buffer));
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
             AbstractConversation conversation = new ConversationStore().Load(ConversationID);
 
@@ -34,8 +34,10 @@ namespace ChatServer.Network.Packets
             packet.ConversationName = "";
             if (conversation is GroupConversation group)
             {
-                if (!FastCodeUtils.NotEmptyStrings(group.ConversationName) || group.ConversationName.Equals("~")) {
-                    foreach (var member in conversation.Members) {
+                if (!FastCodeUtils.NotEmptyStrings(group.ConversationName) || group.ConversationName.Equals("~"))
+                {
+                    foreach (var member in conversation.Members)
+                    {
                         if (member.CompareTo(chatSession.Owner.ID) == 0)
                             continue;
                         string name = new ChatUserStore().Load(member).FirstName;
@@ -51,6 +53,7 @@ namespace ChatServer.Network.Packets
                     else
                         packet.ConversationName = packet.ConversationName.Replace(", ", "");
                 }
+                else packet.ConversationName = group.ConversationName;
             }
 
             string OnlineUser = "~";
@@ -63,6 +66,7 @@ namespace ChatServer.Network.Packets
                 }
             }
 
+            packet.IsGroup = conversation is GroupConversation;
             packet.OnlinerUser = OnlineUser;
 
             Guid avatar = conversation.Members.FirstOrDefault(s => s.CompareTo(chatSession.Owner.ID) != 0);

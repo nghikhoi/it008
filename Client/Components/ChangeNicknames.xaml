@@ -4,24 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Border Background="{DynamicResource BackgroundResource}">
+    <Border Background="{DynamicResource BackgroundResource}" Style="{StaticResource OriginalBorder}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="26"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="0 5 0 5"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Text="Nicknames"/>
+            <Border Style="{StaticResource OriginalBorder}" Background="LightGray">
+                <Grid>
+                    <Border Margin="0 10 0 0" Background="LightGray"/>
+                    <TextBlock Foreground="LightSlateGray" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Đổi biệt danh"
+                               Margin="8,0,0,0" FontSize="14"/>
+                    <Button Background="Transparent"
+                            BorderThickness="0"
+                            Padding="0"
+                            Margin="0 0 5 0"
+                            x:Name="btnClose"
+                            HorizontalAlignment="Right"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Height="Auto">
+                        <materialDesign:PackIcon Kind="WindowClose" Width="15" Height="15"
+                                                 Foreground="{DynamicResource ForegroundResource}" />
+                    </Button>
+                </Grid>
+            </Border>
             <ScrollViewer Grid.Row="1">
                 <ItemsControl ItemsSource="{Binding Nicknames}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:ChangeNicknameItem Width="400" Nickname="{Binding Nickname, Mode=TwoWay}"/>
+                            <local:ChangeNicknameItem Width="400"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>

@@ -372,10 +372,20 @@
       <DependentUpon>GroupAvtDisplayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\MessagePackage.cs" />
+    <Compile Include="Models\Message\AnnouncementMessage.cs" />
+    <Compile Include="Models\Message\GroupConversation.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\Conversation\SetAvatarRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\Conversation\SetAvatarResponse.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\Conversation\SetNicknamesRequest.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\Conversation\SetNicknamesResponse.cs" />
+    <Compile Include="Network\Packets\AfterLoginRequest\Message\GetConversationShortInfoNotify.cs" />
     <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationAddedResponse.cs" />
     <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationCreateRequest.cs" />
+    <Compile Include="Services\Common\HomeDialogState.cs" />
+    <Compile Include="Utils\Converters\BooleanCollapsed.cs" />
     <Compile Include="Utils\DateUtils.cs" />
     <Compile Include="Utils\Converters\ProgressConverter.cs" />
+    <Compile Include="ViewModels\Conversation\GroupConversationViewModel.cs" />
     <Compile Include="ViewModels\Conversation\GroupAvatarViewModel.cs" />
     <Compile Include="ViewModels\Conversation\NicknameViewModel.cs" />
     <Compile Include="ViewModels\Conversation\SingleAvatarViewModel.cs" />
@@ -593,7 +603,7 @@
     </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Command\BaseCommand.cs" />
-    <Compile Include="Models\ConservationCache.cs" />
+    <Compile Include="Models\BubbleType.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\MediaInfo.cs" />

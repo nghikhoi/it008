@@ -16,7 +16,7 @@ namespace ChatServer.Network.Packets
             TargetID = Guid.Parse(ByteBufUtils.ReadUTF8(buffer));
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatUser targetUser = ChatUserManager.LoadUser(TargetID);
 
             if (targetUser == null) return null;

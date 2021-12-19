@@ -13,14 +13,14 @@
     <Border>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="16"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock 
-                       Text="{Binding SenderID}"
-                       FontSize="8"
+                       Text="{Binding SenderName}"
+                       FontSize="12"
                        Foreground="Gray"
-                Margin="35,0,0,0"></TextBlock>
+                        Margin="35,0,0,0"></TextBlock>
             <DockPanel Grid.Row="1">
                 <local:AvatarDisplayer Height="32" Width="32" HorizontalAlignment="Left"
                                    VerticalAlignment="Bottom" UserID="{Binding SenderID}" />

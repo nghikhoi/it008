@@ -16,6 +16,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         public Dictionary<Guid, string> Nicknames { get; set; } = new Dictionary<Guid, string>();
         public HashSet<string> Members { get; set; } = new HashSet<string>();
         public string OnlineUser { get; set; }
+        public bool IsGroup { get; set; }
 
         public void Decode(IByteBuffer buffer)
         {
@@ -23,6 +24,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             ConversationName = ByteBufUtils.ReadUTF8(buffer);
             ConversationAvatar = ByteBufUtils.ReadUTF8(buffer);
             LastActive = buffer.ReadLong();
+            IsGroup = buffer.ReadBoolean();
             OnlineUser = ByteBufUtils.ReadUTF8(buffer);
             int Count = buffer.ReadInt();
             for (int i = 0; i < Count; i++)

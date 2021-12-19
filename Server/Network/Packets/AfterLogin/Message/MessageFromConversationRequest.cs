@@ -24,7 +24,7 @@ namespace ChatServer.Network.Packets
             LoadConversation = buffer.ReadBoolean();
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             if (MessagePosition == -1) return null;
 
             ChatSession chatSession = session as ChatSession;

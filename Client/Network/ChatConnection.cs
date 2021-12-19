@@ -7,6 +7,7 @@ using CNetwork.Sessions;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
+using UI.Annotations;
 using UI.Network.Packets;
 using UI.Network.Pipiline;
 using UI.Network.Protocol;
@@ -17,6 +18,7 @@ namespace UI.Network
     public class ChatConnection : IConnectionManager
     {
         static ChatConnection instance;
+        [NotNull] 
         public static ChatConnection Instance {
             get => instance;
             set => instance = value;

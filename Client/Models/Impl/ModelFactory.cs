@@ -10,15 +10,20 @@ namespace UI.Models.Impl {
     {
 
         private readonly ModelCreator<AbstractConversation> _conversationCreator;
+        private readonly ModelCreator<GroupConversation> _groupCreator;
 
-        public ModelFactory(ModelCreator<AbstractConversation> conversationCreator)
+        public ModelFactory(ModelCreator<AbstractConversation> conversationCreator, ModelCreator<GroupConversation> groupCreator)
         {
             _conversationCreator = conversationCreator;
+            _groupCreator = groupCreator;
         }
 
         public TModel Create<TModel>()
         {
-            return (TModel) Convert.ChangeType(_conversationCreator.Invoke(), typeof(TModel));
+            Type type = typeof(TModel);
+            if (type == typeof(GroupConversation))
+                return (TModel) Convert.ChangeType(_groupCreator.Invoke(), type);
+            return (TModel) Convert.ChangeType(_conversationCreator.Invoke(), type);
         }
     }
 }

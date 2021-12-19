@@ -70,6 +70,12 @@ namespace UI.Network
                 _listener?.OnBubbleChatColorResponse(this, bubbleChatColor);
             } else if (message is GroupConversationAddedResponse groupConversationAdded) {
                 _listener?.OnGroupAddResponseResponse(this, groupConversationAdded);
+            } else if (message is SetNicknamesResponse nicknamesResponse) {
+                _listener?.OnSetNicknamesResponse(this, nicknamesResponse);
+            } else if (message is SetAvatarResponse avatarResponse) {
+                _listener?.OnSetAvatarResponse(this, avatarResponse);
+            } else if (message is GetConversationShortInfoNotify shortInfoNotify) {
+                _listener?.OnConversationShortInfoNotify(this, shortInfoNotify);
             }
         }
 

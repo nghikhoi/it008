@@ -45,9 +45,16 @@ namespace UI.Network.Protocol
             Inbound(0x19, new BuzzReceive());
             Outbound(0x19, new BuzzSend());
 
+            Inbound(0x49, new GetConversationShortInfoNotify());
+
             Inbound(0x50, new BubbleChatColorSetRequest());
             Outbound(0x50, new BubbleChatColorSetRequest());
 
+            Outbound(0x51, new SetAvatarRequest());
+            Inbound(0x51, new SetAvatarResponse());
+
+            Outbound(0x52, new SetNicknamesRequest());
+            Inbound(0x52, new SetNicknamesResponse());
 
             // Notifications
             Inbound(0x07, new UserOnlineReceive());

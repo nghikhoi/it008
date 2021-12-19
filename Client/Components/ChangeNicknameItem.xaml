@@ -23,14 +23,16 @@
                                      HorizontalAlignment="Center"
                                      Background="{x:Null}"
                                      Grid.IsSharedSizeScope="True"
-                                     Text="{Binding ElementName=_this, Path=Nickname, Mode=TwoWay}" FontSize="18"
-                                     Foreground="Black" Margin="10, 5, 10, 5" Width="510" />
+                                     Text="{Binding Nickname, Mode=TwoWay}" FontSize="18"
+                                     Foreground="Black" Margin="10, 5, 10, 5" Width="300" />
                         </Border>
                         <Button Background="Transparent" DockPanel.Dock="Right" Height="24" Width="24"
                                 Foreground="Transparent" Margin="10 0 10 0" 
                                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Command="{Binding AcceptCommand}"
                                 Padding="0">
                             <materialDesign:PackIcon Kind="Check" 
+                                                     Foreground="Black"
                                                      Height="24" Width="24"/>
                         </Button>
                     </DockPanel>
@@ -39,26 +41,26 @@
                                 Background="Transparent"
                                 BorderBrush="Transparent"
                                 MinWidth="40" MaxWidth="520">
-                            <TextBox VerticalAlignment="Center"
+                            <TextBlock VerticalAlignment="Center"
                                      HorizontalAlignment="Center"
                                      Background="{x:Null}"
                                      Grid.IsSharedSizeScope="True"
-                                     IsReadOnly="True"
-                                     Text="{Binding ElementName=_this, Path=Nickname}" FontSize="18"
-                                     Foreground="Black" Margin="10, 5, 10, 5" Width="510" />
+                                     Text="{Binding Nickname}" FontSize="18"
+                                     Foreground="Black" Margin="10, 5, 10, 5" Width="300" />
                         </Border>
                         <Button Background="Transparent" DockPanel.Dock="Right" Height="24" Width="24"
                                 Foreground="Transparent" Margin="10 0 10 0" 
                                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Padding="0">
                             <materialDesign:PackIcon Kind="FountainPenTip" 
+                                                     Foreground="Black"
                                                      Height="24" Width="24"/>
                         </Button>
                     </DockPanel>
                 </Grid>
             </DockPanel>
             <Button Background="Transparent" 
-                    Foreground="Transparent" 
+                    Foreground="Transparent" x:Name="ButtonMask"
                     BorderBrush="Transparent" Click="ButtonBase_OnClick"/>
         </Grid>
     </Border>

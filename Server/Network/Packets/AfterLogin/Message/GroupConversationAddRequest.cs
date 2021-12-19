@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ChatServer.Entity;
 using ChatServer.Entity.Conversation;
+using ChatServer.Entity.Message;
 using ChatServer.IO.Message;
 using ChatServer.Utils;
 using CNetwork;
@@ -27,19 +28,21 @@ namespace ChatServer.Network.Packets
             ConversationId = ByteBufUtils.ReadUTF8(buffer);
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             List<ChatUser> users = Members.Select(ChatUserManager.LoadUser).ToList();
             ConversationStore store = new ConversationStore();
 
             Guid resultID = Guid.NewGuid();
             if (!FastCodeUtils.NotEmptyStrings(GroupName) || GroupName == "~")
             {
-                GroupName = string.Join(", ", users.Select(user => user.LastName).ToArray());
+                GroupName = ""; //string.Join(", ", users.Select(user => user.LastName).ToArray());
             }
 
             GroupConversation conversation;
+            bool createNew = false;
             if (ConversationId == "~")
             {
+                createNew = true;
                 conversation = new GroupConversation() {
                     ID = resultID,
                     Members = Members.ToHashSet(),
@@ -50,11 +53,20 @@ namespace ChatServer.Network.Packets
             {
                 conversation = (GroupConversation) store.Load(Guid.Parse(ConversationId));
             }
+
+            Queue<AnnouncementMessage> msgs = new Queue<AnnouncementMessage>();
             users.ForEach(user =>
             {
                 conversation.Nicknames.Add(user.ID, user.FullName);
                 user.ConversationID.Add(resultID);
                 user.Save();
+                if (!createNew) {
+                    AnnouncementMessage msg = new AnnouncementMessage() {
+                        Type = AnnouncementType.ADD_MEMBER,
+                        Value = user.FullName
+                    };
+                    msgs.Enqueue(msg);
+                }
             });
             store.SaveSync(conversation);
 
@@ -65,6 +77,17 @@ namespace ChatServer.Network.Packets
             {
                 user.Send(response);
             }
+
+            while (msgs.Count > 0)
+            {
+                AnnouncementMessage msg = msgs.Dequeue();
+                conversation.SendMessage(msg, session, false);
+            }
+
+            conversation.SendIfOnline(new GetConversationShortInfoNotify() {
+                ConversationId = conversation.ID
+            });
+
             return response;
         }
     }

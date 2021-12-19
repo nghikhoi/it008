@@ -56,8 +56,10 @@ namespace UI.Services {
             host.ConfigureServices(services =>
             {
                 services.AddTransient<AbstractConversation>();
+                services.AddTransient<GroupConversation>();
 
                 services.AddSingleton<ModelCreator<AbstractConversation>>(s => s.GetRequiredService<AbstractConversation>);
+                services.AddSingleton<ModelCreator<GroupConversation>>(s => s.GetRequiredService<GroupConversation>);
 
                 services.AddSingleton<IModelFactory, ModelFactory>();
                 services.AddSingleton<IModelContext, ModelContext>();
@@ -69,11 +71,13 @@ namespace UI.Services {
             host.ConfigureServices(services => {
                 services.AddTransient<ConversationViewModel>();
                 services.AddTransient<FriendConversationViewModel>();
+                services.AddTransient<GroupConversationViewModel>();
                 services.AddTransient<TextMessageViewModel>();
                 services.AddTransient<VideoMessageViewModel>();
                 services.AddTransient<ImageMessageViewModel>();
                 services.AddTransient<StickerMessageViewModel>();
                 services.AddTransient<AttachmentMessageViewModel>();
+                services.AddTransient<AnnouncementViewModel>();
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<ProfileViewModel>();
                 services.AddTransient<NotificationPageViewModel>();
@@ -87,13 +91,16 @@ namespace UI.Services {
                 services.AddTransient<SearchViewModel>();
 
                 services.AddSingleton<AuthenticationViewModel>();
+                services.AddSingleton<HomeDialogState>();
                 services.AddSingleton<ViewModelCreator<ConversationViewModel>>(s => s.GetRequiredService<ConversationViewModel>);
                 services.AddSingleton<ViewModelCreator<FriendConversationViewModel>>(s => s.GetRequiredService<FriendConversationViewModel>);
+                services.AddSingleton<ViewModelCreator<GroupConversationViewModel>>(s => s.GetRequiredService<GroupConversationViewModel>);
                 services.AddSingleton<ViewModelCreator<TextMessageViewModel>>(s => s.GetRequiredService<TextMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<VideoMessageViewModel>>(s => s.GetRequiredService<VideoMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<ImageMessageViewModel>>(s => s.GetRequiredService<ImageMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<StickerMessageViewModel>>(s => s.GetRequiredService<StickerMessageViewModel>);
                 services.AddSingleton<ViewModelCreator<AttachmentMessageViewModel>>(s => s.GetRequiredService<AttachmentMessageViewModel>);
+                services.AddSingleton<ViewModelCreator<AnnouncementViewModel>>(s => s.GetRequiredService<AnnouncementViewModel>);
                 services.AddSingleton<ViewModelCreator<HomeViewModel>>(s => s.GetRequiredService<HomeViewModel>);
                 services.AddSingleton<ViewModelCreator<ProfileViewModel>>(s => s.GetRequiredService<ProfileViewModel>);
                 services.AddSingleton<ViewModelCreator<NotificationPageViewModel>>(s => s.GetRequiredService<NotificationPageViewModel>);

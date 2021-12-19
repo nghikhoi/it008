@@ -16,7 +16,7 @@ namespace ChatServer.Network.Packets
         public Dictionary<Guid, string> Nicknames { get; set; }
         public HashSet<string> Members { get; set; } = new HashSet<string>();
         public string OnlinerUser { get; set; } = "~";
-        
+        public bool IsGroup { get; set; } = false;
 
         public void Decode(IByteBuffer buffer)
         {
@@ -29,6 +29,7 @@ namespace ChatServer.Network.Packets
             ByteBufUtils.WriteUTF8(byteBuf, ConversationName);
             ByteBufUtils.WriteUTF8(byteBuf, ConversationAvatar);
             byteBuf.WriteLong(LastActive);
+            byteBuf.WriteBoolean(IsGroup);
             ByteBufUtils.WriteUTF8(byteBuf, OnlinerUser);
             byteBuf.WriteInt(Nicknames.Count);
             foreach (var keyValuePair in Nicknames)

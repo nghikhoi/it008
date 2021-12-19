@@ -22,7 +22,7 @@ namespace ChatServer.Network.Packets
             Quantity = buffer.ReadInt();
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
 
             AbstractConversation conversation = new ConversationStore().Load(ConversationID);

@@ -11,7 +11,7 @@ namespace ChatServer.Entity.Message
     ///     - Template Method
     ///     - Decorator: make the change role/type of message easily
     /// </summary>
-    [BsonKnownTypes(typeof(AttachmentMessage), typeof(ImageMessage), typeof(StickerMessage), typeof(TextMessage), typeof(VideoMessage))]
+    [BsonKnownTypes(typeof(AttachmentMessage), typeof(ImageMessage), typeof(StickerMessage), typeof(TextMessage), typeof(VideoMessage), typeof(AnnouncementMessage))]
     public abstract class AbstractMessage : IMessage
     {
         [BsonId]

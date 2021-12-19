@@ -17,6 +17,8 @@ namespace UI.Utils {
 				    return new TextMessage();
 			    case 5:
 				    return new VideoMessage();
+				case 6:
+                    return new AnnouncementMessage();
 			}
 			return null;
 		}

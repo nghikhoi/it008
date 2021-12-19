@@ -25,7 +25,7 @@ namespace ChatServer.Network.Packets
             Gender = (Gender)buffer.ReadInt();
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
             
             ChatUser user = chatSession.Owner;

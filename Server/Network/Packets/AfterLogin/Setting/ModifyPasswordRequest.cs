@@ -17,7 +17,7 @@ namespace ChatServer.Network.Packets
             NewPassword = ByteBufUtils.ReadUTF8(buffer);
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
 
             SimpleChatServer.GetServer().Logger.Debug(chatSession.Owner.Password);

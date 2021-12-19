@@ -24,12 +24,11 @@ namespace UI.Utils.Markups {
 						return element.FindResource("StickerMessage") as DataTemplate;
 					}
 					case BubbleType.Text: {
-						return element.FindResource("TextMessage") as DataTemplate;
+						return (((TextMessageViewModel) item).IsFullIcon ? element.FindResource("EmojiMessage") : element.FindResource("TextMessage")) as DataTemplate;
 					}
-					case BubbleType.Emoji:
-						{
-					return element.FindResource("Emoji") as DataTemplate;
-						}
+					case BubbleType.Announcement: {
+					    return element.FindResource("AnnouncementMessage") as DataTemplate;
+                    }
 					case BubbleType.Video: {
 						return element.FindResource("VideoMessage") as DataTemplate;
 					}

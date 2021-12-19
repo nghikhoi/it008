@@ -39,15 +39,23 @@ namespace UI.ViewModels {
                 messagePackage = new MessagePackage(_model, Conversation.ID, Guid.Parse(_appSession.SessionID));
                 _conversation.PropertyChanged += (sender, args) =>
                 {
-                    if (args.PropertyName == nameof(Conversation.Color))
+                    App.Current.Dispatcher.Invoke(() =>
                     {
-						UpdateColor(Color);
-                    }
+                        if (args.PropertyName == nameof(Conversation.Color))
+                        {
+                            UpdateColor(Color);
+                        }
 
-                    if (args.PropertyName == nameof(Conversation.IsOnline))
-                    {
-                        IsOnline = _conversation.IsOnline;
-                    }
+                        if (args.PropertyName == nameof(Conversation.IsOnline))
+                        {
+                            IsOnline = _conversation.IsOnline;
+                        }
+
+                        if (args.PropertyName == nameof(Conversation.Nicknames))
+                        {
+                            UpdateNicknames();
+                        }
+                    });
                 };
 
                 OnPropertyChanged(nameof(Conversation), nameof(ConversationName), nameof(ConversationAvatar), nameof(ConversationId));
@@ -67,6 +75,8 @@ namespace UI.ViewModels {
 				OnPropertyChanged(nameof(MainEmoji));
             }
         }
+
+        public bool IsGroup { get; set; } = false;
 
         public string ConversationId => Conversation.ID.ToString();
 		
@@ -231,6 +241,7 @@ namespace UI.ViewModels {
 		#region Command
 
 		public event Action<ConversationViewModel> SelectAction;
+        public event Action<ConversationViewModel> SendMessageAction;
 		public ICommand SelectCommand { get; private set; }
 		public ICommand SelectMediaCommand { get; private set; }
 		public ICommand SendTextMessageCommand { get; private set; }
@@ -284,6 +295,14 @@ namespace UI.ViewModels {
             UpdateColorCommand = new RelayCommand<object>(null, o => _model.UpdateColor(Conversation.ID, SelectingColor));
             StartChangeNameCommand = new RelayCommand<object>(null, o => StartChangeName());
 			SendEmojiCommand = new RelayCommand<object>(null, SendEmoji);
+        }
+
+        private void UpdateNicknames()
+        {
+            foreach (var bubble in GroupBubbles)
+            {
+                bubble.SenderName = Conversation.Nicknames[Guid.Parse(bubble.SenderID)];
+			}
         }
 
         private void DownloadShowingMedia()
@@ -345,6 +364,7 @@ namespace UI.ViewModels {
         private void PackageMessage()
         {
             messagePackage = messagePackage.Send();
+            SendMessageAction?.Invoke(this);
         }
 
 		private void SelectImage(object para = null) {
@@ -450,7 +470,7 @@ namespace UI.ViewModels {
 		{
 			if (!FastCodeUtils.NotEmptyStrings(MainEmoji))
 				return;
-			messagePackage.AddEmoji(MainEmoji);
+			messagePackage.AddTextMessage(MainEmoji);
 			PackageMessage();
 		}
 
@@ -508,33 +528,32 @@ namespace UI.ViewModels {
 		protected void AddMessage(AbstractMessage message, bool loadFromServer = false) {
 			MessageViewModel messageViewModel = null;
 			switch ((BubbleType) message.GetPreviewCode()) {
-				case BubbleType.Attachment: {
-						messageViewModel = _factory.Create<AttachmentMessageViewModel>();
-						break;
-					}
-				case BubbleType.Image: {
-						messageViewModel = _factory.Create<ImageMessageViewModel>();
-						break;
-					}
-				case BubbleType.Sticker: {
-						messageViewModel = _factory.Create<StickerMessageViewModel>();
-						StickerMessage tmp = message as StickerMessage;
-						tmp.Sticker = Sticker.LoadedStickers[tmp.Sticker.ID];
-						break;
-					}
-				case BubbleType.Text: {
-						messageViewModel = _factory.Create<TextMessageViewModel>();
-						break;
-					}
-				case BubbleType.Emoji:
-					{
-						messageViewModel = _factory.Create<TextMessageViewModel>();
-						break;
-					}
-				case BubbleType.Video: {
-						messageViewModel = _factory.Create<VideoMessageViewModel>();
-						break;
-					}
+                case BubbleType.Attachment: {
+                    messageViewModel = _factory.Create<AttachmentMessageViewModel>();
+                    break;
+                }
+                case BubbleType.Image: {
+                    messageViewModel = _factory.Create<ImageMessageViewModel>();
+                    break;
+                }
+                case BubbleType.Sticker: {
+                    messageViewModel = _factory.Create<StickerMessageViewModel>();
+                    StickerMessage tmp = message as StickerMessage;
+                    tmp.Sticker = Sticker.LoadedStickers[tmp.Sticker.ID];
+                    break;
+                }
+                case BubbleType.Text: {
+                    messageViewModel = _factory.Create<TextMessageViewModel>();
+                    break;
+                }
+                case BubbleType.Video: {
+                    messageViewModel = _factory.Create<VideoMessageViewModel>();
+                    break;
+                }
+                case BubbleType.Announcement: {
+                    messageViewModel = _factory.Create<AnnouncementViewModel>();
+                    break;
+                }
 			}
 
 			if (messageViewModel != null) {
@@ -547,6 +566,10 @@ namespace UI.ViewModels {
 				messageViewModel.ConversationId = ConversationId;
 				messageViewModel.Message = message;
                 messageViewModel.BubbleColor = new SolidColorBrush(Color);
+                if (message is AnnouncementMessage)
+                {
+                    ((AnnouncementViewModel) messageViewModel).InitText(this);
+				}
 				//Prevent from async add when receive message
 				Application.Current.Dispatcher.Invoke(() => {
 					GroupBubbleViewModel groupBubbleView = null;
@@ -562,11 +585,17 @@ namespace UI.ViewModels {
                     }
 
 					bool createNew = false;
-					if (groupBubbleView == null || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0) {
+					if (groupBubbleView == null || message is AnnouncementMessage || string.CompareOrdinal(groupBubbleView.SenderID, message.SenderID) != 0) {
 						groupBubbleView = new GroupBubbleViewModel();
-						groupBubbleView.IsReceive = messageViewModel.IsReceivedMessage;
+                        groupBubbleView.IsReceive = messageViewModel.IsReceivedMessage;
 						groupBubbleView.SenderID = messageViewModel.Message.SenderID;
-						createNew = true;
+                        groupBubbleView.SenderName = Conversation.Nicknames[Guid.Parse(groupBubbleView.SenderID)];
+                        if (message is AnnouncementMessage)
+                        {
+                            groupBubbleView.IsAnnouce = true;
+                        }
+
+                        createNew = true;
 					}
 
                     if (loadFromServer)

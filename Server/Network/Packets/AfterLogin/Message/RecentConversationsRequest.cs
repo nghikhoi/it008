@@ -11,7 +11,7 @@ namespace ChatServer.Network.Packets
             // throw new NotImplementedException();
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
 
             RecentConversationsResponse packet = new RecentConversationsResponse();

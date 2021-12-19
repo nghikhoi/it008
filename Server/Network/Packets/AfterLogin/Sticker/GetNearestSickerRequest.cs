@@ -11,7 +11,7 @@ namespace ChatServer.Network.Packets
 
         }
 
-        public override IPacket createResponde(ISession session) {
+        public override IPacket createResponde(ChatSession session) {
             ChatSession chatSession = session as ChatSession;
             GetNearestSickerResponse response = new GetNearestSickerResponse();
             for (int i = 0; i < 20 && i < chatSession.Owner.NearestStickers.Count; i++)

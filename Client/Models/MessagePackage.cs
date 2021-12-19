@@ -34,7 +34,7 @@ namespace UI.Models {
             return this;
         }
 
-        public MessagePackage AddEmoji(params string[] texts)
+        /*public MessagePackage AddEmoji(params string[] texts)
         {
             foreach (var text in texts)
             {
@@ -43,6 +43,7 @@ namespace UI.Models {
             }
             return this;
         }
+        */
 
         public MessagePackage AddAttachment(params string[] paths)
         {
@@ -146,15 +147,6 @@ namespace UI.Models {
                     };
                     break;
                 }
-                case BubbleType.Emoji:
-                    {
-                        result = new TextMessage()
-                        {
-                            Message = value as string
-                        };
-                        (result as TextMessage).isEmoji = true;
-                        break;
-                    }
                 case BubbleType.Sticker:
                 {
                     result = new StickerMessage()

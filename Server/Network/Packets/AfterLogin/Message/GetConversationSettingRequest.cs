@@ -19,7 +19,7 @@ namespace ChatServer.Network.Packets
             return byteBuf;
         }
 
-        public override IPacket createResponde(ISession session)
+        public override IPacket createResponde(ChatSession session)
         {
             throw new NotImplementedException();
         }
