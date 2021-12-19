@@ -11,13 +11,23 @@
         <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector"></remarks:MessageTemplateSelector>
     </UserControl.Resources>
     <Border>
-        <DockPanel>
-            <local:AvatarDisplayer Height="32" Width="32" HorizontalAlignment="Left"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Right"
+                       Text="{Binding SenderID}"
+                       FontSize="8"
+                       Foreground="Gray"></TextBlock>
+            <DockPanel Grid.Row="1">
+                <local:AvatarDisplayer Height="32" Width="32" HorizontalAlignment="Left"
                                    VerticalAlignment="Bottom" UserID="{Binding SenderID}" />
-            <StackPanel Margin="5,0,0,0" Orientation="Vertical">
-                <ItemsControl ItemsSource="{Binding Messages}"
+                <StackPanel Margin="5,0,0,0" Orientation="Vertical">
+                    <ItemsControl ItemsSource="{Binding Messages}"
                               ItemTemplateSelector="{StaticResource MessageTemplateSelector}" />
-            </StackPanel>
-        </DockPanel>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
     </Border>
 </UserControl>
