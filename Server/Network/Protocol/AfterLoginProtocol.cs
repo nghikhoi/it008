@@ -34,7 +34,7 @@ namespace ChatServer.Network.Protocol
             Inbound(0x02, new SingleConversationFrUserIDRequest());
             Outbound(0x02, new SingleConversationFrUserIDResponse());
 
-            Inbound(0x25, new GroupConversationCreateRequest());
+            Inbound(0x25, new GroupConversationAddRequest());
             Outbound(0x25, new GroupConversationAddedResponse());
 
             Inbound(0x16, new MessageFromConversationRequest());

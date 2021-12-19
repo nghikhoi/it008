@@ -20,7 +20,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         }
 
         public void Handle(ISession session) {
-            throw new NotImplementedException();
+           
         }
     }
 }

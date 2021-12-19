@@ -32,8 +32,17 @@ namespace UI.ViewModels {
             if (result == true)
             {
                 string path = dialog.FileName;
-                FileAPI.DownloadAttachment(ConversationId, Message.FileID, path, (sender, args) => { },
-                    (sender, args) => { }, error => { }, "message");
+                DownloadItemViewModel item = new DownloadItemViewModel()
+                {
+                    FileType = 1,
+                    SavePath = path,
+                    FileName = FileName,
+                    FileId = Message.FileID,
+                    ConversationId = ConversationId
+                };
+                DownloadWindowCommand.StartDownload(item);
+                /*FileAPI.DownloadAttachment(ConversationId, Message.FileID, path, (sender, args) => { },
+                    (sender, args) => { }, error => { }, "message");*/
             }
         }
 

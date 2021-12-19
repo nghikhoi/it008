@@ -16,6 +16,7 @@ namespace ChatServer.Network.Packets
         public Dictionary<Guid, string> Nicknames { get; set; }
         public HashSet<string> Members { get; set; } = new HashSet<string>();
         public string OnlinerUser { get; set; } = "~";
+        
 
         public void Decode(IByteBuffer buffer)
         {

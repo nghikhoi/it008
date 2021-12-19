@@ -34,8 +34,14 @@ namespace ChatServer.Network.RestAPI.Controller
                 { "modifypassword", typeof(ModifyPasswordRequest) }
         };
 
-        public static Action<Action<IPacket>> getResponde(string id, ChatSession session, IByteBuffer buffer) {
-            RequestPacket request = (RequestPacket) Activator.CreateInstance(Map[id]);
+        public static Action<Action<IPacket>> getResponde(string id, ChatSession session, IByteBuffer buffer)
+        {
+            Type type = Map[id];
+            if (type == null)
+                throw new NullReferenceException("Cannot find request packet type with id " + id);
+            RequestPacket request = (RequestPacket) Activator.CreateInstance(type);
+            if (request == null)
+                throw new NullReferenceException("Request package create failed.");
             request.Decode(buffer);
             return request.createRespondeAction(session);
         }

@@ -14,6 +14,7 @@
              d:DesignHeight="450" MinWidth="200" MaxWidth="350"
              x:Name="_this">
     <UserControl.Resources>
+        <markups:BindingProxy x:Key="Dialog" Data="{Binding DialogViewModel}"/>
         <markups:BindingProxy Data="{Binding SearchCommand}" x:Key="SearchCommand" />
         <markups:BindingProxy Data="{Binding UserID, diag:PresentationTraceSources.TraceLevel=High}" x:Key="UID" />
     </UserControl.Resources>
@@ -61,8 +62,17 @@
                         Margin="0,0,10,6" VerticalAlignment="Bottom">
                     <materialDesign:PackIcon HorizontalAlignment="Right" Kind="MessagePlus"
                                              Width="24" Height="24" Cursor="Hand"
-                                             Foreground="{DynamicResource PrimaryColor}">
-                    </materialDesign:PackIcon>
+                                             Foreground="{DynamicResource PrimaryColor}"/>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding OpenCreateGroupDialog}"/>
+                            <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                <i:InvokeCommandAction.CommandParameter>
+                                    <components:SearchPopup DataContext="{Binding Data, Source={StaticResource Dialog}}"/>
+                                </i:InvokeCommandAction.CommandParameter>
+                            </i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Button>
             </Grid>
 

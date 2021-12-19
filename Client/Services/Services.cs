@@ -17,6 +17,7 @@ using UI.Network;
 using UI.Network.Protocol;
 using UI.Services.Common;
 using UI.ViewModels;
+using UI.ViewModels.Search;
 using UI.Views;
 
 namespace UI.Services {
@@ -83,6 +84,7 @@ namespace UI.Services {
                 services.AddTransient<StickerRecentTabViewModel>();
                 services.AddTransient<StickerStoreViewModel>();
                 services.AddTransient<StickerOwnedTabViewModel>();
+                services.AddTransient<SearchViewModel>();
 
                 services.AddSingleton<AuthenticationViewModel>();
                 services.AddSingleton<ViewModelCreator<ConversationViewModel>>(s => s.GetRequiredService<ConversationViewModel>);
@@ -102,6 +104,7 @@ namespace UI.Services {
                 services.AddSingleton<ViewModelCreator<StickerRecentTabViewModel>>(s => s.GetRequiredService<StickerRecentTabViewModel>);
                 services.AddSingleton<ViewModelCreator<StickerStoreViewModel>>(s => s.GetRequiredService<StickerStoreViewModel>);
                 services.AddSingleton<ViewModelCreator<StickerOwnedTabViewModel>>(s => s.GetRequiredService<StickerOwnedTabViewModel>);
+                services.AddSingleton<ViewModelCreator<SearchViewModel>>(s => s.GetRequiredService<SearchViewModel>);
                 services.AddSingleton<ViewModelCreator<LoginViewModel>>(s => () => CreateLoginViewModel(s));
                 services.AddSingleton<ViewModelCreator<RegisterViewModel>>(s => () => CreateRegisterViewModel(s));
 

@@ -23,7 +23,7 @@
                                      HorizontalAlignment="Center"
                                      Background="{x:Null}"
                                      Grid.IsSharedSizeScope="True"
-                                     Text="{Binding ElementName=_this, Path=ChatContent, Mode=TwoWay}" FontSize="18"
+                                     Text="{Binding ElementName=_this, Path=Nickname, Mode=TwoWay}" FontSize="18"
                                      Foreground="Black" Margin="10, 5, 10, 5" Width="510" />
                         </Border>
                         <Button Background="Transparent" DockPanel.Dock="Right" Height="24" Width="24"
@@ -44,7 +44,7 @@
                                      Background="{x:Null}"
                                      Grid.IsSharedSizeScope="True"
                                      IsReadOnly="True"
-                                     Text="{Binding ElementName=_this, Path=ChatContent}" FontSize="18"
+                                     Text="{Binding ElementName=_this, Path=Nickname}" FontSize="18"
                                      Foreground="Black" Margin="10, 5, 10, 5" Width="510" />
                         </Border>
                         <Button Background="Transparent" DockPanel.Dock="Right" Height="24" Width="24"

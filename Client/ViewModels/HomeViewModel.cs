@@ -18,6 +18,7 @@ using UI.Network.Packets.AfterLoginRequest.Sticker;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
+using UI.ViewModels.Search;
 
 namespace UI.ViewModels {
     public class HomeViewModel : InitializableViewModel {
@@ -124,6 +125,15 @@ namespace UI.ViewModels {
             }
         }
 
+        private object _dialogViewModel;
+        public object DialogViewModel {
+            get => _dialogViewModel;
+            set {
+                _dialogViewModel = value;
+                OnPropertyChanged(nameof(DialogViewModel));
+            }
+        }
+
         private readonly IViewModelFactory _viewModelFactory;
         private readonly IAuthenticator authenticator;
         private readonly IUserProfileHolder _userProfileHolder;
@@ -137,6 +147,7 @@ namespace UI.ViewModels {
 
         public ICommand SearchCommand { get; private set; }
         public ICommand ProfileInitalizeCommand { get; private set; }
+        public ICommand OpenCreateGroupDialog { get; private set; }
 
         #endregion
 
@@ -161,6 +172,7 @@ namespace UI.ViewModels {
             _userProfileHolder = userProfileHolder;
             this._viewModelFactory = viewModelFactory;
             this._model = model;
+            this._model.NewConversationEvent += guid => App.Current.Dispatcher.Invoke(() => NewConversationAdded(guid));
 
             InitializeCommand.Execute(null);
             SearchCommand = new RelayCommand<object>(null, o => SearchAction(SearchingString));
@@ -173,10 +185,27 @@ namespace UI.ViewModels {
                 if (SelectedConversation != null)
                     SelectedConversation.SendStickerMessage(s);
             };
+            OpenCreateGroupDialog = new RelayCommand<object>(null, o =>
+            {
+                DialogViewModel = _viewModelFactory.Create<SearchViewModel>();
+                (DialogViewModel as SearchViewModel).AcceptEvent += CreateGroup;
+            });
         }
 
         public override void Dispose() {
             base.Dispose();
+        }
+
+        private void CreateGroup(List<UserShortInfo> infos)
+        {
+            GroupConversationCreateRequest request = new GroupConversationCreateRequest()
+            {
+                Members = infos.Select(info => Guid.Parse(info.ID)).ToList(),
+                GroupName = "Test"
+            };
+            request.Members.Add(Guid.Parse(_appSession.SessionID));
+            
+            ChatConnection.Instance.Session.Send(request);
         }
 
         private ConversationViewModel ListSearchFor(string conversationId) {
@@ -227,15 +256,18 @@ namespace UI.ViewModels {
             LoadFriends();
         }
 
-        private void LoadRecentConversation() { 
-             _model.GetRecentConversations(true).ForEach(id =>
-             {
-                 AbstractConversation conversation = _model.GetConversation(id);
-                 ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
-                 viewModel.Conversation = conversation;
-                 viewModel.SelectAction += SelectConversation;
-                 Conversations.Add(viewModel);
-             });
+        private void LoadRecentConversation()
+        {
+            _model.GetRecentConversations(true);
+        }
+
+        private void NewConversationAdded(Guid id)
+        {
+            AbstractConversation conversation = _model.GetConversation(id);
+            ConversationViewModel viewModel = _viewModelFactory.Create<ConversationViewModel>();
+            viewModel.Conversation = conversation;
+            viewModel.SelectAction += SelectConversation;
+            Conversations.Add(viewModel);
         }
 
         private void LoadFriends() {

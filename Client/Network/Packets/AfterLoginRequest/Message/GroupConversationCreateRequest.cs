@@ -10,6 +10,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
     public class GroupConversationCreateRequest : RequestPacket {
         public List<Guid> Members { get; set; } = new List<Guid>();
         public string GroupName;
+        public string ConversationId;
         public void Decode(IByteBuffer buffer)
         {
             throw new NotImplementedException();
@@ -22,6 +23,9 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
             if (!FastCodeUtils.NotEmptyStrings(GroupName))
                 GroupName = "~";
             ByteBufUtils.WriteUTF8(byteBuf, GroupName);
+            if (!FastCodeUtils.NotEmptyStrings(ConversationId))
+                ConversationId = "~";
+            ByteBufUtils.WriteUTF8(byteBuf, ConversationId);
             return byteBuf;
         }
 

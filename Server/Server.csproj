@@ -137,7 +137,7 @@
     <Compile Include="Network\Packets\AfterLogin\Message\GetConversationSettingResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationAddedResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Message\SetConversationSettingRequest.cs" />
-    <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationCreateRequest.cs" />
+    <Compile Include="Network\Packets\AfterLogin\Message\GroupConversationAddRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordRequest.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\ModifyPasswordResponse.cs" />
     <Compile Include="Network\Packets\AfterLogin\Setting\UpdateSelfProfileRequest.cs" />

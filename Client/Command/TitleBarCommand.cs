@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -53,6 +54,8 @@ namespace UI.Command
         public static RoutedCommand MaximizeWindowCommand { get; set; }
         public static RoutedCommand MinimizeWindowCommand { get; set; }
         public static RoutedCommand MouseMoveWindowCommand { get; set; }
+        public static RoutedCommand LogOutCommand { get; set; }
+
 
         static TitleBarCommand() {
             CloseWindowCommand = new RoutedCommand();
@@ -70,10 +73,14 @@ namespace UI.Command
             MouseMoveWindowCommand = new RoutedCommand();
             CommandManager.RegisterClassCommandBinding(typeof(Window)
                 , new CommandBinding(MouseMoveWindowCommand, MouseMoveWindowCommandHandle, TitleBarCommandCanExecute));
+
+            LogOutCommand = new RoutedCommand();
+            CommandManager.RegisterClassCommandBinding(typeof(Window)
+                , new CommandBinding(LogOutCommand, LogOutCommandHandle, TitleBarCommandCanExecute));
         }
 
         private static void TitleBarCommandCanExecute(object sender, CanExecuteRoutedEventArgs args) {
-            if (args.Command != CloseWindowCommand && args.Command != MaximizeWindowCommand 
+            if (args.Command != CloseWindowCommand && args.Command != MaximizeWindowCommand && args.Command != LogOutCommand
                 && args.Command != MinimizeWindowCommand && args.Command != MouseMoveWindowCommand)
                 return;
             object Parameter = args.Parameter;
@@ -120,6 +127,13 @@ namespace UI.Command
                 return;
             object Parameter = args.Parameter;
             Window.GetWindow(Parameter as DependencyObject)?.DragMove();
+        }
+
+        private static void LogOutCommandHandle(object sender, ExecutedRoutedEventArgs args) {
+            if (args.Command != LogOutCommand)
+                return;
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName));
+            Environment.Exit(0);
         }
 
     }

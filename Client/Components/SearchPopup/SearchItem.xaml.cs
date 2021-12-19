@@ -13,15 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.Components
-{
+namespace UI.Components {
     /// <summary>
-    /// Interaction logic for GroupChatMemberAdd.xaml
+    /// Interaction logic for SearchItem.xaml
     /// </summary>
-    public partial class GroupChatMemberAdd : UserControl
-    {
-        public GroupChatMemberAdd()
-        {
+    public partial class SearchItem : UserControl {
+        public SearchItem() {
             InitializeComponent();
         }
     }

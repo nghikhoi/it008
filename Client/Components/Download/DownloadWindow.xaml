@@ -5,25 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI"
         xmlns:uc="clr-namespace:UI.Components"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModels="clr-namespace:UI.ViewModels"
+        xmlns:command="clr-namespace:UI.Command"
         mc:Ignorable="d"
+        DataContext="{DynamicResource DownloadManagerViewModel}"
         Background="{x:Null}" WindowStyle="None" ResizeMode="NoResize"
-        Title="DownloadWindow" Height="480" Width="256">
-    <Grid>
-        <Border x:Name="PopUp" Style="{StaticResource OriginalBorder}"
-                Height="480" Width="256" Background="{DynamicResource BackgroundResource}"
-                HorizontalAlignment="Center" VerticalAlignment="Center">
-            <DockPanel>
-                <DockPanel x:Name="TitleBar" DockPanel.Dock="Top">
-                    <uc:NonResizeTitleBar DockPanel.Dock="Right"></uc:NonResizeTitleBar>
-                    <TextBlock Foreground="LightSlateGray" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="14">
-                        Tải xuống
-                    </TextBlock>
-                </DockPanel>
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="DownloadList" Margin="4,0">
-                    </StackPanel>
-                </ScrollViewer>
-            </DockPanel>
-        </Border>
-    </Grid>
+        Title="DownloadWindow" Height="480" Width="600">
+    <Border x:Name="PopUp" Style="{StaticResource OriginalBorder}"
+            Background="{DynamicResource BackgroundResource}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource OriginalBorder}" Background="LightGray">
+                <Grid>
+                    <Border Margin="0 10 0 0" Background="LightGray" />
+                    <uc:TitleBar Margin="0 0 0 0" />
+                    <TextBlock Foreground="LightSlateGray" 
+                               HorizontalAlignment="Left" 
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Tải xuống"
+                               Margin="8,0,0,0" FontSize="14"/>
+                </Grid>
+            </Border>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Items}" Margin="5">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <uc:DownloadItem/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Border>
 </Window>

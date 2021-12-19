@@ -12,10 +12,11 @@ using DotNetty.Buffers;
 
 namespace ChatServer.Network.Packets
 {
-    public class GroupConversationCreateRequest : AbstractRequestPacket
+    public class GroupConversationAddRequest : AbstractRequestPacket
     {
-        public List<Guid> Members { get; set; } = new List<Guid>();
+        public HashSet<Guid> Members { get; set; } = new HashSet<Guid>();
         public string GroupName;
+        public string ConversationId;
 
         public override void Decode(IByteBuffer buffer)
         {
@@ -23,6 +24,7 @@ namespace ChatServer.Network.Packets
             for (int i = 0; i < count; i++)
                 Members.Add(Guid.Parse(ByteBufUtils.ReadUTF8(buffer)));
             GroupName = ByteBufUtils.ReadUTF8(buffer);
+            ConversationId = ByteBufUtils.ReadUTF8(buffer);
         }
 
         public override IPacket createResponde(ISession session) {
@@ -34,17 +36,27 @@ namespace ChatServer.Network.Packets
             {
                 GroupName = string.Join(", ", users.Select(user => user.LastName).ToArray());
             }
-            GroupConversation conversation = new GroupConversation() {
-                ID = resultID,
-                Members = Members.ToHashSet(),
-                ConversationName = GroupName
-            };
+
+            GroupConversation conversation;
+            if (ConversationId == "~")
+            {
+                conversation = new GroupConversation() {
+                    ID = resultID,
+                    Members = Members.ToHashSet(),
+                    ConversationName = GroupName
+                };
+            }
+            else
+            {
+                conversation = (GroupConversation) store.Load(Guid.Parse(ConversationId));
+            }
             users.ForEach(user =>
             {
+                conversation.Nicknames.Add(user.ID, user.FullName);
                 user.ConversationID.Add(resultID);
                 user.Save();
             });
-            store.Save(conversation);
+            store.SaveSync(conversation);
 
             GroupConversationAddedResponse response = new GroupConversationAddedResponse {
                 GroupId = resultID

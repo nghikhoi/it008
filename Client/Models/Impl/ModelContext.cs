@@ -24,7 +24,7 @@ namespace UI.Models.Impl {
         private readonly IModelFactory _factory;
 
         private readonly Dictionary<Guid, AbstractConversation> ConversationsCacheMap = new Dictionary<Guid, AbstractConversation>();
-        private readonly List<Guid> RecentConversations = new List<Guid>();
+        private readonly HashSet<Guid> RecentConversations = new HashSet<Guid>();
         private readonly List<UserShortInfo> Friends = new List<UserShortInfo>();
 
         public ModelContext(ChatConnection connection, PacketRespondeListener packetListener, IAppSession appSession, IModelFactory factory)
@@ -64,7 +64,14 @@ namespace UI.Models.Impl {
                     conversation.UpdateStatus(id, false);
                 }
             };
+            _packetListener.GroupAddResponseEvent += (session, response) =>
+            {
+                RecentConversations.Add(response.GroupId);
+                NewConversationEvent?.Invoke(response.GroupId);
+            };
         }
+
+        public event Action<Guid> NewConversationEvent;
 
         public void UpdateColor(Guid ConversationId, Color color)
         {
@@ -117,6 +124,7 @@ namespace UI.Models.Impl {
                         model.Members.Add(Guid.Parse(resultMember));
                     }
                     ConversationsCacheMap[id] = model;
+                    LoadMessages(model, 1);
                 });
             }
 
@@ -264,7 +272,7 @@ namespace UI.Models.Impl {
             return infos;
         }
 
-        public List<Guid> GetRecentConversations(bool reload = false)
+        public HashSet<Guid> GetRecentConversations(bool reload = false)
         {
             if (reload)
             {
@@ -274,6 +282,7 @@ namespace UI.Models.Impl {
                     foreach (var conversationsKey in recentResult.Conversations.Keys)
                     {
                         RecentConversations.Add(Guid.Parse(conversationsKey));
+                        NewConversationEvent?.Invoke(Guid.Parse(conversationsKey));
                     }
                 });
             }

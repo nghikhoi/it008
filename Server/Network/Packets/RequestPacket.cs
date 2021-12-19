@@ -23,7 +23,13 @@ namespace ChatServer.Network.Packets {
 		}
 
 		public Action<Action<IPacket>> createRespondeAction(ISession session) {
-			return action => { action.Invoke(createResponde(session)); };
+			return action =>
+            {
+                IPacket response = createResponde(session);
+                if (response == null)
+                    throw new NullReferenceException("Response packet null.");
+                action.Invoke(createResponde(session));
+            };
 		}
 
 		public abstract IPacket createResponde(ISession session);

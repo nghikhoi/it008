@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:UI"
              xmlns:components="clr-namespace:UI.Components"
+             xmlns:vm="clr-namespace:UI.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="60" d:DesignWidth="300">
     <i:Interaction.Triggers>
@@ -32,17 +33,29 @@
                 <Border Background="Aqua"
                         Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                         CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
-                    <components:AvatarDisplayer UserID="{Binding ConversationAvatar}" />
+                    <ContentControl Content="{Binding ConversationAvatar}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:SingleAvatarViewModel}">
+                                <components:AvatarDisplayer UserID="{Binding AvatarId}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:GroupAvatarViewModel}">
+                                <components:GroupAvtDisplayer/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
                 </Border>
             </Border>
 
             <Border Grid.Column="2" Padding="0 0 8 0">
                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <TextBlock x:Name="TitleBlock" Text="{Binding ConversationName}" />
+                    <TextBlock x:Name="TitleBlock" Text="{Binding ConversationName}" 
+                               TextTrimming="CharacterEllipsis"
+                               FontSize="14"
+                               FontFamily="Segoe UI Semibold"/>
                     <TextBlock Text="{Binding Subtitle}"
                                TextWrapping="WrapWithOverflow"
                                FontStyle="Italic"
-                               Foreground="{StaticResource LightBrush}"
+                               Foreground="Black"
                                TextTrimming="CharacterEllipsis"
                                x:Name="SubtitleBlock" />
                 </StackPanel>

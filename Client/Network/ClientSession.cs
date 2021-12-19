@@ -68,6 +68,8 @@ namespace UI.Network
                 _listener?.OnUserOfflineResponse(this, userOfflineReceive);
             } else if (message is BubbleChatColorSetRequest bubbleChatColor) {
                 _listener?.OnBubbleChatColorResponse(this, bubbleChatColor);
+            } else if (message is GroupConversationAddedResponse groupConversationAdded) {
+                _listener?.OnGroupAddResponseResponse(this, groupConversationAdded);
             }
         }
 

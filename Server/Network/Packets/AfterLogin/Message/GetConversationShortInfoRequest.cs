@@ -3,6 +3,7 @@ using System.Linq;
 using ChatServer.Entity.Conversation;
 using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
+using ChatServer.Utils;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
@@ -31,23 +32,27 @@ namespace ChatServer.Network.Packets
 
             int cnt = 0;
             packet.ConversationName = "";
-            /*if (string.IsNullOrEmpty(conversation.ConversationName) || conversation.ConversationName.Equals("~"))
+            if (conversation is GroupConversation group)
             {
-                foreach (var member in conversation.Members)
-                {
-                    if (member.CompareTo(chatSession.Owner.ID) == 0) continue;
-                    string name = new ChatUserStore().Load(member).FirstName;
-                    packet.ConversationName += name + ", ";
-                    cnt++;
+                if (!FastCodeUtils.NotEmptyStrings(group.ConversationName) || group.ConversationName.Equals("~")) {
+                    foreach (var member in conversation.Members) {
+                        if (member.CompareTo(chatSession.Owner.ID) == 0)
+                            continue;
+                        string name = new ChatUserStore().Load(member).FirstName;
+                        packet.ConversationName += name + ", ";
+                        cnt++;
 
-                    if (cnt >= 2) break;
+                        if (cnt >= 2)
+                            break;
+                    }
+
+                    if (cnt >= 2)
+                        packet.ConversationName += "and " + (conversation.Members.Count - 3) + "others...";
+                    else
+                        packet.ConversationName = packet.ConversationName.Replace(", ", "");
                 }
+            }
 
-                if (cnt >= 2)
-                    packet.ConversationName += "and " + (conversation.Members.Count - 3) + "others...";
-                else
-                    packet.ConversationName = packet.ConversationName.Replace(", ", "");
-            }*/
             string OnlineUser = "~";
             foreach (var member in conversation.Members)
             {

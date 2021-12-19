@@ -67,6 +67,15 @@ namespace ChatServer.IO.Message
             }
         }
 
+        public void SaveSync(AbstractConversation conversation) {
+            lock (_lock) {
+                Mongo.Instance.Set<AbstractConversation>(conversation.ID.ToString(), (collection) => {
+                    var condition = Builders<AbstractConversation>.Filter.Eq(p => p.ID, conversation.ID);
+                    collection.ReplaceOne(condition, conversation, new UpdateOptions() { IsUpsert = true });
+                });
+            }
+        }
+
         public long GetLastActive(Guid conversationID)
         {
             LastActiveTemp conversation = null;

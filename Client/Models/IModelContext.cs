@@ -11,6 +11,8 @@ using UI.Network.RestAPI;
 namespace UI.Models {
     public interface IModelContext
     {
+
+        event Action<Guid> NewConversationEvent;
         void UpdateColor(Guid ConversationId, Color color);
         void SendMessage(Guid ConversationId, AbstractMessage message);
         AbstractConversation GetConversation(Guid guid);
@@ -29,7 +31,7 @@ namespace UI.Models {
 
         List<UserShortInfo> Search(string searchString);
 
-        List<Guid> GetRecentConversations(bool reload = false);
+        HashSet<Guid> GetRecentConversations(bool reload = false);
 
     }
 }

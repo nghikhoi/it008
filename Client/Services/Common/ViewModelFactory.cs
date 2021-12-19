@@ -1,5 +1,6 @@
 ﻿using System;
 using UI.ViewModels;
+using UI.ViewModels.Search;
 
 namespace UI.Services.Common {
 	public class ViewModelFactory : IViewModelFactory {
@@ -23,9 +24,9 @@ namespace UI.Services.Common {
 		private readonly ViewModelCreator<StickerStoreViewModel> _stickerStoreCreator;
 		private readonly ViewModelCreator<StickerOwnedTabViewModel> _stickerOwnedTabCreator;
 		private readonly ViewModelCreator<StickerRecentTabViewModel> _stickerRecentTabCreator;
+        private readonly ViewModelCreator<SearchViewModel> _searchCreator;
 
-
-        public ViewModelFactory(AuthenticationViewModel authenticationViewModel, ViewModelCreator<RegisterViewModel> registerCreator, ViewModelCreator<LoginViewModel> loginCreator, ViewModelCreator<ConversationViewModel> conversationCreator, ViewModelCreator<FriendConversationViewModel> friendConversationCreator, ViewModelCreator<TextMessageViewModel> textMessageCreator, ViewModelCreator<VideoMessageViewModel> videoMessageCreator, ViewModelCreator<ImageMessageViewModel> imageMessageCreator, ViewModelCreator<StickerMessageViewModel> stickerMessageCreator, ViewModelCreator<AttachmentMessageViewModel> attachmentMessageCreator, ViewModelCreator<HomeViewModel> homeCreator, ViewModelCreator<ProfileViewModel> profileCreator, ViewModelCreator<NotificationPageViewModel> notificationPageCreator, ViewModelCreator<FriendRequestNotificationViewModel> friendRequestCreator, ViewModelCreator<FriendAccpectedNotificationViewModel> friendAcceptedCreator, ViewModelCreator<StickerContainerViewModel> stickerContainerCreator, ViewModelCreator<StickerItemStoreViewModel> stickerItemStoreCreator, ViewModelCreator<StickerStoreViewModel> stickerStoreCreator, ViewModelCreator<StickerOwnedTabViewModel> stickerOwnedTabCreator, ViewModelCreator<StickerRecentTabViewModel> stickerRecentTabCreator)
+        public ViewModelFactory(AuthenticationViewModel authenticationViewModel, ViewModelCreator<RegisterViewModel> registerCreator, ViewModelCreator<LoginViewModel> loginCreator, ViewModelCreator<ConversationViewModel> conversationCreator, ViewModelCreator<FriendConversationViewModel> friendConversationCreator, ViewModelCreator<TextMessageViewModel> textMessageCreator, ViewModelCreator<VideoMessageViewModel> videoMessageCreator, ViewModelCreator<ImageMessageViewModel> imageMessageCreator, ViewModelCreator<StickerMessageViewModel> stickerMessageCreator, ViewModelCreator<AttachmentMessageViewModel> attachmentMessageCreator, ViewModelCreator<HomeViewModel> homeCreator, ViewModelCreator<ProfileViewModel> profileCreator, ViewModelCreator<NotificationPageViewModel> notificationPageCreator, ViewModelCreator<FriendRequestNotificationViewModel> friendRequestCreator, ViewModelCreator<FriendAccpectedNotificationViewModel> friendAcceptedCreator, ViewModelCreator<StickerContainerViewModel> stickerContainerCreator, ViewModelCreator<StickerItemStoreViewModel> stickerItemStoreCreator, ViewModelCreator<StickerStoreViewModel> stickerStoreCreator, ViewModelCreator<StickerOwnedTabViewModel> stickerOwnedTabCreator, ViewModelCreator<StickerRecentTabViewModel> stickerRecentTabCreator, ViewModelCreator<SearchViewModel> searchCreator)
         {
             _authenticationViewModel = authenticationViewModel;
             _registerCreator = registerCreator;
@@ -47,6 +48,7 @@ namespace UI.Services.Common {
             _stickerStoreCreator = stickerStoreCreator;
             _stickerOwnedTabCreator = stickerOwnedTabCreator;
             _stickerRecentTabCreator = stickerRecentTabCreator;
+            _searchCreator = searchCreator;
         }
 
         public TViewModel Create<TViewModel>() where TViewModel : ViewModelBase {
@@ -91,7 +93,9 @@ namespace UI.Services.Common {
                 return (TViewModel) Convert.ChangeType(_stickerOwnedTabCreator.Invoke(), type);
             if (type == typeof(StickerRecentTabViewModel))
                 return (TViewModel) Convert.ChangeType(_stickerRecentTabCreator.Invoke(), type);
-			return null;
+            if (type == typeof(SearchViewModel))
+                return (TViewModel) Convert.ChangeType(_searchCreator.Invoke(), type);
+            return null;
 		}
 	}
 }

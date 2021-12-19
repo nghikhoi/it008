@@ -36,7 +36,7 @@ namespace ChatServer.Network.Packets
 
             var messages = conversation.MessagesID;
 
-            if (messages.Count == 0) return null;
+            if (messages.Count == 0) return packet;
             MessageStore messageStore = new MessageStore();
 
             for (int i = MessagePosition; i >= Math.Max(0, MessagePosition - Quantity + 1); --i)

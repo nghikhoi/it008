@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -14,7 +14,8 @@ using UI.Network.Packets.AfterLoginRequest.Message;
 using UI.Network.RestAPI;
 using UI.Services;
 using UI.Utils;
-using UI.ViewModels.Conversation;
+using Application = System.Windows.Application;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 namespace UI.ViewModels {
 	public class ConversationViewModel : InitializableViewModel {
@@ -94,6 +95,7 @@ namespace UI.ViewModels {
                         .Take(2).ToArray();
                     avatar.UserOne = ids[0].ToString();
                     avatar.UserTwo = ids[1].ToString();
+                    return avatar;
                 }
 
                 return new SingleAvatarViewModel()
@@ -178,6 +180,24 @@ namespace UI.ViewModels {
 
         private string _lastMessage;
 
+        public string Subtitle
+        {
+            get
+            {
+                if (Messages.Count == 0) return "";
+                AbstractMessage lastMessage = Messages[Messages.Count - 1].Message;
+                if (lastMessage is TextMessage text)
+                    return text.Message;
+                if (lastMessage is MediaAbstractMessage)
+                    return "Đã gửi một tệp media.";
+                if (lastMessage is AttachmentMessage)
+                    return "Đã gửi một tệp tin.";
+                if (lastMessage is Sticker)
+                    return "Đã gửi một sticker.";
+                return "";
+            }
+        }
+
 		public string LastMessage {
 			get => _lastMessage;
 			set {
@@ -224,6 +244,7 @@ namespace UI.ViewModels {
         public ICommand UpdateColorCommand { get; private set; }
         public ICommand StartChangeNameCommand { get; private set; }
 		public ICommand SendEmojiCommand { get; private set; }
+		public ICommand DownloadCurrentItem { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
 
 		#endregion
@@ -258,10 +279,33 @@ namespace UI.ViewModels {
 			ChatpageSendImageCommand = new RelayCommand<object>(null, SelectImage);
 			ChatpageSendFileCommand = new RelayCommand<object>(null, SelectVideo);
 			SendFileCommand = new RelayCommand<object>(null, SelectFile);
+            DownloadCurrentItem = new RelayCommand<object>(null, o => DownloadShowingMedia());
 			ChatpageSelectEmojiCommand = new RelayCommand<object>(null, SelectEmoji);
             UpdateColorCommand = new RelayCommand<object>(null, o => _model.UpdateColor(Conversation.ID, SelectingColor));
             StartChangeNameCommand = new RelayCommand<object>(null, o => StartChangeName());
 			SendEmojiCommand = new RelayCommand<object>(null, SendEmoji);
+        }
+
+        private void DownloadShowingMedia()
+        {
+            if (ShowingMedia == null) return;
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "All Files (*.*)|*.*";
+            dialog.CheckPathExists = true;
+            dialog.FileName = ShowingMedia.MediaInfo.FileName;
+            bool? result = dialog.ShowDialog();
+            if (result == true) {
+                string path = dialog.FileName;
+                DownloadItemViewModel item = new DownloadItemViewModel() {
+                    SavePath = path,
+                    FileName = ShowingMedia.MediaInfo.FileName,
+                    FileId = ShowingMedia.MediaInfo.FileID,
+                    ConversationId = ConversationId
+                };
+                DownloadWindowCommand.StartDownload(item);
+                /*FileAPI.DownloadAttachment(ConversationId, Message.FileID, path, (sender, args) => { },
+                    (sender, args) => { }, error => { }, "message");*/
+            }
         }
 
         private void StartChangeName()
@@ -508,9 +552,12 @@ namespace UI.ViewModels {
 					GroupBubbleViewModel groupBubbleView = null;
 					if (loadFromServer) {
 						Messages.Insert(0, messageViewModel);
+						if (Messages.Count == 1)
+							OnPropertyChanged(nameof(Subtitle));
 						groupBubbleView = GroupBubbles.ElementAtOrDefault(0);
 					} else {
 						Messages.Add(messageViewModel);
+						OnPropertyChanged(nameof(Subtitle));
 						groupBubbleView = GroupBubbles.ElementAtOrDefault(GroupBubbles.Count - 1);
                     }
 

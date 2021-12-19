@@ -336,13 +336,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\DownloadWindowCommand.cs" />
     <Compile Include="Components\ChangeNicknames.xaml.cs">
       <DependentUpon>ChangeNicknames.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ChangeNicknameItem.xaml.cs">
       <DependentUpon>ChangeNicknameItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\DownloadItem.xaml.cs">
+    <Compile Include="Components\Download\DownloadItem.xaml.cs">
       <DependentUpon>DownloadItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\Emoji.xaml.cs">
@@ -351,10 +352,13 @@
     <Compile Include="Components\FriendItemToAddGroup.xaml.cs">
       <DependentUpon>FriendItemToAddGroup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\GroupChatMemberAdd.xaml.cs">
-      <DependentUpon>GroupChatMemberAdd.xaml</DependentUpon>
+    <Compile Include="Components\SearchPopup\SearchItem.xaml.cs">
+      <DependentUpon>SearchItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\SoundMessage.xaml.cs">
+    <Compile Include="Components\SearchPopup\SearchPopup.xaml.cs">
+      <DependentUpon>SearchPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ChatItem\SoundMessage.xaml.cs">
       <DependentUpon>SoundMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\IModelContext.cs" />
@@ -367,11 +371,17 @@
     <Compile Include="Models\MessagePackage.cs" />
     <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationAddedResponse.cs" />
     <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationCreateRequest.cs" />
+    <Compile Include="Utils\DateUtils.cs" />
     <Compile Include="Utils\Converters\ProgressConverter.cs" />
     <Compile Include="ViewModels\Conversation\GroupAvatarViewModel.cs" />
     <Compile Include="ViewModels\Conversation\NicknameViewModel.cs" />
     <Compile Include="ViewModels\Conversation\SingleAvatarViewModel.cs" />
+    <Compile Include="ViewModels\Download\DownloadMediaItemViewModel.cs" />
+    <Compile Include="ViewModels\Download\DownloadItemViewModel.cs" />
+    <Compile Include="ViewModels\Download\DownloadManagerViewModel.cs" />
     <Compile Include="ViewModels\DownloadViewmodel.cs" />
+    <Compile Include="ViewModels\Search\SearchItemViewModel.cs" />
+    <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="Views\Windows\AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
@@ -738,7 +748,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\DownloadItem.xaml">
+    <Page Include="Components\Download\DownloadItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -758,11 +768,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\GroupChatMemberAdd.xaml">
+    <Page Include="Components\SearchPopup\SearchItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\SoundMessage.xaml">
+    <Page Include="Components\SearchPopup\SearchPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ChatItem\SoundMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace UI.Components
@@ -36,6 +37,8 @@ namespace UI.Components
         private void LogOutBtn_OnClick(object sender, RoutedEventArgs e) {
             RoutedEventArgs args = new RoutedEventArgs(LogoutClickEvent);
             RaiseEvent(args);
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.FriendlyName));
+            Environment.Exit(0);
         }
     }
 }
