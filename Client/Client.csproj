@@ -352,6 +352,9 @@
     <Compile Include="Components\FriendItemToAddGroup.xaml.cs">
       <DependentUpon>FriendItemToAddGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\GroupBubbleCenter.xaml.cs">
+      <DependentUpon>GroupBubbleCenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\SearchPopup\SearchItem.xaml.cs">
       <DependentUpon>SearchItem.xaml</DependentUpon>
     </Compile>
@@ -380,6 +383,7 @@
     <Compile Include="ViewModels\Download\DownloadItemViewModel.cs" />
     <Compile Include="ViewModels\Download\DownloadManagerViewModel.cs" />
     <Compile Include="ViewModels\DownloadViewmodel.cs" />
+    <Compile Include="ViewModels\Messages\AnnouncementViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchItemViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchViewModel.cs" />
     <Compile Include="Views\Windows\AuthenticationWindow.xaml.cs">
@@ -765,6 +769,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\ChangeNicknameItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\GroupBubbleCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

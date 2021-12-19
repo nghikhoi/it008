@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="UI.Components.GroupBubbleCenter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:remarks="clr-namespace:UI.Utils.Markups"
+             xmlns:local="clr-namespace:UI.Components"
+             mc:Ignorable="d" 
+             d:DesignWidth="355" MinWidth="40" Height="auto">
+    <UserControl.Resources>
+        <remarks:MessageTemplateSelector x:Key="MessageTemplateSelector">
+            
+        </remarks:MessageTemplateSelector>
+    </UserControl.Resources>
+    <Border>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Right" Margin="0,0,5,0" Orientation="Vertical">
+                <ItemsControl ItemsSource="{Binding Messages}"
+                              ItemTemplateSelector="{StaticResource MessageTemplateSelector}" />
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</UserControl>

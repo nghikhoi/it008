@@ -19,5 +19,9 @@
     <DataTemplate x:Key="GroupBubbleReciever">
         <uc:GroupBubbleRcv Margin="0, 1, 0, 1" Style="{StaticResource BubbleAlign}"></uc:GroupBubbleRcv>
     </DataTemplate>
-    
+
+    <DataTemplate x:Key="GroupBubbleCenter">
+        <uc:GroupBubbleCenter Margin="0, 1, 0, 1" HorizontalAlignment="Center"></uc:GroupBubbleCenter>
+    </DataTemplate>
+
 </ResourceDictionary>
