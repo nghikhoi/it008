@@ -108,6 +108,16 @@
                             <materialDesign:PackIcon Kind="AttachFile" Width="24" Height="24" />
                         </Button>
                     </Border>
+
+                    <Border VerticalAlignment="Bottom" Margin="2,4">
+                        <Button x:Name="BuzzButton" Padding="0" Margin="0"
+                                Style="{StaticResource ChatButton}"
+                                Click="BuzzButton_OnClick"
+                                Command="{Binding BuzzCommand}">
+                            <materialDesign:PackIcon Kind="Bomb" Width="24" Height="24" />
+                        </Button>
+                    </Border>
+
                     <Border VerticalAlignment="Bottom" Margin="2, 8">
                         <Border VerticalAlignment="Bottom" Margin="0" Height="24" Width="24">
                             <Border.Resources>

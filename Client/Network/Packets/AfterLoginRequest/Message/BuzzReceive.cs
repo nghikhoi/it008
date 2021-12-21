@@ -3,6 +3,7 @@ using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;
 using DotNetty.Buffers;
+using UI.Views;
 
 namespace UI.Network.Packets.AfterLoginRequest.Message
 {
@@ -23,7 +24,7 @@ namespace UI.Network.Packets.AfterLoginRequest.Message
         }
 
         public void Handle(ISession session) {
-            
+            ChatPage.DoPublicBuzz();
         }
     }
 }

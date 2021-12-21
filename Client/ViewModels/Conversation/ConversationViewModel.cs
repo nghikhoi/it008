@@ -257,6 +257,7 @@ namespace UI.ViewModels {
 		public ICommand SendEmojiCommand { get; private set; }
 		public ICommand DownloadCurrentItem { get; private set; }
 		public InitializeCommand FirstSelectCommand { get; private set; }
+		public ICommand BuzzCommand { get; private set; }
 
 		#endregion
 
@@ -295,6 +296,16 @@ namespace UI.ViewModels {
             UpdateColorCommand = new RelayCommand<object>(null, o => _model.UpdateColor(Conversation.ID, SelectingColor));
             StartChangeNameCommand = new RelayCommand<object>(null, o => StartChangeName());
 			SendEmojiCommand = new RelayCommand<object>(null, SendEmoji);
+            BuzzCommand = new RelayCommand<object>(null, o => SendBuzzPacket());
+        }
+
+        private void SendBuzzPacket()
+        {
+            BuzzSend request = new BuzzSend()
+            {
+                ConversationID = ConversationId
+            };
+			ChatConnection.Instance.Session.Send(request);
         }
 
         private void UpdateNicknames()

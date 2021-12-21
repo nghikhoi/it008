@@ -11,12 +11,54 @@ namespace UI.Views
     /// <summary>
     /// Interaction logic for ChatPage.xaml
     /// </summary>
-    public partial class ChatPage : UserControl {
+    public partial class ChatPage : UserControl
+    {
+
+        public static event Action OnBuzz;
+
+        public static void DoPublicBuzz()
+        {
+            OnBuzz?.Invoke();
+        }
 
         public ChatPage()
         {
             InitializeComponent();
+            OnBuzz += Buzz;
         }
+
+        private double randomDouble(double a, double b) {
+            Random rand = new Random();
+            double result = (rand.NextDouble() * (b - a)) + a;
+            return result;
+        }
+
+        public void Buzz()
+        {
+            var main = App.Current.MainWindow;
+            double currLeft = main.Left;
+            double currTop = main.Top;
+            double buffer = 10;
+            Action<object> buzz = (o) => {
+                Random rand = new Random();
+
+                //Tuple<double, double> curr =new Tuple<double, double>(main.Top, main.Left);
+
+                Action a = () => {
+                    main.Left = currLeft + randomDouble(-buffer, buffer);
+                    main.Top = currTop + randomDouble(-buffer, buffer);
+                    buffer -= 0.2f;
+                };
+
+                for (int i = 0; i <= 50; i++) {
+                    Dispatcher.Invoke(a);
+                    System.Threading.Thread.Sleep(10);
+                }
+
+            };
+            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(buzz));
+        }
+
         
         // Create a custom routed event by first registering a RoutedEventID
         // This event uses the bubbling routing strategy
@@ -129,6 +171,11 @@ namespace UI.Views
                     ChatInput.Text = ChatInput.Text.Replace(target, emoji.Text);
             }
             ChatInput.Select(ChatInput.Text.Length, 0);
+        }
+
+        private void BuzzButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Buzz();
         }
     }
 }
