@@ -9,7 +9,7 @@ namespace UI.Utils
     public class AppConfig
     {
         [JsonIgnore]
-        private static String encryptPassword = "Chinh@@Long@@Bach";
+        private static String encryptPassword = "Monsuta@!2021#$";
 
         [JsonProperty("SavedAccount")]
         public ConcurrentDictionary<String, String> SavedAccount = new ConcurrentDictionary<string, string>(StringComparer.OrdinalIgnoreCase);

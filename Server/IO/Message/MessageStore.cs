@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChatServer.Entity.Message;
+using ChatServer.Entity;
 using ChatServer.IO.Storage;
 
 namespace ChatServer.IO.Message

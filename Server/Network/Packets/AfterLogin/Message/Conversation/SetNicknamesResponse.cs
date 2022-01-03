@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ChatServer.Entity.Conversation;
 using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
 using ChatServer.Utils;

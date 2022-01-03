@@ -68,7 +68,7 @@ namespace ChatServer.Entity.EntityProperty
         }
 
         [BsonElement("Type")]
-        public Type RelationType { get; set; } = Type.None;
+        public RelationType RelationType { get; set; } = RelationType.None;
 
         [BsonElement("Source")]
         public Guid Source
@@ -90,14 +90,6 @@ namespace ChatServer.Entity.EntityProperty
         public void Save()
         {
             new RelationStore().Save(this);
-        }
-
-        public enum Type
-        {
-            None = 0,
-            Block = 1,
-            Friend = 2,
-            FriendRequest = 3
         }
 
         public static Relation Get(Guid id, bool ignoreCache = false) {

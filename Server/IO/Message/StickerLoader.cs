@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChatServer.Entity.Sticker;
+using ChatServer.Entity;
 
 namespace ChatServer.IO.Message
 {

@@ -76,9 +76,12 @@ namespace ChatServer.Entity
         [BsonElement("Notifications")]
         public HashStack<Guid> Notifications { get; set; } = new HashStack<Guid>();
 
+        private ChatTheme _chatTheme = new ChatTheme();
         [BsonElement("ChatThemeSettings")]
-        public ChatTheme ChatThemeSettings { get; set; } = new ChatTheme();
-
+        public ChatTheme ChatTheme {
+            get => _chatTheme;
+            set => _chatTheme = value;
+        }
         //Key is conversation id, value is the last time it have action
         [BsonIgnore]
         public ConcurrentDictionary<Guid, long> Conversations { get; private set; } = new ConcurrentDictionary<Guid, long>();
@@ -131,7 +134,7 @@ namespace ChatServer.Entity
             UserOnline packet = new UserOnline();
             packet.TargetID = this.ID;
 
-            foreach (var pair in Relationship.Where(q => Relation.Get(q.Value).RelationType == Relation.Type.Friend))
+            foreach (var pair in Relationship.Where(q => Relation.Get(q.Value).RelationType == RelationType.Friend))
             {
                 if (ChatUserManager.IsOnline(pair.Key))
                 {
@@ -146,7 +149,7 @@ namespace ChatServer.Entity
             UserOffline packet = new UserOffline();
             packet.TargetID = this.ID;
 
-            foreach (var pair in Relationship.Where(q => Relation.Get(q.Value).RelationType == Relation.Type.Friend))
+            foreach (var pair in Relationship.Where(q => Relation.Get(q.Value).RelationType == RelationType.Friend))
             {
                 if (ChatUserManager.IsOnline(pair.Key))
                 {
@@ -181,7 +184,7 @@ namespace ChatServer.Entity
             }
         }
 
-        public Relation SetRelation(ChatUser target, Relation.Type relationType, bool isSource = true)
+        public Relation SetRelation(ChatUser target, RelationType relationType, bool isSource = true)
         {
             if (target == null)
             {
@@ -233,5 +236,6 @@ namespace ChatServer.Entity
         {
             return store.UpdateRelations(this);
         }
+
     }
 }

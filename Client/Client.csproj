@@ -368,8 +368,8 @@
     <Compile Include="Models\IModelFactory.cs" />
     <Compile Include="Models\Impl\ModelContext.cs" />
     <Compile Include="Models\Impl\ModelFactory.cs" />
-    <Compile Include="Components\GroupAvtDisplayer.xaml.cs">
-      <DependentUpon>GroupAvtDisplayer.xaml</DependentUpon>
+    <Compile Include="Components\GroupAvatarDisplayer.xaml.cs">
+      <DependentUpon>GroupAvatarDisplayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\MessagePackage.cs" />
     <Compile Include="Models\Message\AnnouncementMessage.cs" />
@@ -383,8 +383,10 @@
     <Compile Include="Network\Packets\AfterLoginRequest\Message\GroupConversationCreateRequest.cs" />
     <Compile Include="Services\Common\HomeDialogState.cs" />
     <Compile Include="Utils\Converters\BooleanCollapsed.cs" />
+    <Compile Include="Utils\Converters\RatioConverter.cs" />
     <Compile Include="Utils\DateUtils.cs" />
     <Compile Include="Utils\Converters\ProgressConverter.cs" />
+    <Compile Include="Utils\NumberUtils.cs" />
     <Compile Include="ViewModels\Conversation\GroupConversationViewModel.cs" />
     <Compile Include="ViewModels\Conversation\GroupAvatarViewModel.cs" />
     <Compile Include="ViewModels\Conversation\NicknameViewModel.cs" />
@@ -774,7 +776,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\GroupAvtDisplayer.xaml">
+    <Page Include="Components\GroupAvatarDisplayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

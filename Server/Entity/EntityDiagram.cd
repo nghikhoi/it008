@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ChatServer.Entity.EntityProperty.ChatTheme">
+    <Position X="6.75" Y="11" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQAAAAAAAAAAAAAACEAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\ChatTheme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.EntityProperty.Relation">
+    <Position X="6.75" Y="13.25" Width="2.25" />
+    <Members>
+      <Field Name="Cache" Hidden="true" />
+      <Method Name="Get" Hidden="true" />
+      <Method Name="Relation" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Field Name="source" Hidden="true" />
+      <Field Name="user1" Hidden="true" />
+      <Field Name="user2" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAgQgAAgEJAIEAAACAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\Relation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.EntityProperty.FileMap">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="FileMap" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\FileMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.AbstractMessage">
+    <Position X="6" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+      <Method Name="GetPreviewCode" Hidden="true" />
+      <Method Name="Showable" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgQAAkACAAEAIAAAAIAAAAAACAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\AbstractMessage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatServer.Entity.AnnouncementMessage">
+    <Position X="8.75" Y="3.5" Width="2.25" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAQAiAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\AnnouncementMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.AttachmentMessage">
+    <Position X="4.25" Y="5.75" Width="1.75" />
+    <Members>
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\AttachmentMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.FileMessage">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACAAJAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\FileMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.ImageMessage">
+    <Position X="6.5" Y="5.75" Width="1.5" />
+    <Members>
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\ImageMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.StickerMessage">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAAACAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\StickerMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.TextMessage">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAACIQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\TextMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.VideoMessage">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <Members>
+      <Method Name="GetPreviewCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\VideoMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.AbstractConversation">
+    <Position X="2.25" Y="7.5" Width="2.75" />
+    <Members>
+      <Property Name="LoadedMessages" Hidden="true" />
+      <Field Name="messageStore" Hidden="true" />
+      <Method Name="SendIfOnline" Hidden="true" />
+      <Method Name="SendMessage" Hidden="true" />
+      <Field Name="store" Hidden="true" />
+      <Method Name="UpdateColor" Hidden="true" />
+      <Method Name="UpdateLastActive" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAgAAAACAAAACARAEAUIABAAAEgAEAAAA=</HashCode>
+      <FileName>Entity\Chat\Conversation\AbstractConversation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatServer.Entity.GroupConversation">
+    <Position X="5.25" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Chat\Conversation\GroupConversation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.SingleConversation">
+    <Position X="5.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Chat\Conversation\SingleConversation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.ChatUser">
+    <Position X="2.75" Y="11" Width="3.5" />
+    <Members>
+      <Field Name="_chatTheme" Hidden="true" />
+      <Method Name="AddNotification" Hidden="true" />
+      <Method Name="ChatUser" Hidden="true" />
+      <Method Name="IsOnline" Hidden="true" />
+      <Method Name="Kick" Hidden="true" />
+      <Method Name="Offline" Hidden="true" />
+      <Method Name="Online" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="SaveChatTheme" Hidden="true" />
+      <Method Name="Send" Hidden="true" />
+      <Method Name="SendOnly" Hidden="true" />
+      <Property Name="sessions" Hidden="true" />
+      <Method Name="SetRelation" Hidden="true" />
+      <Field Name="store" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAMAAAiAiIISYAEgAkAAgCACQAABDkgARAAgAAAg=</HashCode>
+      <FileName>Entity\ChatUser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ChatTheme" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ChatServer.Entity.Notification.AbstractNotification">
+    <Position X="7.75" Y="7.25" Width="1.5" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+      <Method Name="Type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAIIAAAAAAAAQACAAAAAAE=</HashCode>
+      <FileName>Entity\Notification\AbstractNotification.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatServer.Entity.Notification.AcceptFriendNotification">
+    <Position X="9.5" Y="8.5" Width="1.5" />
+    <Members>
+      <Method Name="Type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entity\Notification\AcceptFriendNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.Notification.CommunicateNotification">
+    <Position X="7.75" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="DecodeFromBuffer" Hidden="true" />
+      <Method Name="EncodeToBuffer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAIAAAAAAAAAAACAAAgAAA=</HashCode>
+      <FileName>Entity\Notification\CommunicateNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatServer.Entity.Notification.FriendRequestNotification">
+    <Position X="9.5" Y="9.75" Width="1.5" />
+    <Members>
+      <Method Name="Type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entity\Notification\FriendRequestNotification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ChatServer.Entity.EntityProperty.BackgroundType" Collapsed="true">
+    <Position X="9.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAgAAAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\ChatTheme.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ChatServer.Entity.EntityProperty.Gender" Collapsed="true">
+    <Position X="9.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ChatServer.Entity.EntityProperty.RelationType" Collapsed="true">
+    <Position X="9.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAAA=</HashCode>
+      <FileName>Entity\EntityProperty\RelationType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ChatServer.Entity.AnnouncementType">
+    <Position X="8.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAACAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity\Chat\Message\AnnouncementMessage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ChatServer.Entity.Notification.NotificationType" Collapsed="true">
+    <Position X="9.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Entity\Notification\NotificationType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

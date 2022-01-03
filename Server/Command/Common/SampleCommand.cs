@@ -84,7 +84,7 @@ namespace ChatServer.Command
                 ChatUser user1 = ChatUserManager.LoadUser(userID1);
                 ChatUser user2 = ChatUserManager.LoadUser(userID2);
 
-                user1.SetRelation(user2, Relation.Type.Friend, true);
+                user1.SetRelation(user2, RelationType.Friend, true);
             }
         }
     }

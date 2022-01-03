@@ -1,4 +1,4 @@
-﻿namespace ChatServer.Entity.Conversation
+﻿namespace ChatServer.Entity
 {
     public class SingleConversation : AbstractConversation
     {

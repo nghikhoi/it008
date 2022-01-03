@@ -1,4 +1,4 @@
-﻿using ChatServer.Entity.Sticker;
+﻿using ChatServer.Entity;
 using CNetwork;
 using CNetwork.Sessions;
 using DotNetty.Buffers;

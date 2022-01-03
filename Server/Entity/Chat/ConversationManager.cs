@@ -1,6 +1,5 @@
 ﻿using System;
 using ChatServer.Cache.Core;
-using ChatServer.Entity.Conversation;
 using ChatServer.IO.Message;
 
 namespace ChatServer.Entity

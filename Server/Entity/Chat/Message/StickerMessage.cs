@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ChatServer.Entity.Message
+namespace ChatServer.Entity
 {
     public class StickerMessage : AbstractMessage
     {

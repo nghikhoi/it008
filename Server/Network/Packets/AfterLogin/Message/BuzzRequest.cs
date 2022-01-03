@@ -1,6 +1,5 @@
 ﻿using System;
 using ChatServer.Entity;
-using ChatServer.Entity.Conversation;
 using ChatServer.Entity.EntityProperty;
 using CNetwork;
 using CNetwork.Sessions;
@@ -52,7 +51,7 @@ namespace ChatServer.Network.Packets
                 {
                     chatSession.Owner.Relationship.TryGetValue(guid, out var relationID);
                     Relation relation = Relation.Get(relationID);
-                    if (relation == null || relation.RelationType != Relation.Type.Friend) continue;
+                    if (relation == null || relation.RelationType != RelationType.Friend) continue;
                     ChatUserManager.LoadUser(guid).Send(message);
                 } 
             }

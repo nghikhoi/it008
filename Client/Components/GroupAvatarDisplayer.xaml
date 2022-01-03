@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="UI.Components.GroupAvatarDisplayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Components="clr-namespace:UI.Components"
+             xmlns:local="clr-namespace:UI.Components"
+             xmlns:converters="clr-namespace:UI.Utils.Converters"
+             mc:Ignorable="d" 
+             x:Name="_this"
+             d:DesignHeight="150" d:DesignWidth="150">
+    <Border>
+        <Canvas>
+            <Components:AvatarDisplayer Height="{Binding ElementName=_this, Path=Height, Converter={converters:RatioConverter}, ConverterParameter=0.7}"
+                                        Width="{Binding ElementName=_this, Path=Width, Converter={converters:RatioConverter}, ConverterParameter=0.7}"
+                                        UserID="{Binding UserOne}" 
+                                        Canvas.Left="{Binding ElementName=_this, Path=Height, Converter={converters:RatioConverter}, ConverterParameter=0.3}"/>
+            <Components:AvatarDisplayer Height="{Binding ElementName=_this, Path=Height, Converter={converters:RatioConverter}, ConverterParameter=0.7}"
+                                        Width="{Binding ElementName=_this, Path=Width, Converter={converters:RatioConverter}, ConverterParameter=0.7}"
+                                        UserID="{Binding UserTwo}" 
+                                        Canvas.Top="{Binding ElementName=_this, Path=Height, Converter={converters:RatioConverter}, ConverterParameter=0.3}"/>
+        </Canvas>
+    </Border>
+</UserControl>

@@ -78,7 +78,7 @@ namespace ChatServer.IO.Entity
                 {
                     Mongo.Instance.Set<ChatUser>(Mongo.UserCollectionName, (collection) => {
                         var condition = Builders<ChatUser>.Filter.Eq(p => p.ID, user.ID);
-                        var update = Builders<ChatUser>.Update.Set(p => p.ChatThemeSettings, user.ChatThemeSettings);
+                        var update = Builders<ChatUser>.Update.Set(p => p.ChatTheme, user.ChatTheme);
                         collection.UpdateOneAsync(condition, update, new UpdateOptions() { IsUpsert = true });
                     });
                     result = true;
@@ -118,7 +118,7 @@ namespace ChatServer.IO.Entity
             return result;
         }
 
-        private bool RelationIgnore(ChatUser user, Guid targetID, params Relation.Type[] relationTypes)
+        private bool RelationIgnore(ChatUser user, Guid targetID, params RelationType[] relationTypes)
         {
             //if (user == null || targetID == null) return false;
 

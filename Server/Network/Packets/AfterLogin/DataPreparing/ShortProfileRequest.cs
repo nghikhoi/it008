@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ChatServer.Entity;
-using ChatServer.Entity.Conversation;
 using ChatServer.Entity.EntityProperty;
-using ChatServer.Entity.Message;
 using ChatServer.IO.Message;
 using CNetwork;
 using CNetwork.Sessions;
@@ -78,7 +76,7 @@ namespace ChatServer.Network.Packets
                 response.RelationshipType = (int) Relation.Get(chatSession.Owner.Relationship[targetUser.ID]).RelationType;
             } else
             {
-                response.RelationshipType = (int) Relation.Type.None;
+                response.RelationshipType = (int) RelationType.None;
             }
 
             return response;

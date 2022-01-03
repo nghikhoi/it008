@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ChatServer.Entity;
-using ChatServer.Entity.Conversation;
 using ChatServer.Entity.EntityProperty;
-using ChatServer.Entity.Message;
 using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
 using CNetwork;
@@ -81,11 +79,11 @@ namespace ChatServer.Network.Packets
 
                 if (chatSession.Owner.Relationship.ContainsKey(targetUser.ID))
                 {
-                    result.Relationship = (int)Relation.Get(chatSession.Owner.Relationship[targetUser.ID]).RelationType;
+                    result.Relationship = (int) Relation.Get(chatSession.Owner.Relationship[targetUser.ID]).RelationType;
                 }
                 else
                 {
-                    result.Relationship = (int)Relation.Type.None;
+                    result.Relationship = (int) RelationType.None;
                 }
 
                 response.Results.Add(result);

@@ -15,7 +15,7 @@ namespace ChatServer.Network.Packets
             ChatSession chatSession = session as ChatSession;
             ChatThemeSetRequest response = new ChatThemeSetRequest();
 
-            response.Theme = chatSession.Owner.ChatThemeSettings;
+            response.Theme = chatSession.Owner.ChatTheme;
 
             session.Send(response);
             return response;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ChatServer.Entity.Sticker
+namespace ChatServer.Entity
 {
     public class StickerCategory
     {

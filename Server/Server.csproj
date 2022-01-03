@@ -80,10 +80,13 @@
     <Compile Include="Entity\AbstractEntity.cs" />
     <Compile Include="Entity\Builder\ChatUserBuilder.cs" />
     <Compile Include="Entity\Chat\Message\AnnouncementMessage.cs" />
+    <Compile Include="Entity\Chat\Message\FileMessage.cs" />
     <Compile Include="Entity\EntityProperty\ChatTheme.cs" />
     <Compile Include="Entity\EntityProperty\Gender.cs" />
     <Compile Include="Entity\ChatUser.cs" />
     <Compile Include="Entity\EntityProperty\Relation.cs" />
+    <Compile Include="Entity\EntityProperty\FileMap.cs" />
+    <Compile Include="Entity\EntityProperty\RelationType.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Entity\Meta\Profile\ChatUserProfile.cs" />
     <Compile Include="Entity\Meta\Profile\ProfileCache.cs" />
@@ -115,7 +118,6 @@
     <Compile Include="Entity\Chat\Message\ImageMessage.cs" />
     <Compile Include="Entity\Chat\IMessage.cs" />
     <Compile Include="Entity\Chat\Message\StickerMessage.cs" />
-    <Compile Include="Entity\Chat\Message\SystemAddNewUserMessage.cs" />
     <Compile Include="Entity\Chat\Message\TextMessage.cs" />
     <Compile Include="Entity\Chat\Message\VideoMessage.cs" />
     <Compile Include="Entity\Chat\Sticker\Sticker.cs" />
@@ -228,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Entity\EntityDiagram.cd" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

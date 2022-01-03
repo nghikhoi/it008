@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChatServer.Entity.EntityProperty;
 using ChatServer.IO.Storage;
 
 namespace ChatServer.IO.Message
@@ -39,22 +40,4 @@ namespace ChatServer.IO.Message
 
     }
 
-    public class FileMap
-    {
-        [BsonId]
-        public Guid Hash { get; set; }
-        [BsonElement("Name")]
-        public string FileName { get; set; }
-
-        public FileMap()
-        {
-
-        }
-
-        public FileMap(Guid hash, String fileName)
-        {
-            this.Hash = hash;
-            this.FileName = fileName;
-        }
-    }
 }

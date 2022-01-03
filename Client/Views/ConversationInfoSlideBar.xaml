@@ -14,6 +14,7 @@
              xmlns:uc="clr-namespace:UI.Components"
              xmlns:views="clr-namespace:UI.Views"
              xmlns:converters="clr-namespace:UI.Utils.Converters"
+             xmlns:vm="clr-namespace:UI.ViewModels"
              mc:Ignorable="d">
     <UserControl.Resources>
         <markups:BindingProxy Data="{Binding SelectMediaCommand}" x:Key="SelectMediaCommand"/>
@@ -61,12 +62,18 @@
 
                                         <Button.Template>
                                             <ControlTemplate TargetType="{x:Type Button}">
-                                                <uc:AvatarDisplayer Height="150" Width="150" UserID="{Binding UserId}" />
-                                                <!-- <Ellipse Height="150" Width="150" Grid.Column="1"> -->
-                                                <!--     <Ellipse.Fill> -->
-                                                <!--         <ImageBrush ImageSource="../../Images/avt.jpg"></ImageBrush> -->
-                                                <!--     </Ellipse.Fill> -->
-                                                <!-- </Ellipse> -->
+                                                <ContentControl Content="{Binding ConversationAvatar}">
+                                                    <ContentControl.Resources>
+                                                        <DataTemplate DataType="{x:Type vm:SingleAvatarViewModel}">
+                                                            <uc:AvatarDisplayer Height="150" Width="150" UserID="{Binding AvatarId}"/>
+                                                        </DataTemplate>
+                                                        <DataTemplate DataType="{x:Type vm:GroupAvatarViewModel}">
+                                                            <Viewbox Height="150" Width="150">
+                                                                <uc:GroupAvatarDisplayer Height="150" Width="150"/>
+                                                            </Viewbox>
+                                                        </DataTemplate>
+                                                    </ContentControl.Resources>
+                                                </ContentControl>
                                             </ControlTemplate>
                                         </Button.Template>
 

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace ChatServer.Entity.Conversation
+namespace ChatServer.Entity
 {
     public class GroupConversation : AbstractConversation
     {

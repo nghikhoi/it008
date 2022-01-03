@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChatServer.Entity.Message;
 using ChatServer.Entity.Notification;
 using ChatServer.IO.Storage;
 using MongoDB.Driver;

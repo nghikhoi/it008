@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ChatServer.IO.Message;
 using Newtonsoft.Json;
 
-namespace ChatServer.Entity.Sticker
+namespace ChatServer.Entity
 {
     public class Sticker
     {

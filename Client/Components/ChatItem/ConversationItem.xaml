@@ -33,10 +33,12 @@
                 <ContentControl Content="{Binding ConversationAvatar}" Height="60" Width="60">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type vm:SingleAvatarViewModel}">
-                            <components:AvatarDisplayer UserID="{Binding AvatarId}"/>
+                            <components:AvatarDisplayer Height="48" Width="48" UserID="{Binding AvatarId}"/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type vm:GroupAvatarViewModel}">
-                            <components:GroupAvtDisplayer/>
+                            <Viewbox Height="48" Width="48">
+                                <components:GroupAvatarDisplayer Height="48" Width="48"/>
+                            </Viewbox>
                         </DataTemplate>
                     </ContentControl.Resources>
                 </ContentControl>

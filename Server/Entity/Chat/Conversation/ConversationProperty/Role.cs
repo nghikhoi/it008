@@ -1,4 +1,4 @@
-﻿namespace ChatServer.Entity.Conversation.ConversationProperty
+﻿namespace ChatServer.Entity
 {
     public enum Role
     {

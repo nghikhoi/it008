@@ -22,7 +22,7 @@ namespace ChatServer.Network.Packets
             Relation rela;
             foreach (KeyValuePair<Guid, Guid> pair in chatSession.Owner.Relationship)
             {
-                if ((rela = Relation.Get(pair.Value)) != null && rela.RelationType == Relation.Type.Friend)
+                if ((rela = Relation.Get(pair.Value)) != null && rela.RelationType == RelationType.Friend)
                 {
                     bool isOnline = ChatUserManager.OnlineUsers.ContainsKey(pair.Key);
                     if (isOnline)

@@ -42,14 +42,14 @@ namespace ChatServer.Network.Packets
             ChatSession chatSession = session as ChatSession;
             ChatUser user = chatSession.Owner;
 
-            user.ChatThemeSettings.BackgroundId = Theme.BackgroundId;
-            user.ChatThemeSettings.BackgroundBlur = Theme.BackgroundBlur;
+            user.ChatTheme.BackgroundId = Theme.BackgroundId;
+            user.ChatTheme.BackgroundBlur = Theme.BackgroundBlur;
 
-            user.ChatThemeSettings.BackgroundColor = Theme.BackgroundColor;
+            user.ChatTheme.BackgroundColor = Theme.BackgroundColor;
 
-            user.ChatThemeSettings.Use = Theme.Use;
+            user.ChatTheme.Use = Theme.Use;
 
-            user.ChatThemeSettings.IconColor = Theme.IconColor;
+            user.ChatTheme.IconColor = Theme.IconColor;
 
             user.SaveChatTheme();
 

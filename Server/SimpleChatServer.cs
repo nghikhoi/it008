@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using ChatServer.Command;
-using ChatServer.Entity.Sticker;
 using ChatServer.IO.Storage;
 using ChatServer.Network;
 using ChatServer.Network.Protocol;

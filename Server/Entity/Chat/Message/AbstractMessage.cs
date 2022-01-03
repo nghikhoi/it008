@@ -4,7 +4,7 @@ using DotNetty.Buffers;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 
-namespace ChatServer.Entity.Message
+namespace ChatServer.Entity
 {
     /// <summary>
     /// Pattern:

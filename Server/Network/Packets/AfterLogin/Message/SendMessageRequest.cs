@@ -1,7 +1,5 @@
 ﻿using System;
 using ChatServer.Entity;
-using ChatServer.Entity.Conversation;
-using ChatServer.Entity.Message;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;

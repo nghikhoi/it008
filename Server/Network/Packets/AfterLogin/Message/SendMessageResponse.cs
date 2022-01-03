@@ -1,4 +1,4 @@
-﻿using ChatServer.Entity.Message;
+﻿using ChatServer.Entity;
 using CNetwork;
 using CNetwork.Sessions;
 using CNetwork.Utils;

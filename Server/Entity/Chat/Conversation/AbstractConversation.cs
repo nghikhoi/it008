@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChatServer.Cache.Core;
-using ChatServer.Entity.Message;
 using ChatServer.IO.Entity;
 using ChatServer.IO.Message;
 using ChatServer.Network;
@@ -10,7 +9,7 @@ using CNetwork;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.Options;
 
-namespace ChatServer.Entity.Conversation
+namespace ChatServer.Entity
 {
     /// <summary>
     /// Pattern:

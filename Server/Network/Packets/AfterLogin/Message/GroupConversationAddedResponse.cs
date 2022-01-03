@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using ChatServer.Entity;
-using ChatServer.Entity.Conversation;
 using ChatServer.IO.Message;
 using CNetwork;
 using CNetwork.Sessions;

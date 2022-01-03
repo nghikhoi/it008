@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UI.Components
 {
     /// <summary>
-    /// Interaction logic for GroupAvtDisplayer.xaml
+    /// Interaction logic for GroupAvatarDisplayer.xaml
     /// </summary>
-    public partial class GroupAvtDisplayer : UserControl
+    public partial class GroupAvatarDisplayer : UserControl
     {
-        public GroupAvtDisplayer()
+        public GroupAvatarDisplayer()
         {
             InitializeComponent();
         }
